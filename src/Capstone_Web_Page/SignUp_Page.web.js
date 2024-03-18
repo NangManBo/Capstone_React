@@ -123,7 +123,7 @@ function SignUpPage() {
 
       try {
         const response = await axios.post(
-          'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/auth/signup',
+          'http://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/auth/signup',
           userData
         );
         if (response.status === 201) {
