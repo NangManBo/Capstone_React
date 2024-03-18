@@ -137,7 +137,7 @@ function SignUpPage() {
           '오류',
           '잘못 입력하거나 비어있는 곳이 있습니다.'
         );
-        console.error('회원가입 요청 오류:', error);
+        console.error('데이터', userData);
       } finally {
         alert('finally'); // Web alert
         // Use setTimeout to delay the reactivation of the button by 2 seconds (2000 milliseconds)
