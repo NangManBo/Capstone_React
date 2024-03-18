@@ -15,7 +15,7 @@ function LogInPage() {
 
     try {
       const response = await axios.post(
-        'http://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/auth/signin',
+        'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/auth/signin',
         userData
       );
 
