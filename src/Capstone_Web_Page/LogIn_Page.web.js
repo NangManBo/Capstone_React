@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function LogInPage() {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ function LogInPage() {
     try {
       const response = await axios.post(
         'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/auth/signin',
-        userData,
+        userData
       );
 
       if (response.status === 201) {
@@ -31,7 +31,7 @@ function LogInPage() {
       if (error.response) {
         console.error('서버 에러:', error.response.data);
         alert(
-          `Error: ${error.response.status} - ${error.response.data.message}`,
+          `Error: ${error.response.status} - ${error.response.data.message}`
         );
       } else if (error.request) {
         console.error('응답을 받지 못함:', error.request);
@@ -51,21 +51,25 @@ function LogInPage() {
           type="email"
           placeholder="아이디"
           value={id}
-          onChange={e => setId(e.target.value)}
+          onChange={(e) => setId(e.target.value)}
         />
         <input
           type="password"
           placeholder="비밀번호"
           value={password}
-          onChange={e => setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
         />
         <button onClick={handleLogin}>로그인</button>
         <div>
           <p>처음 사용하시나요?</p>
         </div>
         <div>
-          <button onClick={() => navigate('/signup')}>회원가입</button>
-          <button onClick={() => navigate('/main')}>메인</button>
+          <button onClick={() => navigate('/signup')}>
+            회원가입
+          </button>
+          <button onClick={() => navigate('/main')}>
+            메인
+          </button>
         </div>
       </div>
     </div>
