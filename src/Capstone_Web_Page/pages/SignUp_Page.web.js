@@ -14,6 +14,9 @@ function SignUpPage() {
     useState(false);
   let navigate = useNavigate(); // useNavigate 사용
 
+  const handleGenderSelection = (gender) => {
+    setSelectedGender(gender);
+  };
   const placeholder = {
     label: 'MBTI',
     value: null,
@@ -64,7 +67,6 @@ function SignUpPage() {
         alert('오류', '입력해주세요!');
         setIsButtonDisabled(false);
       } else {
-        handleIdChange(id);
         alert(
           '오류',
           'ID와 닉네임이 중복됩니다. 다시 입력해주세요'
