@@ -18,108 +18,105 @@ function ProfilePage() {
   const [getMbti, setGetMbti] = useState('');
 
   useEffect(() => {
-    const getUserData = async () => {
-      try {
-        // 참가한 투표 수와 생성한 투표 수를 받아오는 각각의 요청
-        const participatedVotesResponse = await axios.get(
-          'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/polls/participated-count/' +
-            nickname,
-          {
-            headers: {
-              'AUTH-TOKEN': jwtToken,
-            },
-          }
-        );
-        const generatedVotesResponse = await axios.get(
-          'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/polls/created-count/' +
-            nickname,
-          {
-            headers: {
-              'AUTH-TOKEN': jwtToken,
-            },
-          }
-        );
-        const commentResponse = await axios.get(
-          'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/auth/profile/' +
-            userId,
-          {
-            headers: {
-              'AUTH-TOKEN': jwtToken,
-            },
-          }
-        );
-
-        const popularPointResponse = await axios.get(
-          'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/polls/popular-point/' +
-            nickname,
-          {
-            headers: {
-              'AUTH-TOKEN': jwtToken,
-            },
-          }
-        );
-        const get_mbti = await axios.get(
-          'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/auth/mbti/' +
-            nickname
-        );
-
-        //두 요청을 동시에 처리
-        // const [participatedVotesResponse, generatedVotesResponse] =
-        //   await Promise.all([participatedVotesRequest, generatedVotesRequest]);
-        if (get_mbti.status === 200) {
-          setGetMbti(get_mbti.data);
-        } else {
-          console.log('Mbti 실패했습니다');
-        }
-
-        if (participatedVotesResponse.status === 200) {
-          setParticipatedVoteCount(
-            participatedVotesResponse.data
-          );
-        } else {
-          console.log(
-            '참가한 투표 수를 가져오는 데 실패했습니다'
-          );
-        }
-
-        console.log(
-          'Generated Votes Response:',
-          generatedVotesResponse
-        );
-        if (generatedVotesResponse.status === 200) {
-          setGeneratedVoteCount(
-            generatedVotesResponse.data
-          );
-        } else {
-          console.log(
-            '생성한 투표 수를 가져오는 데 실패했습니다'
-          );
-        }
-
-        if (commentResponse.status === 200) {
-          setCommentCount(
-            commentResponse.data.commentCount
-          );
-        } else {
-          console.log(
-            '참가한 투표 수를 가져오는 데 실패했습니다'
-          );
-        }
-
-        if (popularPointResponse.status === 200) {
-          setPopularPoint(popularPointResponse.data);
-        } else {
-          console.log('포인트를 가져오는 데 실패했습니다');
-        }
-      } catch (error) {
-        console.error(
-          '사용자 데이터를 가져오는 데 실패했습니다:',
-          error
-        );
-      }
-    };
     getUserData();
   }, [nickname]);
+
+  const getUserData = async () => {
+    try {
+      // 참가한 투표 수와 생성한 투표 수를 받아오는 각각의 요청
+      const participatedVotesResponse = await axios.get(
+        'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/polls/participated-count/' +
+          nickname,
+        {
+          headers: {
+            'AUTH-TOKEN': jwtToken,
+          },
+        }
+      );
+      const generatedVotesResponse = await axios.get(
+        'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/polls/created-count/' +
+          nickname,
+        {
+          headers: {
+            'AUTH-TOKEN': jwtToken,
+          },
+        }
+      );
+      const commentResponse = await axios.get(
+        'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/auth/profile/' +
+          userId,
+        {
+          headers: {
+            'AUTH-TOKEN': jwtToken,
+          },
+        }
+      );
+
+      const popularPointResponse = await axios.get(
+        'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/polls/popular-point/' +
+          nickname,
+        {
+          headers: {
+            'AUTH-TOKEN': jwtToken,
+          },
+        }
+      );
+      const get_mbti = await axios.get(
+        'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/auth/mbti/' +
+          nickname
+      );
+
+      //두 요청을 동시에 처리
+      // const [participatedVotesResponse, generatedVotesResponse] =
+      //   await Promise.all([participatedVotesRequest, generatedVotesRequest]);
+      if (get_mbti.status === 200) {
+        setGetMbti(get_mbti.data);
+      } else {
+        console.log('Mbti 실패했습니다');
+      }
+
+      if (participatedVotesResponse.status === 200) {
+        setParticipatedVoteCount(
+          participatedVotesResponse.data
+        );
+      } else {
+        console.log(
+          '참가한 투표 수를 가져오는 데 실패했습니다'
+        );
+      }
+
+      console.log(
+        'Generated Votes Response:',
+        generatedVotesResponse
+      );
+      if (generatedVotesResponse.status === 200) {
+        setGeneratedVoteCount(generatedVotesResponse.data);
+      } else {
+        console.log(
+          '생성한 투표 수를 가져오는 데 실패했습니다'
+        );
+      }
+
+      if (commentResponse.status === 200) {
+        setCommentCount(commentResponse.data.commentCount);
+      } else {
+        console.log(
+          '참가한 투표 수를 가져오는 데 실패했습니다'
+        );
+      }
+
+      if (popularPointResponse.status === 200) {
+        setPopularPoint(popularPointResponse.data);
+      } else {
+        console.log('포인트를 가져오는 데 실패했습니다');
+      }
+    } catch (error) {
+      console.error(
+        '사용자 데이터를 가져오는 데 실패했습니다:',
+        error
+      );
+    }
+  };
 
   const handleLogout = () => {
     navigate('/Main', {
