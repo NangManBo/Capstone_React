@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import '../Styles/login_style.css';
 
 function LogInPage() {
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ function LogInPage() {
   };
 
   return (
-    <div className="LogInPage">
+    <div className="Page">
       <div>
         <h1>투표는 DO표</h1>
         <input

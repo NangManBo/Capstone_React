@@ -1,0 +1,8 @@
+.Page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: skyblue;
+  width: 60%;
+  height: 50%; /* 또는 원하는 높이 값 */
+}

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import moment from 'moment';
+import { fetchVotes } from './function/vote_function';
 
 function MainPage() {
   const [votes, setVotes] = useState([]); // 상태 추가
   const isLoggedIn = false;
-  const jwtToken = ''; // 실제 토큰 값을 여기에 넣어야 합니다.
+
   // 카테고리 상수
   const categories = [
     '시사',
@@ -17,60 +16,7 @@ function MainPage() {
   ];
   // 투표 데이터를 받아오는 함수
   useEffect(() => {
-    const fetchVotes = async () => {
-      try {
-        const response = await axios.get(
-          'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/polls/all',
-          {
-            headers: {
-              'AUTH-TOKEN': jwtToken,
-            },
-          }
-        );
-        if (response.status === 200) {
-          const votesData = response.data;
-
-          if (Array.isArray(votesData)) {
-            const formattedVotes = votesData.map(
-              (vote) => ({
-                id: vote.id,
-                mediaUrl: vote.mediaUrl,
-                createdBy: vote.createdBy,
-                voteStatus: vote.voteStatus,
-                createdAt: moment
-                  .utc(vote.createdAt)
-                  .format('YYYY-MM-DD HH:mm'),
-                category: vote.category,
-                title: vote.title,
-                question: vote.question,
-                likesCount: vote.likesCount,
-                likedUsers: vote.likedUsernames,
-                choice: vote.choice
-                  ? vote.choice.map((choice) => ({
-                      id: choice.id,
-                      text: choice.text,
-                    }))
-                  : [],
-              })
-            );
-            setVotes(formattedVotes); // 상태 업데이트
-          } else {
-            console.error(
-              'Invalid votes data format:',
-              votesData
-            );
-          }
-        } else {
-          console.error(
-            'Failed to fetch votes:',
-            response.data
-          );
-        }
-      } catch (error) {
-        console.error('투표 데이터 가져오기:', error);
-      }
-    };
-    fetchVotes();
+    fetchVotes(setVotes);
   }, []); // jwtToken이 변경될 때만 투표 데이터를 다시 가져옵니다.
 
   // 카테고리별로 투표를 필터링하고 정렬하는 함수
