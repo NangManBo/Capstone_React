@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../Styles/login_style.css';
+import '../../styles/login_style.css';
 
 function LogInPage() {
   const navigate = useNavigate();
@@ -22,7 +22,15 @@ function LogInPage() {
 
       if (response.status === 201) {
         console.log('로그인 성공:', response.data);
-        navigate('/main'); // 로그인 성공 시 메인 페이지로 이동
+        // 로그인 성공 시 필요한 정보를 state에 넣어서 navigate 함수를 사용
+        navigate('/main', {
+          state: {
+            isLoggedIn: true,
+            userId: response.data.userId, // 예시 값, 실제 응답에 맞게 조정 필요
+            jwtToken: response.data.token, // 예시 값, 실제 응답에 맞게 조정 필요
+            nickname: response.data.nickname, // 예시 값, 실제 응답에 맞게 조정 필요
+          },
+        });
       } else {
         // 201이 아닌 다른 성공 상태 코드일 때 처리 방식을 여기에 추가할 수 있습니다.
         console.error('로그인 실패:', response.data);

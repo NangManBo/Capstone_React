@@ -1,8 +1,7 @@
 import axios from 'axios';
 import moment from 'moment';
 
-export const fetchVotes = async (setVotes) => {
-  const jwtToken = ''; // 실제 토큰 값을 여기에 넣어야 합니다.
+export const fetchVotes = async (setVotes, jwtToken) => {
   try {
     const response = await axios.get(
       'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/polls/all',
