@@ -11,9 +11,6 @@ function MainPage() {
   const { isLoggedIn, userId, jwtToken, nickname } =
     location.state || {
       isLoggedIn: false,
-      userId: '',
-      jwtToken: '',
-      nickname: '',
     }; // state가 undefined일 수 있으니 기본값 처리
   // 투표 데이터를 받아오는 함수
   useEffect(() => {
