@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useFocusEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -17,9 +17,12 @@ function ProfilePage() {
   const [popularPoint, setPopularPoint] = useState(0);
   const [getMbti, setGetMbti] = useState('');
 
-  useEffect(() => {
-    getUserData();
-  }, [nickname]);
+  useFocusEffect(
+    React.useCallback(() => {
+      console.log('profile', nickname);
+      getUserData();
+    }, [nickname]) // Add any dependencies that should trigger a re-fetch
+  );
 
   const getUserData = async () => {
     try {
@@ -151,6 +154,8 @@ function ProfilePage() {
           <span>닉네임: {nickname}</span>
           <div>
             <span>아이디: {userId}</span>
+          </div>
+          <div>
             <span>MBTI: {getMbti}</span>
           </div>
         </div>
