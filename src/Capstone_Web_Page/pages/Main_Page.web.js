@@ -5,17 +5,24 @@ import { fetchVotes } from '../function/fetchVote_function';
 import { getCategoryVotes } from '../function/categorySort_fuction';
 
 function MainPage() {
-  const [votes, setVotes] = useState([]); // 상태 추가
   const navigate = useNavigate();
   const location = useLocation();
   const { isLoggedIn, userId, jwtToken, nickname } =
     location.state || {
       isLoggedIn: false,
-    }; // state가 undefined일 수 있으니 기본값 처리
+    };
+  const [unreadMessageCount, setUnreadMessageCount] =
+    useState(0);
+  const [votes, setVotes] = useState([]); // 상태 추가
+  const [messages, setMessages] = useState([]);
   // 투표 데이터를 받아오는 함수
   useEffect(() => {
     fetchVotes(setVotes, jwtToken);
+    if (!isLoggedIn) {
+      fetchData();
+    }
   }, []);
+  // 이동 함수
   const goToDMPage = () => {
     navigate('/dmbox', {
       state: {
@@ -36,11 +43,93 @@ function MainPage() {
       },
     });
   };
-
   const goToLogin = () => {
     navigate('/', {});
   };
-  // 컴포넌트 렌더링 로직
+  // 쪽지 데이터 받기
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/message/read/all/' +
+          nickname,
+        {
+          headers: {
+            'AUTH-TOKEN': jwtToken,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        // Assuming the response data is an array of messages
+        const messagesData = response.data;
+        console.log(JSON.stringify(response.data, null, 2));
+        // Extracting and mapping relevant data from the response
+        const formattedMessages = messagesData.map(
+          (message) => ({
+            username: message.sender,
+            time: message.sendTime,
+            title: message.content,
+            isRead: message.readStatus,
+            commentId: message.commentId || null,
+          })
+        );
+
+        setMessages(formattedMessages);
+      } else {
+        console.error(
+          'Failed to fetch messages:',
+          response.data
+        );
+      }
+    } catch (error) {
+      console.error('쪽지 데이터 가져오기:', error);
+    }
+  };
+
+  //웹소켓
+  useEffect(() => {
+    socket = new WebSocket(
+      'wss://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/test?uid=' +
+        userId
+    );
+
+    socket.onmessage = (event) => {
+      const receivedMessage = event.data;
+      console.log(
+        '서버로부터 받은 메시지 :',
+        receivedMessage
+      );
+      console.log('u1 :', updateDM);
+      // 메시지를 화면에 출력
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        receivedMessage,
+      ]);
+      // Check if the message contains "새로운 쪽지가 도착했습니다."
+      const isNewMessage = receivedMessage.includes(
+        '새로운 쪽지가 도착했습니다.'
+      );
+      console.log('isNewMessage:', isNewMessage);
+
+      if (isNewMessage) {
+        // Increment updateDM by 1
+        setUpdateDM(updateDM + 1);
+      }
+      console.log('u2 :', updateDM);
+
+      // 여긴 숫자 구하는거
+      //숫자를 추출하여 상태로 저장
+      const match = receivedMessage.match(
+        /읽지 않은 쪽지의 개수: (\d+)/
+      );
+
+      if (match) {
+        const count = parseInt(match[1], 10);
+        setUnreadMessageCount(count);
+      }
+    };
+  }, []);
+
   return (
     <div>
       <div style={{ overflowY: 'scroll' }}>
@@ -61,15 +150,21 @@ function MainPage() {
             </h2>
           </div>
           {isLoggedIn ? (
-            <button onClick={() => goToProfile()}>
-              프로필
-            </button>
+            <div>
+              <button onClick={() => goToProfile()}>
+                프로필
+              </button>
+              <button onClick={goToDMPage}>
+                DM 페이지로
+              </button>
+              <h2>{unreadMessageCount}</h2>
+            </div>
           ) : (
             <button onClick={() => goToLogin()}>
               로그인
             </button>
           )}
-          <button onClick={goToDMPage}>DM 페이지로</button>{' '}
+
           <div className="main_Row">
             <h2 className="category_">카테고리별 투표</h2>
           </div>
