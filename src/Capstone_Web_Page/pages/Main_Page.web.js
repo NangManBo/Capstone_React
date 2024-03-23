@@ -16,13 +16,7 @@ function MainPage() {
     useState(0);
   const [votes, setVotes] = useState([]); // 상태 추가
   const [messages, setMessages] = useState([]);
-  // 투표 데이터를 받아오는 함수
-  useEffect(() => {
-    fetchVotes(setVotes, jwtToken);
-    if (!isLoggedIn) {
-      fetchData();
-    }
-  }, []);
+
   // 이동 함수
   const goToDMPage = () => {
     navigate('/dmbox', {
@@ -86,7 +80,6 @@ function MainPage() {
       console.error('쪽지 데이터 가져오기:', error);
     }
   };
-
   //웹소켓
   useEffect(() => {
     const socket = new WebSocket(
@@ -124,6 +117,13 @@ function MainPage() {
     };
   }, []);
 
+  // 투표 데이터를 받아오는 함수
+  useEffect(() => {
+    fetchVotes(setVotes, jwtToken);
+    if (!isLoggedIn) {
+      fetchData();
+    }
+  }, []);
   return (
     <div>
       <div style={{ overflowY: 'scroll' }}>
