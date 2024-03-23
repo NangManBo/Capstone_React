@@ -61,12 +61,12 @@ function MainPage() {
             </h2>
           </div>
           {isLoggedIn ? (
-            <button onClick={() => goToLogin()}>
-              로그인
-            </button>
-          ) : (
             <button onClick={() => goToProfile()}>
               프로필
+            </button>
+          ) : (
+            <button onClick={() => goToLogin()}>
+              로그인
             </button>
           )}
           <button onClick={goToDMPage}>DM 페이지로</button>{' '}
