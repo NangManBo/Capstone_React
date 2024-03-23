@@ -7,6 +7,7 @@ import LogInPage from './Capstone_Web_Page/pages/LogIn_Page.web';
 import MainPage from './Capstone_Web_Page/pages/Main_Page.web';
 import SignUpPage from './Capstone_Web_Page/pages/SignUp_Page.web';
 import ProfilePage from './Capstone_Web_Page/pages/Profile_Page.web';
+import DMPage from './Capstone_Web_Page/pages/DM_Page.web';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/" element={<LogInPage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/main" element={<MainPage />} />
+          <Route path="/dm" element={<DMPage />} />
           <Route
             path="/profile"
             element={<ProfilePage />}

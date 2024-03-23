@@ -16,7 +16,16 @@ function MainPage() {
   useEffect(() => {
     fetchVotes(setVotes, jwtToken);
   }, []);
-
+  const goToDMPage = () => {
+    navigate('/DM', {
+      state: {
+        isLoggedIn,
+        userId,
+        jwtToken,
+        nickname,
+      },
+    });
+  };
   const goToProfile = () => {
     navigate('/profile', {
       state: {
@@ -50,6 +59,7 @@ function MainPage() {
           <button onClick={() => goToProfile()}>
             프로필
           </button>
+          <button onClick={goToDMPage}>DM 페이지로</button>{' '}
           <div className="main_Row">
             <h2 className="category_">카테고리별 투표</h2>
           </div>

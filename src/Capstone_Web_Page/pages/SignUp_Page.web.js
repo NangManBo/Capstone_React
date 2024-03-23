@@ -139,8 +139,6 @@ function SignUpPage() {
         );
         console.error('데이터', userData);
       } finally {
-        alert('finally'); // Web alert
-        // Use setTimeout to delay the reactivation of the button by 2 seconds (2000 milliseconds)
         setTimeout(() => {
           setIsButtonDisabled(false); // Re-enable the button after the delay
         }, 2000);
