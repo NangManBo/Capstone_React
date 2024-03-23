@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { fetchVotes } from '../function/fetchVote_function';
 import { getCategoryVotes } from '../function/categorySort_fuction';
+import axios from 'axios';
 
 function MainPage() {
   const navigate = useNavigate();
