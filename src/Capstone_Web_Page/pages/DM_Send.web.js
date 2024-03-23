@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import { styles } from './style/styles'; // 웹에 적합한 스타일로 수정 필요
 
 function DMSendPage() {
   const navigate = useNavigate();
@@ -52,43 +51,35 @@ function DMSendPage() {
   };
 
   return (
-    <div style={styles.main_page1}>
-      <div style={styles.main_Row}>
-        <div style={styles.back_view}>
-          <button
-            onClick={() => navigate(-1)}
-            style={styles.button}
-          >
+    <div>
+      <div>
+        <div>
+          <button onClick={() => navigate(-1)}>
             뒤로가기
           </button>
         </div>
-        <div style={styles.back_title_view}>
-          <span style={styles.back_text}>쪽지 쓰기</span>
+        <div>
+          <span>쪽지 쓰기</span>
         </div>
-        <div style={styles.send_message_btn_view}>
-          <button
-            onClick={handleSendMessage}
-            style={styles.button}
-          >
+        <div>
+          <button onClick={handleSendMessage}>
             보내기
           </button>
         </div>
       </div>
 
-      <div style={styles.DMSendScreen_view}>
-        <div style={styles.DMSendScreen_sendId_View}>
-          <span style={styles.sendId_text}>수신인:</span>
+      <div>
+        <div>
+          <span>수신인:</span>
           <input
-            style={styles.sendId_input_box}
             value={recipientId}
             onChange={(e) => setRecipientId(e.target.value)}
             placeholder="수신인 닉네임을 적어주세요."
           />
         </div>
-        <div style={styles.DMSendScreen_content_View}>
-          <span style={styles.content_text}>쪽지 내용</span>
+        <div>
+          <span>쪽지 내용</span>
           <textarea
-            style={styles.content_input_box}
             value={messageContent}
             onChange={(e) =>
               setMessageContent(e.target.value)
