@@ -99,7 +99,6 @@ function MainPage() {
         '서버로부터 받은 메시지 :',
         receivedMessage
       );
-      console.log('u1 :', updateDM);
       // 메시지를 화면에 출력
       setMessages((prevMessages) => [
         ...prevMessages,
@@ -110,14 +109,6 @@ function MainPage() {
         '새로운 쪽지가 도착했습니다.'
       );
       console.log('isNewMessage:', isNewMessage);
-
-      if (isNewMessage) {
-        // Increment updateDM by 1
-        setUpdateDM(updateDM + 1);
-      }
-      console.log('u2 :', updateDM);
-
-      // 여긴 숫자 구하는거
       //숫자를 추출하여 상태로 저장
       const match = receivedMessage.match(
         /읽지 않은 쪽지의 개수: (\d+)/
