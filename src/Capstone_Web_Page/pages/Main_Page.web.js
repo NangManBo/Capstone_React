@@ -36,6 +36,10 @@ function MainPage() {
       },
     });
   };
+
+  const goToLogin = () => {
+    navigate('/', {});
+  };
   // 컴포넌트 렌더링 로직
   return (
     <div>
@@ -56,9 +60,15 @@ function MainPage() {
               인기 투표
             </h2>
           </div>
-          <button onClick={() => goToProfile()}>
-            프로필
-          </button>
+          {isLoggedIn ? (
+            <button onClick={() => goToLogin()}>
+              로그인
+            </button>
+          ) : (
+            <button onClick={() => goToProfile()}>
+              프로필
+            </button>
+          )}
           <button onClick={goToDMPage}>DM 페이지로</button>{' '}
           <div className="main_Row">
             <h2 className="category_">카테고리별 투표</h2>
