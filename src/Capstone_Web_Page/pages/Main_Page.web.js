@@ -88,11 +88,13 @@ function MainPage() {
 
   //웹소켓
   useEffect(() => {
-    socket = new WebSocket(
+    const socket = new WebSocket(
       'wss://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/test?uid=' +
         userId
     );
-
+    socket.onopen = () => {
+      console.log('WebSocket 연결 성공');
+    };
     socket.onmessage = (event) => {
       const receivedMessage = event.data;
       console.log(
