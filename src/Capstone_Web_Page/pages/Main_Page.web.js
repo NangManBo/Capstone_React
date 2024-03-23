@@ -17,7 +17,7 @@ function MainPage() {
     fetchVotes(setVotes, jwtToken);
   }, []);
   const goToDMPage = () => {
-    navigate('/DM', {
+    navigate('/dm', {
       state: {
         isLoggedIn,
         userId,
