@@ -70,6 +70,13 @@ function MainPage() {
         );
 
         setMessages(formattedMessages);
+
+        // 여기에 추가: isRead가 false인 메시지의 수를 세어 unreadMessageCount 상태를 업데이트
+        const unreadMessagesCount =
+          formattedMessages.filter(
+            (message) => !message.isRead
+          ).length;
+        setUnreadMessageCount(unreadMessagesCount);
       } else {
         console.error(
           'Failed to fetch messages:',
