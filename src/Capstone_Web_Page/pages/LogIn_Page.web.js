@@ -6,7 +6,6 @@ function LogInPage() {
   const navigate = useNavigate();
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
-  const [socket, setSocket] = useState(null); // 여기서 변경됨
 
   const handleLogin = async () => {
     const userData = {
@@ -22,19 +21,10 @@ function LogInPage() {
 
       if (response.status === 201) {
         console.log('로그인 성공:', response.data);
-        const newSocket = new WebSocket(
-          'wss://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/test?uid=' +
-            id
-        );
-        newSocket.onopen = () => {
-          console.log('WebSocket 연결 성공');
-        };
 
-        setSocket(newSocket); // socket 상태 업데이트
         // 로그인 성공 시 필요한 정보를 state에 넣어서 navigate 함수를 사용
         navigate('/main', {
           state: {
-            socket: socket,
             isLoggedIn: true,
             userId: response.data.userId, // 예시 값, 실제 응답에 맞게 조정 필요
             jwtToken: response.data.token, // 예시 값, 실제 응답에 맞게 조정 필요

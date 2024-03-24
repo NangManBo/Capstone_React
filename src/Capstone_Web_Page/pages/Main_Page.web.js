@@ -8,7 +8,7 @@ import axios from 'axios';
 function MainPage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { socket, isLoggedIn, userId, jwtToken, nickname } =
+  const { isLoggedIn, userId, jwtToken, nickname } =
     location.state || {
       isLoggedIn: false,
     };
@@ -89,6 +89,13 @@ function MainPage() {
   };
   // 웹소켓
   const fetchwebsocket = async () => {
+    const socket = new WebSocket(
+      'wss://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/test?uid=' +
+        userId
+    );
+    socket.onopen = () => {
+      console.log('WebSocket 연결 성공');
+    };
     socket.onmessage = (event) => {
       const receivedMessage = event.data;
       console.log(
