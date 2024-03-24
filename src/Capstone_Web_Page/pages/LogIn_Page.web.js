@@ -23,7 +23,7 @@ function LogInPage() {
         console.log('로그인 성공:', response.data);
         socket = new WebSocket(
           'wss://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/test?uid=' +
-            id
+            response.data.userId
         );
         socket.onopen = () => {
           console.log('WebSocket 연결 성공');
