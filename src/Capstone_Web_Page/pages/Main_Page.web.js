@@ -8,7 +8,7 @@ import axios from 'axios';
 function MainPage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { isLoggedIn, userId, jwtToken, nickname } =
+  const { socket, isLoggedIn, userId, jwtToken, nickname } =
     location.state || {
       isLoggedIn: false,
     };
