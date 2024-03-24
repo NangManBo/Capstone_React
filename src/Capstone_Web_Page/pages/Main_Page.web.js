@@ -80,8 +80,8 @@ function MainPage() {
       console.error('쪽지 데이터 가져오기:', error);
     }
   };
-  //웹소켓
-  useEffect(() => {
+
+  const fetchwebsocket = async () => {
     const socket = new WebSocket(
       'wss://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/test?uid=' +
         userId
@@ -115,14 +115,14 @@ function MainPage() {
         setUnreadMessageCount(count);
       }
     };
-  }, []);
-
+  };
   // 투표 데이터를 받아오는 함수
   useEffect(() => {
     fetchVotes(setVotes, jwtToken);
-    if (!isLoggedIn) {
-      fetchData();
-    }
+    fetchData();
+    fetchwebsocket();
+    // if (!isLoggedIn) {
+    // }
   }, []);
   return (
     <div>
