@@ -21,7 +21,7 @@ export const fetchVotes = async (setVotes, jwtToken) => {
           createdBy: vote.createdBy,
           voteStatus: vote.voteStatus,
           createdAt: moment
-            .utc(vote.createdAt)
+            .utc(vote.createdAt, 'YYYY.MM.DD HH:mm:ss')
             .format('YYYY-MM-DD HH:mm'),
           category: vote.category,
           title: vote.title,
