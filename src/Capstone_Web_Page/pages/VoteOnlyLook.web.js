@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
-function voteOnlyLookPage() {
+function VoteOnlyLookPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const {
@@ -23,6 +23,7 @@ function voteOnlyLookPage() {
     console.log('jwtToken', jwtToken);
     console.log('nickname', nickname);
   }, []);
+
   return (
     <div>
       <button
@@ -44,4 +45,4 @@ function voteOnlyLookPage() {
   );
 }
 
-export default voteOnlyLookPage;
+export default VoteOnlyLookPage;

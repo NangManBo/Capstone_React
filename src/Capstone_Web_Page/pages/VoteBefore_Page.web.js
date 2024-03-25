@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
-function voteBeforePage() {
+function VoteBeforePage() {
   const navigate = useNavigate();
   const location = useLocation();
   const {
@@ -45,4 +45,4 @@ function voteBeforePage() {
   );
 }
 
-export default voteBeforePage;
+export default VoteBeforePage;
