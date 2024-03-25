@@ -26,7 +26,7 @@ function LogInPage() {
         navigate('/main', {
           state: {
             isLoggedIn: true,
-            userId: response.data.userId, // 예시 값, 실제 응답에 맞게 조정 필요
+            userId: id, // 예시 값, 실제 응답에 맞게 조정 필요
             jwtToken: response.data.token, // 예시 값, 실제 응답에 맞게 조정 필요
             nickname: response.data.nickname, // 예시 값, 실제 응답에 맞게 조정 필요
           },
