@@ -9,7 +9,7 @@ export const getCategoryVotes = (
   isLoggedIn,
   userId
 ) => {
-  const navigation = useNavigate();
+  const navigate = useNavigate();
   const categories = [
     '시사',
     '정치',
@@ -57,7 +57,7 @@ export const getCategoryVotes = (
           // Navigate to the appropriate screen based on voting status, createdBy, and voteStatus
           else if (isVoteEnd) {
             // If the vote is closed, navigate to 'VoteEnd'
-            navigate('voteend', {
+            navigate('/voteend', {
               state: {
                 vote: firstMatchingVote,
                 isLoggedIn,
@@ -69,7 +69,7 @@ export const getCategoryVotes = (
             });
           } else if (isCreatedByUser) {
             // If the user created the vote, navigate to 'VoteCreatedUser'
-            navigate('VoteCreatedUser', {
+            navigate('/votecreateduser', {
               state: {
                 vote: firstMatchingVote,
                 isLoggedIn,
@@ -81,7 +81,7 @@ export const getCategoryVotes = (
             });
           } else {
             // If userVotes is null or empty, navigate to 'VoteBefore'
-            navigate('VoteBefore', {
+            navigate('/votebefore', {
               initialPage: 1,
               vote: firstMatchingVote,
               isLoggedIn,
@@ -106,23 +106,25 @@ export const getCategoryVotes = (
               userVote.pollId === firstMatchingVote.id
           );
           // Navigate to the appropriate screen based on voting status, createdBy, and voteStatus
-          navigation.navigate(
+          navigate(
             isVoteEnd
-              ? 'VoteEnd'
+              ? '/voteend'
               : isCreatedByUser
-              ? 'VoteCreatedUser'
+              ? '/votecreateduser'
               : hasVoted
-              ? 'VoteAfter'
-              : 'VoteBefore',
+              ? '/voteafter'
+              : '/votebefore',
             {
-              initialPage: 1,
-              category,
-              vote: firstMatchingVote,
-              isLoggedIn,
-              userId,
-              jwtToken,
-              nickname,
-              userVotes,
+              state: {
+                initialPage: 1,
+                category,
+                vote: firstMatchingVote,
+                isLoggedIn,
+                userId,
+                jwtToken,
+                nickname,
+                userVotes,
+              },
             }
           );
         }
