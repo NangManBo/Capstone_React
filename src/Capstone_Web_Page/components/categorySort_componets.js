@@ -1,7 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { fetchData } from '../functions/fetchData_function';
 
 // 카테고리별로 투표를 필터링하고 정렬하는 함수
 export const getCategoryVotes = (
@@ -12,7 +10,6 @@ export const getCategoryVotes = (
   userId
 ) => {
   const navigation = useNavigate();
-  const location = useLocation();
   const categories = [
     '시사',
     '정치',
