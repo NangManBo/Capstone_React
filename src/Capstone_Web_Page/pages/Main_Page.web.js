@@ -11,6 +11,9 @@ function MainPage() {
   const { isLoggedIn, userId, jwtToken, nickname } =
     location.state || {
       isLoggedIn: false,
+      userId: '',
+      jwtToken: '',
+      nickname: 'manager',
     };
   const [unreadMessageCount, setUnreadMessageCount] =
     useState(0);
@@ -173,7 +176,13 @@ function MainPage() {
             <h2 className="category_">카테고리별 투표</h2>
           </div>
           <div className="category_sub_title_box">
-            {getCategoryVotes(votes)}
+            {getCategoryVotes(
+              votes,
+              nickname,
+              jwtToken,
+              isLoggedIn,
+              userId
+            )}
           </div>
         </div>
       </div>
