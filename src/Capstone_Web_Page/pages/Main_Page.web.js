@@ -120,6 +120,7 @@ function MainPage() {
 
       if (match) {
         const count = parseInt(match[1], 10);
+        console.log('읽지 않은 쪽지의 개수:', count);
         setUnreadMessageCount(
           (unreadMessageCount) => count
         );
@@ -133,7 +134,7 @@ function MainPage() {
     fetchwebsocket();
     // if (!isLoggedIn) {
     // }
-  }, []);
+  });
 
   return (
     <div>
@@ -162,9 +163,7 @@ function MainPage() {
               <button onClick={goToDMPage}>
                 DM 페이지로
               </button>
-              <h2 key={unreadMessageCount}>
-                {unreadMessageCount}
-              </h2>
+              <h2>{unreadMessageCount}</h2>
             </div>
           ) : (
             <button onClick={() => goToLogin()}>
