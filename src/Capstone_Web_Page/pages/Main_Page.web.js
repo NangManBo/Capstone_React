@@ -102,22 +102,19 @@ function MainPage() {
         '서버로부터 받은 메시지 :',
         receivedMessage
       );
-      // 메시지를 화면에 출력
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        receivedMessage,
-      ]);
-      //숫자를 추출하여 상태로 저장
-      const match = receivedMessage.match(
-        /읽지 않은 쪽지의 개수: (\d+)/
-      );
-      console.log('매치1:', match);
 
-      if (match) {
-        const count = parseInt(match[1], 10);
-        console.log('매치2:', match);
-        console.log('읽지 않은 쪽지의 개수:', count);
-        setUnreadMessageCount(count);
+      // "읽지 않은 쪽지의 개수:"를 기준으로 메시지를 나눔
+      const parts = receivedMessage.split(
+        '읽지 않은 쪽지의 개수: '
+      );
+      console.log('파트' + parts);
+      if (parts.length > 1) {
+        const count = parseInt(parts[1], 10);
+        if (!isNaN(count)) {
+          // count가 유효한 숫자인 경우에만 상태 업데이트
+          console.log('읽지 않은 쪽지의 개수:', count);
+          setUnreadMessageCount(count);
+        }
       }
     };
   };
