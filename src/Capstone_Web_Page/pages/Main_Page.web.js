@@ -120,7 +120,6 @@ function MainPage() {
       );
 
       if (match) {
-        setUpdate(update + 1);
         const count = parseInt(match[1], 10);
         setUnreadMessageCount(count);
       }
@@ -133,7 +132,12 @@ function MainPage() {
     fetchwebsocket();
     // if (!isLoggedIn) {
     // }
-  }, [update]);
+  }, []);
+
+  useEffect(() => {
+    console.log('세민');
+  }, [unreadMessageCount]);
+
   return (
     <div>
       <div style={{ overflowY: 'scroll' }}>
