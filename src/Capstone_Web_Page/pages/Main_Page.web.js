@@ -16,6 +16,7 @@ function MainPage() {
     useState(0);
   const [votes, setVotes] = useState([]); // 상태 추가
   const [messages, setMessages] = useState([]);
+  const [update, setUpdate] = useState(0); // 상태 추가
 
   // 이동 함수
   const goToDMPage = () => {
@@ -119,6 +120,7 @@ function MainPage() {
       );
 
       if (match) {
+        setUpdate(update + 1);
         const count = parseInt(match[1], 10);
         setUnreadMessageCount(count);
       }
@@ -131,7 +133,7 @@ function MainPage() {
     fetchwebsocket();
     // if (!isLoggedIn) {
     // }
-  }, []);
+  }, [update]);
   return (
     <div>
       <div style={{ overflowY: 'scroll' }}>
