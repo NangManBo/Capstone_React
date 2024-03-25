@@ -89,6 +89,7 @@ function MainPage() {
   };
   // 웹소켓
   const fetchwebsocket = async () => {
+    console.log(userId);
     const socket = new WebSocket(
       'wss://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/test?uid=' +
         userId
