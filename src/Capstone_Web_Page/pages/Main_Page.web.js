@@ -16,7 +16,6 @@ function MainPage() {
     useState(0);
   const [votes, setVotes] = useState([]); // 상태 추가
   const [messages, setMessages] = useState([]);
-  const [update, setUpdate] = useState(0); // 상태 추가
 
   // 이동 함수
   const goToDMPage = () => {
@@ -120,9 +119,8 @@ function MainPage() {
       );
 
       if (match) {
-        fetchData();
-        // const count = parseInt(match[1], 10);
-        // setUnreadMessageCount(count);
+        const count = parseInt(match[1], 10);
+        setUnreadMessageCount(count);
       }
     };
   };
@@ -162,7 +160,9 @@ function MainPage() {
               <button onClick={goToDMPage}>
                 DM 페이지로
               </button>
-              <h2>{unreadMessageCount}</h2>
+              <h2 key={unreadMessageCount}>
+                {unreadMessageCount}
+              </h2>
             </div>
           ) : (
             <button onClick={() => goToLogin()}>
