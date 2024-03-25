@@ -1,16 +1,15 @@
-import React from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 // 카테고리별로 투표를 필터링하고 정렬하는 함수
-export function getCategoryVotes(
+export const getCategoryVotes = (
   votes,
   nickname,
   jwtToken,
   isLoggedIn,
-  userId
-) {
-  const navigate = useNavigate();
+  userId,
+  navigate
+) => {
   const categories = [
     '시사',
     '정치',
@@ -178,4 +177,4 @@ export function getCategoryVotes(
       </button>
     );
   });
-}
+};

@@ -181,7 +181,8 @@ function MainPage() {
               nickname,
               jwtToken,
               isLoggedIn,
-              userId
+              userId,
+              navigate
             )}
           </div>
         </div>
