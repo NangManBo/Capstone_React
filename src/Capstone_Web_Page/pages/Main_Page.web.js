@@ -107,18 +107,13 @@ function MainPage() {
         ...prevMessages,
         receivedMessage,
       ]);
-      // Check if the message contains "새로운 쪽지가 도착했습니다."
-      const isNewMessage = receivedMessage.includes(
-        '새로운 쪽지가 도착했습니다.'
-      );
-      console.log('isNewMessage:', isNewMessage);
       //숫자를 추출하여 상태로 저장
       const match = receivedMessage.match(
         /읽지 않은 쪽지의 개수: (\d+)/
       );
       console.log('매치1:', match);
 
-      if (isNewMessage) {
+      if (match) {
         const count = parseInt(match[1], 10);
         console.log('매치2:', match);
         console.log('읽지 않은 쪽지의 개수:', count);
@@ -126,6 +121,7 @@ function MainPage() {
       }
     };
   };
+
   // 투표 데이터를 받아오는 함수
   useEffect(() => {
     fetchVotes(setVotes, jwtToken);
