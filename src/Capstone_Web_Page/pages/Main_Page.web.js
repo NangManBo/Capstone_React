@@ -120,7 +120,9 @@ function MainPage() {
 
       if (match) {
         const count = parseInt(match[1], 10);
-        setUnreadMessageCount(count);
+        setUnreadMessageCount(
+          (unreadMessageCount) => count
+        );
       }
     };
   };
