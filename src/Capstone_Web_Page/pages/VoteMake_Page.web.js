@@ -10,13 +10,8 @@ function VoteMakePage({ navigation, route }) {
   const navigate = useNavigate();
 
   // location.state를 통해 전달된 매개변수 접근
-  const {
-    userId,
-    isLoggedIn,
-    jwtToken,
-    nickname,
-    updateDM2,
-  } = location.state || {};
+  const { userId, isLoggedIn, jwtToken, nickname } =
+    location.state || {};
 
   const [titleInput, setTitleInput] = useState('');
   const [description, setDescription] = useState('');
@@ -75,44 +70,9 @@ function VoteMakePage({ navigation, route }) {
       setMediaFile(file); // 실제 파일 저장
     }
   };
-  // 수정된 코드
-  //   const handleMediaPick = (result) => {
-  //     const selectedAssets = result.assets;
-  //     if (selectedAssets.length > 0) {
-  //       const selectedMediaUri = selectedAssets[0].uri;
-  //       console.log('Selected Image URI:', selectedMediaUri);
-  //       setSelectedMedia(selectedMediaUri);
-  //     }
-  //   };
-
-  //   pickMedia 함수에서도 수정이 필요합니다.
-  //   const pickMedia = async () => {
-  //     let result = await ImagePicker.launchImageLibraryAsync({
-  //       mediaTypes: ImagePicker.MediaTypeOptions.All,
-  //       allowsEditing: true,
-  //       aspect: [4, 3],
-  //       quality: 1,
-  //     });
-
-  //     if (!result.canceled) {
-  //       result.fileName = '1'; // 파일 이름 설정
-
-  //       // 선택한 미디어의 타입 확인
-  //       if (result.assets[0].type.startsWith('image')) {
-  //         // 이미지인 경우에만 handleMediaPick 호출
-  //         handleMediaPick(result);
-  //       } else {
-  //         // 동영상인 경우에 대한 처리 (현재는 로그만 출력)
-  //         console.log(
-  //           'Selected Media is a video:',
-  //           result.assets[0].uri
-  //         );
-  //       }
-  //     }
-  //   };
 
   // 투표 생성
-  const goVoteMake2 = async () => {
+  const voteMake = async () => {
     try {
       const formData = new FormData();
 
@@ -208,12 +168,13 @@ function VoteMakePage({ navigation, route }) {
 
           if (response.status === 201) {
             console.log('투표 항목 성공:', response.data);
-            navigation.navigate('Main', {
-              isLoggedIn,
-              userId,
-              jwtToken,
-              nickname,
-              updateDM2: updateDM2 + 1,
+            navigate('/main', {
+              state: {
+                isLoggedIn,
+                userId,
+                jwtToken,
+                nickname,
+              },
             });
           } else {
             console.error(
@@ -312,7 +273,7 @@ function VoteMakePage({ navigation, route }) {
 
       <button onClick={addOption}>+</button>
 
-      <button onClick={goVoteMake2}>
+      <button onClick={voteMake}>
         투표 항목 생성하러 가기
       </button>
     </div>
