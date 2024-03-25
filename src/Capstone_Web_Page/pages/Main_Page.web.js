@@ -118,7 +118,7 @@ function MainPage() {
       );
       console.log('매치1:', match);
 
-      if (match) {
+      if (isNewMessage) {
         const count = parseInt(match[1], 10);
         console.log('매치2:', match);
         console.log('읽지 않은 쪽지의 개수:', count);
