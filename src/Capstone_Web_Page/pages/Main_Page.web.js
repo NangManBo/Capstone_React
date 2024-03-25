@@ -103,15 +103,13 @@ function MainPage() {
         receivedMessage
       );
 
-      // "읽지 않은 쪽지의 개수:"를 기준으로 메시지를 나눔
-      const parts = receivedMessage.split(
-        '읽지 않은 쪽지의 개수: '
-      );
-      console.log('파트' + parts);
+      // 메시지를 콜론을 기준으로 나눔
+      const parts = receivedMessage.split(':');
       if (parts.length > 1) {
-        const count = parseInt(parts[1], 10);
+        // 콜론 뒤의 부분에서 숫자를 추출
+        const count = parseInt(parts[1].trim(), 10);
         if (!isNaN(count)) {
-          // count가 유효한 숫자인 경우에만 상태 업데이트
+          // 유효한 숫자인 경우 상태 업데이트
           console.log('읽지 않은 쪽지의 개수:', count);
           setUnreadMessageCount(count);
         }
