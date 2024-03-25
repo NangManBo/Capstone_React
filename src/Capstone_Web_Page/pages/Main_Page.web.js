@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { fetchVotes } from '../function/fetchVote_function';
-import { getCategoryVotes } from '../function/categorySort_fuction';
+import { fetchVotes } from '../functions/fetchVote_function';
+import { getCategoryVotes } from '../components/categorySort_componets';
 import axios from 'axios';
 
 function MainPage() {
@@ -40,6 +40,17 @@ function MainPage() {
   const goToLogin = () => {
     navigate('/', {});
   };
+  const goToVoteMake = () => {
+    navigate('/votemake', {
+      state: {
+        isLoggedIn,
+        userId,
+        jwtToken,
+        nickname,
+      },
+    });
+  };
+
   // 쪽지 데이터 받기
   const fetchData = async () => {
     try {
@@ -78,7 +89,6 @@ function MainPage() {
       console.error('쪽지 데이터 가져오기:', error);
     }
   };
-
   // 웹소켓
   const fetchwebsocket = async () => {
     const socket = new WebSocket(
@@ -137,18 +147,26 @@ function MainPage() {
           </div>
           {isLoggedIn ? (
             <div>
-              <button onClick={() => goToProfile()}>
-                프로필
-              </button>
+              <button onClick={goToProfile}>프로필</button>
               <button onClick={goToDMPage}>
                 DM 페이지로
               </button>
-              <h2>{unreadMessageCount}</h2>
+              <button onClick={goToVoteMake}>
+                투표 생성
+              </button>
+              <h2>
+                쪽지 안읽은 개수 : {unreadMessageCount}
+              </h2>
             </div>
           ) : (
-            <button onClick={() => goToLogin()}>
-              로그인
-            </button>
+            <div>
+              <button onClick={() => goToLogin()}>
+                로그인
+              </button>
+              <button onClick={goToVoteMake}>
+                투표 생성
+              </button>
+            </div>
           )}
 
           <div className="main_Row">

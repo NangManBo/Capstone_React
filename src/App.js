@@ -8,8 +8,9 @@ import MainPage from './Capstone_Web_Page/pages/Main_Page.web';
 import SignUpPage from './Capstone_Web_Page/pages/SignUp_Page.web';
 import ProfilePage from './Capstone_Web_Page/pages/Profile_Page.web';
 import DMPage from './Capstone_Web_Page/pages/DM_Page.web';
-import DMSendPage from './Capstone_Web_Page/pages/DM_Send.web';
+import DMSendPage from './Capstone_Web_Page/pages/DMSend_Page.web';
 import DMboxPage from './Capstone_Web_Page/pages/DMBox_Page.web';
+import VoteMakePage from './Capstone_Web_Page/pages/VoteMake_Page.web';
 function App() {
   return (
     <BrowserRouter>
@@ -21,6 +22,10 @@ function App() {
           <Route path="/dm" element={<DMPage />} />
           <Route path="/dmsend" element={<DMSendPage />} />
           <Route path="/dmbox" element={<DMboxPage />} />
+          <Route
+            path="/votemake"
+            element={<VoteMakePage />}
+          />
           <Route
             path="/profile"
             element={<ProfilePage />}
