@@ -16,7 +16,6 @@ function MainPage() {
     useState(0);
   const [votes, setVotes] = useState([]); // 상태 추가
   const [messages, setMessages] = useState([]);
-  const [socket, setSocket] = useState(null);
   // 이동 함수
   const goToDMPage = () => {
     navigate('/dmbox', {
@@ -87,19 +86,16 @@ function MainPage() {
       console.error('쪽지 데이터 가져오기:', error);
     }
   };
-  // 웹소켓 생성
-  const fetchwebsocketOpen = async () => {
-    console.log(userId);
-    socket = new WebSocket(
+
+  // 웹소켓
+  const fetchwebsocket = async () => {
+    const socket = new WebSocket(
       'wss://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/test?uid=' +
         userId
     );
     socket.onopen = () => {
       console.log('WebSocket 연결 성공');
     };
-  };
-  // 웹소켓
-  const fetchwebsocket = async () => {
     socket.onmessage = (event) => {
       const receivedMessage = event.data;
       console.log(
@@ -133,12 +129,9 @@ function MainPage() {
   useEffect(() => {
     fetchVotes(setVotes, jwtToken);
     fetchData();
-    fetchwebsocketOpen();
+    fetchwebsocket();
   }, []);
 
-  useEffect(() => {
-    fetchwebsocket();
-  }, [messages]);
   return (
     <div>
       <div style={{ overflowY: 'scroll' }}>
