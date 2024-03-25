@@ -120,8 +120,9 @@ function MainPage() {
       );
 
       if (match) {
-        const count = parseInt(match[1], 10);
-        setUnreadMessageCount(count);
+        fetchData();
+        // const count = parseInt(match[1], 10);
+        // setUnreadMessageCount(count);
       }
     };
   };
@@ -133,10 +134,6 @@ function MainPage() {
     // if (!isLoggedIn) {
     // }
   }, []);
-
-  useEffect(() => {
-    console.log('세민');
-  }, [unreadMessageCount]);
 
   return (
     <div>
