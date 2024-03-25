@@ -13,7 +13,6 @@ export const getCategoryVotes = (
 ) => {
   const navigation = useNavigate();
   const location = useLocation();
-  const [votes, setVotes] = useState([]);
   const categories = [
     '시사',
     '정치',
@@ -23,7 +22,6 @@ export const getCategoryVotes = (
     '반려동물',
   ];
   const renderPostPress = async (firstMatchingVote) => {
-    fetchData(setVotes, jwtToken);
     try {
       // Fetch user votes from the backend
       const response = await axios.get(
