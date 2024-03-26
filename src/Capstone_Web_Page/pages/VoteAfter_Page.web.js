@@ -32,7 +32,6 @@ function VoteAfterPage() {
 
   useEffect(() => {
     sortComments(standard);
-    console.log('vote', vote);
   }, [comments, standard]);
 
   // 정렬
@@ -95,6 +94,7 @@ function VoteAfterPage() {
 
   // 댓글 작성
   const handleCommentSubmit = async () => {
+    console.log('vote', vote);
     try {
       if (!commentText.trim()) {
         alert('댓글 내용을 입력하세요.');
