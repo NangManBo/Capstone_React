@@ -58,7 +58,7 @@ function DMboxPage() {
   };
 
   const goToMain = () => {
-    navigate('/main', {
+    navigate('/', {
       state: {
         isLoggedIn,
         userId,

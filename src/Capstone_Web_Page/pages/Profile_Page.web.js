@@ -119,16 +119,17 @@ function ProfilePage() {
   };
 
   const handleLogout = () => {
-    navigate('/Main', {
+    navigate('/', {
       isLoggedIn: false,
     });
   };
+
   return (
     <div className="container">
       <header className="header">
         <button
           onClick={() =>
-            navigate('/main', {
+            navigate('/', {
               state: {
                 isLoggedIn,
                 userId,

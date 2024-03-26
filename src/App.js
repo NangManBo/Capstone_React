@@ -22,9 +22,9 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Routes>
-          <Route path="/" element={<LogInPage />} />
+          <Route path="/" element={<MainPage />} />
           <Route path="/signup" element={<SignUpPage />} />
-          <Route path="/main" element={<MainPage />} />
+          <Route path="/login" element={<LogInPage />} />
           <Route path="/dm" element={<DMPage />} />
           <Route path="/dmsend" element={<DMSendPage />} />
           <Route path="/dmbox" element={<DMboxPage />} />

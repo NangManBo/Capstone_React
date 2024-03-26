@@ -33,17 +33,17 @@ function VoteOnlyLookPage() {
     setPollOptions(updatedOptions);
   };
 
-  const handleGoBack = () => {
-    navigate(-1);
+  const goToMain = () => {
+    navigate('/');
   };
 
-  const handleGoLogin = () => {
+  const goToLogin = () => {
     navigate('/login');
   };
 
   return (
     <div>
-      <button onClick={handleGoBack}>
+      <button onClick={goToMain}>
         <span>Back</span>
       </button>
       <div>
@@ -77,7 +77,7 @@ function VoteOnlyLookPage() {
         ))}
         <p>댓글</p>
         <p>투표 후 댓글 작성 및 보기가 가능합니다</p>
-        <button onClick={handleGoLogin}>
+        <button onClick={goToLogin}>
           투표 및 댓글을 확인하고 싶으시다면 로그인 해주세요
         </button>
       </div>

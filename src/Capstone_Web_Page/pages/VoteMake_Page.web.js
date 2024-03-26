@@ -168,7 +168,7 @@ function VoteMakePage({ navigation, route }) {
 
           if (response.status === 201) {
             console.log('투표 항목 성공:', response.data);
-            navigate('/main', {
+            navigate('/', {
               state: {
                 isLoggedIn,
                 userId,

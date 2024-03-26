@@ -27,7 +27,7 @@ function VoteBeforePage() {
     <div>
       <button
         onClick={() =>
-          navigate('/main', {
+          navigate('/', {
             state: {
               isLoggedIn,
               userId,

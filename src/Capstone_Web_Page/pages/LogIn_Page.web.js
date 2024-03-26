@@ -23,7 +23,7 @@ function LogInPage() {
         console.log('로그인 성공:', response.data);
 
         // 로그인 성공 시 필요한 정보를 state에 넣어서 navigate 함수를 사용
-        navigate('/main', {
+        navigate('/', {
           state: {
             isLoggedIn: true,
             userId: id, // 예시 값, 실제 응답에 맞게 조정 필요
@@ -70,8 +70,8 @@ function LogInPage() {
           <button onClick={() => navigate('/signup')}>
             회원가입
           </button>
-          <button onClick={() => navigate('/main')}>
-            메인
+          <button onClick={() => navigate('/')}>
+            뒤로가기
           </button>
         </div>
       </div>
