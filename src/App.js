@@ -42,7 +42,7 @@ function App() {
           />
           <Route
             path="/voteonlylook"
-            element={VoteOnlyLookPage}
+            element={<VoteOnlyLookPage />}
           />
           <Route
             path="/voteend"
