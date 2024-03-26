@@ -34,20 +34,14 @@ function LogInPage() {
       } else {
         // 201이 아닌 다른 성공 상태 코드일 때 처리 방식을 여기에 추가할 수 있습니다.
         console.error('로그인 실패:', response.data);
-        alert('Invalid username or password');
       }
     } catch (error) {
       if (error.response) {
         console.error('서버 에러:', error.response.data);
-        alert(
-          `Error: ${error.response.status} - ${error.response.data.message}`
-        );
       } else if (error.request) {
         console.error('응답을 받지 못함:', error.request);
-        alert('No response received');
       } else {
         console.error('Error:', error.message);
-        alert('Request error');
       }
     }
   };
