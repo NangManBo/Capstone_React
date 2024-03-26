@@ -67,11 +67,7 @@ function VoteOnlyLookPage() {
           />
         )}
         {pollOptions.map((option) => (
-          <div
-            key={option.id}
-            onClick={() => handleVoteOption(option.id)}
-          >
-            <span>{option.isSelected ? '✓' : ''}</span>
+          <div key={option.id}>
             <span>{option.text}</span>
           </div>
         ))}
