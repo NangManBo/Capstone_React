@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 // 카테고리별로 투표를 필터링하고 정렬하는 함수
 export const getCategoryVotes = (
