@@ -40,7 +40,6 @@ function VoteBeforePage() {
         뒤로가기
       </button>
       <h1>Vote Before Page</h1>
-      <button></button>
     </div>
   );
 }
