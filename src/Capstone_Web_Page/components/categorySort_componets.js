@@ -33,6 +33,7 @@ export const getCategoryVotes = (
       if (response.status === 200) {
         //console.log('내가 투표한 데이터', response.data);
         const userVotes = response.data;
+        console.log('userVotes:', userVotes);
 
         // Check if userVotes is null or empty
         if (!userVotes || userVotes.length === 0) {
@@ -42,10 +43,11 @@ export const getCategoryVotes = (
           // Check if the vote is closed
           const isVoteEnd =
             firstMatchingVote.voteStatus === 'CLOSED';
+          console.log('first' + firstMatchingVote);
           if (nickname === 'manager') {
             navigate('/voteonlylook', {
               state: {
-                vote: firstMatchingVote,
+                vote: votes,
               },
             });
           }
