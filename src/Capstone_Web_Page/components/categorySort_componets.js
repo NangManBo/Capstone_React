@@ -77,12 +77,13 @@ export const getCategoryVotes = (
           } else {
             // If userVotes is null or empty, navigate to 'VoteBefore'
             navigate('/votebefore', {
-              initialPage: 1,
-              vote: firstMatchingVote,
-              isLoggedIn,
-              userId,
-              jwtToken,
-              nickname,
+              state: {
+                vote: firstMatchingVote,
+                isLoggedIn,
+                userId,
+                jwtToken,
+                nickname,
+              },
             });
           }
         } else {
@@ -111,7 +112,6 @@ export const getCategoryVotes = (
               : '/votebefore',
             {
               state: {
-                initialPage: 1,
                 category,
                 vote: firstMatchingVote,
                 isLoggedIn,

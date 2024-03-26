@@ -5,13 +5,11 @@ import { useNavigate, useLocation } from 'react-router-dom';
 function VoteBeforePage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { initialPage, vote, jwtToken, nickname } =
-    location.state;
+  const { vote, jwtToken, nickname } = location.state;
 
   const [pollOptions, setPollOptions] = useState([]);
 
   useEffect(() => {
-    console.log('함 보자', initialPage);
     if (vote.choice && Array.isArray(vote.choice)) {
       setPollOptions(
         vote.choice.map((choice) => ({
