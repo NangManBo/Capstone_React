@@ -210,7 +210,11 @@ function VoteAfterPage() {
           <p>주최자: {vote.createdBy}</p>
         </div>
 
-        <p>{JSON.parse(vote.question).question}</p>
+        <p>
+          {vote &&
+            vote.question &&
+            JSON.parse(vote.question).question}
+        </p>
         {vote.mediaUrl && (
           <img src={vote.mediaUrl} alt="vote" />
         )}
