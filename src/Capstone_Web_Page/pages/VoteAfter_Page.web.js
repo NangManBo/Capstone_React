@@ -32,6 +32,7 @@ function VoteAfterPage() {
 
   useEffect(() => {
     sortComments(standard);
+    console.log('vote', vote);
   }, [comments, standard]);
 
   // 정렬
