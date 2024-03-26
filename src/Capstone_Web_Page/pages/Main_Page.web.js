@@ -41,7 +41,7 @@ function MainPage() {
     });
   };
   const goToLogin = () => {
-    navigate('/', {});
+    navigate('/login', {});
   };
   const goToVoteMake = () => {
     navigate('/votemake', {
