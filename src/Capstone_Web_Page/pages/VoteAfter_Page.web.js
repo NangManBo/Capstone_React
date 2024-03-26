@@ -200,7 +200,11 @@ function VoteAfterPage() {
         {/* 좋아요 버튼: 클릭시 색상 변경 */}
       </div>
       <div>
-        <h1>{JSON.parse(vote.title).title}</h1>
+        <h1>
+          {vote &&
+            vote.title &&
+            JSON.parse(vote.title).title}
+        </h1>
         <div>
           <p>투표 기간 설정: {vote.createdAt}</p>
           <p>주최자: {vote.createdBy}</p>
