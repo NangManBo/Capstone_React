@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import axios from 'axios';
 
 function VoteOnlyLookPage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { vote, updateDM2 } = location.state || {};
+  const { vote } = location.state || {};
 
   const [pollOptions, setPollOptions] = useState([]);
 

@@ -47,10 +47,6 @@ export const getCategoryVotes = (
             navigate('/voteonlylook', {
               state: {
                 vote: firstMatchingVote,
-                isLoggedIn,
-                userId,
-                jwtToken,
-                nickname,
               },
             });
           }
