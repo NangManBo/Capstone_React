@@ -213,9 +213,12 @@ function VoteAfterPage() {
         {/* 본문 내용 표시 */}
 
         {vote.choice.map((choice) => {
-          const isSelectedByUser = userVotes.some(
-            (userVote) => userVote.choiceId === choice.id
-          );
+          // userVotes가 배열인지 확인하고, 배열이 아니면 빈 배열로 처리
+          const isSelectedByUser =
+            Array.isArray(userVotes) &&
+            userVotes.some(
+              (userVote) => userVote.choiceId === choice.id
+            );
           return (
             <div
               key={choice.id}
