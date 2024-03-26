@@ -13,7 +13,6 @@ function VoteAfterPage() {
     vote,
     jwtToken,
     nickname,
-    category,
     userVotes,
   } = location.state || {};
   const [comments, setComments] = useState([]); // 댓글
