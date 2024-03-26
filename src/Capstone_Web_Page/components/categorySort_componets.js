@@ -47,7 +47,7 @@ export const getCategoryVotes = (
           if (nickname === 'manager') {
             navigate('/voteonlylook', {
               state: {
-                vote: votes,
+                vote: firstMatchingVote,
               },
             });
           }
