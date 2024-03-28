@@ -259,6 +259,9 @@ function VoteAfterPage() {
               <CommentComponent
                 comment={comment}
                 index={index}
+                userId={userId}
+                jwtToken={jwtToken}
+                nickname={nickname}
               ></CommentComponent>
             ))}
           </div>

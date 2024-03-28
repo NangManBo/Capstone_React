@@ -1,7 +1,19 @@
 import React, { useState, useRef } from 'react';
+import axios from 'axios'; // Ensure axios is imported
+import { useNavigate } from 'react-router-dom'; // Ensure useNavigate is imported
 
-const CommentComponent = ({ comment, index }) => {
+const CommentComponent = ({
+  comment,
+  index,
+  userId,
+  jwtToken,
+  nickname,
+}) => {
   const [showReply, setShowReply] = useState({});
+  const videoRef = useRef(null); // Define videoRef using useRef if used for video controls
+  const navigate = useNavigate(); // useNavigate hook for navigation
+  // Additional state definitions might be necessary based on your original component's needs
+  const [isPlaying, setIsPlaying] = useState(false); // Example state for managing video play state
 
   // 댓글 좋아요
   const commentLike = async (comment, index) => {
@@ -16,12 +28,8 @@ const CommentComponent = ({ comment, index }) => {
           },
         }
       );
-      // Increment updateDM by 1
-      setUpdateDM5(updateDM5 + 1);
 
-      console.log('변경 전', updateDM5);
       if (response.status === 200) {
-        console.log('변경 후', updateDM5);
         console.log(
           '댓글 좋아요 성공',
           JSON.stringify(response.data, null, 2)
@@ -73,10 +81,21 @@ const CommentComponent = ({ comment, index }) => {
         userId,
         jwtToken,
         nickname,
-        updateDM2,
         commentId: comment.id,
         receiverName: comment.nickname,
       },
+    });
+  };
+
+  // 대댓글에서 쪽지 보내기
+  const handlemessge1 = (childComment) => {
+    navigation.navigate('AutoSend', {
+      isLoggedIn,
+      userId,
+      jwtToken,
+      nickname,
+      commentId: childComment.id,
+      receiverName: childComment.nickname,
     });
   };
   return (
@@ -134,7 +153,7 @@ const CommentComponent = ({ comment, index }) => {
             <div>
               {comment.childrenComment &&
                 comment.childrenComment.length > 0 && (
-                  <button onClick={showReplyPress}>
+                  <button onClick={() => showReplyPress()}>
                     <span role="img" aria-label="comment">
                       💬
                     </span>{' '}
