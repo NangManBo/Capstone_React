@@ -451,12 +451,8 @@ function VoteAfterPage() {
           },
         }
       );
-      // Increment updateDM by 1
-      setUpdateDM5(updateDM5 + 1);
 
-      console.log('변경 전', updateDM5);
       if (response.status === 200) {
-        console.log('변경 후', updateDM5);
         console.log(
           '댓글 좋아요 성공',
           JSON.stringify(response.data, null, 2)
@@ -554,7 +550,6 @@ function VoteAfterPage() {
           console.log('댓글 작성 성공');
         }
 
-        setUpdateDM5(updateDM5 + 1);
         setIsReplyMode(false);
         setCommentText('');
       } else {
