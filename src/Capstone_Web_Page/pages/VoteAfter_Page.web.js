@@ -31,6 +31,7 @@ function VoteAfterPage() {
   const [heartType, setHeartType] = useState('empty');
   const [isReplyMode, setIsReplyMode] = useState(false);
   const [selectedMedia, setSelectedMedia] = useState(null);
+  const [mediaFile, setMediaFile] = useState(null);
   const [showReplyInput, setShowReplyInput] =
     useState(false);
   const [showReply, setShowReply] = useState(false);
