@@ -59,6 +59,9 @@ function VoteOnlyLookPage() {
             vote.question &&
             JSON.parse(vote.question).question}
         </p>
+        <p>
+          사진 url : <span>{vote.mediaUrl}</span>
+        </p>
         {vote && vote.mediaUrl && (
           <img
             src={vote.mediaUrl}
