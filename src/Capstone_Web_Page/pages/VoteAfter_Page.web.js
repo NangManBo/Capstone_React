@@ -253,7 +253,7 @@ function VoteAfterPage() {
       </div>
       <div className="vote-page">
         <div className="comments-section">
-          <h2>댓글</h2>
+          <h2>댓글 ({comments.length})</h2>
           <div>
             {comments.map((comment, index) => (
               <CommentComponent
