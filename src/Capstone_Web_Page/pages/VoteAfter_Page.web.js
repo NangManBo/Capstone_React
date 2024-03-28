@@ -57,6 +57,7 @@ function VoteAfterPage() {
 
   //게시글 좋아요
   const handleHeartClick = async () => {
+    console.log('댓글 ', comments);
     const data = {
       pollId: vote.id,
       nickname: nickname,
@@ -194,7 +195,7 @@ function VoteAfterPage() {
       </button>
       <h1>Vote After Page</h1>
       <div>
-        <button onClick={handleHeartClick}>
+        <button onClick={() => handleHeartClick}>
           {heartType === 'empty' ? '좋아요' : '좋아요 취소'}
         </button>
         {/* 좋아요 버튼: 클릭시 색상 변경 */}
@@ -259,17 +260,16 @@ function VoteAfterPage() {
               </div>
             ))}
           </div>
-          <form onSubmit={handleCommentSubmit}>
-            <input
-              type="text"
-              value={commentText}
-              onChange={(e) =>
-                setCommentText(e.target.value)
-              }
-              placeholder="댓글을 입력하세요"
-            />
-            <button type="submit">댓글 달기</button>
-          </form>
+
+          <input
+            type="text"
+            value={commentText}
+            onChange={(e) => setCommentText(e.target.value)}
+            placeholder="댓글을 입력하세요"
+          />
+          <button onClick={() => handleCommentSubmit()}>
+            댓글 달기
+          </button>
         </div>
       </div>
     </div>

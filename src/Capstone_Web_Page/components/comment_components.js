@@ -1,12 +1,8 @@
 import React, { useState, useRef } from 'react';
 
-const CommentComponent = ({
-  comment,
-  index,
-  sameOption,
-}) => {
+const CommentComponent = ({ comment, index }) => {
   const [showReply, setShowReply] = useState({});
-  const [sameOption, setSameOption] = useState([]);
+
   // 댓글 좋아요
   const commentLike = async (comment, index) => {
     console.log('comment ', comment.id);
@@ -99,7 +95,7 @@ const CommentComponent = ({
           {comment.mediaUrl && (
             <div>
               {comment.mediaUrl.endsWith('.mp4') ? (
-                <button onClick={handlePlayPause}>
+                <button onClick={() => handlePlayPause()}>
                   <video
                     ref={videoRef}
                     src={comment.mediaUrl}
@@ -129,11 +125,11 @@ const CommentComponent = ({
             {/* AntDesign 'like2' 아이콘 대체 */}
           </button>
           <span>{comment.likes}</span>
-          {sameOption.some((option) =>
+          {/* {sameOption.some((option) =>
             option.userNames.includes(comment.nickname)
           ) && (
             <span>(나와 동일한 선택지를 골랐습니다)</span>
-          )}
+          )} */}
           <div>
             <div>
               {comment.childrenComment &&
@@ -213,15 +209,7 @@ const CommentComponent = ({
                   {/* AntDesign 'like2' 아이콘 대체 */}
                 </button>
                 <span>{childComment.likes}</span>
-                {sameOption.some((option) =>
-                  option.userNames.includes(
-                    childComment.nickname
-                  )
-                ) && (
-                  <span>
-                    나와 동일한 선택지 를 골랐습니다
-                  </span>
-                )}
+
                 <button
                   onClick={() =>
                     handlemessge1(childComment)
