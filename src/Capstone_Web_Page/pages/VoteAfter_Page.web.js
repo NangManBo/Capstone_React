@@ -34,6 +34,7 @@ function VoteAfterPage() {
   const [mediaFile, setMediaFile] = useState(null);
   const [showReplyInput, setShowReplyInput] =
     useState(false);
+  const videoRef = useRef(null);
   const [showReply, setShowReply] = useState(false);
   const [replyText, setReplyText] = useState('');
   const [replyingIndex, setReplyingIndex] = useState(null);
@@ -128,6 +129,7 @@ function VoteAfterPage() {
   const handleCommentSubmit = async () => {
     setSend(true);
     console.log('vote', vote);
+    console.log('comments', comments);
     try {
       if (!commentText.trim()) {
         alert('댓글 내용을 입력하세요.');
@@ -259,7 +261,6 @@ function VoteAfterPage() {
   };
   //댓글 출력 창
   const Comment = ({ comment, index }) => {
-    const videoRef = useRef(null);
     const [isPlaying, setIsPlaying] = useState(false);
     console.log(
       'Comment 컴포넌트 안에' +
