@@ -210,28 +210,30 @@ function VoteAfterPage() {
   };
   // 댓글에서 쪽지 보내기
   const handlemessge = (comment) => {
-    navigation.navigate('AutoSend', {
-      isLoggedIn,
-      userId,
-      jwtToken,
-      nickname,
-      updateDM2,
-      commentId: comment.id,
-      receiverName: comment.nickname,
-    });
+    console.log('쪽지 보내기~' + comment);
+    // navigate('AutoSend', {
+    //   isLoggedIn,
+    //   userId,
+    //   jwtToken,
+    //   nickname,
+    //   updateDM2,
+    //   commentId: comment.id,
+    //   receiverName: comment.nickname,
+    // });
   };
 
   // 대댓글에서 쪽지 보내기
   const handlemessge1 = (childComment) => {
-    navigation.navigate('AutoSend', {
-      isLoggedIn,
-      userId,
-      jwtToken,
-      nickname,
-      updateDM2,
-      commentId: childComment.id,
-      receiverName: childComment.nickname,
-    });
+    console.log('쪽지 보내기~' + childComment);
+    // navigation.navigate('AutoSend', {
+    //   isLoggedIn,
+    //   userId,
+    //   jwtToken,
+    //   nickname,
+    //   updateDM2,
+    //   commentId: childComment.id,
+    //   receiverName: childComment.nickname,
+    // });
   };
 
   // 사진 고른거 삭제

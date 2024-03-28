@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-function VoteMakePage({ navigation, route }) {
+function VoteMakePage() {
   // React Router의 useLocation 훅을 사용하여 URL의 상태 접근
   const location = useLocation();
   // React Router의 useNavigate 훅을 사용하여 프로그래밍 방식으로 내비게이션
@@ -61,13 +61,22 @@ function VoteMakePage({ navigation, route }) {
     setSelectedMedia(null);
     console.log(jwtToken);
   };
-  // 이미지 선택 처리
+  // Existing state declarations...
+
+  // Modify handleImageChange to handle both images and videos
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
+      const fileType = file.type.split('/')[0]; // This will be 'image' or 'video'
 
-      setSelectedMedia(URL.createObjectURL(file)); // 미리보기 URL 설정
-      setMediaFile(file); // 실제 파일 저장
+      if (fileType === 'image' || fileType === 'video') {
+        setSelectedMedia(URL.createObjectURL(file)); // Set preview URL
+        setMediaFile(file); // Save the file for later use
+      } else {
+        alert('Only images and videos are allowed.');
+        setSelectedMedia(null);
+        setMediaFile(null);
+      }
     }
   };
 
@@ -234,7 +243,7 @@ function VoteMakePage({ navigation, route }) {
         {/* 생략된 입력 필드 및 버튼 */}
         <input
           type="file"
-          accept="image/*"
+          accept="image/*,video/*" // Accept both images and videos
           onChange={handleImageChange}
         />
         <button onClick={cancelImage}>X</button>
