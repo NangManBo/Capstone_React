@@ -18,7 +18,7 @@ export const getCategoryVotes = (
     '반려동물',
   ];
   const renderPostPress = async (firstMatchingVote) => {
-    console.log('url:', firstMatchingVote.urlMedia);
+    console.log('url:', firstMatchingVote.mediaUrl);
     try {
       // Fetch user votes from the backend
       const response = await axios.get(
