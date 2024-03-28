@@ -39,7 +39,24 @@ function VoteCreatedUserPage() {
       >
         뒤로가기
       </button>
-      <h1>Vote Created User Page</h1>
+      <div>
+        {vote.mediaUrl && (
+          <div className="ivstyle">
+            {' '}
+            {/* Use className to apply CSS */}
+            <img
+              src={vote.mediaUrl}
+              alt="Vote Media"
+              className="Vote_Main_image"
+            />
+          </div>
+        )}
+        <p className="VoteCreatedUser_View2_Content">
+          {' '}
+          {/* Use className for styling */}
+          {JSON.parse(vote.question).question}
+        </p>
+      </div>
     </div>
   );
 }
