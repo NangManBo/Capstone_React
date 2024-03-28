@@ -6,7 +6,6 @@ import {
   sameVoteGroup,
 } from '../functions/fetchComment_function';
 import axios from 'axios';
-import CommentComponent from '../components/comment_components';
 
 function VoteAfterPage() {
   const navigate = useNavigate();
