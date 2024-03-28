@@ -597,13 +597,7 @@ function VoteAfterPage() {
         <p>댓글 {comments.length}</p>
         {/* Comments */}
         {sortedComments.map((comment, index) => (
-          <div key={index}>
-            <Comment
-              key={index}
-              comment={comments}
-              index={index}
-            />
-          </div>
+          <div key={index}>{Comment(comment, index)}</div>
         ))}
         {commentError !== '' && <p>{commentError}</p>}
       </div>
