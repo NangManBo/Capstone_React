@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import { fetchComments } from '../functions/fetchComment_function';
+import {
+  fetchComments,
+  sameVoteGroup,
+} from '../functions/fetchComment_function';
 import axios from 'axios';
 import CommentComponent from '../components/comment_components';
 
@@ -16,20 +19,47 @@ function VoteAfterPage() {
     nickname,
     userVotes,
   } = location.state || {};
+  const [send, setSend] = useState(false);
   const [comments, setComments] = useState([]); // 댓글
-  const [standard, setStandard] = useState('');
-  const [heartType, setHeartType] = useState('empty');
-  const [sortedComments, setSortedComments] = useState([]); // 정렬한 댓글
+  const [pollOptions, setPollOptions] = useState([]);
+  const newChoices = vote.choice.map((choice) => ({
+    id: choice.id,
+    text: choice.text,
+    votes: 0, // 초기 투표 수를 0으로 설정
+  }));
   const [commentText, setCommentText] = useState('');
+  const [commentError, setCommentError] = useState('');
+  const [heartType, setHeartType] = useState('empty');
+  const [isReplyMode, setIsReplyMode] = useState(false);
   const [selectedMedia, setSelectedMedia] = useState(null);
+  const [showReplyInput, setShowReplyInput] =
+    useState(false);
+  const [showReply, setShowReply] = useState(false);
+  const [replyText, setReplyText] = useState('');
+  const [replyingIndex, setReplyingIndex] = useState(null);
+  const [sameOption, setSameOption] = useState([]);
+  const placeholder = {
+    label: '정렬 기준',
+    value: null,
+  };
+
   const standards = [
     { label: '최신 순', value: '시간' },
     { label: '인기 순', value: '인기' },
   ];
+  const [standard, setStandard] = useState('');
+  const [sortedComments, setSortedComments] = useState([]);
 
   useEffect(() => {
     fetchComments(vote.id, jwtToken, setComments);
-  }, []);
+    sameVoteGroup(
+      vote,
+      userVotes,
+      nickname,
+      jwtToken,
+      setSameOption
+    );
+  }, [send || {}]);
 
   useEffect(() => {
     sortComments(standard);
@@ -96,6 +126,7 @@ function VoteAfterPage() {
 
   // 댓글 작성
   const handleCommentSubmit = async () => {
+    setSend(true);
     console.log('vote', vote);
     try {
       if (!commentText.trim()) {
@@ -158,6 +189,7 @@ function VoteAfterPage() {
       if (response.ok) {
         const contentType =
           response.headers.get('content-type');
+        setSend(false);
         setSelectedMedia(null);
         if (
           contentType &&
@@ -177,105 +209,464 @@ function VoteAfterPage() {
       console.error('댓글 작성 오류:', error);
     }
   };
+  // 댓글에서 쪽지 보내기
+  const handlemessge = (comment) => {
+    navigation.navigate('AutoSend', {
+      isLoggedIn,
+      userId,
+      jwtToken,
+      nickname,
+      updateDM2,
+      commentId: comment.id,
+      receiverName: comment.nickname,
+    });
+  };
 
+  // 대댓글에서 쪽지 보내기
+  const handlemessge1 = (childComment) => {
+    navigation.navigate('AutoSend', {
+      isLoggedIn,
+      userId,
+      jwtToken,
+      nickname,
+      updateDM2,
+      commentId: childComment.id,
+      receiverName: childComment.nickname,
+    });
+  };
+
+  // 사진 고른거 삭제
+  const cancelImage = () => {
+    setSelectedMedia(null);
+  };
+  // 사진 및 동영상 선택
+  const handleMediaPick = (media) => {
+    // 'media' 객체에는 'uri', 'fileName', 'type' 등의 속성이 포함될 수 있습니다.
+    // 여기에서 미디어를 앱의 상태에 설정하거나 표시할 수 있습니다.
+    console.log('Selected image: ', media.uri);
+    // 예를 들어, 선택된 이미지의 URI를 상태에 설정할 수 있습니다.
+    setSelectedMedia(media.uri);
+  };
+  const pickMedia = () => {
+    const options = {
+      mediaType: 'mixed',
+      selectionLimit: 0, // 0은 다중 선택을 의미
+    };
+
+    launchImageLibrary(options, (response) => {
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.errorCode) {
+        console.log(
+          'ImagePicker Error: ',
+          response.errorMessage
+        );
+      } else if (
+        response.assets &&
+        response.assets.length > 0
+      ) {
+        const selectedAsset = response.assets[0];
+        if (selectedAsset.type.startsWith('image')) {
+          // 이미지인 경우에만 handleMediaPick 호출
+          handleMediaPick(selectedAsset);
+        } else {
+          // 동영상인 경우에 대한 처리
+          console.log(
+            'Selected Media is a video:',
+            selectedAsset.uri
+          );
+        }
+      }
+    });
+  };
+  //댓글 출력 창
+  const Comment = ({ comment, index }) => {
+    const videoRef = useRef(null);
+    const [isPlaying, setIsPlaying] = useState(false);
+    console.log(
+      'Comment 컴포넌트 안에' +
+        comment.id +
+        ' : ' +
+        comment.mediaUrl
+    );
+    const handlePlayPause = () => {
+      if (videoRef.current) {
+        if (isPlaying) {
+          videoRef.current.pause();
+        } else {
+          videoRef.current.play();
+        }
+        setIsPlaying(!isPlaying);
+      }
+    };
+    const showReplyPress = () => {
+      setShowReply((prevShowReply) => ({
+        ...prevShowReply,
+        [comment.id]: !prevShowReply[comment.id],
+      }));
+    };
+    return (
+      <div key={index}>
+        <div>
+          <div>
+            <span>작성자 : {comment.nickname}</span>
+            <span>작성시간: {comment.time}</span>
+          </div>
+
+          <div>
+            <p>{comment.content}</p>
+
+            {comment.mediaUrl && (
+              <div>
+                {comment.mediaUrl.endsWith('.mp4') ? (
+                  <button onClick={() => handlePlayPause()}>
+                    <video
+                      ref={videoRef}
+                      src={comment.mediaUrl}
+                      controls
+                      loop
+                    />
+                  </button>
+                ) : (
+                  <img
+                    src={comment.mediaUrl}
+                    alt="comment media"
+                  />
+                )}
+              </div>
+            )}
+          </div>
+          <div>
+            <button
+              onClick={() => commentLike(comment, index)}
+            >
+              Like
+            </button>
+            <span>{comment.likes}</span>
+            {/* Additional UI elements and logic for replies and messaging */}
+          </div>
+        </div>
+        <div>
+          {comment.childrenComment &&
+            comment.childrenComment.length > 0 && (
+              <button onClick={() => showReplyPress}>
+                답글 보기
+              </button>
+            )}
+          <button
+            onClick={() => handleReplyPress(comment, index)}
+          >
+            답글 작성
+          </button>
+          <button onClick={() => handlemessge(comment)}>
+            쪽지 보내기
+          </button>
+        </div>
+
+        {/* Rendering child comments, if any */}
+        {showReply[comment.id] &&
+          comment.childrenComment &&
+          comment.childrenComment.map(
+            (childComment, childIndex) => (
+              <div key={childIndex}>
+                <div>
+                  <span>
+                    작성자 : {childComment.nickname}
+                  </span>
+                  <span>작성시간: {childComment.time}</span>
+                </div>
+                <div>
+                  <p>{childComment.content}</p>
+                  {childComment.mediaUrl && (
+                    <div>
+                      {childComment.mediaUrl.endsWith(
+                        '.mp4'
+                      ) ? (
+                        <video
+                          src={childComment.mediaUrl}
+                          controls
+                          loop
+                        />
+                      ) : (
+                        <img
+                          src={childComment.mediaUrl}
+                          alt="child comment media"
+                        />
+                      )}
+                    </div>
+                  )}
+                </div>
+                <div>
+                  <button
+                    onClick={() =>
+                      commentLike(
+                        childComment,
+                        index,
+                        childIndex
+                      )
+                    }
+                  >
+                    Like
+                  </button>
+                  <span>{childComment.likes}</span>
+                  {/* Additional logic for child comment actions */}
+                </div>
+                <div>
+                  {sameOption.some((option) =>
+                    option.userNames.includes(
+                      childComment.nickname
+                    )
+                  ) && (
+                    <p style={styles.sameVoteText}>
+                      (나와 동일한 선택지를 골랐습니다)
+                    </p>
+                  )}
+                  <button
+                    onClick={() =>
+                      handlemessge1(childComment)
+                    }
+                  >
+                    쪽지 보내기
+                  </button>
+                </div>
+              </div>
+            )
+          )}
+      </div>
+    );
+  };
+
+  // 댓글 좋아요
+  const commentLike = async (comment, index) => {
+    console.log('comment ', comment.id);
+    console.log('url ', comment.mediaUrl);
+    try {
+      const response = await axios.post(
+        `https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/api/comments/like/${userId}/${vote.id}/${comment.id}`,
+        {}, // Empty object as the request body
+        {
+          headers: {
+            'AUTH-TOKEN': jwtToken,
+          },
+        }
+      );
+      // Increment updateDM by 1
+      setUpdateDM5(updateDM5 + 1);
+
+      console.log('변경 전', updateDM5);
+      if (response.status === 200) {
+        console.log('변경 후', updateDM5);
+        console.log(
+          '댓글 좋아요 성공',
+          JSON.stringify(response.data, null, 2)
+        );
+      } else {
+        console.error('댓글 좋아요 실패', response.data);
+      }
+    } catch (error) {
+      console.error('댓글 좋아요 보내기:', error);
+    }
+  };
+
+  // 대댓글
+  const handleReplyPress = (comment, index) => {
+    if (replyingIndex === index) {
+      // If the reply button is pressed again, reset to a regular comment
+      setReplyingIndex(null);
+      setReplyText('');
+      setIsReplyMode(false); // Turn off reply mode
+    } else {
+      // Set the replying index and pre-fill the reply input with the username
+      setReplyingIndex(index);
+      setReplyText(`@${comment.nickname} `);
+      setIsReplyMode(true); // Turn on reply mode
+    }
+    setShowReplyInput(true);
+    setCommentText(''); // Reset regular comment text
+  };
+
+  // 대댓글 작성
+  const handleAddReplySubmit = async () => {
+    setSend(true);
+    try {
+      if (replyText.trim() === '') {
+        setCommentError('답글 내용을 입력하세요.');
+        return;
+      }
+      if (!isReplyMode || replyingIndex === null) {
+        console.error(
+          'Invalid reply mode or replying index.'
+        );
+        return;
+      }
+      let formData = new FormData();
+      const parentCommentId = comments[replyingIndex].id; // Get the parent comment ID
+
+      formData.append(
+        'content',
+        JSON.stringify({ content: replyText })
+      );
+      if (selectedMedia) {
+        const localUri = selectedMedia;
+        const filename = localUri.split('/').pop();
+        const match = /\.(\w+)$/.exec(filename ?? '');
+        const type = match ? `image/${match[1]}` : 'image';
+
+        const response = await fetch(localUri);
+        const blob = await response.blob();
+
+        // Append the image data to FormData with the key "mediaData"
+        formData.append('mediaData', {
+          uri: localUri,
+          name: filename,
+          type: type,
+          blob: blob,
+        });
+      }
+      const response = await fetch(
+        `https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/api/comments/${userId}/${vote.id}/${parentCommentId}`,
+        {
+          method: 'POST',
+          headers: {
+            //'Content-Type': 'multipart/form-data',
+            'AUTH-TOKEN': jwtToken,
+          },
+          body: formData,
+        }
+      );
+
+      const responseBody = await response.text();
+
+      if (response.ok) {
+        const contentType =
+          response.headers.get('content-type');
+        setSend(false);
+        setSelectedMedia(null);
+        if (
+          contentType &&
+          contentType.includes('application/json')
+        ) {
+          const data = JSON.parse(responseBody);
+
+          console.log('댓글 작성 성공:', data);
+        } else {
+          console.log('댓글 작성 성공');
+        }
+
+        setUpdateDM5(updateDM5 + 1);
+        setIsReplyMode(false);
+        setCommentText('');
+      } else {
+        console.error('댓글 작성 실패:', response.status);
+      }
+    } catch (error) {
+      console.error('댓글 작성 오류:', error);
+    }
+
+    setShowReplyInput(false);
+    setReplyingIndex(null);
+    setCommentError('');
+  };
   return (
     <div>
-      <button
-        onClick={() =>
-          navigate('/', {
-            state: {
-              isLoggedIn,
-              userId,
-              jwtToken,
-              nickname,
-            },
-          })
-        }
-      >
-        뒤로가기
-      </button>
-      <h1>Vote After Page</h1>
       <div>
-        <button onClick={() => handleHeartClick}>
-          {heartType === 'empty' ? '좋아요' : '좋아요 취소'}
+        <button
+          onClick={() =>
+            navigate('/', {
+              state: {
+                isLoggedIn,
+                userId,
+                jwtToken,
+                nickname,
+              },
+            })
+          }
+        >
+          뒤로가기
         </button>
-        {/* 좋아요 버튼: 클릭시 색상 변경 */}
+        <button onClick={() => handleHeartClick}>
+          {heartType === 'empty'
+            ? 'Heart Outlined Icon'
+            : 'Heart Filled Icon'}
+        </button>
       </div>
       <div>
+        {/* Content */}
         <h1>
           {vote &&
             vote.title &&
             JSON.parse(vote.title).title}
         </h1>
-        <div>
-          <p>투표 기간 설정: {vote.createdAt}</p>
-          <p>주최자: {vote.createdBy}</p>
-        </div>
-
+        <p>투표 기간 설정: {vote.createdAt}</p>
+        <p>주최자: {vote.createdBy}</p>
         <p>
           {vote &&
             vote.question &&
             JSON.parse(vote.question).question}
         </p>
         {vote.mediaUrl && (
-          <img src={vote.mediaUrl} alt="vote" />
+          <img src={vote.mediaUrl} alt="Vote" />
         )}
-        {/* 본문 내용 표시 */}
-
-        {vote.choice.map((choice) => {
-          // userVotes가 배열인지 확인하고, 배열이 아니면 빈 배열로 처리
-          const isSelectedByUser =
-            Array.isArray(userVotes) &&
-            userVotes.some(
-              (userVote) => userVote.choiceId === choice.id
-            );
-          return (
-            <div
-              key={choice.id}
-              style={{
-                backgroundColor: isSelectedByUser
-                  ? '#4B89DC'
-                  : 'transparent',
-              }}
-            >
-              <p
-                style={{
-                  color: isSelectedByUser
-                    ? 'white'
-                    : 'black',
-                }}
-              >
-                {choice.text}
-              </p>
-            </div>
-          );
-        })}
-      </div>
-      <div className="vote-page">
-        <div className="comments-section">
-          <h2>댓글 ({comments.length})</h2>
-          <div>
-            {comments.map((comment, index) => (
-              <CommentComponent
-                comment={comment}
-                index={index}
-                userId={userId}
-                jwtToken={jwtToken}
-                nickname={nickname}
-              ></CommentComponent>
-            ))}
+        {/* Choices */}
+        {vote.choice.map((choice, index) => (
+          <div
+            key={index}
+            style={{
+              backgroundColor: userVotes.some(
+                (userVote) =>
+                  userVote.choiceId === choice.id
+              )
+                ? '#4B89DC'
+                : 'transparent',
+            }}
+          >
+            {choice.text}
           </div>
-
-          <input
-            type="text"
-            value={commentText}
-            onChange={(e) => setCommentText(e.target.value)}
-            placeholder="댓글을 입력하세요"
-          />
-          <button onClick={() => handleCommentSubmit()}>
-            댓글 달기
-          </button>
-        </div>
+        ))}
+        <p>댓글 {comments.length}</p>
+        {/* Comments */}
+        {sortedComments.map((comment, index) => (
+          <div key={index}>
+            <Comment
+              key={index}
+              comment={comments}
+              index={index}
+            />
+          </div>
+        ))}
+        {commentError !== '' && <p>{commentError}</p>}
+      </div>
+      <div>
+        {selectedMedia && (
+          <img src={selectedMedia} alt="Selected media" />
+        )}
+        <input
+          type="text"
+          placeholder={
+            isReplyMode
+              ? '답글을 입력하세요.'
+              : '댓글을 입력하세요.'
+          }
+          value={isReplyMode ? replyText : commentText}
+          onChange={(e) =>
+            isReplyMode
+              ? setReplyText(e.target.value)
+              : setCommentText(e.target.value)
+          }
+        />
+        <button
+          onClick={
+            isReplyMode
+              ? handleAddReplySubmit
+              : handleCommentSubmit
+          }
+        >
+          Submit
+        </button>
+        <input type="file" onChange={() => pickMedia()} />
+        <button onClick={() => cancelImage()}>
+          Cancel Image
+        </button>
       </div>
     </div>
   );
