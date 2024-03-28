@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { fetchComments } from '../functions/fetchComment_function';
 import axios from 'axios';
+import CommentComponent from '../components/comment_components';
 
 function VoteAfterPage() {
   const navigate = useNavigate();
@@ -254,10 +255,11 @@ function VoteAfterPage() {
         <div className="comments-section">
           <h2>댓글</h2>
           <div>
-            {comments.map((comment) => (
-              <div key={comment.id} className="comment">
-                <p>{comment.text}</p>
-              </div>
+            {comments.map((comment, index) => (
+              <CommentComponent
+                comment={comment}
+                index={index}
+              ></CommentComponent>
             ))}
           </div>
 
