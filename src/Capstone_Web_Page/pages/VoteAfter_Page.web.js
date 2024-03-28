@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import {
@@ -240,45 +240,21 @@ function VoteAfterPage() {
   const cancelImage = () => {
     setSelectedMedia(null);
   };
-  // 사진 및 동영상 선택
-  const handleMediaPick = (media) => {
-    // 'media' 객체에는 'uri', 'fileName', 'type' 등의 속성이 포함될 수 있습니다.
-    // 여기에서 미디어를 앱의 상태에 설정하거나 표시할 수 있습니다.
-    console.log('Selected image: ', media.uri);
-    // 예를 들어, 선택된 이미지의 URI를 상태에 설정할 수 있습니다.
-    setSelectedMedia(media.uri);
-  };
-  const pickMedia = () => {
-    const options = {
-      mediaType: 'mixed',
-      selectionLimit: 0, // 0은 다중 선택을 의미
-    };
+  // Modify handleImageChange to handle both images and videos
+  const handleImageChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      const fileType = file.type.split('/')[0]; // This will be 'image' or 'video'
 
-    launchImageLibrary(options, (response) => {
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.errorCode) {
-        console.log(
-          'ImagePicker Error: ',
-          response.errorMessage
-        );
-      } else if (
-        response.assets &&
-        response.assets.length > 0
-      ) {
-        const selectedAsset = response.assets[0];
-        if (selectedAsset.type.startsWith('image')) {
-          // 이미지인 경우에만 handleMediaPick 호출
-          handleMediaPick(selectedAsset);
-        } else {
-          // 동영상인 경우에 대한 처리
-          console.log(
-            'Selected Media is a video:',
-            selectedAsset.uri
-          );
-        }
+      if (fileType === 'image' || fileType === 'video') {
+        setSelectedMedia(URL.createObjectURL(file)); // Set preview URL
+        setMediaFile(file); // Save the file for later use
+      } else {
+        alert('Only images and videos are allowed.');
+        setSelectedMedia(null);
+        setMediaFile(null);
       }
-    });
+    }
   };
   //댓글 출력 창
   const Comment = ({ comment, index }) => {
@@ -418,9 +394,7 @@ function VoteAfterPage() {
                       childComment.nickname
                     )
                   ) && (
-                    <p style={styles.sameVoteText}>
-                      (나와 동일한 선택지를 골랐습니다)
-                    </p>
+                    <p>(나와 동일한 선택지를 골랐습니다)</p>
                   )}
                   <button
                     onClick={() =>
@@ -659,7 +633,11 @@ function VoteAfterPage() {
         >
           Submit
         </button>
-        <input type="file" onChange={() => pickMedia()} />
+        <input
+          type="file"
+          accept="image/*,video/*" // Accept both images and videos
+          onChange={handleImageChange}
+        />
         <button onClick={() => cancelImage()}>
           Cancel Image
         </button>
