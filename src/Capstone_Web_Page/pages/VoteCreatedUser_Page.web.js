@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { fetchComments } from '../functions/fetchComment_function';
@@ -8,12 +8,14 @@ function VoteCreatedUserPage() {
   const location = useLocation();
   const { isLoggedIn, userId, vote, jwtToken, nickname } =
     location.state || {};
+  const videoRef = useRef(null);
   const [comments, setComments] = useState([]); // 댓글
   const [sortedComments, setSortedComments] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [showReply, setShowReply] = useState({});
   const [sortingStandard, setSortingStandard] =
     useState('시간'); // 초기 정렬 기준을 '시간'으로 설정
+  const [pollOptions, setPollOptions] = useState([]);
   // 댓글에서 쪽지 보내기
   const handlemessge = (comment) => {
     console.log('쪽지 보내기~' + comment);
@@ -163,7 +165,26 @@ function VoteCreatedUserPage() {
       </div>
     );
   };
-
+  // 정렬
+  const sortComments = (sortingStandard) => {
+    if (comments && comments.length > 0) {
+      let sorted = [...comments];
+      if (sortingStandard === '') {
+        sorted.sort(
+          (a, b) => new Date(a.time) - new Date(b.time)
+        );
+        setSortedComments(sorted);
+      } else if (sortingStandard === '시간') {
+        sorted.sort(
+          (a, b) => new Date(a.time) - new Date(b.time)
+        );
+        setSortedComments(sorted.reverse());
+      } else if (sortingStandard === '인기') {
+        sorted.sort((a, b) => b.likes - a.likes);
+        setSortedComments(sorted);
+      }
+    }
+  };
   useEffect(() => {
     fetchComments(vote.id, jwtToken, setComments);
   }, [vote, jwtToken]);
