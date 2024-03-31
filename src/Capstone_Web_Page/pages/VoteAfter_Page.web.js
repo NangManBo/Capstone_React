@@ -69,11 +69,9 @@ function VoteAfterPage() {
     jwtToken,
     sortingStandard,
   ]);
-
   useEffect(() => {
     sortComments(sortingStandard);
   }, [comments, sortingStandard]);
-
   // 정렬
   const sortComments = (sortingStandard) => {
     if (comments && comments.length > 0) {
@@ -94,10 +92,9 @@ function VoteAfterPage() {
       }
     }
   };
-
   //게시글 좋아요
   const handleHeartClick = async () => {
-    console.log('게시글 좋아요 상태' + heartType);
+    console.log('투표 값' + vote);
     const data = {
       pollId: vote.id,
       nickname: nickname,
@@ -129,7 +126,6 @@ function VoteAfterPage() {
       console.error('게시글 좋아요 :', error);
     }
   };
-
   // 댓글 작성
   const handleCommentSubmit = async () => {
     setSend(true);
@@ -215,7 +211,6 @@ function VoteAfterPage() {
     //   receiverName: comment.nickname,
     // });
   };
-
   // 대댓글에서 쪽지 보내기
   const handlemessge1 = (childComment) => {
     console.log('쪽지 보내기~' + childComment);
@@ -229,7 +224,6 @@ function VoteAfterPage() {
     //   receiverName: childComment.nickname,
     // });
   };
-
   // 사진 고른거 삭제
   const cancelImage = () => {
     setSelectedMedia(null);
@@ -396,7 +390,6 @@ function VoteAfterPage() {
       </div>
     );
   };
-
   // 댓글 좋아요
   const commentLike = async (comment, index) => {
     setSend(true);
@@ -426,7 +419,6 @@ function VoteAfterPage() {
       console.error('댓글 좋아요 보내기:', error);
     }
   };
-
   // 대댓글
   const handleReplyPress = (comment, index) => {
     if (replyingIndex === index) {
