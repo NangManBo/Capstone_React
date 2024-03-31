@@ -5,14 +5,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 function VoteBeforePage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const {
-    isLoggedIn,
-    userId,
-    vote,
-    jwtToken,
-    nickname,
-    userVotes,
-  } = location.state;
+  const { isLoggedIn, userId, vote, jwtToken, nickname } =
+    location.state;
 
   const [pollOptions, setPollOptions] = useState([]);
 
