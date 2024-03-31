@@ -82,6 +82,7 @@ function VoteMakePage() {
 
   // 투표 생성
   const voteMake = async () => {
+    console.log('이미지 url', selectedMedia);
     try {
       const formData = new FormData();
 
