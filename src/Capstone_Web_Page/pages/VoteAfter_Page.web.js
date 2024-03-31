@@ -90,7 +90,7 @@ function VoteAfterPage() {
 
   //게시글 좋아요
   const handleHeartClick = async () => {
-    console.log('댓글 ', comments);
+    console.log('게시글 좋아요 상태' + heartType);
     const data = {
       pollId: vote.id,
       nickname: nickname,
@@ -121,9 +121,6 @@ function VoteAfterPage() {
     } catch (error) {
       console.error('게시글 좋아요 :', error);
     }
-
-    console.log('userVotes : ', userVotes);
-    console.log('vote : ', vote);
   };
 
   // 댓글 작성
