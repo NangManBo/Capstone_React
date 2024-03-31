@@ -72,7 +72,7 @@ function VoteBeforePage() {
             vote,
             jwtToken,
             nickname,
-            userVotes,
+            userVotes: response.data,
           },
         });
       } else {
