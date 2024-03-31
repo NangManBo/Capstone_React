@@ -60,7 +60,7 @@ function VoteAfterPage() {
       jwtToken,
       setSameOption
     );
-  }, [send || {}]);
+  }, [send, vote, userVotes, nickname, jwtToken]);
 
   useEffect(() => {
     sortComments(standard);
