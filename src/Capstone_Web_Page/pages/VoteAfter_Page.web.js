@@ -39,18 +39,19 @@ function VoteAfterPage() {
   const [replyText, setReplyText] = useState('');
   const [replyingIndex, setReplyingIndex] = useState(null);
   const [sameOption, setSameOption] = useState([]);
+  const [standard, setStandard] = useState('');
+  const [sortingStandard, setSortingStandard] =
+    useState('시간'); // 초기 정렬 기준을 '시간'으로 설정
+  const [sortedComments, setSortedComments] = useState([]);
+  const [isPlaying, setIsPlaying] = useState(false);
   const placeholder = {
     label: '정렬 기준',
     value: null,
   };
-
   const standards = [
     { label: '최신 순', value: '시간' },
     { label: '인기 순', value: '인기' },
   ];
-  const [standard, setStandard] = useState('');
-  const [sortedComments, setSortedComments] = useState([]);
-  const [isPlaying, setIsPlaying] = useState(false);
   useEffect(() => {
     fetchComments(vote.id, jwtToken, setComments);
     sameVoteGroup(
@@ -60,7 +61,7 @@ function VoteAfterPage() {
       jwtToken,
       setSameOption
     );
-  }, [send, vote, userVotes, nickname, jwtToken]);
+  }, [send, vote, userVotes, nickname, jwtToken, standard]);
 
   useEffect(() => {
     sortComments(standard);
@@ -400,6 +401,7 @@ function VoteAfterPage() {
 
   // 댓글 좋아요
   const commentLike = async (comment, index) => {
+    send(true);
     console.log('comment ', comment.id);
     console.log('url ', comment.mediaUrl);
     try {
@@ -418,6 +420,7 @@ function VoteAfterPage() {
           '댓글 좋아요 성공',
           JSON.stringify(response.data, null, 2)
         );
+        send(false);
       } else {
         console.error('댓글 좋아요 실패', response.data);
       }
@@ -581,6 +584,18 @@ function VoteAfterPage() {
           </div>
         ))}
         <p>댓글 {comments.length}</p>
+        <select
+          value={sortingStandard}
+          onChange={(e) =>
+            setSortingStandard(e.target.value)
+          }
+        >
+          {standards.map((standard, index) => (
+            <option key={index} value={standard.value}>
+              {standard.label}
+            </option>
+          ))}
+        </select>
         <div>
           {selectedMedia && (
             <img src={selectedMedia} alt="Selected media" />
