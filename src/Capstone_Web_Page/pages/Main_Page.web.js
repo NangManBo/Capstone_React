@@ -168,9 +168,6 @@ function MainPage() {
               <button onClick={() => goToLogin()}>
                 로그인
               </button>
-              <button onClick={goToVoteMake}>
-                투표 생성
-              </button>
             </div>
           )}
 
