@@ -50,7 +50,7 @@ function VoteAfterPage() {
   ];
   const [standard, setStandard] = useState('');
   const [sortedComments, setSortedComments] = useState([]);
-
+  const [isPlaying, setIsPlaying] = useState(false);
   useEffect(() => {
     fetchComments(vote.id, jwtToken, setComments);
     sameVoteGroup(
@@ -153,22 +153,8 @@ function VoteAfterPage() {
         JSON.stringify({ pollId: vote.id })
       );
 
-      if (selectedMedia) {
-        const localUri = selectedMedia;
-        const filename = localUri.split('/').pop();
-        const match = /\.(\w+)$/.exec(filename ?? '');
-        const type = match ? `image/${match[1]}` : 'image';
-
-        const response = await fetch(localUri);
-        const blob = await response.blob();
-
-        // Append the image data to FormData with the key "mediaData"
-        formData.append('mediaData', {
-          uri: localUri,
-          name: filename,
-          type: type,
-          blob: blob,
-        });
+      if (mediaFile) {
+        formData.append('mediaData', mediaFile);
       }
 
       const response = await fetch(
@@ -261,7 +247,6 @@ function VoteAfterPage() {
   };
   //댓글 출력 창
   const Comment = ({ comment, index }) => {
-    const [isPlaying, setIsPlaying] = useState(false);
     console.log(
       'Comment 컴포넌트 안에' +
         comment.id +
