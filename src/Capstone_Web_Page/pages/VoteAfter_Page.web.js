@@ -581,6 +581,42 @@ function VoteAfterPage() {
           </div>
         ))}
         <p>댓글 {comments.length}</p>
+        <div>
+          {selectedMedia && (
+            <img src={selectedMedia} alt="Selected media" />
+          )}
+          <input
+            type="text"
+            placeholder={
+              isReplyMode
+                ? '답글을 입력하세요.'
+                : '댓글을 입력하세요.'
+            }
+            value={isReplyMode ? replyText : commentText}
+            onChange={(e) =>
+              isReplyMode
+                ? setReplyText(e.target.value)
+                : setCommentText(e.target.value)
+            }
+          />
+          <button
+            onClick={
+              isReplyMode
+                ? handleAddReplySubmit
+                : handleCommentSubmit
+            }
+          >
+            Submit
+          </button>
+          <input
+            type="file"
+            accept="image/*,video/*" // Accept both images and videos
+            onChange={handleImageChange}
+          />
+          <button onClick={() => cancelImage()}>
+            Cancel Image
+          </button>
+        </div>
         {sortedComments.map((comment, index) => (
           <Comment
             key={index}
@@ -589,42 +625,6 @@ function VoteAfterPage() {
           />
         ))}
         {commentError !== '' && <p>{commentError}</p>}
-      </div>
-      <div>
-        {selectedMedia && (
-          <img src={selectedMedia} alt="Selected media" />
-        )}
-        <input
-          type="text"
-          placeholder={
-            isReplyMode
-              ? '답글을 입력하세요.'
-              : '댓글을 입력하세요.'
-          }
-          value={isReplyMode ? replyText : commentText}
-          onChange={(e) =>
-            isReplyMode
-              ? setReplyText(e.target.value)
-              : setCommentText(e.target.value)
-          }
-        />
-        <button
-          onClick={
-            isReplyMode
-              ? handleAddReplySubmit
-              : handleCommentSubmit
-          }
-        >
-          Submit
-        </button>
-        <input
-          type="file"
-          accept="image/*,video/*" // Accept both images and videos
-          onChange={handleImageChange}
-        />
-        <button onClick={() => cancelImage()}>
-          Cancel Image
-        </button>
       </div>
     </div>
   );
