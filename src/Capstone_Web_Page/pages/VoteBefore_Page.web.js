@@ -5,7 +5,14 @@ import { useNavigate, useLocation } from 'react-router-dom';
 function VoteBeforePage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { vote, jwtToken, nickname } = location.state;
+  const {
+    isLoggedIn,
+    userId,
+    vote,
+    jwtToken,
+    nickname,
+    userVotes,
+  } = location.state;
 
   const [pollOptions, setPollOptions] = useState([]);
 
@@ -58,10 +65,14 @@ function VoteBeforePage() {
       if (response.status === 201) {
         console.log('투표 성공:', response.data);
         // Navigate to VoteAfter page with updated state
-        navigate('/voteAfter', {
+        navigate('/voteafter', {
           state: {
-            ...location.state,
-            userVotes: response.data,
+            isLoggedIn,
+            userId,
+            vote,
+            jwtToken,
+            nickname,
+            userVotes,
           },
         });
       } else {
