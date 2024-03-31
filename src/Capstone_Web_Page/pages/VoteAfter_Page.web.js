@@ -61,11 +61,18 @@ function VoteAfterPage() {
       jwtToken,
       setSameOption
     );
-  }, [send, vote, userVotes, nickname, jwtToken, standard]);
+  }, [
+    send,
+    vote,
+    userVotes,
+    nickname,
+    jwtToken,
+    sortingStandard,
+  ]);
 
   useEffect(() => {
-    sortComments(standard);
-  }, [comments, standard]);
+    sortComments(sortingStandard);
+  }, [comments, sortingStandard]);
 
   // 정렬
   const sortComments = (sortingStandard) => {
@@ -392,7 +399,7 @@ function VoteAfterPage() {
 
   // 댓글 좋아요
   const commentLike = async (comment, index) => {
-    send(true);
+    setSend(true);
     console.log('comment ', comment.id);
     console.log('url ', comment.mediaUrl);
     try {
@@ -411,7 +418,7 @@ function VoteAfterPage() {
           '댓글 좋아요 성공',
           JSON.stringify(response.data, null, 2)
         );
-        send(false);
+        setSend(false);
       } else {
         console.error('댓글 좋아요 실패', response.data);
       }
