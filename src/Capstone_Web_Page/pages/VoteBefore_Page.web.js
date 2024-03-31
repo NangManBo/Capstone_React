@@ -59,21 +59,51 @@ function VoteBeforePage() {
       if (response.status === 201) {
         console.log('투표 성공:', response.data);
         // Navigate to VoteAfter page with updated state
-        navigate('/voteafter', {
-          state: {
-            isLoggedIn,
-            userId,
-            vote,
-            jwtToken,
-            nickname,
-            userVotes: response.data,
-          },
-        });
+        renderPostPress(vote);
       } else {
         console.error('투표 실패:', response.data);
       }
     } catch (error) {
       console.error('서버랑 오류 :', error);
+    }
+  };
+
+  const renderPostPress = async (vote) => {
+    try {
+      // Fetch user votes from the backend
+      const response = await axios.get(
+        'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/votes/ok/' +
+          nickname,
+        {
+          headers: {
+            'AUTH-TOKEN': jwtToken,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        //console.log('내가 투표한 데이터', response.data);
+        const userVotes = response.data;
+
+        navigate('/voteafter', {
+          state: {
+            category,
+            vote: vote,
+            isLoggedIn,
+            userId,
+            jwtToken,
+            nickname,
+            userVotes,
+          },
+        });
+      } else {
+        console.error(
+          '투표 들어가려는데 실패:',
+          response.data
+        );
+      }
+    } catch (error) {
+      console.error('투표 들어가려는데 오류:', error);
     }
   };
 
