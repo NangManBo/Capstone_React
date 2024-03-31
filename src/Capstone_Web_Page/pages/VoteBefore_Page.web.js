@@ -87,7 +87,6 @@ function VoteBeforePage() {
 
         navigate('/voteafter', {
           state: {
-            category,
             vote: vote,
             isLoggedIn,
             userId,
