@@ -15,6 +15,10 @@ function VoteCreatedUserPage() {
   const [showReply, setShowReply] = useState({});
   const [sortingStandard, setSortingStandard] =
     useState('시간'); // 초기 정렬 기준을 '시간'으로 설정
+  const standards = [
+    { label: '최신 순', value: '시간' },
+    { label: '인기 순', value: '인기' },
+  ];
   const [pollOptions, setPollOptions] = useState([]);
   // 댓글에서 쪽지 보내기
   const handlemessge = (comment) => {
@@ -237,7 +241,13 @@ function VoteCreatedUserPage() {
           onChange={(e) =>
             setSortingStandard(e.target.value)
           }
-        ></select>
+        >
+          {standards.map((standard, index) => (
+            <option key={index} value={standard.value}>
+              {standard.label}
+            </option>
+          ))}
+        </select>
         {sortedComments.map((comment, index) => (
           <Comment
             key={index}
