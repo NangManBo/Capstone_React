@@ -312,7 +312,7 @@ function VoteAfterPage() {
         <div>
           {comment.childrenComment &&
             comment.childrenComment.length > 0 && (
-              <button onClick={() => showReplyPress}>
+              <button onClick={() => showReplyPress()}>
                 답글 보기
               </button>
             )}
@@ -443,7 +443,6 @@ function VoteAfterPage() {
     setShowReplyInput(true);
     setCommentText(''); // Reset regular comment text
   };
-
   // 대댓글 작성
   const handleAddReplySubmit = async () => {
     setSend(true);
