@@ -114,30 +114,30 @@ function VoteMakePage() {
           JSON.stringify({ question: description })
         );
 
-      //   if (selectedMedia) {
-      //     const localUri = selectedMedia;
-      //     const filename = localUri.split('/').pop();
-      //     const match = /\.(\w+)$/.exec(filename ?? '');
-      //     const type = match
-      //       ? `image/${match[1]}`
-      //       : 'image';
+        //   if (selectedMedia) {
+        //     const localUri = selectedMedia;
+        //     const filename = localUri.split('/').pop();
+        //     const match = /\.(\w+)$/.exec(filename ?? '');
+        //     const type = match
+        //       ? `image/${match[1]}`
+        //       : 'image';
 
-      //     const response = await fetch(localUri);
-      //     const blob = await response.blob();
+        //     const response = await fetch(localUri);
+        //     const blob = await response.blob();
 
-      //     formData.append('mediaData', {
-      //       uri: localUri,
-      //       name: filename,
-      //       type: type, // Use the actual Content-Type from the result
-      //       blob: blob,
-      //     });
-      //   }
-      // }
-     // 파일이 선택되었다면 FormData에 추가
-    if (mediaFile) {
-      formData.append('mediaData', mediaFile);
-    }
-
+        //     formData.append('mediaData', {
+        //       uri: localUri,
+        //       name: filename,
+        //       type: type, // Use the actual Content-Type from the result
+        //       blob: blob,
+        //     });
+        //   }
+        // }
+        // 파일이 선택되었다면 FormData에 추가
+        if (mediaFile) {
+          formData.append('mediaData', mediaFile);
+        }
+      }
       const response = await fetch(
         'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/polls/upload/' +
           selectedCategory,
