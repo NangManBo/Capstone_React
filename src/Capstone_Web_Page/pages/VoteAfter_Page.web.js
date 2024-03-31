@@ -535,7 +535,7 @@ function VoteAfterPage() {
         >
           뒤로가기
         </button>
-        <button onClick={() => handleHeartClick}>
+        <button onClick={() => handleHeartClick()}>
           {heartType === 'empty'
             ? 'Heart Outlined Icon'
             : 'Heart Filled Icon'}
