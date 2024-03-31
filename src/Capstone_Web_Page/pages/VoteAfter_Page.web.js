@@ -248,12 +248,6 @@ function VoteAfterPage() {
   };
   //댓글 출력 창
   const Comment = ({ comment, index }) => {
-    console.log(
-      'Comment 컴포넌트 안에' +
-        comment.id +
-        ' : ' +
-        comment.mediaUrl
-    );
     const handlePlayPause = () => {
       if (videoRef.current) {
         if (isPlaying) {
