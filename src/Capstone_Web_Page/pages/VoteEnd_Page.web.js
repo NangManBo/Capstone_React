@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { fetchComments } from '../functions/fetchComment_function';
 import axios from 'axios';
-import '../styles/VoteEnd_Page.css';
+import '../styles/voteEnd_Page.css';
 function VoteEndPage() {
   const navigate = useNavigate();
   const location = useLocation();
