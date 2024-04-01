@@ -189,6 +189,49 @@ function VoteCreatedUserPage() {
       }
     }
   };
+  const handleEndVote = async () => {
+    const Data = {
+      pollId: vote.id,
+      nickname: nickname,
+    };
+    try {
+      const response = await axios.post(
+        'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/polls/popularpoint',
+        Data
+      );
+      if (response.status === 200) {
+        console.log('포인트 성공');
+      } else {
+        console.error('포인트 실패!', response.data);
+      }
+    } catch (error) {}
+    try {
+      const response = await axios.post(
+        'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/polls/close',
+        Data,
+        {
+          headers: {
+            'AUTH-TOKEN': jwtToken,
+          },
+        }
+      );
+      if (response.status === 200) {
+        console.log('투표 종료!');
+      } else {
+        console.error('투표 종료 실패!', response.data);
+      }
+    } catch (error) {
+      console.error('투표 종료 오류', error);
+    }
+    navigate('/', {
+      state: {
+        isLoggedIn,
+        userId,
+        jwtToken,
+        nickname,
+      },
+    });
+  };
   useEffect(() => {
     fetchComments(vote.id, jwtToken, setComments);
   }, [vote, jwtToken]);
@@ -261,6 +304,9 @@ function VoteCreatedUserPage() {
             index={index}
           />
         ))}
+      </div>
+      <div>
+        <button onClick={handleEndVote}>투표 종료</button>
       </div>
     </div>
   );

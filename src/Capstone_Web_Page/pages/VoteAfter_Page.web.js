@@ -526,6 +526,7 @@ function VoteAfterPage() {
     setReplyingIndex(null);
     setCommentError('');
   };
+
   return (
     <div>
       <div>
