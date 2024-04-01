@@ -280,20 +280,8 @@ function VoteCreatedUserPage() {
             style={{ width: '100%', height: 'auto' }}
           />
         )}
-        {vote.choice.map((choice, index) => (
-          <div
-            key={index}
-            style={{
-              backgroundColor: userVotes.some(
-                (userVote) =>
-                  userVote.choiceId === choice.id
-              )
-                ? '#4B89DC'
-                : 'transparent',
-            }}
-          >
-            {choice.text}
-          </div>
+        {pollOptions.map((option) => (
+          <p key={option.id}>{option.text}</p>
         ))}
         <p>댓글 {comments.length}</p>
         <div>

@@ -568,8 +568,20 @@ function VoteAfterPage() {
           <img src={vote.mediaUrl} alt="Vote" />
         )}
         {/* Choices */}
-        {pollOptions.map((option) => (
-          <p key={option.id}>{option.text}</p>
+        {vote.choice.map((choice, index) => (
+          <div
+            key={index}
+            style={{
+              backgroundColor: userVotes.some(
+                (userVote) =>
+                  userVote.choiceId === choice.id
+              )
+                ? '#4B89DC'
+                : 'transparent',
+            }}
+          >
+            {choice.text}
+          </div>
         ))}
         <p>댓글 {comments.length}</p>
         <select
