@@ -15,7 +15,6 @@ function DMAutoSendPage() {
     receiverName,
   } = location.state || {}; // state가 없는 경우를 대비한 기본값 설정
 
-  const [recipientId, setRecipientId] = useState('');
   const [messageContent, setMessageContent] = useState('');
 
   const handleSendMessage = async () => {
@@ -77,11 +76,7 @@ function DMAutoSendPage() {
       <div>
         <div>
           <span>수신인:</span>
-          <input
-            value={recipientId}
-            onChange={(e) => setRecipientId(e.target.value)}
-            placeholder="수신인 닉네임을 적어주세요."
-          />
+          <p>{receiverName}</p>
         </div>
         <div>
           <span>쪽지 내용</span>

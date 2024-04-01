@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { fetchComments } from '../functions/fetchComment_function';
-
+import axios from 'axios';
 function VoteCreatedUserPage() {
   const navigate = useNavigate();
   const location = useLocation();

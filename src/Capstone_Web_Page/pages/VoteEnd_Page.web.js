@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import { fetchComments } from '../functions/fetchComment_function';
+import axios from 'axios';
 
 function VoteEndPage() {
   const navigate = useNavigate();
@@ -25,6 +27,7 @@ function VoteEndPage() {
   ];
 
   const videoRef = useRef(null);
+  const [heartType, setHeartType] = useState('empty');
   const [comments, setComments] = useState([]); // 댓글
   const [sortedComments, setSortedComments] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -32,6 +35,40 @@ function VoteEndPage() {
   const [sortingStandard, setSortingStandard] =
     useState('시간'); // 초기 정렬 기준을 '시간'으로 설정
   const [pollOptions, setPollOptions] = useState([]);
+  //게시글 좋아요
+  const handleHeartClick = async () => {
+    console.log('투표 값' + vote);
+    const data = {
+      pollId: vote.id,
+      nickname: nickname,
+    };
+
+    console.log(data);
+
+    try {
+      const response = await axios.post(
+        'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/polls/likes',
+        data,
+        {
+          headers: {
+            'AUTH-TOKEN': jwtToken,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        console.log(response.data);
+
+        setHeartType((prev) =>
+          prev === 'empty' ? 'filled' : 'empty'
+        );
+      } else {
+        console.error('Failed to likes:', response.data);
+      }
+    } catch (error) {
+      console.error('게시글 좋아요 :', error);
+    }
+  };
   // 댓글에서 쪽지 보내기
   const handlemessge = (comment) => {
     console.log('쪽지 보내기~' + comment);
@@ -248,7 +285,14 @@ function VoteEndPage() {
   useEffect(() => {
     fetchComments(vote.id, jwtToken, setComments);
   }, [vote, jwtToken]);
-
+  useEffect(() => {
+    if (
+      vote.likedUsers &&
+      vote.likedUsers.includes(nickname)
+    ) {
+      setHeartType('filled');
+    }
+  }, [vote, nickname]);
   useEffect(() => {
     sortComments(sortingStandard);
   }, [comments, sortingStandard]);

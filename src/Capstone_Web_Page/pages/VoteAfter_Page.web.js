@@ -81,7 +81,6 @@ function VoteAfterPage() {
       setHeartType('filled');
     }
   }, [vote, nickname]);
-  const voteLikeUser = async () => {};
   // 정렬
   const sortComments = (sortingStandard) => {
     if (comments && comments.length > 0) {
@@ -216,8 +215,7 @@ function VoteAfterPage() {
         userId,
         jwtToken,
         nickname,
-        updateDM2,
-        commentId: comment.id,
+
         receiverName: comment.nickname,
       },
     });
@@ -231,9 +229,8 @@ function VoteAfterPage() {
         userId,
         jwtToken,
         nickname,
-        updateDM2,
-        commentId: comment.id,
-        receiverName: comment.nickname,
+
+        receiverName: childComment.nickname,
       },
     });
   };
