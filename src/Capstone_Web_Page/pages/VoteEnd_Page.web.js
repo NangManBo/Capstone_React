@@ -381,7 +381,9 @@ function VoteEndPage() {
           </div>
         ))}
       </div>
-
+      <div>
+        <button onClick={handleEndVote}>투표 종료</button>
+      </div>
       <div>
         {sortedComments.map((comment, index) => (
           <Comment
@@ -390,9 +392,6 @@ function VoteEndPage() {
             index={index}
           />
         ))}
-      </div>
-      <div>
-        <button onClick={handleEndVote}>투표 종료</button>
       </div>
     </div>
   );
