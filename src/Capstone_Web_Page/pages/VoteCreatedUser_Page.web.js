@@ -233,6 +233,7 @@ function VoteCreatedUserPage() {
       },
     });
   };
+
   useEffect(() => {
     fetchComments(vote.id, jwtToken, setComments);
   }, [vote, jwtToken]);
@@ -241,6 +242,25 @@ function VoteCreatedUserPage() {
     sortComments(sortingStandard);
   }, [comments, sortingStandard]);
 
+  useEffect(() => {
+    // Assuming vote.choices is an array of choice objects received from the server
+    if (vote.choice && Array.isArray(vote.choice)) {
+      setPollOptions(
+        vote.choice.map((choice) => ({
+          id: choice.id,
+          text: choice.text,
+          votes: 0,
+          isSelected: false,
+        }))
+      );
+    } else {
+      // Handle the case where vote.choices is not an array or is undefined
+      console.error(
+        'ERROR: vote.choices is not an array or is undefined'
+      );
+      // You might want to set a default value for pollOptions or handle it accordingly
+    }
+  }, [vote]);
   return (
     <div>
       <button
