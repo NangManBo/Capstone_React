@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { fetchComments } from '../functions/fetchComment_function';
 import axios from 'axios';
-
+import '../styles/voteEnd_style.css';
 function VoteEndPage() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -337,6 +337,7 @@ function VoteEndPage() {
           <img src={vote.mediaUrl} alt="Vote" />
         )}
       </div>
+      <p>댓글 {comments.length}</p>
       <select
         value={sortingStandard}
         onChange={(e) => setSortingStandard(e.target.value)}

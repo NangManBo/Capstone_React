@@ -1,0 +1,39 @@
+/* Styles for the vote button */
+.VoteButton {
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #f0f0f0;
+  border: 1px solid #dcdcdc;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+/* Highlighted vote button styles */
+.VoteButton--highlighted {
+  background-color: #cfe3ff;
+  border-color: #a4cbff;
+}
+
+/* Styles for the text inside your vote button */
+.VoteText {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Highlighted text styles */
+.VoteText--highlighted {
+  font-weight: bold;
+  color: #000;
+}
+
+/* Styles for the vote count text */
+.VoteCount {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Bold vote count text styles */
+.VoteCount--bold {
+  font-weight: bold;
+  color: #222;
+}
