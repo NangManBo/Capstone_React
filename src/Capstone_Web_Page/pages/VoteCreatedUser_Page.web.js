@@ -197,15 +197,21 @@ function VoteCreatedUserPage() {
     sortComments(sortingStandard);
   }, [comments, sortingStandard]);
 
-  const goToMain = () => {
-    navigate('/', {
-      state: { isLoggedIn, userId, jwtToken, nickname },
-    });
-  };
   return (
     <div>
-      <button onClick={goToMain}>
-        <span>Back</span>
+      <button
+        onClick={() =>
+          navigate('/', {
+            state: {
+              isLoggedIn,
+              userId,
+              jwtToken,
+              nickname,
+            },
+          })
+        }
+      >
+        뒤로가기
       </button>
       <div>
         <h1>

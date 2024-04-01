@@ -214,7 +214,20 @@ function VoteMakePage() {
 
   return (
     <div>
-      <button onClick={() => navigate(-1)}>Back</button>
+      <button
+        onClick={() =>
+          navigate('/', {
+            state: {
+              isLoggedIn,
+              userId,
+              jwtToken,
+              nickname,
+            },
+          })
+        }
+      >
+        뒤로가기
+      </button>
       <h1>투표생성하기</h1>
 
       <div>

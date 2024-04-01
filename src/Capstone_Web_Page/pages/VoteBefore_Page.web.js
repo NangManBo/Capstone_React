@@ -106,14 +106,23 @@ function VoteBeforePage() {
     }
   };
 
-  const handleGoBack = () => {
-    navigate(-1); // 이전 페이지로 이동
-  };
-
   return (
     <div>
       <div>
-        <button onClick={handleGoBack}>Go Back</button>
+        <button
+          onClick={() =>
+            navigate('/', {
+              state: {
+                isLoggedIn,
+                userId,
+                jwtToken,
+                nickname,
+              },
+            })
+          }
+        >
+          뒤로가기
+        </button>
       </div>
       <div>
         <h1>{JSON.parse(vote.title).title}</h1>

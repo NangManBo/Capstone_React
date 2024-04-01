@@ -32,19 +32,25 @@ function VoteOnlyLookPage() {
     }));
     setPollOptions(updatedOptions);
   };
-
-  const goToMain = () => {
-    navigate('/');
-  };
-
   const goToLogin = () => {
     navigate('/login');
   };
 
   return (
     <div>
-      <button onClick={goToMain}>
-        <span>Back</span>
+      <button
+        onClick={() =>
+          navigate('/', {
+            state: {
+              isLoggedIn,
+              userId,
+              jwtToken,
+              nickname,
+            },
+          })
+        }
+      >
+        뒤로가기
       </button>
       <div>
         <h1>
