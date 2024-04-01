@@ -189,6 +189,7 @@ function VoteCreatedUserPage() {
       }
     }
   };
+
   const handleEndVote = async () => {
     const Data = {
       pollId: vote.id,
