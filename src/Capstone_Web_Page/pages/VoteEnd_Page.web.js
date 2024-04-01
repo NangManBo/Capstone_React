@@ -227,7 +227,53 @@ function VoteEndPage() {
       }
     }
   };
+  // 댓글 카운터 계산
+  const countData = async () => {
+    console.log('투표 카운트 데이터', vote);
 
+    try {
+      const response = await axios.get(
+        'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/votes/selected-choices/' +
+          vote.id,
+        {
+          headers: {
+            'AUTH-TOKEN': jwtToken,
+          },
+        }
+      );
+      if (response.status === 200) {
+        const selectedVotes = response.data;
+        console.log(
+          '투표 카운트 응답 데이터',
+          selectedVotes
+        );
+        // 투표 선택지 업데이트
+        setPollOptions(
+          vote.choice.map((choice) => {
+            const voteData =
+              selectedVotes.find(
+                (data) =>
+                  data.choice_id === choice.id &&
+                  data.text === choice.text
+              ) || {};
+            return {
+              id: choice.id,
+              text: choice.text,
+              votes: voteData.count || 0,
+              isSelected: voteData.count !== undefined,
+            };
+          })
+        );
+      } else {
+        console.error(
+          '투표 카운트 가져오기 실패',
+          response.data
+        );
+      }
+    } catch (error) {
+      console.error('투표 카운트 가져오기 오류:', error);
+    }
+  };
   useEffect(() => {
     fetchComments(vote.id, jwtToken, setComments);
   }, [vote, jwtToken]);
@@ -260,6 +306,7 @@ function VoteEndPage() {
       );
       // You might want to set a default value for pollOptions or handle it accordingly
     }
+    countData();
   }, [vote]);
   return (
     <div>
