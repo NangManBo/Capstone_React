@@ -280,12 +280,25 @@ function VoteCreatedUserPage() {
             style={{ width: '100%', height: 'auto' }}
           />
         )}
-        {pollOptions.map((option) => (
-          <div key={option.id}>
-            <span>{option.text}</span>
+        {vote.choice.map((choice, index) => (
+          <div
+            key={index}
+            style={{
+              backgroundColor: userVotes.some(
+                (userVote) =>
+                  userVote.choiceId === choice.id
+              )
+                ? '#4B89DC'
+                : 'transparent',
+            }}
+          >
+            {choice.text}
           </div>
         ))}
         <p>댓글 {comments.length}</p>
+        <div>
+          <button onClick={handleEndVote}>투표 종료</button>
+        </div>
         <select
           value={sortingStandard}
           onChange={(e) =>
@@ -305,9 +318,6 @@ function VoteCreatedUserPage() {
             index={index}
           />
         ))}
-      </div>
-      <div>
-        <button onClick={handleEndVote}>투표 종료</button>
       </div>
     </div>
   );
