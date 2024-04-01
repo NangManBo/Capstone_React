@@ -7,19 +7,8 @@ import '../styles/voteEnd_style.css';
 function VoteEndPage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const {
-    isLoggedIn,
-    userId,
-    vote,
-    jwtToken,
-    nickname,
-    category,
-    userVotes,
-  } = location.state || {};
-  const placeholder = {
-    label: '정렬 기준',
-    value: null,
-  };
+  const { isLoggedIn, userId, vote, jwtToken, nickname } =
+    location.state || {};
 
   const standards = [
     { label: '최신 순', value: '시간' },
@@ -71,31 +60,31 @@ function VoteEndPage() {
   };
   // 댓글에서 쪽지 보내기
   const handlemessge = (comment) => {
-    console.log('쪽지 보내기~' + comment);
-    // navigate('AutoSend', {
-    //   isLoggedIn,
-    //   userId,
-    //   jwtToken,
-    //   nickname,
-    //   updateDM2,
-    //   commentId: comment.id,
-    //   receiverName: comment.nickname,
-    // });
+    navigate('/dmautosend', {
+      state: {
+        isLoggedIn,
+        userId,
+        jwtToken,
+        nickname,
+
+        receiverName: comment.nickname,
+      },
+    });
   };
   // 대댓글에서 쪽지 보내기
   const handlemessge1 = (childComment) => {
     console.log('쪽지 보내기~' + childComment);
-    // navigation.navigate('AutoSend', {
-    //   isLoggedIn,
-    //   userId,
-    //   jwtToken,
-    //   nickname,
-    //   updateDM2,
-    //   commentId: childComment.id,
-    //   receiverName: childComment.nickname,
-    // });
-  };
+    navigate('/dmautosend', {
+      state: {
+        isLoggedIn,
+        userId,
+        jwtToken,
+        nickname,
 
+        receiverName: childComment.nickname,
+      },
+    });
+  };
   const Comment = ({ comment, index }) => {
     const handlePlayPause = () => {
       if (videoRef.current) {
@@ -239,49 +228,6 @@ function VoteEndPage() {
     }
   };
 
-  const handleEndVote = async () => {
-    const Data = {
-      pollId: vote.id,
-      nickname: nickname,
-    };
-    try {
-      const response = await axios.post(
-        'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/polls/popularpoint',
-        Data
-      );
-      if (response.status === 200) {
-        console.log('포인트 성공');
-      } else {
-        console.error('포인트 실패!', response.data);
-      }
-    } catch (error) {}
-    try {
-      const response = await axios.post(
-        'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/polls/close',
-        Data,
-        {
-          headers: {
-            'AUTH-TOKEN': jwtToken,
-          },
-        }
-      );
-      if (response.status === 200) {
-        console.log('투표 종료!');
-      } else {
-        console.error('투표 종료 실패!', response.data);
-      }
-    } catch (error) {
-      console.error('투표 종료 오류', error);
-    }
-    navigate('/', {
-      state: {
-        isLoggedIn,
-        userId,
-        jwtToken,
-        nickname,
-      },
-    });
-  };
   useEffect(() => {
     fetchComments(vote.id, jwtToken, setComments);
   }, [vote, jwtToken]);
@@ -296,6 +242,25 @@ function VoteEndPage() {
   useEffect(() => {
     sortComments(sortingStandard);
   }, [comments, sortingStandard]);
+  useEffect(() => {
+    // Assuming vote.choices is an array of choice objects received from the server
+    if (vote.choice && Array.isArray(vote.choice)) {
+      setPollOptions(
+        vote.choice.map((choice) => ({
+          id: choice.id,
+          text: choice.text,
+          votes: 0,
+          isSelected: false,
+        }))
+      );
+    } else {
+      // Handle the case where vote.choices is not an array or is undefined
+      console.error(
+        'ERROR: vote.choices is not an array or is undefined'
+      );
+      // You might want to set a default value for pollOptions or handle it accordingly
+    }
+  }, [vote]);
   return (
     <div>
       <div>
@@ -337,17 +302,6 @@ function VoteEndPage() {
           <img src={vote.mediaUrl} alt="Vote" />
         )}
       </div>
-      <p>댓글 {comments.length}</p>
-      <select
-        value={sortingStandard}
-        onChange={(e) => setSortingStandard(e.target.value)}
-      >
-        {standards.map((standard, index) => (
-          <option key={index} value={standard.value}>
-            {standard.label}
-          </option>
-        ))}
-      </select>
       <div>
         {pollOptions.map((option, index) => (
           <div
@@ -382,6 +336,18 @@ function VoteEndPage() {
           </div>
         ))}
       </div>
+      <p>댓글 {comments.length}</p>
+      <select
+        value={sortingStandard}
+        onChange={(e) => setSortingStandard(e.target.value)}
+      >
+        {standards.map((standard, index) => (
+          <option key={index} value={standard.value}>
+            {standard.label}
+          </option>
+        ))}
+      </select>
+
       <div>
         {sortedComments.map((comment, index) => (
           <Comment
