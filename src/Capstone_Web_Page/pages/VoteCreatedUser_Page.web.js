@@ -261,7 +261,6 @@ function VoteCreatedUserPage() {
       );
       // You might want to set a default value for pollOptions or handle it accordingly
     }
-    countData();
   }, [vote]);
 
   return (
