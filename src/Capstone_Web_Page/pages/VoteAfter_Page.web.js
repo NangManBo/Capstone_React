@@ -72,6 +72,16 @@ function VoteAfterPage() {
   useEffect(() => {
     sortComments(sortingStandard);
   }, [comments, sortingStandard]);
+  // Check if the current user's nickname is in the likedUsers array
+  useEffect(() => {
+    if (
+      vote.likedUsers &&
+      vote.likedUsers.includes(nickname)
+    ) {
+      setHeartType('filled');
+    }
+  }, [vote, nickname]);
+  const voteLikeUser = async () => {};
   // 정렬
   const sortComments = (sortingStandard) => {
     if (comments && comments.length > 0) {
