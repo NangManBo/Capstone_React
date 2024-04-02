@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-function ProfileUpdatePage({ history }) {
+
+function ProfileUpdatePage() {
   // Assuming route.params are now props or context/state managed variables
   const [userId, isLoggedIn, nickname, jwtToken, mbti] =
     location.state || {};
@@ -162,7 +163,7 @@ function ProfileUpdatePage({ history }) {
 
   return (
     <div className="container">
-      <button onClick={() => history.goBack()}>Back</button>
+      <button onClick={() => navigate(-1)}>Back</button>
       <h1>Profile Update</h1>
       <div>
         <label>Nickname</label>

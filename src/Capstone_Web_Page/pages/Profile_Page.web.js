@@ -124,7 +124,7 @@ function ProfilePage() {
     });
   };
   const handleProfileChange = () => {
-    navigate('UserAuthenticationScreen', {
+    navigate('userauthentication', {
       state: {
         isLoggedIn,
         userId,

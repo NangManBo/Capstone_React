@@ -18,6 +18,8 @@ import VoteOnlyLookPage from './Capstone_Web_Page/pages/VoteOnlyLook.web';
 import VoteEndPage from './Capstone_Web_Page/pages/VoteEnd_Page.web';
 import DMAutoSendPage from './Capstone_Web_Page/pages/DMAutoSend_Page.web';
 import CategoryPage from './Capstone_Web_Page/pages/Category_Page.web';
+import UserAuthenticationPage from './Capstone_Web_Page/pages/UserAuthentication_Page.web';
+import ProfileUpdatePage from './Capstone_Web_Page/pages/ProfileUpdate_Page.web';
 
 function App() {
   return (
@@ -65,6 +67,14 @@ function App() {
           <Route
             path="/profile"
             element={<ProfilePage />}
+          />
+          <Route
+            path="/profileupdate"
+            element={<ProfileUpdatePage />}
+          />
+          <Route
+            path="/userauthentication"
+            element={<UserAuthenticationPage />}
           />
         </Routes>
       </div>
