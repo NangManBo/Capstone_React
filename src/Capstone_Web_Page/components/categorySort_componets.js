@@ -135,6 +135,13 @@ export const getCategoryVotes = (
       console.error('투표 들어가려는데 오류:', error);
     }
   };
+  // JSON 문자열을 파싱하여 JavaScript 객체로 변환
+  const titleObj = firstMatchingVote
+    ? JSON.parse(firstMatchingVote.title)
+    : null;
+
+  // 객체에서 title 값을 추출하고, 없을 경우 '없음'을 기본값으로 사용
+  const title = titleObj ? titleObj.title : '없음';
   return categories.map((category) => {
     // Filter votes that match the current category
     const matchingVotes = votes.filter(
@@ -160,18 +167,19 @@ export const getCategoryVotes = (
     });
 
     return (
-      <button
-        onClick={() => renderPostPress(firstMatchingVote)}
-        key={`${category}-${
-          firstMatchingVote?.title || ''
-        }`}
-        className="category_sub_box" // 스타일을 적용할 CSS 클래스
-        style={{ width: '200px', height: '100px' }}
-      >
-        <h4 className="category_sub_title_text">
-          {firstMatchingVote?.title || '없음'}
-        </h4>
-      </button>
+      <div>
+        <h3>{category}</h3>
+        <button
+          onClick={() => renderPostPress(firstMatchingVote)}
+          key={`${category}-${
+            firstMatchingVote?.title || ''
+          }`}
+          className="category_sub_box" // 스타일을 적용할 CSS 클래스
+          style={{ width: '200px', height: '100px' }}
+        >
+          <h4>{title}</h4>
+        </button>
+      </div>
     );
   });
 };
