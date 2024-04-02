@@ -4,7 +4,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 function VoteOnlyLookPage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { vote } = location.state || {};
+  const { vote, isCategory, category, matchingVotes } =
+    location.state || { isCategory: false };
 
   const [pollOptions, setPollOptions] = useState([]);
 
@@ -41,9 +42,20 @@ function VoteOnlyLookPage() {
     navigate('/login');
   };
 
+  const goToCategory = () => {
+    navigate('/category', {
+      state: {
+        isCategory,
+        category,
+        matchingVotes,
+      },
+    });
+  };
   return (
     <div>
-      <button onClick={goToMain}>
+      <button
+        onClick={isCategory ? goToCategory : goToMain}
+      >
         <span>뒤로가기</span>
       </button>
       <div>

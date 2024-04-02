@@ -184,16 +184,16 @@ export const getCategoryVotes = (
 
     return (
       <div>
-        <button onClick={() => goToCategory(category)}>
+        <div onClick={() => goToCategory(category)}>
           <h3>{category}</h3>
-        </button>
+        </div>
         <button
           onClick={() => renderPostPress(firstMatchingVote)}
           key={`${category}-${
             firstMatchingVote?.title || ''
           }`}
           className="category_sub_box" // 스타일을 적용할 CSS 클래스
-          style={{ width: '200px', height: '100px' }}
+          style={{ width: '100px', height: '50px' }}
         >
           <h4>{title}</h4>
         </button>

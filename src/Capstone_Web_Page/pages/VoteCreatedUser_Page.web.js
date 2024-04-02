@@ -6,8 +6,16 @@ import axios from 'axios';
 function VoteCreatedUserPage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { isLoggedIn, userId, vote, jwtToken, nickname } =
-    location.state || {};
+  const {
+    isLoggedIn,
+    userId,
+    vote,
+    jwtToken,
+    nickname,
+    isCategory,
+    category,
+    matchingVotes,
+  } = location.state || { isCategory: false };
   const videoRef = useRef(null);
   const [comments, setComments] = useState([]); // 댓글
   const [sortedComments, setSortedComments] = useState([]);
@@ -262,19 +270,34 @@ function VoteCreatedUserPage() {
       // You might want to set a default value for pollOptions or handle it accordingly
     }
   }, [vote]);
+  const goToMain = () => {
+    navigate('/', {
+      state: {
+        isLoggedIn,
+        userId,
+        jwtToken,
+        nickname,
+      },
+    });
+  };
+  const goToCategory = () => {
+    navigate('/category', {
+      state: {
+        isLoggedIn,
+        userId,
+        jwtToken,
+        nickname,
+        category,
+        matchingVotes,
+      },
+    });
+  };
 
   return (
     <div>
       <button
         onClick={() =>
-          navigate('/', {
-            state: {
-              isLoggedIn,
-              userId,
-              jwtToken,
-              nickname,
-            },
-          })
+          isCategory ? goToCategory() : goToMain()
         }
       >
         뒤로가기

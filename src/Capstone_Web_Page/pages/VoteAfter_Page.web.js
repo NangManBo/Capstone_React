@@ -17,7 +17,10 @@ function VoteAfterPage() {
     jwtToken,
     nickname,
     userVotes,
-  } = location.state || {};
+    isCategory,
+    category,
+    matchingVotes,
+  } = location.state || { isCategory: false };
   const [send, setSend] = useState(false);
   const [comments, setComments] = useState([]); // 댓글
   const [pollOptions, setPollOptions] = useState([]);
@@ -526,20 +529,35 @@ function VoteAfterPage() {
     setReplyingIndex(null);
     setCommentError('');
   };
+  const goToMain = () => {
+    navigate('/', {
+      state: {
+        isLoggedIn,
+        userId,
+        jwtToken,
+        nickname,
+      },
+    });
+  };
+  const goToCategory = () => {
+    navigate('/category', {
+      state: {
+        isLoggedIn,
+        userId,
+        jwtToken,
+        nickname,
+        category,
+        matchingVotes,
+      },
+    });
+  };
 
   return (
     <div>
       <div>
         <button
           onClick={() =>
-            navigate('/', {
-              state: {
-                isLoggedIn,
-                userId,
-                jwtToken,
-                nickname,
-              },
-            })
+            isCategory ? goToCategory() : goToMain()
           }
         >
           뒤로가기

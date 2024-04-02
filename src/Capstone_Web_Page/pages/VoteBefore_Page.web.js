@@ -5,8 +5,16 @@ import { useNavigate, useLocation } from 'react-router-dom';
 function VoteBeforePage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { isLoggedIn, userId, vote, jwtToken, nickname } =
-    location.state;
+  const {
+    isLoggedIn,
+    userId,
+    vote,
+    jwtToken,
+    nickname,
+    isCategory,
+    category,
+    matchingVotes,
+  } = location.state || { isCategory: false };
 
   const [pollOptions, setPollOptions] = useState([]);
 
@@ -105,20 +113,35 @@ function VoteBeforePage() {
       console.error('투표 들어가려는데 오류:', error);
     }
   };
+  const goToMain = () => {
+    navigate('/', {
+      state: {
+        isLoggedIn,
+        userId,
+        jwtToken,
+        nickname,
+      },
+    });
+  };
+  const goToCategory = () => {
+    navigate('/category', {
+      state: {
+        isLoggedIn,
+        userId,
+        jwtToken,
+        nickname,
+        category,
+        matchingVotes,
+      },
+    });
+  };
 
   return (
     <div>
       <div>
         <button
           onClick={() =>
-            navigate('/', {
-              state: {
-                isLoggedIn,
-                userId,
-                jwtToken,
-                nickname,
-              },
-            })
+            isCategory ? goToCategory() : goToMain()
           }
         >
           뒤로가기

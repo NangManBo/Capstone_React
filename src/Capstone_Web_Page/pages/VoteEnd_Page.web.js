@@ -7,8 +7,16 @@ import '../styles/voteEnd_style.css';
 function VoteEndPage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { isLoggedIn, userId, vote, jwtToken, nickname } =
-    location.state || {};
+  const {
+    isLoggedIn,
+    userId,
+    vote,
+    jwtToken,
+    nickname,
+    isCategory,
+    category,
+    matchingVotes,
+  } = location.state || { isCategory: false };
 
   const standards = [
     { label: '최신 순', value: '시간' },
@@ -308,19 +316,36 @@ function VoteEndPage() {
     }
     countData();
   }, [vote]);
+
+  const goToMain = () => {
+    navigate('/', {
+      state: {
+        isLoggedIn,
+        userId,
+        jwtToken,
+        nickname,
+      },
+    });
+  };
+  const goToCategory = () => {
+    navigate('/category', {
+      state: {
+        isLoggedIn,
+        userId,
+        jwtToken,
+        nickname,
+        category,
+        matchingVotes,
+      },
+    });
+  };
+
   return (
     <div>
       <div>
         <button
           onClick={() =>
-            navigate('/', {
-              state: {
-                isLoggedIn,
-                userId,
-                jwtToken,
-                nickname,
-              },
-            })
+            isCategory ? goToCategory() : goToMain()
           }
         >
           뒤로가기

@@ -76,6 +76,8 @@ function CategoryPage() {
             navigate('/voteonlylook', {
               state: {
                 vote: firstMatchingVote,
+                category,
+                matchingVotes,
               },
             });
           }
@@ -90,6 +92,8 @@ function CategoryPage() {
                 jwtToken,
                 nickname,
                 userVotes,
+                category,
+                matchingVotes,
               },
             });
           } else if (isCreatedByUser) {
@@ -102,6 +106,8 @@ function CategoryPage() {
                 jwtToken,
                 nickname,
                 userVotes,
+                category,
+                matchingVotes,
               },
             });
           } else {
@@ -113,6 +119,8 @@ function CategoryPage() {
                 userId,
                 jwtToken,
                 nickname,
+                category,
+                matchingVotes,
               },
             });
           }
@@ -149,6 +157,8 @@ function CategoryPage() {
                 jwtToken,
                 nickname,
                 userVotes,
+                category,
+                matchingVotes,
               },
             }
           );
