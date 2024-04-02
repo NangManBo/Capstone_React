@@ -38,7 +38,6 @@ export const fetchSearch = async (
           : [],
       }));
       setSearchResults(formattedVotes);
-      console.log('검색 결과', searchResults);
     } else {
       console.error(
         'Failed to fetch messages:',
