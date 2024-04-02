@@ -1,7 +1,11 @@
 import axios from 'axios';
 
 export const renderPostPress = async (
-  firstMatchingVote
+  firstMatchingVote,
+  isLoggedIn,
+  userId,
+  jwtToken,
+  nickname
 ) => {
   try {
     // Fetch user votes from the backend
@@ -190,7 +194,15 @@ export const getCategoryVotes = (
           <h3>{category}</h3>
         </button>
         <button
-          onClick={() => renderPostPress(firstMatchingVote)}
+          onClick={() =>
+            renderPostPress(
+              firstMatchingVote,
+              isLoggedIn,
+              userId,
+              jwtToken,
+              nickname
+            )
+          }
           key={`${category}-${
             firstMatchingVote?.title || ''
           }`}

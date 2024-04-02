@@ -90,7 +90,15 @@ function CategoryPage() {
         {sortedVotes.map((vote, index) => (
           <div
             key={index}
-            onClick={() => renderPostPress(vote)}
+            onClick={() =>
+              renderPostPress(
+                vote,
+                isLoggedIn,
+                userId,
+                jwtToken,
+                nickname
+              )
+            }
           >
             <div>
               <p>{JSON.parse(vote.title).title}</p>
