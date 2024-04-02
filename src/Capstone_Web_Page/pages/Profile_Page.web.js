@@ -123,7 +123,17 @@ function ProfilePage() {
       isLoggedIn: false,
     });
   };
-
+  const handleProfileChange = () => {
+    navigate('UserAuthenticationScreen', {
+      state: {
+        isLoggedIn,
+        userId,
+        jwtToken,
+        nickname,
+        password,
+      },
+    });
+  };
   return (
     <div className="container">
       <header className="header">
@@ -143,6 +153,9 @@ function ProfilePage() {
         </button>
         <h1>개인 프로필</h1>
         <button onClick={handleLogout}>로그아웃</button>
+        <button onClick={handleProfileChange}>
+          프로필 변경
+        </button>
       </header>
 
       <div className="profileInfos">
