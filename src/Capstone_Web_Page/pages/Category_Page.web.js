@@ -93,7 +93,7 @@ function CategoryPage() {
             key={index}
             onClick={() =>
               renderPostPress(
-                vote,
+                (firstMatchingVote = vote),
                 isLoggedIn,
                 userId,
                 jwtToken,
