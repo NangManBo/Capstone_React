@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { fetchVotes } from '../functions/fetchVote_function';
+import { renderPostPress } from '../functions/renderPostPress_function';
 
 function CategoryPage() {
   const navigate = useNavigate();
