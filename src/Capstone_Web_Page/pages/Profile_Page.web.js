@@ -126,11 +126,11 @@ function ProfilePage() {
   const handleProfileChange = () => {
     navigate('/userauthentication', {
       state: {
-        isLoggedIn,
         userId,
+        isLoggedIn,
         jwtToken,
         nickname,
-        getMbti,
+        mbti: getMbti,
       },
     });
   };
