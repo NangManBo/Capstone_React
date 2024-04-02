@@ -16,7 +16,7 @@ function UserAuthenticationPage() {
       alert('알림: 비밀번호를 입력해주세요.'); // Using standard alert for web
       return;
     }
-    console.log(userId, jwtToken); // Logging for debugging
+
     try {
       const response = await axios.post(
         'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/auth/patch/check',
@@ -46,7 +46,6 @@ function UserAuthenticationPage() {
         alert('알림: 본인인증에 실패했습니다');
       }
     } catch (error) {
-      console.error('Authentication failed:', error);
       alert(
         '알림: 본인인증에 실패했습니다.\n네트워크 상태를 확인해주세요.'
       );

@@ -61,7 +61,6 @@ function ProfileUpdatePage() {
       );
 
       if (response.status === 200) {
-        console.log(response.data);
         setNewPassword(''); // 성공한 후 입력 필드를 초기화
         // Assuming the API returns an object with a 'success' property
         alert('알림', '비밀번호 변경 완료');
@@ -99,14 +98,12 @@ function ProfileUpdatePage() {
       );
 
       if (response.status === 200) {
-        console.log(response.data);
         setNewMbti(''); // 성공한 후 입력 필드를 초기화
         alert('알림', 'MBTI 변경 완료');
       } else {
         alert('알림', 'MBTI 변경에 실패했습니다');
       }
     } catch (error) {
-      console.error('MBTI change failed:', error);
       alert(
         '알림',
         'MBTI 변경에 실패했습니다.\n네트워크 상태를 확인해주세요.'
@@ -120,9 +117,7 @@ function ProfileUpdatePage() {
       nickname: newNickname,
     };
     const uid = userId;
-    console.log('url에 들어가는', uid);
-    console.log('닉네임 변경시 userID', userId);
-    console.log('닉네임 변경', newNickname);
+
     if (newNickname === '') {
       alert('알림', '닉네임을 입력해주세요');
       return;
@@ -142,7 +137,6 @@ function ProfileUpdatePage() {
       console.log(response.data); // 응답 확인
 
       if (response.status === 200) {
-        console.log(response.data.token); // Log the token value
         localStorage.setItem(
           '@jwtToken',
           response.data.token
@@ -155,7 +149,6 @@ function ProfileUpdatePage() {
         alert('닉네임 변경에 실패했습니다'); // Notification of failure
       }
     } catch (error) {
-      console.error('Nickname change failed:', error);
       alert(
         '알림',
         '닉네임 변경에 실패했습니다.\n네트워크 상태를 확인해주세요.'
