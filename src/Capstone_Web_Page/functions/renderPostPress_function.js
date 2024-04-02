@@ -1,14 +1,13 @@
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 export const renderPostPress = async (
   firstMatchingVote,
   isLoggedIn,
   userId,
   jwtToken,
-  nickname
+  nickname,
+  navigate
 ) => {
-  const navigate = useNavigate();
   try {
     // Fetch user votes from the backend
     const response = await axios.get(
@@ -24,7 +23,6 @@ export const renderPostPress = async (
     if (response.status === 200) {
       //console.log('내가 투표한 데이터', response.data);
       const userVotes = response.data;
-      console.log('userVotes:', userVotes);
 
       // Check if userVotes is null or empty
       if (!userVotes || userVotes.length === 0) {

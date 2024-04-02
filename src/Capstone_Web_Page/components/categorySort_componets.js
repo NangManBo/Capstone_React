@@ -51,7 +51,7 @@ export const getCategoryVotes = (
     const title = titleObj ? titleObj.title : '없음';
     // Filter votes for the selected category
     const filteredVotes = votes.filter(
-      (vote) => vote.category === selectedCategory
+      (vote) => vote.category === category
     );
     const goToCategory = (category) => {
       navigate('/category', {
@@ -62,6 +62,7 @@ export const getCategoryVotes = (
           jwtToken,
           nickname,
           filteredVotes,
+          navigate,
         },
       });
     };
