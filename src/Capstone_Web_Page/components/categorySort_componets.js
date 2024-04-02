@@ -166,6 +166,22 @@ export const getCategoryVotes = (
 
     // 객체에서 title 값을 추출하고, 없을 경우 '없음'을 기본값으로 사용
     const title = titleObj ? titleObj.title : '없음';
+    const goToCategory = (category) => {
+      // Filter votes for the selected category
+
+      navigate('/category', {
+        state: {
+          category,
+          votes,
+          isLoggedIn,
+          userId,
+          jwtToken,
+          nickname,
+          matchingVotes,
+        },
+      });
+    };
+
     return (
       <div>
         <button onClick={() => goToCategory(category)}>

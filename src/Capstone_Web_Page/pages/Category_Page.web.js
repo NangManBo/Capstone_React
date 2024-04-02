@@ -12,7 +12,7 @@ function CategoryPage() {
     jwtToken,
     nickname,
     category,
-    filteredVotes,
+    matchingVotes,
   } = location.state || {
     isLoggedIn: false,
     userId: '',
@@ -23,7 +23,7 @@ function CategoryPage() {
   const [votes, setVotes] = useState([]);
   const [standard, setStandard] = useState('');
   const [sortedVotes, setSortedVotes] = useState([
-    ...filteredVotes,
+    ...matchingVotes,
   ]);
 
   const standards = [
@@ -31,7 +31,7 @@ function CategoryPage() {
     { label: '인기 순', value: '인기' },
   ];
   const sortVotes = () => {
-    const updatedSortedVotes = [...filteredVotes];
+    const updatedSortedVotes = [...matchingVotes];
     if (standard === '인기') {
       updatedSortedVotes.sort(
         (a, b) => b.likesCount - a.likesCount
@@ -165,7 +165,7 @@ function CategoryPage() {
   useEffect(() => {
     sortVotes();
     fetchVotes(setVotes, jwtToken);
-  }, [standard, filteredVotes]);
+  }, [standard, matchingVotes]);
   return (
     <div>
       <div>
