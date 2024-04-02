@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { fetchVotes } from '../functions/fetchVote_function';
+import { fetchSearch } from '../functions/fetchSearch_function';
 import { getCategoryVotes } from '../components/categorySort_componets';
 import axios from 'axios';
 import '../styles/main_style.css';
@@ -123,7 +124,7 @@ function MainPage() {
   };
   const handleSearch = () => {
     if (searchQuery.length >= 2) {
-      fetchVotes(setVotes, jwtToken, setSearchResults);
+      fetchSearch(jwtToken, searchQuery, setSearchQuery);
     } else {
       alert(
         '검색 오류',
@@ -182,7 +183,7 @@ function MainPage() {
               </button>
             </div>
           )}
-          <div classname="container">
+          <div classname="con">
             <div>
               <div className="search-input-view">
                 <input

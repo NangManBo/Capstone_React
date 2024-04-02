@@ -1,4 +1,4 @@
-.container {
+.con {
   display: flex;
   justify-content: space-between; /* 자식 요소들을 양 끝으로 정렬하고 사이에 공간을 둠 */
 }
