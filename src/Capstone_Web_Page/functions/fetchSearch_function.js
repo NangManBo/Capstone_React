@@ -1,7 +1,7 @@
 import axios from 'axios';
 import moment from 'moment';
 
-const fetchSearch = async (
+export const fetchSearch = async (
   jwtToken,
   searchQuery,
   setSearchResults
@@ -49,5 +49,3 @@ const fetchSearch = async (
     console.error('Error fetching messages:', error);
   }
 };
-
-export default fetchSearch;
