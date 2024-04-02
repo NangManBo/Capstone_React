@@ -183,7 +183,7 @@ function MainPage() {
               </button>
             </div>
           )}
-          <div className="con">
+          <div className="container">
             <div>
               <div className="search-input-view">
                 <input
