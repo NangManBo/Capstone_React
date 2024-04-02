@@ -5,7 +5,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 function ProfileUpdatePage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [userId, isLoggedIn, nickname, jwtToken, mbti] =
+  // location.state가 undefined일 경우를 대비해 기본값을 설정합니다.
+  const { userId, isLoggedIn, nickname, jwtToken, mbti } =
     location.state || {};
 
   // useState의 초기값을 설정할 때는 변수가 정의되어 있지 않다면 기본값을 사용합니다.
@@ -160,10 +161,19 @@ function ProfileUpdatePage() {
       );
     }
   };
-
+  const goProfile = () => {
+    navigate('/profile', {
+      state: {
+        userId,
+        isLoggedIn,
+        nickname: currentNickname,
+        jwtToken: jwtToken1,
+      },
+    });
+  };
   return (
     <div className="container">
-      <button onClick={() => navigate(-1)}>Back</button>
+      <button onClick={() => goProfile()}>Back</button>
       <h1>Profile Update</h1>
       <div>
         <label>Nickname</label>
