@@ -1,5 +1,4 @@
-import React from 'react';
-import { renderPostPress } from '../functions/renderPostPress_function';
+import axios from 'axios';
 
 // 카테고리별로 투표를 필터링하고 정렬하는 함수
 export const getCategoryVotes = (
@@ -18,6 +17,124 @@ export const getCategoryVotes = (
     '음식',
     '반려동물',
   ];
+  const renderPostPress = async (firstMatchingVote) => {
+    try {
+      // Fetch user votes from the backend
+      const response = await axios.get(
+        'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/votes/ok/' +
+          nickname,
+        {
+          headers: {
+            'AUTH-TOKEN': jwtToken,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        //console.log('내가 투표한 데이터', response.data);
+        const userVotes = response.data;
+        console.log('userVotes:', userVotes);
+
+        // Check if userVotes is null or empty
+        if (!userVotes || userVotes.length === 0) {
+          const isCreatedByUser =
+            firstMatchingVote.createdBy === nickname;
+
+          // Check if the vote is closed
+          const isVoteEnd =
+            firstMatchingVote.voteStatus === 'CLOSED';
+          console.log('first' + firstMatchingVote);
+          if (nickname === 'manager') {
+            navigate('/voteonlylook', {
+              state: {
+                vote: firstMatchingVote,
+              },
+            });
+          }
+          // Navigate to the appropriate screen based on voting status, createdBy, and voteStatus
+          else if (isVoteEnd) {
+            // If the vote is closed, navigate to 'VoteEnd'
+            navigate('/voteend', {
+              state: {
+                vote: firstMatchingVote,
+                isLoggedIn,
+                userId,
+                jwtToken,
+                nickname,
+                userVotes,
+              },
+            });
+          } else if (isCreatedByUser) {
+            // If the user created the vote, navigate to 'VoteCreatedUser'
+            navigate('/votecreateduser', {
+              state: {
+                vote: firstMatchingVote,
+                isLoggedIn,
+                userId,
+                jwtToken,
+                nickname,
+                userVotes,
+              },
+            });
+          } else {
+            // If userVotes is null or empty, navigate to 'VoteBefore'
+            navigate('/votebefore', {
+              state: {
+                vote: firstMatchingVote,
+                isLoggedIn,
+                userId,
+                jwtToken,
+                nickname,
+              },
+            });
+          }
+        } else {
+          // Continue with the existing logic for non-empty userVotes
+          const isCreatedByUser =
+            firstMatchingVote.createdBy === nickname;
+
+          // Check if the vote is closed
+          const isVoteEnd =
+            firstMatchingVote.voteStatus === 'CLOSED';
+          // Ensure vote.category is defined
+          const category = firstMatchingVote.category || '';
+          // Check if the user has voted for the selected poll
+          const hasVoted = userVotes.some(
+            (userVote) =>
+              userVote.pollId === firstMatchingVote.id
+          );
+          // Navigate to the appropriate screen based on voting status, createdBy, and voteStatus
+          navigate(
+            isVoteEnd
+              ? '/voteend'
+              : isCreatedByUser
+              ? '/votecreateduser'
+              : hasVoted
+              ? '/voteafter'
+              : '/votebefore',
+            {
+              state: {
+                category,
+                vote: firstMatchingVote,
+                isLoggedIn,
+                userId,
+                jwtToken,
+                nickname,
+                userVotes,
+              },
+            }
+          );
+        }
+      } else {
+        console.error(
+          '투표 들어가려는데 실패:',
+          response.data
+        );
+      }
+    } catch (error) {
+      console.error('투표 들어가려는데 오류:', error);
+    }
+  };
 
   return categories.map((category) => {
     // Filter votes that match the current category
@@ -49,43 +166,18 @@ export const getCategoryVotes = (
 
     // 객체에서 title 값을 추출하고, 없을 경우 '없음'을 기본값으로 사용
     const title = titleObj ? titleObj.title : '없음';
-    // Filter votes for the selected category
-    const filteredVotes = votes.filter(
-      (vote) => vote.category === category
-    );
-    const goToCategory = (category) => {
-      navigate('/category', {
-        state: {
-          category: category,
-          isLoggedIn,
-          userId,
-          jwtToken,
-          nickname,
-          filteredVotes,
-          navigate,
-        },
-      });
-    };
     return (
       <div>
         <button onClick={() => goToCategory(category)}>
           <h3>{category}</h3>
         </button>
         <button
-          onClick={() =>
-            renderPostPress(
-              firstMatchingVote,
-              isLoggedIn,
-              userId,
-              jwtToken,
-              nickname
-            )
-          }
+          onClick={() => renderPostPress(firstMatchingVote)}
           key={`${category}-${
             firstMatchingVote?.title || ''
           }`}
           className="category_sub_box" // 스타일을 적용할 CSS 클래스
-          style={{ width: '100px', height: '50px' }}
+          style={{ width: '200px', height: '100px' }}
         >
           <h4>{title}</h4>
         </button>
