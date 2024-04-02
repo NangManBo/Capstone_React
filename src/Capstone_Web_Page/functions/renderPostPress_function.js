@@ -6,7 +6,9 @@ export const renderPostPress = async (
   isLoggedIn,
   userId,
   jwtToken,
-  nickname
+  nickname,
+  category,
+  matchingVotes
 ) => {
   try {
     // Fetch user votes from the backend
@@ -38,6 +40,9 @@ export const renderPostPress = async (
           navigate('/voteonlylook', {
             state: {
               vote: firstMatchingVote,
+              category,
+              matchingVotes,
+              isCategory: true,
             },
           });
         }
@@ -52,6 +57,9 @@ export const renderPostPress = async (
               jwtToken,
               nickname,
               userVotes,
+              category,
+              matchingVotes,
+              isCategory: true,
             },
           });
         } else if (isCreatedByUser) {
@@ -64,6 +72,9 @@ export const renderPostPress = async (
               jwtToken,
               nickname,
               userVotes,
+              category,
+              matchingVotes,
+              isCategory: true,
             },
           });
         } else {
@@ -75,6 +86,9 @@ export const renderPostPress = async (
               userId,
               jwtToken,
               nickname,
+              category,
+              matchingVotes,
+              isCategory: true,
             },
           });
         }
@@ -111,6 +125,9 @@ export const renderPostPress = async (
               jwtToken,
               nickname,
               userVotes,
+              category,
+              matchingVotes,
+              isCategory: true,
             },
           }
         );
