@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { fetchVotes } from '../functions/fetchVote_function';
 import { getCategoryVotes } from '../components/categorySort_componets';
 import axios from 'axios';
-
+import '../styles/main_style.css';
 function MainPage() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -181,63 +181,83 @@ function MainPage() {
               </button>
             </div>
           )}
-          <div className="search-input-view">
-            <input
-              className="search-input-box"
-              placeholder="두 글자 이상 입력해주세요!"
-              value={searchQuery}
-              onChange={(e) =>
-                setSearchQuery(e.target.value)
-              }
-            />
-            <button onClick={handleSearch}>검색</button>
-          </div>
-          {searchResults.length > 0 && (
-            <div className="search-result-view2">
-              {searchResults.map((result) => (
-                <div
-                  key={result.id}
-                  className="search-result-view3"
-                  //onClick={() => renderPostPress(result)}
-                >
-                  <span className="search-result-title">
-                    {JSON.parse(result.title).title}
-                  </span>
-                  <span
-                    className="search-result-sub"
-                    style={{
-                      display: '-webkit-box',
-                      WebkitLineClamp: '2',
-                      overflow: 'hidden',
-                      WebkitBoxOrient: 'vertical',
-                    }}
-                  >
-                    {JSON.parse(result.question).question}
-                  </span>
-                  <div className="search-result-row">
-                    <span className="category-post-like-text">
-                      {result.likesCount}
-                    </span>
-                    <span className="category-post-like-text1">
-                      {result.createdAt}
+          <div classname="container">
+            <div>
+              <div className="search-input-view">
+                <input
+                  className="search-input-box"
+                  placeholder="두 글자 이상 입력해주세요!"
+                  value={searchQuery}
+                  onChange={(e) =>
+                    setSearchQuery(e.target.value)
+                  }
+                />
+                <button onClick={handleSearch}>검색</button>
+              </div>
+              {searchResults.length > 0 && (
+                <div className="search-result-view2">
+                  {searchResults.map((result) => (
+                    <div
+                      key={result.id}
+                      className="search-result-view3"
+                      //onClick={() => renderPostPress(result)}
+                    >
+                      <span className="search-result-title">
+                        {JSON.parse(result.title).title}
+                      </span>
+                      <span
+                        className="search-result-sub"
+                        style={{
+                          display: '-webkit-box',
+                          WebkitLineClamp: '2',
+                          overflow: 'hidden',
+                          WebkitBoxOrient: 'vertical',
+                        }}
+                      >
+                        {
+                          JSON.parse(result.question)
+                            .question
+                        }
+                      </span>
+                      <div className="search-result-row">
+                        <span className="category-post-like-text">
+                          {result.likesCount}
+                        </span>
+                        <span className="category-post-like-text1">
+                          {result.createdAt}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {searchResults.length === 0 &&
+                searchQuery.trim() !== '' && (
+                  <div className="search-result-view2">
+                    <span className="search-result-title">
+                      검색 결과가 없습니다.
                     </span>
                   </div>
-                </div>
-              ))}
+                )}
             </div>
-          )}
-          <div className="main_Row">
-            <h2 className="category_">카테고리별 투표</h2>
-          </div>
-          <div className="category_sub_title_box">
-            {getCategoryVotes(
-              votes,
-              nickname,
-              jwtToken,
-              isLoggedIn,
-              userId,
-              navigate
-            )}
+
+            <div>
+              <div className="main_Row">
+                <h2 className="category_">
+                  카테고리별 투표
+                </h2>
+              </div>
+              <div className="category_sub_title_box">
+                {getCategoryVotes(
+                  votes,
+                  nickname,
+                  jwtToken,
+                  isLoggedIn,
+                  userId,
+                  navigate
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </div>
