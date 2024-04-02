@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Assuming react-router-dom for navigation
-import './UserAuthenticationPage.css'; // Your CSS file for styling
 
 function UserAuthenticationPage({ location }) {
   // Assuming you're using react-router-dom v6 and passing props via location.state
