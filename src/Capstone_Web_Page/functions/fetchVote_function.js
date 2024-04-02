@@ -1,7 +1,11 @@
 import axios from 'axios';
 import moment from 'moment';
 
-export const fetchVotes = async (setVotes, jwtToken) => {
+export const fetchVotes = async (
+  setVotes,
+  jwtToken,
+  setSearchResults
+) => {
   try {
     const response = await axios.get(
       'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/polls/all',
@@ -36,6 +40,7 @@ export const fetchVotes = async (setVotes, jwtToken) => {
             : [],
         }));
         setVotes(formattedVotes); // 상태 업데이트
+        setSearchResults(formattedVotes);
       } else {
         console.error(
           'Invalid votes data format:',

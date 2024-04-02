@@ -18,6 +18,8 @@ function MainPage() {
     useState(0);
   const [votes, setVotes] = useState([]); // 상태 추가
   const [messages, setMessages] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
   // 이동 함수
   const goToDMPage = () => {
     navigate('/dmbox', {
@@ -52,7 +54,6 @@ function MainPage() {
       },
     });
   };
-
   // 쪽지 데이터 받기
   const fetchData = async () => {
     try {
@@ -123,7 +124,7 @@ function MainPage() {
 
   // 투표 데이터를 받아오는 함수
   useEffect(() => {
-    fetchVotes(setVotes, jwtToken);
+    fetchVotes(setVotes, jwtToken, setSearchResults);
     if (isLoggedIn) {
       fetchData();
       fetchwebsocket();
@@ -169,7 +170,51 @@ function MainPage() {
               </button>
             </div>
           )}
-
+          <div className="search-input-view">
+            <input
+              className="search-input-box"
+              placeholder="두 글자 이상 입력해주세요!"
+              value={searchQuery}
+              onChange={(e) =>
+                setSearchQuery(e.target.value)
+              }
+            />
+            <button onClick={handleSearch}>검색</button>
+          </div>
+          {searchResults.length > 0 && (
+            <div className="search-result-view2">
+              {searchResults.map((result) => (
+                <div
+                  key={result.id}
+                  className="search-result-view3"
+                  //onClick={() => renderPostPress(result)}
+                >
+                  <span className="search-result-title">
+                    {JSON.parse(result.title).title}
+                  </span>
+                  <span
+                    className="search-result-sub"
+                    style={{
+                      display: '-webkit-box',
+                      WebkitLineClamp: '2',
+                      overflow: 'hidden',
+                      WebkitBoxOrient: 'vertical',
+                    }}
+                  >
+                    {JSON.parse(result.question).question}
+                  </span>
+                  <div className="search-result-row">
+                    <span className="category-post-like-text">
+                      {result.likesCount}
+                    </span>
+                    <span className="category-post-like-text1">
+                      {result.createdAt}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
           <div className="main_Row">
             <h2 className="category_">카테고리별 투표</h2>
           </div>
