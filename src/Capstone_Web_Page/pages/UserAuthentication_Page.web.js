@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Assuming react-router-dom for navigation
-
+import { useLocation } from 'react-router-dom'; // Assuming react-router-dom for location state
 function UserAuthenticationPage({ location }) {
   // Assuming you're using react-router-dom v6 and passing props via location.state
   const { userId, isLoggedIn, jwtToken, nickname, mbti } =
     location.state;
   const [inputPassword, setInputPassword] = useState('');
   const navigate = useNavigate();
-
+  const location = useLocation(); // Assuming you're using react-router-dom v6
   const handleAuthenticationPassword = async () => {
     if (!inputPassword.trim()) {
       alert('알림: 비밀번호를 입력해주세요.'); // Using standard alert for web
@@ -37,7 +37,6 @@ function UserAuthenticationPage({ location }) {
             userId,
             jwtToken,
             nickname,
-            password,
             mbti,
           },
         });

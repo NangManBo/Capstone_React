@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 function ProfileUpdatePage() {
   // Assuming route.params are now props or context/state managed variables
   const [userId, isLoggedIn, nickname, jwtToken, mbti] =
     location.state || {};
   const navigate = useNavigate();
+  const location = useLocation();
   const [newPassword, setNewPassword] = useState('');
   const [newMbti, setNewMbti] = useState('');
   const [newNickname, setNewNickname] = useState('');
@@ -140,17 +142,17 @@ function ProfileUpdatePage() {
       console.log(response.data); // 응답 확인
 
       if (response.status === 200) {
-        console.log(response.data.token); // 토큰 값 출력
-        await AsyncStorage.setItem(
+        console.log(response.data.token); // Log the token value
+        localStorage.setItem(
           '@jwtToken',
           response.data.token
-        ); // 새로운 토큰을 저장합니다.
-        setJwtToken1(response.data.token); // 상태 변수 업데이트
-        setNewNickname(''); // 성공한 후 입력 필드를 초기화
-        setCurrentNickname(newNickname); // 상태 업데이트 부분 추가
-        alert('알림', '닉네임 변경 완료');
+        ); // Store the new token
+        setJwtToken1(response.data.token); // Update state variable
+        setNewNickname(''); // Reset input field after success
+        setCurrentNickname(newNickname); // Update state
+        alert('닉네임 변경 완료'); // Use standard web alert for notifications
       } else {
-        alert('알림', '닉네임 변경에 실패했습니다');
+        alert('닉네임 변경에 실패했습니다'); // Notification of failure
       }
     } catch (error) {
       console.error('Nickname change failed:', error);
