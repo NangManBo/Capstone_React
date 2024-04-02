@@ -1,7 +1,11 @@
 import axios from 'axios';
 import moment from 'moment';
 
-const fetchSearch = async () => {
+const fetchSearch = async (
+  jwtToken,
+  searchQuery,
+  setSearchResults
+) => {
   try {
     const response = await axios.get(
       `https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/polls/search?title=${searchQuery}`,
