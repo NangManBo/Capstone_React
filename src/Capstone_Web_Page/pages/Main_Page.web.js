@@ -123,7 +123,7 @@ function MainPage() {
   };
   const handleSearch = () => {
     if (searchQuery.length >= 2) {
-      fetchVotes(setVotes, jwtToken, setSearchResults);
+      fetchVotes(jwtToken, setSearchResults);
     } else {
       alert(
         '검색 오류',
