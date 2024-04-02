@@ -4,12 +4,11 @@ import { useNavigate } from 'react-router-dom'; // Assuming react-router-dom for
 import { useLocation } from 'react-router-dom'; // Assuming react-router-dom for location state
 
 function UserAuthenticationPage() {
-  // Assuming you're using react-router-dom v6 and passing props via location.state
+  const navigate = useNavigate();
+  const location = useLocation();
   const { userId, isLoggedIn, jwtToken, nickname, mbti } =
     location.state;
   const [inputPassword, setInputPassword] = useState('');
-  const navigate = useNavigate();
-  const location = useLocation(); // Assuming you're using react-router-dom v6
 
   const handleAuthenticationPassword = async () => {
     if (!inputPassword.trim()) {

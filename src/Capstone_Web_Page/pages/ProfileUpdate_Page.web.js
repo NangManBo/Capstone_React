@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
 function ProfileUpdatePage() {
-  // Assuming route.params are now props or context/state managed variables
-  const [userId, isLoggedIn, nickname, jwtToken, mbti] =
-    location.state || {};
   const navigate = useNavigate();
   const location = useLocation();
+  const [userId, isLoggedIn, nickname, jwtToken, mbti] =
+    location.state || {};
+
   const [newPassword, setNewPassword] = useState('');
   const [newMbti, setNewMbti] = useState('');
   const [newNickname, setNewNickname] = useState('');
