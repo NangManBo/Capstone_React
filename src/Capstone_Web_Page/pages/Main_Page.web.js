@@ -121,7 +121,18 @@ function MainPage() {
       }
     };
   };
-
+  const handleSearch = () => {
+    if (searchQuery.length >= 2) {
+      fetchVotes(setVotes, jwtToken, setSearchResults);
+    } else {
+      Alert.alert(
+        '검색 오류',
+        '검색어는 최소 2글자 이상이어야 합니다.',
+        [{ text: '확인' }],
+        { cancelable: false }
+      );
+    }
+  };
   // 투표 데이터를 받아오는 함수
   useEffect(() => {
     fetchVotes(setVotes, jwtToken, setSearchResults);
