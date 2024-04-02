@@ -3,15 +3,8 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 function ProfileUpdatePage({ history }) {
   // Assuming route.params are now props or context/state managed variables
-  const [
-    userId,
-    isLoggedIn,
-    nickname,
-    updateDM2,
-    password,
-    jwtToken,
-    mbti,
-  ] = location.state || {};
+  const [userId, isLoggedIn, nickname, jwtToken, mbti] =
+    location.state || {};
   const navigate = useNavigate();
   const [newPassword, setNewPassword] = useState('');
   const [newMbti, setNewMbti] = useState('');
