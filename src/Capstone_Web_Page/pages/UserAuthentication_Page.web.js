@@ -5,14 +5,8 @@ import './UserAuthenticationPage.css'; // Your CSS file for styling
 
 function UserAuthenticationPage({ location }) {
   // Assuming you're using react-router-dom v6 and passing props via location.state
-  const {
-    userId,
-    isLoggedIn,
-    password,
-    jwtToken,
-    nickname,
-    mbti,
-  } = location.state;
+  const { userId, isLoggedIn, jwtToken, nickname, mbti } =
+    location.state;
   const [inputPassword, setInputPassword] = useState('');
   const navigate = useNavigate();
 

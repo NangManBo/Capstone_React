@@ -130,7 +130,7 @@ function ProfilePage() {
         userId,
         jwtToken,
         nickname,
-        password,
+        getMbti,
       },
     });
   };
