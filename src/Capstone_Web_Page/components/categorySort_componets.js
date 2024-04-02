@@ -183,8 +183,13 @@ export const getCategoryVotes = (
     };
 
     return (
-      <div>
-        <div onClick={() => goToCategory(category)}>
+      <div
+        style={{ display: 'flex', alignItems: 'center' }}
+      >
+        <div
+          onClick={() => goToCategory(category)}
+          style={{ marginRight: '20px' }}
+        >
           <h3>{category}</h3>
         </div>
         <button
@@ -193,7 +198,7 @@ export const getCategoryVotes = (
             firstMatchingVote?.title || ''
           }`}
           className="category_sub_box" // 스타일을 적용할 CSS 클래스
-          style={{ width: '100px', height: '50px' }}
+          style={{ width: '100px', height: '60px' }}
         >
           <h4>{title}</h4>
         </button>

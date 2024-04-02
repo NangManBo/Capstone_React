@@ -78,6 +78,7 @@ function CategoryPage() {
                 vote: firstMatchingVote,
                 category,
                 matchingVotes,
+                isCategory: true,
               },
             });
           }
@@ -94,6 +95,7 @@ function CategoryPage() {
                 userVotes,
                 category,
                 matchingVotes,
+                isCategory: true,
               },
             });
           } else if (isCreatedByUser) {
@@ -108,6 +110,7 @@ function CategoryPage() {
                 userVotes,
                 category,
                 matchingVotes,
+                isCategory: true,
               },
             });
           } else {
@@ -121,6 +124,7 @@ function CategoryPage() {
                 nickname,
                 category,
                 matchingVotes,
+                isCategory: true,
               },
             });
           }
@@ -159,6 +163,7 @@ function CategoryPage() {
                 userVotes,
                 category,
                 matchingVotes,
+                isCategory: true,
               },
             }
           );
