@@ -59,7 +59,7 @@ function VoteBeforePage() {
       if (response.status === 201) {
         console.log('투표 성공:', response.data);
         // Navigate to VoteAfter page with updated state
-        renderPostPress(vote);
+        goToVoteAfter(vote);
       } else {
         console.error('투표 실패:', response.data);
       }
@@ -68,7 +68,7 @@ function VoteBeforePage() {
     }
   };
 
-  const renderPostPress = async (vote) => {
+  const goToVoteAfter = async (vote) => {
     try {
       // Fetch user votes from the backend
       const response = await axios.get(
