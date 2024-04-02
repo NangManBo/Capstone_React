@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Assuming react-router-dom for navigation
 import { useLocation } from 'react-router-dom'; // Assuming react-router-dom for location state
-function UserAuthenticationPage({ location }) {
+function UserAuthenticationPage() {
   // Assuming you're using react-router-dom v6 and passing props via location.state
   const { userId, isLoggedIn, jwtToken, nickname, mbti } =
     location.state;
