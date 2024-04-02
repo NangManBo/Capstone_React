@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // Assuming react-router-dom for navigation
 import { useLocation } from 'react-router-dom'; // Assuming react-router-dom for location state
+
 function UserAuthenticationPage() {
   // Assuming you're using react-router-dom v6 and passing props via location.state
   const { userId, isLoggedIn, jwtToken, nickname, mbti } =
@@ -9,6 +10,7 @@ function UserAuthenticationPage() {
   const [inputPassword, setInputPassword] = useState('');
   const navigate = useNavigate();
   const location = useLocation(); // Assuming you're using react-router-dom v6
+
   const handleAuthenticationPassword = async () => {
     if (!inputPassword.trim()) {
       alert('알림: 비밀번호를 입력해주세요.'); // Using standard alert for web
@@ -53,10 +55,8 @@ function UserAuthenticationPage() {
 
   return (
     <div>
-      <header>
-        <button onClick={() => navigate(-1)}>Back</button>
-        <h1>유저 인증</h1>
-      </header>
+      <button onClick={() => navigate(-1)}>Back</button>
+      <h1>유저 인증</h1>
       <div className="text-container">
         <p>
           회원정보 수정을 위해서 비밀번호를 한 번 입력해야
