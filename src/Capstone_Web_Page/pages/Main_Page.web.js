@@ -124,7 +124,7 @@ function MainPage() {
   };
   const handleSearch = () => {
     if (searchQuery.length >= 2) {
-      fetchSearch(jwtToken, searchQuery, setSearchQuery);
+      fetchSearch(jwtToken, searchQuery, setSearchResults);
     } else {
       alert(
         '검색 오류',
