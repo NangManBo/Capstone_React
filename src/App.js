@@ -17,6 +17,7 @@ import VoteBeforePage from './Capstone_Web_Page/pages/VoteBefore_Page.web';
 import VoteOnlyLookPage from './Capstone_Web_Page/pages/VoteOnlyLook.web';
 import VoteEndPage from './Capstone_Web_Page/pages/VoteEnd_Page.web';
 import DMAutoSendPage from './Capstone_Web_Page/pages/DMAutoSend_Page.web';
+import CategoryPage from './Capstone_Web_Page/pages/Category_Page.web';
 
 function App() {
   return (
@@ -26,7 +27,10 @@ function App() {
           <Route path="/" element={<MainPage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/login" element={<LogInPage />} />
-          <Route path="/dm" element={<DMPage />} />
+          <Route
+            path="/category"
+            element={<CategoryPage />}
+          />
           <Route path="/dmsend" element={<DMSendPage />} />
           <Route path="/dmbox" element={<DMboxPage />} />
           <Route
