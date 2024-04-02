@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { fetchVotes } from '../functions/fetchVote_function';
-import axios from 'axios';
 
 function CategoryPage() {
   const navigate = useNavigate();
@@ -47,6 +46,7 @@ function CategoryPage() {
   };
   useEffect(() => {
     sortVotes();
+    fetchVotes(setVotes, jwtToken);
   }, [standard, filteredVotes]);
   return (
     <div>
@@ -106,3 +106,5 @@ function CategoryPage() {
     </div>
   );
 }
+
+export default CategoryPage;
