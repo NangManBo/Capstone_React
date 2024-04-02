@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { fetchVotes } from '../functions/fetchVote_function';
+import axios from 'axios';
 
 function CategoryPage() {
   const navigate = useNavigate();
@@ -44,7 +45,7 @@ function CategoryPage() {
     }
     setSortedVotes(updatedSortedVotes);
   };
-  const renderPostPress = async (vote) => {
+  const renderPostPress = async (firstMatchingVote) => {
     try {
       // Fetch user votes from the backend
       const response = await axios.get(
