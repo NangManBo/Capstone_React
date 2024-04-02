@@ -125,7 +125,7 @@ function MainPage() {
     if (searchQuery.length >= 2) {
       fetchVotes(setVotes, jwtToken, setSearchResults);
     } else {
-      Alert.alert(
+      alert(
         '검색 오류',
         '검색어는 최소 2글자 이상이어야 합니다.',
         [{ text: '확인' }],
