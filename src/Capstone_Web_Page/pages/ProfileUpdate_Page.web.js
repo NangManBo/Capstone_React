@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 function ProfileUpdatePage() {
   const navigate = useNavigate();
@@ -9,12 +8,18 @@ function ProfileUpdatePage() {
   const [userId, isLoggedIn, nickname, jwtToken, mbti] =
     location.state || {};
 
+  // useState의 초기값을 설정할 때는 변수가 정의되어 있지 않다면 기본값을 사용합니다.
   const [newPassword, setNewPassword] = useState('');
-  const [newMbti, setNewMbti] = useState('');
-  const [newNickname, setNewNickname] = useState('');
-  const [currentNickname, setCurrentNickname] =
-    useState(nickname);
-  const [jwtToken1, setJwtToken1] = useState(jwtToken);
+  const [newMbti, setNewMbti] = useState(mbti || '');
+  const [newNickname, setNewNickname] = useState(
+    nickname || ''
+  );
+  const [currentNickname, setCurrentNickname] = useState(
+    nickname || ''
+  );
+  const [jwtToken1, setJwtToken1] = useState(
+    jwtToken || ''
+  );
   const mbtis = [
     { label: 'INFP', value: 'INFP' },
     { label: 'INFJ', value: 'INFJ' },

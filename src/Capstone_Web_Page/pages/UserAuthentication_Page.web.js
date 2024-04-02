@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Assuming react-router-dom for navigation
-import { useLocation } from 'react-router-dom'; // Assuming react-router-dom for location state
-
+import { useNavigate, useLocation } from 'react-router-dom';
 function UserAuthenticationPage() {
   const navigate = useNavigate();
   const location = useLocation();
