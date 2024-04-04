@@ -2,9 +2,9 @@ import axios from 'axios';
 import moment from 'moment';
 
 export const fetchVotes = async (
-  setVotes,
+  setVotes = () => {}, // 기본값으로 빈 함수 설정
   jwtToken,
-  setSearchResults
+  setSearchResults = () => {} // 기본값으로 빈 함수 설정
 ) => {
   try {
     const response = await axios.get(
@@ -39,7 +39,7 @@ export const fetchVotes = async (
               }))
             : [],
         }));
-        setVotes(formattedVotes); // 상태 업데이트
+        if (setVotes) setVotes(formattedVotes); // 상태 업데이트
         if (setSearchResults)
           setSearchResults(formattedVotes);
       } else {
