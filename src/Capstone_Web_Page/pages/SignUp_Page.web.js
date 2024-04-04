@@ -187,9 +187,8 @@ function SignUpPage() {
         />
         <label htmlFor="passwordCheck">휴대폰 번호</label>
         <input
-          id="passwordCheck"
-          type="password"
-          placeholder="비밀번호 재입력"
+          id="phoneNumber"
+          placeholder="휴대폰 번호 입력"
           value={phoneNumber}
           onChange={(e) => setPhoneNumber(e.target.value)}
         />
