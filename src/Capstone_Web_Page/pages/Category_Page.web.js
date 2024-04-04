@@ -22,9 +22,7 @@ function CategoryPage() {
 
   const [votes, setVotes] = useState([]);
   const [standard, setStandard] = useState('');
-  const [sortedVotes, setSortedVotes] = useState([
-    ...matchingVotes,
-  ]);
+  const [sortedVotes, setSortedVotes] = useState([]);
 
   const standards = [
     { label: '시간 순', value: '시간' },
