@@ -12,6 +12,7 @@ function SignUpPage() {
   const [mbti, setMbti] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] =
     useState(false);
+  const [phoneNumber, setPhoneNumber] = useState('');
   let navigate = useNavigate(); // useNavigate 사용
 
   const handleGenderSelection = (gender) => {
@@ -119,6 +120,7 @@ function SignUpPage() {
         gender: selectedGender,
         age: ageGroup,
         mbti: mbti,
+        phoneNum: phoneNumber,
       };
 
       try {
@@ -183,7 +185,14 @@ function SignUpPage() {
           value={passwordCheck}
           onChange={(e) => setPasswordCheck(e.target.value)}
         />
-
+        <label htmlFor="passwordCheck">재입력</label>
+        <input
+          id="passwordCheck"
+          type="password"
+          placeholder="비밀번호 재입력"
+          value={phoneNumber}
+          onChange={(e) => setPhoneNumber(e.target.value)}
+        />
         <label htmlFor="nickname">닉네임</label>
         <input
           id="nickname"
