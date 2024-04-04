@@ -185,7 +185,7 @@ function SignUpPage() {
           value={passwordCheck}
           onChange={(e) => setPasswordCheck(e.target.value)}
         />
-        <label htmlFor="passwordCheck">재입력</label>
+        <label htmlFor="passwordCheck">휴대폰 번호</label>
         <input
           id="passwordCheck"
           type="password"
