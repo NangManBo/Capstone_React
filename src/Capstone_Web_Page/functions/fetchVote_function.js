@@ -40,7 +40,8 @@ export const fetchVotes = async (
             : [],
         }));
         setVotes(formattedVotes); // 상태 업데이트
-        setSearchResults(formattedVotes);
+        if (setSearchResults)
+          setSearchResults(formattedVotes);
       } else {
         console.error(
           'Invalid votes data format:',
