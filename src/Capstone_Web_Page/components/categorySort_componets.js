@@ -17,7 +17,7 @@ export const getCategoryVotes = (
     '음식',
     '반려동물',
   ];
-
+  const isCategory = false;
   return categories.map((category) => {
     // Filter votes that match the current category
     const matchingVotes = votes.filter(
@@ -83,7 +83,7 @@ export const getCategoryVotes = (
               userId,
               jwtToken,
               nickname,
-              (isCategory = false)
+              isCategory
             )
           }
           key={`${category}-${

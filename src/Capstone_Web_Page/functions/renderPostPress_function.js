@@ -43,7 +43,7 @@ export const renderPostPress = async (
               vote: firstMatchingVote,
               category,
               matchingVotes,
-              isCategory: false,
+              isCategory,
             },
           });
         }
@@ -75,7 +75,7 @@ export const renderPostPress = async (
               userVotes,
               category,
               matchingVotes,
-              isCategory: false,
+              isCategory,
             },
           });
         } else {
@@ -89,7 +89,7 @@ export const renderPostPress = async (
               nickname,
               category,
               matchingVotes,
-              isCategory: false,
+              isCategory,
             },
           });
         }
@@ -128,7 +128,7 @@ export const renderPostPress = async (
               userVotes,
               category,
               matchingVotes,
-              isCategory: false,
+              isCategory,
             },
           }
         );
