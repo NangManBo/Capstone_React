@@ -20,32 +20,30 @@ function CategoryPage() {
     nickname: 'manager',
   };
 
-  const [votes, setVotes] = useState([]);
   const [standard, setStandard] = useState('');
-  const [sortedVotes, setSortedVotes] = useState([]);
-
+  const [sortedVotes, setSortedVotes] = useState([
+    ...matchingVotes,
+  ]);
   const standards = [
     { label: '시간 순', value: '시간' },
     { label: '인기 순', value: '인기' },
   ];
-  const sortVotes = () => {
-    const updatedSortedVotes = [...matchingVotes];
+  const sortVotes = (votes) => {
     if (standard === '인기') {
-      updatedSortedVotes.sort(
+      return [...votes].sort(
         (a, b) => b.likesCount - a.likesCount
       );
     } else if (standard === '시간') {
-      updatedSortedVotes.sort(
+      return [...votes].sort(
         (a, b) =>
           new Date(b.createdAt) - new Date(a.createdAt)
       );
     }
-    setSortedVotes(updatedSortedVotes);
+    return votes;
   };
 
   useEffect(() => {
-    sortVotes();
-    fetchVotes(setVotes, jwtToken);
+    setSortedVotes(sortVotes(matchingVotes));
   }, [standard, matchingVotes]);
   return (
     <div>
