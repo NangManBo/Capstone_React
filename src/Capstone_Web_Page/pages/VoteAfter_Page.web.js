@@ -545,7 +545,7 @@ function VoteAfterPage() {
         userId,
         jwtToken,
         nickname,
-        category: false,
+        category,
         matchingVotes,
       },
     });

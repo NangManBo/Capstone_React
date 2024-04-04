@@ -8,7 +8,8 @@ export const renderPostPress = async (
   jwtToken,
   nickname,
   category,
-  matchingVotes
+  matchingVotes,
+  isCategory
 ) => {
   try {
     // Fetch user votes from the backend
@@ -42,7 +43,7 @@ export const renderPostPress = async (
               vote: firstMatchingVote,
               category,
               matchingVotes,
-              isCategory: true,
+              isCategory: false,
             },
           });
         }
@@ -59,7 +60,7 @@ export const renderPostPress = async (
               userVotes,
               category,
               matchingVotes,
-              isCategory: true,
+              isCategory,
             },
           });
         } else if (isCreatedByUser) {
@@ -74,7 +75,7 @@ export const renderPostPress = async (
               userVotes,
               category,
               matchingVotes,
-              isCategory: true,
+              isCategory: false,
             },
           });
         } else {
@@ -88,7 +89,7 @@ export const renderPostPress = async (
               nickname,
               category,
               matchingVotes,
-              isCategory: true,
+              isCategory: false,
             },
           });
         }
@@ -127,7 +128,7 @@ export const renderPostPress = async (
               userVotes,
               category,
               matchingVotes,
-              isCategory: true,
+              isCategory: false,
             },
           }
         );

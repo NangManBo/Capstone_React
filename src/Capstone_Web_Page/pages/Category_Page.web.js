@@ -19,7 +19,6 @@ function CategoryPage() {
     jwtToken: '',
     nickname: 'manager',
   };
-
   const [standard, setStandard] = useState('');
   const [sortedVotes, setSortedVotes] = useState([
     ...matchingVotes,
@@ -96,7 +95,8 @@ function CategoryPage() {
                 jwtToken,
                 nickname,
                 category,
-                matchingVotes
+                matchingVotes,
+                (isCategory = true)
               )
             }
           >

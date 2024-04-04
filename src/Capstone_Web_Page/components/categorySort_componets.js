@@ -82,7 +82,8 @@ export const getCategoryVotes = (
               isLoggedIn,
               userId,
               jwtToken,
-              nickname
+              nickname,
+              (isCategory = false)
             )
           }
           key={`${category}-${
