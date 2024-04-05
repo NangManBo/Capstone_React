@@ -20,6 +20,7 @@ import DMAutoSendPage from './Capstone_Web_Page/pages/DMAutoSend_Page.web';
 import CategoryPage from './Capstone_Web_Page/pages/Category_Page.web';
 import UserAuthenticationPage from './Capstone_Web_Page/pages/UserAuthentication_Page.web';
 import ProfileUpdatePage from './Capstone_Web_Page/pages/ProfileUpdate_Page.web';
+import PhoneAuthenticationPage from './Capstone_Web_Page/pages/PhoneAuthentication_Page.web';
 
 function App() {
   return (
@@ -63,10 +64,13 @@ function App() {
             path="/votemake"
             element={<VoteMakePage />}
           />
-
           <Route
             path="/profile"
             element={<ProfilePage />}
+          />
+          <Route
+            path="/phoneauthentication"
+            element={<PhoneAuthenticationPage />}
           />
           <Route
             path="/profileupdate"
