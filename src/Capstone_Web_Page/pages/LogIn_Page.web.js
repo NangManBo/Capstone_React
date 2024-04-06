@@ -77,7 +77,7 @@ function LogInPage() {
         <div>
           <button
             className="signup-button"
-            onClick={() => navigate('/phoneauthentication')}
+            onClick={() => navigate('/signup')}
           >
             회원가입
           </button>

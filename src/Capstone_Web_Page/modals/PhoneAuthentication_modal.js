@@ -44,11 +44,13 @@ function PhoneAuthenticationModal({
   return (
     <div className="modal-background">
       <div className="modal-content">
-        <button onClick={onClose}>닫기</button>
+        <button onClick={onClose}>x</button>
         <div className="section">
+          <h1 className="title">휴대폰 인증 서비스</h1>
           <div className="mainRow">
+            <label className="label">휴대폰 번호</label>
             <input
-              placeholder="Phone Number"
+              placeholder=" - 없이 입력해주세요"
               onChange={(e) =>
                 setPhoneNumber(e.target.value)
               }
@@ -56,22 +58,19 @@ function PhoneAuthenticationModal({
               type="number"
               className="inputField"
             />
-            <button
-              className="sendButton"
-              onClick={sendPhoneNumber}
-            >
-              인증번호 요청
-            </button>
           </div>
-          {isSend && (
-            <p className="sendText">
-              인증 번호를 보냈습니다.
-            </p>
-          )}
+          <button
+            className="sendButton"
+            onClick={sendPhoneNumber}
+          >
+            인증번호 요청
+          </button>
+
           {isSend && (
             <div className="mainRow">
+              <label className="label">인증 번호</label>
               <input
-                placeholder="Verification Code"
+                placeholder="인증 번호 입력"
                 onChange={(e) =>
                   setVerificationCode(e.target.value)
                 }
@@ -79,13 +78,15 @@ function PhoneAuthenticationModal({
                 type="number"
                 className="inputField"
               />
-              <button
-                className="sendButton"
-                onClick={verifyCode}
-              >
-                인증
-              </button>
             </div>
+          )}
+          {isSend && (
+            <button
+              className="verifyButton"
+              onClick={verifyCode}
+            >
+              인증 확인
+            </button>
           )}
         </div>
       </div>

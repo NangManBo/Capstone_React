@@ -166,7 +166,7 @@ function SignUpPage() {
         <PhoneAuthenticationModal
           onClose={handleClose}
           onSuccess={handleSuccess}
-          setPhoneNumber={setPhoneNumber}
+          nextphone={setPhoneNumber}
         />
       )}
       <div className="signup-form">
