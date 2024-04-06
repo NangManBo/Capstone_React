@@ -153,14 +153,14 @@ function SignUpPage() {
     <div className="Page">
       <div className="signup-form">
         <div className="label-form">
-          <label className="label">아이디</label>
-          <label className="label">비밀번호</label>
-          <label className="label">재입력</label>
-          <label className="label">휴대폰 번호</label>
-          <label className="label">닉네임</label>
-          <label className="label">성별</label>
-          <label className="label">나이대</label>
-          <label className="label">MBTI</label>
+          <p className="label">아이디</p>
+          <p className="label">비밀번호</p>
+          <p className="label">재입력</p>
+          <p className="label">휴대폰 번호</p>
+          <p className="label">닉네임</p>
+          <p className="label">성별</p>
+          <p className="label">나이대</p>
+          <p className="label">MBTI</p>
         </div>
         <div className="signvalue-form">
           <input
@@ -203,30 +203,30 @@ function SignUpPage() {
             value={nickname}
             onChange={(e) => setNickname(e.target.value)}
           />
-
-          <button
-            className={`gender-button ${
-              isSelectedGender('M') ? 'selected' : ''
-            }`}
-            onClick={() => setSelectedGender('M')}
-            disabled={
-              isSelectedGender('M') && isButtonDisabled
-            }
-          >
-            남
-          </button>
-          <button
-            className={`gender-button ${
-              isSelectedGender('W') ? 'selected' : ''
-            }`}
-            onClick={() => setSelectedGender('W')}
-            disabled={
-              isSelectedGender('W') && isButtonDisabled
-            }
-          >
-            여
-          </button>
-
+          <div>
+            <button
+              className={`gender-button ${
+                isSelectedGender('M') ? 'selected' : ''
+              }`}
+              onClick={() => setSelectedGender('M')}
+              disabled={
+                isSelectedGender('M') && isButtonDisabled
+              }
+            >
+              남
+            </button>
+            <button
+              className={`gender-button ${
+                isSelectedGender('W') ? 'selected' : ''
+              }`}
+              onClick={() => setSelectedGender('W')}
+              disabled={
+                isSelectedGender('W') && isButtonDisabled
+              }
+            >
+              여
+            </button>
+          </div>
           <input
             className="input"
             placeholder="나이 입력 해주세요!"
@@ -234,22 +234,23 @@ function SignUpPage() {
             onChange={(e) => setAgeGroup(e.target.value)}
             type="number"
           />
-
-          <select
-            className="mbti"
-            value={mbti}
-            onChange={(e) => setMbti(e.target.value)}
-          >
-            <option value="">{placeholder.label}</option>
-            {mbtis.map((option) => (
-              <option
-                key={option.value}
-                value={option.value}
-              >
-                {option.label}
-              </option>
-            ))}
-          </select>
+          <div>
+            <select
+              className="mbti"
+              value={mbti}
+              onChange={(e) => setMbti(e.target.value)}
+            >
+              <option value="">{placeholder.label}</option>
+              {mbtis.map((option) => (
+                <option
+                  key={option.value}
+                  value={option.value}
+                >
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
         <button
           className="signup-button"
