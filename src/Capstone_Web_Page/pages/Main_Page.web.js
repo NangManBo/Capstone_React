@@ -150,18 +150,11 @@ function MainPage() {
 
   return (
     <div>
+      <header>
+        <h1 className="main_title">투표는 DO표</h1>
+      </header>
       <div style={{ overflowY: 'scroll' }}>
         <div className="main_Page">
-          <div className="main_Row">
-            <h1 className="main_title">투표는 DO표</h1>
-            {isLoggedIn ? (
-              // 로그인 후 표시할 내용
-              <div className="after_login_view"></div>
-            ) : (
-              // 로그인 전 표시할 내용
-              <div className="login_prompt_view"></div>
-            )}
-          </div>
           <div className="main_Row">
             <h2 className="popular_vote_title">
               인기 투표
