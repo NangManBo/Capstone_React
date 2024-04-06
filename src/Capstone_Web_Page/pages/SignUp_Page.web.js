@@ -14,7 +14,8 @@ function SignUpPage() {
     useState(false);
   const [phoneNumber, setPhoneNumber] = useState('');
   let navigate = useNavigate(); // useNavigate 사용
-
+  const isSelectedGender = (gender) =>
+    selectedGender === gender;
   const handleGenderSelection = (gender) => {
     setSelectedGender(gender);
   };
