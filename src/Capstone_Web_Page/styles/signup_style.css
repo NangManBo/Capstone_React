@@ -19,8 +19,9 @@
 }
 
 .label {
-  margin-right: 10px; /* 라벨과 인풋 사이 간격 */
+  margin-right: 20px; /* 라벨과 인풋 사이 간격 */
   width: 80px; /* 라벨 폭 고정 */
+  text-align: left; /* 라벨 텍스트 오른쪽 정렬 */
 }
 
 .input,
