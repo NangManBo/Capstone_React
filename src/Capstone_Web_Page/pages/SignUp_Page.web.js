@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // useNavigate 불러오기
 import axios from 'axios';
-
+import '../styles/signup_style.css';
 function SignUpPage() {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
@@ -152,7 +152,6 @@ function SignUpPage() {
     <div className="mainPage">
       <div className="navigationRow">
         <button onClick={() => navigate(-1)}>Back</button>{' '}
-        {/* 뒤로 가기 버튼 */}
         <div>
           <h1>회원가입</h1>
         </div>
@@ -201,10 +200,26 @@ function SignUpPage() {
         />
 
         <label>성별</label>
-        <button onClick={() => setSelectedGender('M')}>
+        <button
+          className={`gender-button ${
+            isSelectedGender('M') ? 'selected' : ''
+          }`}
+          onClick={() => setSelectedGender('M')}
+          disabled={
+            isSelectedGender('M') && isButtonDisabled
+          }
+        >
           남
         </button>
-        <button onClick={() => setSelectedGender('W')}>
+        <button
+          className={`gender-button ${
+            isSelectedGender('W') ? 'selected' : ''
+          }`}
+          onClick={() => setSelectedGender('W')}
+          disabled={
+            isSelectedGender('W') && isButtonDisabled
+          }
+        >
           여
         </button>
 
