@@ -1,6 +1,7 @@
-/* LogInPage.css */
+/* login_style.css */
 .Page {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
@@ -8,36 +9,46 @@
 }
 
 .Page > div {
-  max-width: 400px;
+  max-width: 300px;
+  width: 100%; /* 화면 너비에 맞게 조정 */
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   background-color: white;
+  text-align: center;
 }
 
-input[type='email'],
-input[type='password'],
-button {
-  width: 100%;
+.email-input,
+.password-input,
+.login-button,
+.signup-button,
+.back-button {
+  width: 100%; /* 부모 컨테이너에 맞춰 너비 조정 */
   padding: 10px;
-  margin-bottom: 15px;
-  border-radius: 5px;
+  margin: 10px 0; /* 위아래 마진 설정 */
   border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box; /* 패딩과 보더를 너비에 포함 */
 }
 
-button {
+.login-button,
+.signup-button,
+.back-button {
   background-color: #4caf50; /* Green */
   color: white;
   border: none;
   cursor: pointer;
 }
 
-button:hover {
+.login-button:hover,
+.signup-button:hover,
+.back-button:hover {
   opacity: 0.8;
 }
 
 @media (max-width: 768px) {
   .Page > div {
-    width: 90%;
+    margin: 20px;
+    width: calc(100% - 40px); /* 화면 양쪽의 여백 고려 */
   }
 }

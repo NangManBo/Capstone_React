@@ -52,28 +52,39 @@ function LogInPage() {
       <div>
         <h1>투표는 DO표</h1>
         <input
+          className="email-input"
           type="email"
           placeholder="아이디"
           value={id}
           onChange={(e) => setId(e.target.value)}
         />
         <input
+          className="password-input"
           type="password"
           placeholder="비밀번호"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button onClick={handleLogin}>로그인</button>
+        <button
+          className="login-button"
+          onClick={handleLogin}
+        >
+          로그인
+        </button>
         <div>
           <p>처음 사용하시나요?</p>
         </div>
         <div>
           <button
+            className="signup-button"
             onClick={() => navigate('/phoneauthentication')}
           >
             회원가입
           </button>
-          <button onClick={() => navigate('/')}>
+          <button
+            clasName="back-button"
+            onClick={() => navigate('/')}
+          >
             뒤로가기
           </button>
         </div>
