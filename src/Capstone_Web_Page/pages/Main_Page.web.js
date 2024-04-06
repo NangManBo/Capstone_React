@@ -47,6 +47,9 @@ function MainPage() {
   const goToLogin = () => {
     navigate('/login', {});
   };
+  const goToSignup = () => {
+    navigate('/signup', {});
+  };
   const goToVoteMake = () => {
     navigate('/votemake', {
       state: {
@@ -181,6 +184,9 @@ function MainPage() {
             <div>
               <button onClick={() => goToLogin()}>
                 로그인
+              </button>
+              <button onClick={() => goToSignup()}>
+                회원가입
               </button>
             </div>
           )}
