@@ -50,7 +50,7 @@ function LogInPage() {
   return (
     <div className="Page">
       <div className="login-form">
-        <h1>투표는 DO표</h1>
+        <h1 className="title">투표는 DO표</h1>
         <input
           className="email-input"
           type="email"
@@ -71,9 +71,9 @@ function LogInPage() {
         >
           로그인
         </button>
-        <div>
-          <p>처음 사용하시나요?</p>
-        </div>
+
+        <p className="explain">처음 사용하시나요?</p>
+
         <div>
           <button
             className="signup-button"

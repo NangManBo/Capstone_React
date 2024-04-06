@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // useNavigate 불러오기
 import axios from 'axios';
+import PhoneAuthenticationModal from '../modals/PhoneAuthentication_modal'; // 모달 불러오기
 import '../styles/signup_style.css';
 function SignUpPage() {
+  const [showPhoneAuthModal, setShowPhoneAuthModal] =
+    useState(true);
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const [passwordCheck, setPasswordCheck] = useState('');
@@ -148,21 +151,28 @@ function SignUpPage() {
       }
     }
   };
+  const handleClose = () => {
+    setShowPhoneAuthModal(false);
+    navigate(-1); // 모달 닫기 or 인증 실패 시 이전 페이지로
+  };
 
+  const handleSuccess = () => {
+    setShowPhoneAuthModal(false); // 인증 성공 시 모달 닫기
+    // 추가적인 성공 로직
+  };
   return (
     <div className="Page">
+      {showPhoneAuthModal && (
+        <PhoneAuthenticationModal
+          onClose={handleClose}
+          onSuccess={handleSuccess}
+          setPhoneNumber={setPhoneNumber}
+        />
+      )}
       <div className="signup-form">
-        <div className="label-form">
-          <p className="label">아이디</p>
-          <p className="label">비밀번호</p>
-          <p className="label">재입력</p>
-          <p className="label">휴대폰 번호</p>
-          <p className="label">닉네임</p>
-          <p className="label">성별</p>
-          <p className="label">나이대</p>
-          <p className="label">MBTI</p>
-        </div>
-        <div className="signvalue-form">
+        <h1 className="title">투표는 DO표</h1>
+        <div className="form-group">
+          <label className="label">아이디</label>
           <input
             className="input"
             placeholder="ID 입력 해주세요"
@@ -170,7 +180,9 @@ function SignUpPage() {
             onChange={(e) => setId(e.target.value)}
             autoComplete="username"
           />
-
+        </div>
+        <div className="form-group">
+          <label className="label">비밀번호</label>
           <input
             className="input"
             type="password"
@@ -179,7 +191,9 @@ function SignUpPage() {
             onChange={(e) => setPassword(e.target.value)}
             autoComplete="new-password"
           />
-
+        </div>
+        <div className="form-group">
+          <label className="label">재입력</label>
           <input
             className="input"
             type="password"
@@ -189,44 +203,52 @@ function SignUpPage() {
               setPasswordCheck(e.target.value)
             }
           />
-
+        </div>
+        <div className="form-group">
+          <label className="label">휴대폰 번호</label>
           <input
             className="input"
             placeholder="휴대폰 번호 입력"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
           />
-
+        </div>
+        <div className="form-group">
+          <label className="label">닉네임</label>
           <input
             className="input"
             placeholder="닉네임은 최대 7자리까지"
             value={nickname}
             onChange={(e) => setNickname(e.target.value)}
           />
-          <div>
-            <button
-              className={`gender-button ${
-                isSelectedGender('M') ? 'selected' : ''
-              }`}
-              onClick={() => setSelectedGender('M')}
-              disabled={
-                isSelectedGender('M') && isButtonDisabled
-              }
-            >
-              남
-            </button>
-            <button
-              className={`gender-button ${
-                isSelectedGender('W') ? 'selected' : ''
-              }`}
-              onClick={() => setSelectedGender('W')}
-              disabled={
-                isSelectedGender('W') && isButtonDisabled
-              }
-            >
-              여
-            </button>
-          </div>
+        </div>
+        <div className="form-group">
+          <label className="label">성별</label>
+          <button
+            className={`gender-button ${
+              isSelectedGender('M') ? 'selected' : ''
+            }`}
+            onClick={() => setSelectedGender('M')}
+            disabled={
+              isSelectedGender('M') && isButtonDisabled
+            }
+          >
+            남
+          </button>
+          <button
+            className={`gender-button ${
+              isSelectedGender('W') ? 'selected' : ''
+            }`}
+            onClick={() => setSelectedGender('W')}
+            disabled={
+              isSelectedGender('W') && isButtonDisabled
+            }
+          >
+            여
+          </button>
+        </div>
+        <div className="form-group">
+          <label className="label">나이대</label>
           <input
             className="input"
             placeholder="나이 입력 해주세요!"
@@ -234,23 +256,24 @@ function SignUpPage() {
             onChange={(e) => setAgeGroup(e.target.value)}
             type="number"
           />
-          <div>
-            <select
-              className="mbti"
-              value={mbti}
-              onChange={(e) => setMbti(e.target.value)}
-            >
-              <option value="">{placeholder.label}</option>
-              {mbtis.map((option) => (
-                <option
-                  key={option.value}
-                  value={option.value}
-                >
-                  {option.label}
-                </option>
-              ))}
-            </select>
-          </div>
+        </div>
+        <div className="form-group">
+          <label className="label">MBTI</label>
+          <select
+            className="mbti"
+            value={mbti}
+            onChange={(e) => setMbti(e.target.value)}
+          >
+            <option value="">{placeholder.label}</option>
+            {mbtis.map((option) => (
+              <option
+                key={option.value}
+                value={option.value}
+              >
+                {option.label}
+              </option>
+            ))}
+          </select>
         </div>
         <button
           className="signup-button"

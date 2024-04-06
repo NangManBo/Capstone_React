@@ -5,13 +5,14 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #f0f2f5;
+  background-color: rgb(240, 240, 240);
 }
 
 .Page > .login-form {
-  max-height: 750px;
+  max-height: 600px;
   max-width: 450px;
   width: 100%; /* 화면 너비에 맞게 조정 */
+  height: 80%;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
@@ -19,6 +20,12 @@
   text-align: center;
 }
 
+.title {
+  margin-top: 15%;
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 10%;
+}
 .email-input,
 .password-input,
 .login-button,
@@ -33,8 +40,8 @@
 }
 
 .login-button,
-.signup-button,
-.back-button {
+.signup-button {
+  margin-top: 5%;
   background-color: #358fe8; /* Green */
   color: white;
   border: none;
@@ -46,7 +53,11 @@
 .back-button:hover {
   opacity: 0.8;
 }
-
+.explain {
+  margin-top: 15%;
+  font-size: 15px;
+  color: #666;
+}
 @media (max-width: 1200px) {
   .Page > div {
     margin: 20px;
