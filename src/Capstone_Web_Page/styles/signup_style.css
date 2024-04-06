@@ -7,7 +7,8 @@
   padding: 20px;
 }
 
-.Page .signup-form {
+.Page > .signup-form {
+  max-height: 750px;
   display: grid;
   grid-template-columns: 150px 1fr; /* 라벨과 입력 필드 너비 비율 설정 */
   gap: 10px; /* 라벨과 입력 필드 사이 간격 */

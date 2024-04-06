@@ -9,6 +9,7 @@
 }
 
 .Page > .login-form {
+  max-height: 750px;
   max-width: 450px;
   width: 100%; /* 화면 너비에 맞게 조정 */
   padding: 20px;
