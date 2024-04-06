@@ -1,57 +1,82 @@
-.mainPage {
+/* signup_style.css */
+.Page {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  height: 100vh;
   padding: 20px;
+  background-color: #f0f2f5;
 }
 
-.signupForm {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 10px;
-  width: 100%;
-  max-width: 500px; /* 최대 너비 설정 */
+.Page > .signup-form {
+  max-width: 450px;
+  width: 100%; /* 화면 너비에 맞게 조정 */
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-color: white;
+  text-align: center;
 }
 
-label {
-  text-align: left;
+.label {
+  margin-right: 10px; /* 라벨과 인풋 사이 간격 */
+  width: 80px; /* 라벨 폭 고정 */
 }
 
-input[type='text'],
-input[type='password'],
-input[type='number'],
-select,
-button {
-  width: 100%;
+.input,
+.mbti,
+.gender-button {
+  flex: 1; /* 나머지 공간을 input, select, button이 차지하도록 설정 */
   padding: 10px;
-  margin: 5px 0;
+  margin-right: 10px; /* 요소들 사이의 간격 */
+  border: 1px solid #ccc;
   border-radius: 4px;
-  border: 1px solid #ddd;
 }
 
-button.gender-button {
+.gender-button {
+  width: auto; /* 버튼의 너비를 자동으로 설정 */
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+
+.gender-button.selected {
   background-color: #358fe8;
   color: white;
 }
 
-button.gender-button.selected,
-button.gender-button:disabled {
-  background-color: #2874b2; /* 클릭 시 변경될 색상 */
+.mbti {
+  width: auto; /* 셀렉트 박스의 너비를 자동으로 설정 */
+}
+
+/* 버튼 스타일 */
+.singup-button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  background-color: #358fe8;
+  color: white;
+  cursor: pointer;
 }
 
 button:disabled {
-  background-color: #cccccc;
+  background-color: #ccc;
 }
 
+/* 반응형 디자인 */
 @media (max-width: 768px) {
-  .signupForm {
-    width: 90%;
+  .form-group {
+    flex-direction: column;
+    align-items: stretch;
   }
-}
 
-/* 미디어 쿼리를 추가하여 반응형 스타일 지정 */
-@media (max-width: 600px) {
-  .signupForm {
-    grid-template-columns: 1fr; /* 모바일에서 한 열로 표시 */
+  .label {
+    margin-bottom: 5px;
+    width: auto; /* 모바일에서는 라벨의 너비를 자동으로 조정 */
+  }
+
+  .input,
+  .mbti,
+  .gender-button {
+    margin-right: 0; /* 모바일에서는 요소들 사이의 간격을 제거 */
   }
 }

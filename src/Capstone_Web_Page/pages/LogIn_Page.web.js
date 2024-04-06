@@ -49,7 +49,7 @@ function LogInPage() {
 
   return (
     <div className="Page">
-      <div>
+      <div className="login-form">
         <h1>투표는 DO표</h1>
         <input
           className="email-input"
