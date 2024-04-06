@@ -5,12 +5,14 @@
   align-items: center;
   height: 100vh;
   padding: 20px;
-  background-color: #f0f2f5;
 }
 
-.Page > .signup-form {
+.Page .signup-form {
+  display: grid;
+  grid-template-columns: 150px 1fr; /* 라벨과 입력 필드 너비 비율 설정 */
+  gap: 10px; /* 라벨과 입력 필드 사이 간격 */
   max-width: 450px;
-  width: 100%; /* 화면 너비에 맞게 조정 */
+  width: 100%;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
@@ -18,26 +20,28 @@
   text-align: center;
 }
 
-.label {
-  margin-right: 20px; /* 라벨과 인풋 사이 간격 */
-  width: 80px; /* 라벨 폭 고정 */
-  text-align: left; /* 라벨 텍스트 오른쪽 정렬 */
+.label-form {
+  grid-column: 1 / 2; /* 첫 번째 열에 위치 */
+  text-align: right; /* 라벨을 오른쪽 정렬 */
+  padding-right: 10px; /* 라벨과 입력 필드 사이 간격 추가 */
+}
+
+.signvalue-form {
+  grid-column: 2 / 3; /* 두 번째 열에 위치 */
 }
 
 .input,
 .mbti,
-.gender-button {
-  flex: 1; /* 나머지 공간을 input, select, button이 차지하도록 설정 */
+.gender-button,
+.signup-button {
   padding: 10px;
-  margin-right: 10px; /* 요소들 사이의 간격 */
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  margin-bottom: 10px; /* 요소들 사이 간격 */
 }
 
 .gender-button {
-  width: auto; /* 버튼의 너비를 자동으로 설정 */
   background-color: #f0f0f0;
   cursor: pointer;
+  width: auto; /* 버튼 너비 자동 조절 */
 }
 
 .gender-button.selected {
@@ -45,39 +49,43 @@
   color: white;
 }
 
-.mbti {
-  width: auto; /* 셀렉트 박스의 너비를 자동으로 설정 */
-}
-
-/* 버튼 스타일 */
-.singup-button {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 4px;
+.signup-button {
   background-color: #358fe8;
   color: white;
+  border: none;
   cursor: pointer;
+  padding: 10px 0; /* 버튼 상하 패딩 */
 }
 
-button:disabled {
+.signup-button:disabled {
   background-color: #ccc;
 }
 
-/* 반응형 디자인 */
+/* 반응형 레이아웃 조정 */
 @media (max-width: 768px) {
-  .form-group {
-    flex-direction: column;
-    align-items: stretch;
+  .Page .signup-form {
+    grid-template-columns: 1fr; /* 모바일 화면에서는 한 열만 사용 */
   }
 
-  .label {
-    margin-bottom: 5px;
-    width: auto; /* 모바일에서는 라벨의 너비를 자동으로 조정 */
+  .label-form,
+  .signvalue-form {
+    grid-column: 1 / -1; /* 모든 열을 차지하도록 조정 */
+  }
+
+  .label-form {
+    text-align: left; /* 모바일 화면에서 라벨을 왼쪽 정렬 */
+    padding-right: 0;
   }
 
   .input,
-  .mbti,
-  .gender-button {
-    margin-right: 0; /* 모바일에서는 요소들 사이의 간격을 제거 */
+  .mbti-select,
+  .gender-button,
+  .submit-button {
+    width: 100%;
+  }
+
+  .gender-button,
+  .submit-button {
+    padding: 10px;
   }
 }

@@ -152,8 +152,17 @@ function SignUpPage() {
   return (
     <div className="Page">
       <div className="signup-form">
-        <div className="form-group">
+        <div className="label-form">
           <label className="label">아이디</label>
+          <label className="label">비밀번호</label>
+          <label className="label">재입력</label>
+          <label className="label">휴대폰 번호</label>
+          <label className="label">닉네임</label>
+          <label className="label">성별</label>
+          <label className="label">나이대</label>
+          <label className="label">MBTI</label>
+        </div>
+        <div className="signvalue-form">
           <input
             className="input"
             placeholder="ID 입력 해주세요"
@@ -161,9 +170,7 @@ function SignUpPage() {
             onChange={(e) => setId(e.target.value)}
             autoComplete="username"
           />
-        </div>
-        <div className="form-group">
-          <label className="label">비밀번호</label>
+
           <input
             className="input"
             type="password"
@@ -172,9 +179,7 @@ function SignUpPage() {
             onChange={(e) => setPassword(e.target.value)}
             autoComplete="new-password"
           />
-        </div>
-        <div className="form-group">
-          <label className="label">재입력</label>
+
           <input
             className="input"
             type="password"
@@ -184,27 +189,21 @@ function SignUpPage() {
               setPasswordCheck(e.target.value)
             }
           />
-        </div>
-        <div className="form-group">
-          <label className="label">휴대폰 번호</label>
+
           <input
             className="input"
             placeholder="휴대폰 번호 입력"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
           />
-        </div>
-        <div className="form-group">
-          <label className="label">닉네임</label>
+
           <input
             className="input"
             placeholder="닉네임은 최대 7자리까지"
             value={nickname}
             onChange={(e) => setNickname(e.target.value)}
           />
-        </div>
-        <div className="form-group">
-          <label className="label">성별</label>
+
           <button
             className={`gender-button ${
               isSelectedGender('M') ? 'selected' : ''
@@ -227,9 +226,7 @@ function SignUpPage() {
           >
             여
           </button>
-        </div>
-        <div className="form-group">
-          <label className="label">나이대</label>
+
           <input
             className="input"
             placeholder="나이 입력 해주세요!"
@@ -237,9 +234,7 @@ function SignUpPage() {
             onChange={(e) => setAgeGroup(e.target.value)}
             type="number"
           />
-        </div>
-        <div className="form-group">
-          <label className="label">MBTI</label>
+
           <select
             className="mbti"
             value={mbti}
@@ -257,7 +252,7 @@ function SignUpPage() {
           </select>
         </div>
         <button
-          className="singup-button"
+          className="signup-button"
           onClick={handleSignUp}
           disabled={isButtonDisabled}
         >
