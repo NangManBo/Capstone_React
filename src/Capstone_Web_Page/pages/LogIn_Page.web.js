@@ -81,12 +81,6 @@ function LogInPage() {
           >
             회원가입
           </button>
-          <button
-            clasName="back-button"
-            onClick={() => navigate('/')}
-          >
-            뒤로가기
-          </button>
         </div>
       </div>
     </div>

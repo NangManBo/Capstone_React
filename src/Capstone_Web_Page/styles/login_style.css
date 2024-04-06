@@ -9,7 +9,7 @@
 }
 
 .Page > div {
-  max-width: 300px;
+  max-width: 600px;
   width: 100%; /* 화면 너비에 맞게 조정 */
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -46,7 +46,7 @@
   opacity: 0.8;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .Page > div {
     margin: 20px;
     width: calc(100% - 40px); /* 화면 양쪽의 여백 고려 */
