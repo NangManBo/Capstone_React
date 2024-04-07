@@ -18,9 +18,9 @@ function PhoneAuthenticationModal({
     setIsSend(true);
     try {
       const response = await axios.post(
-        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/auth/send',
+        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/sms/send',
         {
-          to: phoneNumber,
+          phoneNum: phoneNumber,
         }
       );
 
