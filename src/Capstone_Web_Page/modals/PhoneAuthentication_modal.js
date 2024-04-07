@@ -15,7 +15,6 @@ function PhoneAuthenticationModal({
 
   const sendPhoneNumber = async () => {
     console.log('Sending Phone Number:', phoneNumber);
-    setIsSend(true);
     try {
       const response = await axios.post(
         'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/sms/send',
@@ -24,8 +23,8 @@ function PhoneAuthenticationModal({
         }
       );
 
-      if (response.status === 201) {
-        // 성공 로직
+      if (response.status === 200) {
+        setIsSend(true);
       } else {
         alert('Failed to send verification code');
       }
@@ -35,10 +34,27 @@ function PhoneAuthenticationModal({
     }
   };
 
-  const verifyCode = () => {
-    console.log('Verifying Code:', verificationCode);
-    nextphone(phoneNumber);
-    onSuccess(); // useNavigate로 페이지 이동, state를 통해 데이터 전달
+  const verifyCode = async () => {
+    try {
+      const response = await axios.post(
+        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/sms/verify',
+        {
+          phoneNum: phoneNumber,
+          certificationCode: verificationCode,
+        }
+      );
+
+      if (response.status === 200) {
+        // 성공 로직
+        nextphone(phoneNumber);
+        onSuccess(); // useNavigate로 페이지 이동, state를 통해 데이터 전달
+      } else {
+        alert('Failed to send verification code');
+      }
+    } catch (error) {
+      console.error(error);
+      alert('Error occurred');
+    }
   };
 
   return (
