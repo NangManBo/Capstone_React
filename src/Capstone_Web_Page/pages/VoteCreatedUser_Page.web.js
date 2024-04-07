@@ -206,7 +206,7 @@ function VoteCreatedUserPage() {
     };
     try {
       const response = await axios.post(
-        'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/polls/popularpoint',
+        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/polls/popularpoint',
         Data
       );
       if (response.status === 200) {
@@ -217,7 +217,7 @@ function VoteCreatedUserPage() {
     } catch (error) {}
     try {
       const response = await axios.post(
-        'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/polls/close',
+        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/polls/close',
         Data,
         {
           headers: {

@@ -138,7 +138,7 @@ function VoteMakePage() {
         }
       }
       const response = await fetch(
-        'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/polls/upload/' +
+        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/polls/upload/' +
           selectedCategory,
         {
           method: 'POST',
@@ -174,7 +174,7 @@ function VoteMakePage() {
           };
 
           const response = await axios.post(
-            'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/choices/create/' +
+            'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/choices/create/' +
               parsedData.pollId,
             data
           );

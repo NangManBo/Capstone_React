@@ -60,7 +60,7 @@ function VoteBeforePage() {
 
     try {
       const response = await axios.post(
-        'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/votes',
+        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/votes',
         VoteDto,
         { headers: { 'AUTH-TOKEN': jwtToken } }
       );
@@ -80,7 +80,7 @@ function VoteBeforePage() {
     try {
       // Fetch user votes from the backend
       const response = await axios.get(
-        'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/votes/ok/' +
+        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/votes/ok/' +
           nickname,
         {
           headers: {

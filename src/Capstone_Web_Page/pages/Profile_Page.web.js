@@ -24,7 +24,7 @@ function ProfilePage() {
     try {
       // 참가한 투표 수와 생성한 투표 수를 받아오는 각각의 요청
       const participatedVotesResponse = await axios.get(
-        'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/polls/participated-count/' +
+        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/polls/participated-count/' +
           nickname,
         {
           headers: {
@@ -33,7 +33,7 @@ function ProfilePage() {
         }
       );
       const generatedVotesResponse = await axios.get(
-        'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/polls/created-count/' +
+        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/polls/created-count/' +
           nickname,
         {
           headers: {
@@ -42,7 +42,7 @@ function ProfilePage() {
         }
       );
       const commentResponse = await axios.get(
-        'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/auth/profile/' +
+        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/auth/profile/' +
           userId,
         {
           headers: {
@@ -52,7 +52,7 @@ function ProfilePage() {
       );
 
       const popularPointResponse = await axios.get(
-        'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/polls/popular-point/' +
+        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/polls/popular-point/' +
           nickname,
         {
           headers: {
@@ -61,7 +61,7 @@ function ProfilePage() {
         }
       );
       const get_mbti = await axios.get(
-        'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/auth/mbti/' +
+        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/auth/mbti/' +
           nickname
       );
 

@@ -2,7 +2,7 @@
   "name": "capstone_react",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app",
+  "proxy": "https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",

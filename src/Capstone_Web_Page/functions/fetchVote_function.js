@@ -8,7 +8,7 @@ export const fetchVotes = async (
 ) => {
   try {
     const response = await axios.get(
-      'https://port-0-capstone-project-gj8u2llon19kg3.sel5.cloudtype.app/polls/all',
+      'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/polls/all',
       {
         headers: {
           'AUTH-TOKEN': jwtToken,
