@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../styles/login_style.css';
+import Banner from '../components/banner_components';
 
 function LogInPage() {
   const navigate = useNavigate();
@@ -49,8 +50,15 @@ function LogInPage() {
 
   return (
     <div className="Page">
+      <Banner />
+      <div className="title_form">
+        <h2 className="first-title">
+          다른사람의 생각이 궁금하다면?<br></br>
+          <span className="second-title">Do표</span>
+        </h2>
+      </div>
       <div className="login-form">
-        <h1 className="title">투표는 DO표</h1>
+        <h3 className="login-title">투표는 DO표</h3>
         <input
           className="email-input"
           type="email"
@@ -75,12 +83,12 @@ function LogInPage() {
         <p className="explain">처음 사용하시나요?</p>
 
         <div>
-          <button
-            className="signup-button"
+          <p
+            className="signup-text"
             onClick={() => navigate('/signup')}
           >
             회원가입
-          </button>
+          </p>
         </div>
       </div>
     </div>

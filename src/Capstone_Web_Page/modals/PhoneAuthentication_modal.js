@@ -17,7 +17,7 @@ function PhoneAuthenticationModal({
     console.log('Sending Phone Number:', phoneNumber);
     try {
       const response = await axios.post(
-        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/sms/send',
+        'http://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com:8080/sms/send',
         {
           phoneNum: phoneNumber,
         }
@@ -37,7 +37,7 @@ function PhoneAuthenticationModal({
   const verifyCode = async () => {
     try {
       const response = await axios.post(
-        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/sms/verify',
+        'http://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com:8080/sms/verify',
         {
           phoneNum: phoneNumber,
           certificationCode: verificationCode,
