@@ -14,7 +14,7 @@ function SerachResultPage() {
     userId,
     jwtToken,
     nickname,
-  } = location.state;
+  } = location.state || {};
   useEffect(() => {
     console.log('검색어 : ' + searchQuery);
     console.log('검색 결과 : ' + searchResults);

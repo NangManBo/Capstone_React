@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/banner_style.css'; // CSS 파일 임포트
-import { FetchSearch } from '../functions/fetchSearch_function'; // fetchSearch 함수 임포트
+import { useNavigate } from 'react-router-dom';
+import { fetchSearch } from '../functions/fetchSearch_function'; // fetchSearch 함수 임포트
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 export const MainBanner = (
@@ -11,14 +12,15 @@ export const MainBanner = (
 ) => {
   const [searchQuery, setSearchQuery] = useState('');
 
-  const handleSearch = () => {
-    FetchSearch(
-      isLoggedIn,
-      userId,
+  const handleSearch = async () => {
+    const searchResults = await FetchSearch(
       jwtToken,
-      nickname,
       searchQuery
     );
+
+    navigate('/searchresult', {
+      state: { searchResults, searchQuery },
+    });
   };
   return (
     <div className="banner">

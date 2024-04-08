@@ -1,17 +1,10 @@
 import axios from 'axios';
 import moment from 'moment';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
-export const FetchSearch = async (
-  isLoggedIn,
-  userId,
-  nickname,
+export const fetchSearch = async (
   jwtToken,
   searchQuery
 ) => {
-  const navigate = useNavigate();
-  const [searchResults, setSearchResults] = useState([]);
   try {
     const response = await axios.get(
       `https://dovote.p-e.kr/polls/search?title=${searchQuery}`,
@@ -43,24 +36,10 @@ export const FetchSearch = async (
             }))
           : [],
       }));
-      setSearchResults(formattedVotes);
-    } else {
-      console.error(
-        'Failed to fetch messages:',
-        response.data
-      );
+      return formattedVotes; // 검색 결과를 반환합니다.
     }
   } catch (error) {
-    console.error('Error fetching messages:', error);
+    console.error('Error fetching search results:', error);
+    return []; // 오류가 발생하면 빈 배열을 반환합니다.
   }
-  navigate('/searchresult', {
-    state: {
-      searchResults,
-      searchQuery,
-      isLoggedIn,
-      userId,
-      jwtToken,
-      nickname,
-    },
-  });
 };
