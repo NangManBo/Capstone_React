@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { renderPostPress } from '../functions/renderPostPress_function';
 import { MainBanner } from '../components/mainBanner_components';
+
 const SerachResultPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -15,7 +16,12 @@ const SerachResultPage = () => {
   } = location.state;
   return (
     <div>
-      <MainBanner />
+      <MainBanner
+        jwtToken={jwtToken}
+        isLoggedIn={isLoggedIn} // 또는 조건에 따라 변하는 값
+        userId={userId}
+        nickname={nickname}
+      />
       <div>
         {searchResults.length > 0 && (
           <div className="search-result-view2">
