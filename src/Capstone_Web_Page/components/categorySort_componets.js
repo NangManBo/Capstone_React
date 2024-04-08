@@ -16,6 +16,8 @@ export const getCategoryVotes = (
     '스포츠',
     '음식',
     '반려동물',
+    '문화와예술',
+    '경제',
   ];
   const isCategory = false;
   return categories.map((category) => {
