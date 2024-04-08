@@ -25,6 +25,18 @@ function SerachResultPage() {
     '문화와예술',
     '경제',
   ];
+  const categorizedResults = groupByCategory(searchResults);
+  const groupByCategory = (searchResults) => {
+    return searchResults.reduce((acc, result) => {
+      // result.category를 키로 사용하여 그룹화
+      const category = result.category;
+      if (!acc[category]) {
+        acc[category] = [];
+      }
+      acc[category].push(result);
+      return acc;
+    }, {});
+  };
   return (
     <div className="Page">
       <MainBanner
