@@ -3,7 +3,7 @@ import moment from 'moment';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export const fetchSearch = async (
+export const FetchSearch = async (
   isLoggedIn,
   userId,
   nickname,
