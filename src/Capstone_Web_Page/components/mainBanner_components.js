@@ -4,12 +4,12 @@ import { fetchSearch } from '../functions/fetchSearch_function'; // fetchSearch 
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { useNavigate } from 'react-router-dom';
 
-function MainBanner({
+export const MainBanner = (
   jwtToken,
   isLoggedIn,
   userId,
-  nickname,
-}) {
+  nickname
+) => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -62,6 +62,4 @@ function MainBanner({
       </div>
     </div>
   );
-}
-
-export default MainBanner;
+};

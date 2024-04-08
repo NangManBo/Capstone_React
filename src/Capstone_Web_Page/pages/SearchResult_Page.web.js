@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { renderPostPress } from '../functions/renderPostPress_function';
 import { MainBanner } from '../components/mainBanner_components';
 
-const SerachResultPage = () => {
+function SerachResultPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const {
@@ -77,6 +77,6 @@ const SerachResultPage = () => {
       </div>
     </div>
   );
-};
+}
 
 export default SerachResultPage;
