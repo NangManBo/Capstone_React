@@ -2,7 +2,10 @@ import axios from 'axios';
 import moment from 'moment';
 
 export const fetchSearch = async (
+  isLoggedIn,
+  userId,
   jwtToken,
+  nickname,
   searchQuery,
   setSearchResults
 ) => {
@@ -38,6 +41,16 @@ export const fetchSearch = async (
           : [],
       }));
       setSearchResults(formattedVotes);
+      navigate('/searchresult', {
+        state: {
+          searchResults,
+          searchQuery,
+          isLoggedIn,
+          userId,
+          jwtToken,
+          nickname,
+        },
+      });
     } else {
       console.error(
         'Failed to fetch messages:',

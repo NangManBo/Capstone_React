@@ -15,18 +15,17 @@ export const MainBanner = (
   const [searchResults, setSearchResults] = useState([]);
   const handleSearch = () => {
     if (searchQuery.length >= 2) {
-      fetchSearch(jwtToken, searchQuery, setSearchResults);
-    }
-    navigate('/searchresult', {
-      state: {
-        searchResults,
-        searchQuery,
+      fetchSearch(
         isLoggedIn,
         userId,
         jwtToken,
         nickname,
-      },
-    });
+        jwtToken,
+        searchQuery,
+        setSearchResults
+      );
+    }
+
     // else {
     //   alert(
     //     '검색 오류',
