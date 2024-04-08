@@ -1,13 +1,12 @@
-/* category_style.css 파일 내용 */
 .category_sub_title_box {
   display: grid; /* Grid 컨테이너로 만듭니다. */
   grid-template-columns: repeat(
     3,
     1fr
   ); /* 세 개의 동일한 너비의 컬럼을 만듭니다. */
-  background-color: #a7a7a7;
-  gap: 20%; /* 항목 사이의 수평 및 수직 간격을 설정합니다. */
-  width: 400px;
+
+  gap: 20px; /* 항목 사이의 수평 간격을 고정된 값으로 설정합니다. */
+  width: 100%; /* 컨테이너 너비를 상대적 단위로 설정합니다. */
 
   margin-bottom: 20px;
 }
