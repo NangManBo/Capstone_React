@@ -10,6 +10,11 @@
   align-items: center;
 }
 
+.time-message-box {
+  position: relative;
+  margin-left: 33%;
+  margin-bottom: -12%;
+}
 .modal-content {
   background-color: white;
   padding: 20px;
@@ -45,8 +50,9 @@
 
 .label {
   text-align: center;
+  font-size: 18px;
+  font-weight: bold;
   display: block; /* 라벨을 블록 요소로 설정 */
-  margin-bottom: 5px; /* 라벨과 입력 필드 사이의 간격 */
 }
 
 .mainRow {
@@ -54,7 +60,7 @@
   justify-content: space-between;
   align-items: center;
   margin-top: 20%;
-  margin-bottom: 20px; /* 각 행 사이의 간격 */
+  margin-bottom: 10px; /* 각 행 사이의 간격 */
 }
 
 .modal-content button {

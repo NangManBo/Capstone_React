@@ -17,6 +17,7 @@ function PhoneAuthenticationModal({
   const [message, setMessage] = useState('');
 
   const sendPhoneNumber = async () => {
+    //setIsSend(true);
     console.log('Sending Phone Number:', phoneNumber);
     try {
       const response = await axios.post(
@@ -102,7 +103,7 @@ function PhoneAuthenticationModal({
             인증번호 요청
           </button>
           {isSend && (
-            <div>
+            <div className="time-message-box">
               {message ? (
                 <p>{message}</p>
               ) : (
