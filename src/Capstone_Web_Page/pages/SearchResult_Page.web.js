@@ -25,11 +25,9 @@ function SerachResultPage() {
     '문화와예술',
     '경제',
   ];
-  const categorizedResults = groupByCategory(searchResults);
-  const groupByCategory = (searchResults) => {
-    return searchResults.reduce((acc, result) => {
-      // result.category를 키로 사용하여 그룹화
-      const category = result.category;
+  const groupByCategory = (results) => {
+    return results.reduce((acc, result) => {
+      const category = result.category; // 가정: 각 결과에는 'category' 필드가 있음
       if (!acc[category]) {
         acc[category] = [];
       }
@@ -37,6 +35,8 @@ function SerachResultPage() {
       return acc;
     }, {});
   };
+
+  const groupedResults = groupByCategory(searchResults);
   return (
     <div className="Page">
       <MainBanner
@@ -46,65 +46,44 @@ function SerachResultPage() {
         nickname={nickname}
       />
       <div className="search-form">
-        {categories.map((category) => {
-          // 현재 카테고리에 해당하는 검색 결과가 있으면 렌더링
-          const results = categorizedResults[category];
-          if (results && results.length > 0) {
-            return (
-              <div
-                key={category}
-                className="category-section"
-              >
-                <h3>{category}</h3>
+        {categories.map((category) => (
+          <div key={category}>
+            {groupedResults[category] && (
+              <>
+                <h2>{category}</h2>
                 <div className="search-result-view2">
-                  {results.map((result) => (
-                    <div
-                      key={result.id}
-                      className="search-result-view3"
-                      onClick={() =>
-                        renderPostPress(
-                          result,
-                          navigate,
-                          isLoggedIn,
-                          userId,
-                          jwtToken,
-                          nickname
-                        )
-                      }
-                    >
-                      <span className="search-result-title">
-                        {JSON.parse(result.title).title}
-                      </span>
-                      <span
-                        className="search-result-sub"
-                        style={{
-                          display: '-webkit-box',
-                          WebkitLineClamp: '2',
-                          overflow: 'hidden',
-                          WebkitBoxOrient: 'vertical',
-                        }}
+                  {groupedResults[category].map(
+                    (result) => (
+                      <div
+                        key={result.id}
+                        className="search-result-view3"
                       >
-                        {
-                          JSON.parse(result.question)
-                            .question
-                        }
-                      </span>
-                      <div className="search-result-row">
-                        <span className="category-post-like-text">
-                          {result.likesCount}
+                        {/* 검색 결과 렌더링 */}
+                        <span className="search-result-title">
+                          {JSON.parse(result.title).title}
                         </span>
-                        <span className="category-post-like-text1">
-                          {result.createdAt}
+                        <span className="search-result-sub">
+                          {
+                            JSON.parse(result.question)
+                              .question
+                          }
                         </span>
+                        <div className="search-result-row">
+                          <span className="category-post-like-text">
+                            {result.likesCount}
+                          </span>
+                          <span className="category-post-like-text1">
+                            {result.createdAt}
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    )
+                  )}
                 </div>
-              </div>
-            );
-          }
-          return null; // 현재 카테고리에 해당하는 결과가 없으면 null 반환
-        })}
+              </>
+            )}
+          </div>
+        ))}
         {searchResults.length === 0 &&
           searchQuery.trim() !== '' && (
             <div className="search-result-view2">
