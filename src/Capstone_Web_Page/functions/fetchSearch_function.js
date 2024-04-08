@@ -7,6 +7,7 @@ export const fetchSearch = async (
   setSearchResults
 ) => {
   try {
+    console.log('검색한다 : ' + searchQuery);
     const response = await axios.get(
       `https://dovote.p-e.kr/polls/search?title=${searchQuery}`,
       {
@@ -38,6 +39,7 @@ export const fetchSearch = async (
           : [],
       }));
       setSearchResults(formattedVotes);
+      console.log('서버 검색 : ' + formattedVotes);
     } else {
       console.error(
         'Failed to fetch messages:',

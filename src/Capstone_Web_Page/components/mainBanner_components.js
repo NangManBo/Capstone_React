@@ -13,6 +13,7 @@ export const MainBanner = (
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+
   const handleSearch = () => {
     fetchSearch(jwtToken, searchQuery, setSearchResults);
     console.log('검색 누르기 : ' + searchResults);
