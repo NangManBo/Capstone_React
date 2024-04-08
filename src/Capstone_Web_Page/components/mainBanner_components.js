@@ -14,26 +14,17 @@ export const MainBanner = (
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const handleSearch = () => {
-    if (searchQuery.length >= 2) {
-      fetchSearch(
+    fetchSearch(jwtToken, searchQuery, setSearchResults);
+    navigate('/searchresult', {
+      state: {
+        searchResults,
+        searchQuery,
         isLoggedIn,
         userId,
         jwtToken,
         nickname,
-        jwtToken,
-        searchQuery,
-        setSearchResults
-      );
-    }
-
-    // else {
-    //   alert(
-    //     '검색 오류',
-    //     '검색어는 최소 2글자 이상이어야 합니다.',
-    //     [{ text: '확인' }],
-    //     { cancelable: false }
-    //   );
-    // }
+      },
+    });
   };
   return (
     <div className="banner">
