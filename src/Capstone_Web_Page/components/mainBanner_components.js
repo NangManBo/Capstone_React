@@ -19,7 +19,6 @@ export const MainBanner = (
       nickname,
       searchQuery
     );
-    console.log('검색 누르기 : ' + searchResults);
   };
   return (
     <div className="banner">

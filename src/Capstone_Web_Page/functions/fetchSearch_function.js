@@ -11,7 +11,6 @@ export const fetchSearch = async (
 ) => {
   const [searchResults, setSearchResults] = useState([]);
   try {
-    console.log('검색한다 : ' + searchQuery);
     const response = await axios.get(
       `https://dovote.p-e.kr/polls/search?title=${searchQuery}`,
       {
