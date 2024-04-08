@@ -10,10 +10,11 @@ export const MainBanner = (
   userId,
   nickname
 ) => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearch = async () => {
-    const searchResults = await FetchSearch(
+    const searchResults = await fetchSearch(
       jwtToken,
       searchQuery
     );
