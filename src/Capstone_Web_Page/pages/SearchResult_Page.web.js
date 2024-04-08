@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { renderPostPress } from '../functions/renderPostPress_function';
 import { MainBanner } from '../components/mainBanner_components';
@@ -14,6 +14,9 @@ function SerachResultPage() {
     jwtToken,
     nickname,
   } = location.state;
+  useEffect(() => {
+    console.log(searchResults, searchQuery);
+  }, [searchResults, searchQuery]);
   return (
     <div>
       <MainBanner
