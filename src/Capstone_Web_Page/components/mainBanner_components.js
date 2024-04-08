@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/banner_style.css'; // CSS 파일 임포트
-import { fetchSearch } from '../functions/fetchSearch_function'; // fetchSearch 함수 임포트
+import { FetchSearch } from '../functions/fetchSearch_function'; // fetchSearch 함수 임포트
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 export const MainBanner = (
@@ -12,7 +12,7 @@ export const MainBanner = (
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearch = () => {
-    fetchSearch(
+    FetchSearch(
       isLoggedIn,
       userId,
       jwtToken,

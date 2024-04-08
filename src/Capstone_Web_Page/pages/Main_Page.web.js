@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { fetchVotes } from '../functions/fetchVote_function';
-import { fetchSearch } from '../functions/fetchSearch_function';
 import { getCategoryVotes } from '../components/categorySort_componets';
 import { MainBanner } from '../components/mainBanner_components';
 import axios from 'axios';
@@ -127,18 +126,7 @@ function MainPage() {
       }
     };
   };
-  const handleSearch = () => {
-    if (searchQuery.length >= 2) {
-      fetchSearch(jwtToken, searchQuery, setSearchResults);
-    } else {
-      alert(
-        '검색 오류',
-        '검색어는 최소 2글자 이상이어야 합니다.',
-        [{ text: '확인' }],
-        { cancelable: false }
-      );
-    }
-  };
+
   // 투표 데이터를 받아오는 함수
   useEffect(() => {
     fetchVotes(setVotes, jwtToken);
