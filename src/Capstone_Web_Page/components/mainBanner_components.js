@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import '../styles/banner_style.css'; // CSS 파일 임포트
 import { fetchSearch } from '../functions/fetchSearch_function'; // fetchSearch 함수 임포트
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import { useNavigate } from 'react-router-dom';
 
 export const MainBanner = (
   jwtToken,
@@ -10,23 +9,17 @@ export const MainBanner = (
   userId,
   nickname
 ) => {
-  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
 
   const handleSearch = () => {
-    fetchSearch(jwtToken, searchQuery, setSearchResults);
+    fetchSearch(
+      isLoggedIn,
+      userId,
+      jwtToken,
+      nickname,
+      searchQuery
+    );
     console.log('검색 누르기 : ' + searchResults);
-    navigate('/searchresult', {
-      state: {
-        searchResults,
-        searchQuery,
-        isLoggedIn,
-        userId,
-        jwtToken,
-        nickname,
-      },
-    });
   };
   return (
     <div className="banner">

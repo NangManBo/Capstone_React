@@ -1,11 +1,15 @@
 import axios from 'axios';
 import moment from 'moment';
+import { useState } from 'react';
 
 export const fetchSearch = async (
+  isLoggedIn,
+  userId,
+  nickname,
   jwtToken,
-  searchQuery,
-  setSearchResults
+  searchQuery
 ) => {
+  const [searchResults, setSearchResults] = useState([]);
   try {
     console.log('검색한다 : ' + searchQuery);
     const response = await axios.get(
@@ -39,7 +43,6 @@ export const fetchSearch = async (
           : [],
       }));
       setSearchResults(formattedVotes);
-      console.log('서버 검색 : ' + formattedVotes);
     } else {
       console.error(
         'Failed to fetch messages:',
@@ -49,4 +52,14 @@ export const fetchSearch = async (
   } catch (error) {
     console.error('Error fetching messages:', error);
   }
+  navigate('/searchresult', {
+    state: {
+      searchResults,
+      searchQuery,
+      isLoggedIn,
+      userId,
+      jwtToken,
+      nickname,
+    },
+  });
 };
