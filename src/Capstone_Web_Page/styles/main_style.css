@@ -1,4 +1,11 @@
-.container {
+/* login_style.css */
+.Page {
+  margin: -8px;
   display: flex;
-  justify-content: space-evenly; /* 자식 요소들을 양 끝으로 정렬하고 사이에 공간을 둠 */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(240, 240, 240);
+  overflow: hidden; /* 스크롤 비활성화 */
+  height: 100vh; /* 뷰포트 높이에 맞춤 */
 }

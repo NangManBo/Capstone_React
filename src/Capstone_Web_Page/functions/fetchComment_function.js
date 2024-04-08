@@ -8,7 +8,7 @@ export const fetchComments = async (
 ) => {
   try {
     const response = await axios.get(
-      `https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/api/comments/poll/${voteId}`,
+      `https://dovote.p-e.kr/api/comments/poll/${voteId}`,
       {
         headers: {
           'AUTH-TOKEN': jwtToken,
@@ -69,7 +69,7 @@ export const sameVoteGroup = async (
       : 0;
     return axios
       .get(
-        `https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/votes/user-nicknames/${vote.id}/${customValue}/${nickname}`,
+        `https://dovote.p-e.kr/votes/user-nicknames/${vote.id}/${customValue}/${nickname}`,
         {
           headers: {
             'AUTH-TOKEN': jwtToken,

@@ -43,7 +43,7 @@ function VoteEndPage() {
 
     try {
       const response = await axios.post(
-        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/polls/likes',
+        'https://dovote.p-e.kr/polls/likes',
         data,
         {
           headers: {
@@ -240,7 +240,7 @@ function VoteEndPage() {
 
     try {
       const response = await axios.get(
-        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/votes/selected-choices/' +
+        'https://dovote.p-e.kr/votes/selected-choices/' +
           vote.id,
         {
           headers: {

@@ -17,7 +17,7 @@ function LogInPage() {
 
     try {
       const response = await axios.post(
-        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/auth/signin',
+        'https://dovote.p-e.kr/auth/signin',
         userData
       );
 

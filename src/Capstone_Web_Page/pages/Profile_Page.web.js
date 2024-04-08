@@ -24,7 +24,7 @@ function ProfilePage() {
     try {
       // 참가한 투표 수와 생성한 투표 수를 받아오는 각각의 요청
       const participatedVotesResponse = await axios.get(
-        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/polls/participated-count/' +
+        'https://dovote.p-e.kr/polls/participated-count/' +
           nickname,
         {
           headers: {
@@ -33,7 +33,7 @@ function ProfilePage() {
         }
       );
       const generatedVotesResponse = await axios.get(
-        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/polls/created-count/' +
+        'https://dovote.p-e.kr/polls/created-count/' +
           nickname,
         {
           headers: {
@@ -42,8 +42,7 @@ function ProfilePage() {
         }
       );
       const commentResponse = await axios.get(
-        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/auth/profile/' +
-          userId,
+        'https://dovote.p-e.kr/auth/profile/' + userId,
         {
           headers: {
             'AUTH-TOKEN': jwtToken,
@@ -52,7 +51,7 @@ function ProfilePage() {
       );
 
       const popularPointResponse = await axios.get(
-        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/polls/popular-point/' +
+        'https://dovote.p-e.kr/polls/popular-point/' +
           nickname,
         {
           headers: {
@@ -61,8 +60,7 @@ function ProfilePage() {
         }
       );
       const get_mbti = await axios.get(
-        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/auth/mbti/' +
-          nickname
+        'https://dovote.p-e.kr/auth/mbti/' + nickname
       );
 
       //두 요청을 동시에 처리

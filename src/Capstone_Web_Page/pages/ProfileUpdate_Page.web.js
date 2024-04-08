@@ -56,8 +56,7 @@ function ProfileUpdatePage() {
     try {
       // Call your API or service to change the password
       const response = await axios.patch(
-        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/auth/patch/' +
-          userId,
+        'https://dovote.p-e.kr/auth/patch/' + userId,
         password,
         {
           headers: {
@@ -93,8 +92,7 @@ function ProfileUpdatePage() {
     }
     try {
       const response = await axios.patch(
-        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/auth/patch/' +
-          userId,
+        'https://dovote.p-e.kr/auth/patch/' + userId,
         mbti,
         {
           headers: {
@@ -130,8 +128,7 @@ function ProfileUpdatePage() {
     }
     try {
       const response = await axios.patch(
-        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/auth/patch/name/' +
-          uid,
+        'https://dovote.p-e.kr/auth/patch/name/' + uid,
         nickname,
         {
           headers: {

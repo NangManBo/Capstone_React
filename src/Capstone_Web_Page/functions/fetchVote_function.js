@@ -8,7 +8,7 @@ export const fetchVotes = async (
 ) => {
   try {
     const response = await axios.get(
-      'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/polls/all',
+      'https://dovote.p-e.kr/polls/all',
       {
         headers: {
           'AUTH-TOKEN': jwtToken,

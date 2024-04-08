@@ -115,7 +115,7 @@ function VoteAfterPage() {
 
     try {
       const response = await axios.post(
-        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/polls/likes',
+        'https://dovote.p-e.kr/polls/likes',
         data,
         {
           headers: {
@@ -170,7 +170,7 @@ function VoteAfterPage() {
       }
 
       const response = await fetch(
-        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/api/comments/' +
+        'https://dovote.p-e.kr/api/comments/' +
           userId +
           '/' +
           vote.id,
@@ -409,7 +409,7 @@ function VoteAfterPage() {
     console.log('url ', comment.mediaUrl);
     try {
       const response = await axios.post(
-        `https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/api/comments/like/${userId}/${vote.id}/${comment.id}`,
+        `https://dovote.p-e.kr/api/comments/like/${userId}/${vote.id}/${comment.id}`,
         {}, // Empty object as the request body
         {
           headers: {
@@ -486,7 +486,7 @@ function VoteAfterPage() {
         });
       }
       const response = await fetch(
-        `https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/api/comments/${userId}/${vote.id}/${parentCommentId}`,
+        `https://dovote.p-e.kr/api/comments/${userId}/${vote.id}/${parentCommentId}`,
         {
           method: 'POST',
           headers: {

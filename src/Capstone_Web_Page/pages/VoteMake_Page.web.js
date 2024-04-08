@@ -138,7 +138,7 @@ function VoteMakePage() {
         }
       }
       const response = await fetch(
-        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/polls/upload/' +
+        'https://dovote.p-e.kr/polls/upload/' +
           selectedCategory,
         {
           method: 'POST',
@@ -174,7 +174,7 @@ function VoteMakePage() {
           };
 
           const response = await axios.post(
-            'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/choices/create/' +
+            'https://dovote.p-e.kr/choices/create/' +
               parsedData.pollId,
             data
           );

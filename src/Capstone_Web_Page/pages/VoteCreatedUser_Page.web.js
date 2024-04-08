@@ -206,7 +206,7 @@ function VoteCreatedUserPage() {
     };
     try {
       const response = await axios.post(
-        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/polls/popularpoint',
+        'https://dovote.p-e.kr/polls/popularpoint',
         Data
       );
       if (response.status === 200) {
@@ -217,7 +217,7 @@ function VoteCreatedUserPage() {
     } catch (error) {}
     try {
       const response = await axios.post(
-        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/polls/close',
+        'https://dovote.p-e.kr/polls/close',
         Data,
         {
           headers: {

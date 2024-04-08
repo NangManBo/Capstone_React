@@ -14,8 +14,7 @@ export const renderPostPress = async (
   try {
     // Fetch user votes from the backend
     const response = await axios.get(
-      'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/votes/ok/' +
-        nickname,
+      'https://dovote.p-e.kr/votes/ok/' + nickname,
       {
         headers: {
           'AUTH-TOKEN': jwtToken,

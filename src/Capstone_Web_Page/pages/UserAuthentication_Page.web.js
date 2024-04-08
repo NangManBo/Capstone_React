@@ -16,7 +16,7 @@ function UserAuthenticationPage() {
 
     try {
       const response = await axios.post(
-        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/auth/patch/check',
+        'https://dovote.p-e.kr/auth/patch/check',
         {
           uid: userId,
           password: inputPassword,

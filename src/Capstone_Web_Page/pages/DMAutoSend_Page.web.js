@@ -25,7 +25,7 @@ function DMAutoSendPage() {
     };
     try {
       const response = await axios.post(
-        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/message/send',
+        'https://dovote.p-e.kr/message/send',
         messageData,
         {
           headers: {

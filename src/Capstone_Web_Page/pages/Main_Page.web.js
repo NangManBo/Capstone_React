@@ -4,9 +4,10 @@ import { fetchVotes } from '../functions/fetchVote_function';
 import { fetchSearch } from '../functions/fetchSearch_function';
 import { getCategoryVotes } from '../components/categorySort_componets';
 import { renderPostPress } from '../functions/renderPostPress_function';
-
+import Banner from '../components/banner_components';
 import axios from 'axios';
 import '../styles/main_style.css';
+
 function MainPage() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -64,7 +65,7 @@ function MainPage() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        'https://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/message/read/all/' +
+        'https://dovote.p-e.kr/message/read/all/' +
           nickname,
         {
           headers: {
@@ -149,125 +150,112 @@ function MainPage() {
   }, []);
 
   return (
-    <div>
-      <header>
-        <h1 className="main_title">투표는 DO표</h1>
-      </header>
-      <div style={{ overflowY: 'scroll' }}>
-        <div className="main_Page">
-          <div className="main_Row">
-            <h2 className="popular_vote_title">
-              인기 투표
-            </h2>
+    <div className="Page">
+      <Banner />
+      <div className="main-page">
+        <div className="main_Row">
+          <h2 className="popular_vote_title">인기 투표</h2>
+        </div>
+        {isLoggedIn ? (
+          <div>
+            <button onClick={goToProfile}>프로필</button>
+            <button onClick={goToDMPage}>
+              DM 페이지로
+            </button>
+            <button onClick={goToVoteMake}>
+              투표 생성
+            </button>
+            <h2>쪽지 안읽은 개수 : {unreadMessageCount}</h2>
           </div>
-          {isLoggedIn ? (
-            <div>
-              <button onClick={goToProfile}>프로필</button>
-              <button onClick={goToDMPage}>
-                DM 페이지로
-              </button>
-              <button onClick={goToVoteMake}>
-                투표 생성
-              </button>
-              <h2>
-                쪽지 안읽은 개수 : {unreadMessageCount}
-              </h2>
+        ) : (
+          <div>
+            <button onClick={() => goToLogin()}>
+              로그인
+            </button>
+            <button onClick={() => goToSignup()}>
+              회원가입
+            </button>
+          </div>
+        )}
+        <div className="container">
+          <div>
+            <div className="search-input-view">
+              <input
+                className="search-input-box"
+                placeholder="두 글자 이상 입력해주세요!"
+                value={searchQuery}
+                onChange={(e) =>
+                  setSearchQuery(e.target.value)
+                }
+              />
+              <button onClick={handleSearch}>검색</button>
             </div>
-          ) : (
-            <div>
-              <button onClick={() => goToLogin()}>
-                로그인
-              </button>
-              <button onClick={() => goToSignup()}>
-                회원가입
-              </button>
-            </div>
-          )}
-          <div className="container">
-            <div>
-              <div className="search-input-view">
-                <input
-                  className="search-input-box"
-                  placeholder="두 글자 이상 입력해주세요!"
-                  value={searchQuery}
-                  onChange={(e) =>
-                    setSearchQuery(e.target.value)
-                  }
-                />
-                <button onClick={handleSearch}>검색</button>
-              </div>
-              {searchResults.length > 0 && (
-                <div className="search-result-view2">
-                  {searchResults.map((result) => (
-                    <div
-                      key={result.id}
-                      className="search-result-view3"
-                      onClick={() =>
-                        renderPostPress(
-                          result,
-                          navigate,
-                          isLoggedIn,
-                          userId,
-                          jwtToken,
-                          nickname
-                        )
-                      }
+            {searchResults.length > 0 && (
+              <div className="search-result-view2">
+                {searchResults.map((result) => (
+                  <div
+                    key={result.id}
+                    className="search-result-view3"
+                    onClick={() =>
+                      renderPostPress(
+                        result,
+                        navigate,
+                        isLoggedIn,
+                        userId,
+                        jwtToken,
+                        nickname
+                      )
+                    }
+                  >
+                    <span className="search-result-title">
+                      {JSON.parse(result.title).title}
+                    </span>
+                    <span
+                      className="search-result-sub"
+                      style={{
+                        display: '-webkit-box',
+                        WebkitLineClamp: '2',
+                        overflow: 'hidden',
+                        WebkitBoxOrient: 'vertical',
+                      }}
                     >
-                      <span className="search-result-title">
-                        {JSON.parse(result.title).title}
+                      {JSON.parse(result.question).question}
+                    </span>
+                    <div className="search-result-row">
+                      <span className="category-post-like-text">
+                        {result.likesCount}
                       </span>
-                      <span
-                        className="search-result-sub"
-                        style={{
-                          display: '-webkit-box',
-                          WebkitLineClamp: '2',
-                          overflow: 'hidden',
-                          WebkitBoxOrient: 'vertical',
-                        }}
-                      >
-                        {
-                          JSON.parse(result.question)
-                            .question
-                        }
+                      <span className="category-post-like-text1">
+                        {result.createdAt}
                       </span>
-                      <div className="search-result-row">
-                        <span className="category-post-like-text">
-                          {result.likesCount}
-                        </span>
-                        <span className="category-post-like-text1">
-                          {result.createdAt}
-                        </span>
-                      </div>
                     </div>
-                  ))}
+                  </div>
+                ))}
+              </div>
+            )}
+            {searchResults.length === 0 &&
+              searchQuery.trim() !== '' && (
+                <div className="search-result-view2">
+                  <span className="search-result-title">
+                    검색 결과가 없습니다.
+                  </span>
                 </div>
               )}
-              {searchResults.length === 0 &&
-                searchQuery.trim() !== '' && (
-                  <div className="search-result-view2">
-                    <span className="search-result-title">
-                      검색 결과가 없습니다.
-                    </span>
-                  </div>
-                )}
-            </div>
+          </div>
 
-            <div>
-              <div className="main_Row">
-                <h2 className="category_">
-                  카테고리별 투표
-                </h2>
-              </div>
-              <div className="category_sub_title_box">
-                {getCategoryVotes(
-                  votes,
-                  nickname,
-                  jwtToken,
-                  isLoggedIn,
-                  userId,
-                  navigate
-                )}
-              </div>
+          <div>
+            <div className="main_Row">
+              <h2 className="category_">카테고리별 투표</h2>
+            </div>
+            <div className="category_sub_title_box">
+              {getCategoryVotes(
+                votes,
+                nickname,
+                jwtToken,
+                isLoggedIn,
+                userId,
+                navigate
+              )}
             </div>
           </div>
         </div>
