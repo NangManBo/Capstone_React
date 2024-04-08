@@ -3,8 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { fetchVotes } from '../functions/fetchVote_function';
 import { fetchSearch } from '../functions/fetchSearch_function';
 import { getCategoryVotes } from '../components/categorySort_componets';
-import { renderPostPress } from '../functions/renderPostPress_function';
-import MainBanner from '../components/mainBanner_components';
+import { MainBanner } from '../components/mainBanner_components';
 import axios from 'axios';
 import '../styles/main_style.css';
 
