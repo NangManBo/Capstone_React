@@ -47,10 +47,11 @@ function PhoneAuthenticationModal({
 
       if (response.status === 200) {
         // 성공 로직
+        console.log('인증 성공');
         nextphone(phoneNumber);
         onSuccess(); // useNavigate로 페이지 이동, state를 통해 데이터 전달
       } else {
-        alert('Failed to send verification code');
+        alert('번호를 잘못 입력하셨습니다');
       }
     } catch (error) {
       console.error(error);
