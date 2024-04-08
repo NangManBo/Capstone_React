@@ -66,7 +66,7 @@ function SignUpPage() {
       return; // If button is disabled, prevent multiple requests
     }
     setIsButtonDisabled(true); // Disable the button immediately
-
+    setPhoneNumber(phoneNumber);
     if (id === nickname) {
       if (id === '') {
         alert('오류', '입력해주세요!');
@@ -206,13 +206,7 @@ function SignUpPage() {
         </div>
         <div className="form-group">
           <label className="label">휴대폰 번호</label>
-          <input
-            className="input"
-            placeholder="휴대폰 번호 입력"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-            disabled
-          />
+          <p>{phoneNumber}</p>
         </div>
         <div className="form-group">
           <label className="label">닉네임</label>

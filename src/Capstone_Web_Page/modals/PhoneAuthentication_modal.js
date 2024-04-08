@@ -16,19 +16,6 @@ function PhoneAuthenticationModal({
   const [seconds, setSeconds] = useState(1);
   const [message, setMessage] = useState('');
 
-  useEffect(() => {
-    // 타이머가 0이 될 때까지 매 초마다 초를 감소시키는 타이머 설정
-    if (seconds > 0) {
-      const timerId = setTimeout(
-        () => setSeconds(seconds - 1),
-        1000
-      );
-      return () => clearTimeout(timerId);
-    } else {
-      // 타이머가 0에 도달하면 메시지 업데이트
-      setMessage('다시 요청해주세요');
-    }
-  }, [isSend, seconds]);
   const sendPhoneNumber = async () => {
     console.log('Sending Phone Number:', phoneNumber);
     try {
