@@ -211,6 +211,7 @@ function SignUpPage() {
             placeholder="휴대폰 번호 입력"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
+            disabled
           />
         </div>
         <div className="form-group">

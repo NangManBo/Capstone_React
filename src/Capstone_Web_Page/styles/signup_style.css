@@ -67,6 +67,11 @@
   margin-top: 10px; /* 가입 버튼의 상단 여백을 설정합니다. */
 }
 
+input[disabled] {
+  pointer-events: none; /* 마우스 이벤트를 비활성화합니다. */
+  opacity: 0.5; /* 필드가 비활성화된 것처럼 보이게 합니다. */
+}
+
 .signup-button:disabled {
   background-color: #ccc;
 }

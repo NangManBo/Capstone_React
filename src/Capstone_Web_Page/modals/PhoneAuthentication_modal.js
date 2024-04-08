@@ -13,26 +13,43 @@ function PhoneAuthenticationModal({
   const [verificationCode, setVerificationCode] =
     useState('');
   const [isSend, setIsSend] = useState(false);
+  // 초 단위로 초기 시간 설정 (3분 = 180초)
+  const [seconds, setSeconds] = useState(180);
+  const [message, setMessage] = useState('');
 
-  const sendPhoneNumber = async () => {
-    console.log('Sending Phone Number:', phoneNumber);
-    try {
-      const response = await axios.post(
-        'https://dovote.p-e.kr/sms/send',
-        {
-          phoneNum: phoneNumber,
-        }
+  useEffect(() => {
+    // 타이머가 0이 될 때까지 매 초마다 초를 감소시키는 타이머 설정
+    if (seconds > 0) {
+      const timerId = setTimeout(
+        () => setSeconds(seconds - 1),
+        1000
       );
-
-      if (response.status === 200) {
-        setIsSend(true);
-      } else {
-        alert('Failed to send verification code');
-      }
-    } catch (error) {
-      console.error(error);
-      alert('Error occurred');
+      return () => clearTimeout(timerId);
+    } else {
+      // 타이머가 0에 도달하면 메시지 업데이트
+      setMessage('다시 요청해주세요');
     }
+  }, [isSend, seconds]);
+  const sendPhoneNumber = async () => {
+    setIsSend(true);
+    //console.log('Sending Phone Number:', phoneNumber);
+    // try {
+    //   const response = await axios.post(
+    //     'https://dovote.p-e.kr/sms/send',
+    //     {
+    //       phoneNum: phoneNumber,
+    //     }
+    //   );
+
+    //   if (response.status === 200) {
+    //     setIsSend(true);
+    //   } else {
+    //     alert('Failed to send verification code');
+    //   }
+    // } catch (error) {
+    //   console.error(error);
+    //   alert('Error occurred');
+    // }
   };
 
   const verifyCode = async () => {
@@ -83,7 +100,18 @@ function PhoneAuthenticationModal({
           >
             인증번호 요청
           </button>
-
+          {isSend && (
+            <div>
+              {message ? (
+                <p>{message}</p>
+              ) : (
+                <p>
+                  남은 시간: {Math.floor(seconds / 60)}분{' '}
+                  {seconds % 60}초
+                </p>
+              )}
+            </div>
+          )}
           {isSend && (
             <div className="mainRow">
               <label className="label">인증 번호</label>
