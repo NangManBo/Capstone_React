@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { renderPostPress } from '../functions/renderPostPress_function';
 import { MainBanner } from '../components/mainBanner_components';
+import '../styles/searchresult_style.css';
 
 function SerachResultPage() {
   const location = useLocation();
@@ -19,14 +20,14 @@ function SerachResultPage() {
     console.log('검색 결과' + searchResults);
   }, [searchResults, searchQuery]);
   return (
-    <div>
+    <div className="Page">
       <MainBanner
         jwtToken={jwtToken}
         isLoggedIn={isLoggedIn} // 또는 조건에 따라 변하는 값
         userId={userId}
         nickname={nickname}
       />
-      <div>
+      <div className="search-form">
         {searchResults.length > 0 && (
           <div className="search-result-view2">
             {searchResults.map((result) => (
