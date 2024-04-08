@@ -1,5 +1,5 @@
 import { renderPostPress } from '../functions/renderPostPress_function';
-
+import '../styles/category_style.css';
 // 카테고리별로 투표를 필터링하고 정렬하는 함수
 export const getCategoryVotes = (
   votes,
@@ -16,43 +16,31 @@ export const getCategoryVotes = (
     '스포츠',
     '음식',
     '반려동물',
-    '문화와예술',
-    '경제',
   ];
-  const isCategory = false;
+  const fillEmptyVotes = (votes, count) => {
+    while (votes.length < count) {
+      votes.push({
+        title: JSON.stringify({ title: '없음' }),
+      }); // '없음'으로 채우기
+    }
+    return votes;
+  };
+
   return categories.map((category) => {
-    // Filter votes that match the current category
     const matchingVotes = votes.filter(
       (vote) => vote.category === category
     );
 
-    // Sort matching votes by createdAt in descending order
     matchingVotes.sort(
-      (a, b) =>
-        new Date(b.createdAt) - new Date(a.createdAt)
+      (a, b) => b.likesCount - a.likesCount
     );
 
-    // Use a Set to keep track of shown titles
-    const shownTitles = new Set();
+    const topVotes = fillEmptyVotes(
+      matchingVotes.slice(0, 3),
+      3
+    );
 
-    // Find the first matching vote that has not been shown yet
-    const firstMatchingVote = matchingVotes.find((vote) => {
-      if (!shownTitles.has(vote.title)) {
-        shownTitles.add(vote.title);
-        return true;
-      }
-      return false;
-    });
-    // JSON 문자열을 파싱하여 JavaScript 객체로 변환
-    const titleObj = firstMatchingVote
-      ? JSON.parse(firstMatchingVote.title)
-      : null;
-
-    // 객체에서 title 값을 추출하고, 없을 경우 '없음'을 기본값으로 사용
-    const title = titleObj ? titleObj.title : '없음';
     const goToCategory = (category) => {
-      // Filter votes for the selected category
-
       navigate('/category', {
         state: {
           category,
@@ -66,38 +54,42 @@ export const getCategoryVotes = (
       });
     };
 
+    // 수정된 부분: 각 카테고리 컨테이너에 flex 스타일 적용
     return (
-      <div
-        style={{ display: 'flex', alignItems: 'center' }}
-      >
-        <div
-          onClick={() => goToCategory(category)}
-          style={{ marginRight: '20px' }}
-        >
-          <h3>{category}</h3>
+      <div className="category_sub_title_box">
+        <div>
+          <div
+            onClick={() => goToCategory(category)}
+            className="category_title_box"
+          >
+            <h3>{category}</h3>
+          </div>
+          <div className="category_sub_box_container">
+            {topVotes.map((vote, index) => (
+              <div
+                key={`${category}-${
+                  vote.title || ''
+                }-${index}`}
+                className="category_sub_box" // 스타일을 적용할 CSS 클래스
+                onClick={() =>
+                  vote.title &&
+                  renderPostPress(
+                    vote,
+                    navigate,
+                    isLoggedIn,
+                    userId,
+                    jwtToken,
+                    nickname,
+                    false
+                  )
+                }
+              >
+                <h4>{JSON.parse(vote.title).title}</h4>
+              </div>
+            ))}
+          </div>
         </div>
-        <button
-          onClick={() =>
-            renderPostPress(
-              firstMatchingVote,
-              navigate,
-              isLoggedIn,
-              userId,
-              jwtToken,
-              nickname,
-              isCategory
-            )
-          }
-          key={`${category}-${
-            firstMatchingVote?.title || ''
-          }`}
-          className="category_sub_box" // 스타일을 적용할 CSS 클래스
-          style={{ width: '100px', height: '60px' }}
-        >
-          <h4>{title}</h4>
-        </button>
       </div>
     );
   });
 };
-//

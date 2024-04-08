@@ -144,10 +144,7 @@ function MainPage() {
         userId={userId}
         nickname={nickname}
       />
-      <div className="main-page">
-        <div className="main_Row">
-          <h2 className="popular_vote_title">인기 투표</h2>
-        </div>
+      <div className="main_page">
         {isLoggedIn ? (
           <div>
             <button onClick={goToProfile}>프로필</button>
@@ -169,11 +166,8 @@ function MainPage() {
             </button>
           </div>
         )}
-        <div className="container">
+        <div>
           <div>
-            <div className="main_Row">
-              <h2 className="category_">카테고리별 투표</h2>
-            </div>
             <div className="category_sub_title_box">
               {getCategoryVotes(
                 votes,

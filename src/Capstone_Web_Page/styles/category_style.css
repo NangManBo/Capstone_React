@@ -1,0 +1,59 @@
+/* category_style.css 파일 내용 */
+.category_sub_title_box {
+  display: grid; /* Grid 컨테이너로 만듭니다. */
+  grid-template-columns: repeat(
+    3,
+    1fr
+  ); /* 세 개의 동일한 너비의 컬럼을 만듭니다. */
+  background-color: #a7a7a7;
+  gap: 20%; /* 항목 사이의 수평 및 수직 간격을 설정합니다. */
+  width: 400px;
+
+  margin-bottom: 20px;
+}
+
+.category_title_box {
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.category_title_box h3 {
+  font-size: 1.2em; /* 제목의 크기를 조정합니다 */
+  color: #333; /* 제목의 색상을 조정합니다 */
+  padding-left: 10px; /* 좌측 패딩을 추가합니다 */
+  border-left: 3px solid #333; /* 좌측에 두꺼운 경계선을 추가합니다 */
+}
+.category_sub_box_container {
+  flex-direction: row;
+  width: 300%;
+}
+
+.category_sub_box {
+  flex-grow: 1;
+  justify-content: space-between; /* 항목 사이에 공간을 균등하게 배분합니다 */
+  flex-basis: 0; /* 항목의 기본 크기를 0으로 설정하여 flex-grow에 의해 크기가 결정되도록 합니다 */
+  background-color: #fff; /* 배경 색상을 흰색으로 설정합니다 */
+  padding: 15px; /* 패딩을 추가하여 내용과 경계 사이에 공간을 만듭니다 */
+  margin-bottom: 10px; /* 우측 마진을 추가하여 항목 사이의 간격을 조정합니다 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 그림자를 추가하여 입체감을 줍니다 */
+  transition: transform 0.3s ease; /* 마우스를 올렸을 때 애니메이션 효과를 줍니다 */
+}
+
+.category_sub_box:last-child {
+  margin-right: 0; /* 마지막 항목의 우측 마진을 제거합니다 */
+}
+
+.category_sub_box:hover {
+  transform: translateY(
+    -5px
+  ); /* 마우스를 올렸을 때 항목을 위로 조금 움직입니다 */
+}
+
+.category_sub_box h4 {
+  font-size: 0.9em; /* 항목 제목의 크기를 조정합니다 */
+  color: #333; /* 항목 제목의 색상을 조정합니다 */
+  margin: 0; /* 기본 마진을 제거합니다 */
+  overflow: hidden; /* 내용이 넘칠 경우 숨깁니다 */
+  text-overflow: ellipsis; /* 넘치는 텍스트를 말줄임표로 처리합니다 */
+  white-space: nowrap; /* 텍스트가 한 줄로 표시되도록 합니다 */
+}

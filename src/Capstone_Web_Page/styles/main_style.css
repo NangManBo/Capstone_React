@@ -9,11 +9,13 @@
   height: 100vh; /* 뷰포트 높이에 맞춤 */
 }
 
-.main-page {
+.main_page {
+  background-color: rgb(255, 0, 0);
   display: flex;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: left;
   background-color: rgb(240, 240, 240);
   height: 250vh; /* 뷰포트 높이에 맞춤 */
 }
