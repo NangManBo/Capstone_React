@@ -9,7 +9,7 @@
 }
 .search-container {
   position: relative;
-  margin-left: 50%;
+  margin-left: 60%;
   margin-top: 1.5%;
   display: flex;
   align-items: center;
@@ -20,14 +20,14 @@
   padding-right: 30px; /* 버튼이 텍스트를 가리지 않도록 오른쪽 패딩 추가 */
   padding-top: 10px; /* 위쪽 패딩 */
   padding-bottom: 10px; /* 아래쪽 패딩 */
-  width: 25%;
+  width: 30%;
   height: 5%; /* 입력 필드의 높이 설정 */
   border-radius: 10px; /* 모서리를 둥글게 */
 }
 
 .search-button {
   position: absolute;
-  margin-left: 25%;
+  margin-left: 30.5%;
   border: none;
   background-color: transparent;
   cursor: pointer;

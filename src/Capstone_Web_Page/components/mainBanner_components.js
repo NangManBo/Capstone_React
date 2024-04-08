@@ -28,7 +28,7 @@ export const MainBanner = (
       <div className="search-container">
         <input
           className="search-input-box"
-          placeholder="  두 글자 이상 입력해주세요!"
+          placeholder=""
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           onKeyPress={(e) => {
