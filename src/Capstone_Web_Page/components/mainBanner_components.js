@@ -15,6 +15,7 @@ export const MainBanner = (
   const [searchResults, setSearchResults] = useState([]);
   const handleSearch = () => {
     fetchSearch(jwtToken, searchQuery, setSearchResults);
+    console.log('검색 누르기 : ' + searchResults);
     navigate('/searchresult', {
       state: {
         searchResults,
