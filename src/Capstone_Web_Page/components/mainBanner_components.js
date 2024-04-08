@@ -16,24 +16,25 @@ function MainBanner({
   const handleSearch = () => {
     if (searchQuery.length >= 2) {
       fetchSearch(jwtToken, searchQuery, setSearchResults);
-      navigate('/searchresult', {
-        state: {
-          searchResults,
-          searchQuery,
-          isLoggedIn,
-          userId,
-          jwtToken,
-          nickname,
-        },
-      });
-    } else {
-      alert(
-        '검색 오류',
-        '검색어는 최소 2글자 이상이어야 합니다.',
-        [{ text: '확인' }],
-        { cancelable: false }
-      );
     }
+    navigate('/searchresult', {
+      state: {
+        searchResults,
+        searchQuery,
+        isLoggedIn,
+        userId,
+        jwtToken,
+        nickname,
+      },
+    });
+    // else {
+    //   alert(
+    //     '검색 오류',
+    //     '검색어는 최소 2글자 이상이어야 합니다.',
+    //     [{ text: '확인' }],
+    //     { cancelable: false }
+    //   );
+    // }
   };
   return (
     <div className="banner">
