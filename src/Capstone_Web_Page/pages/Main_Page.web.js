@@ -4,7 +4,7 @@ import { fetchVotes } from '../functions/fetchVote_function';
 import { fetchSearch } from '../functions/fetchSearch_function';
 import { getCategoryVotes } from '../components/categorySort_componets';
 import { renderPostPress } from '../functions/renderPostPress_function';
-import Banner from '../components/banner_components';
+import BasicBanner from '../components/basicBanner_components';
 import axios from 'axios';
 import '../styles/main_style.css';
 
@@ -151,7 +151,7 @@ function MainPage() {
 
   return (
     <div className="Page">
-      <Banner />
+      <BasicBanner />
       <div className="main-page">
         <div className="main_Row">
           <h2 className="popular_vote_title">인기 투표</h2>
@@ -187,8 +187,15 @@ function MainPage() {
                 onChange={(e) =>
                   setSearchQuery(e.target.value)
                 }
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter') {
+                    handleSearch();
+                  }
+                }}
               />
-              <button onClick={handleSearch}>검색</button>
+              <button id="searchBox" onClick={handleSearch}>
+                검색
+              </button>
             </div>
             {searchResults.length > 0 && (
               <div className="search-result-view2">

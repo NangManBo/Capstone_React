@@ -80,7 +80,6 @@
 
   .input,
   .mbti,
-  .gender-button,
   .signup-button {
     margin-right: 0; /* 모바일에서는 요소들 사이의 간격을 제거합니다. */
     width: 100%; /* 모바일에서는 요소들이 전체 너비를 차지합니다. */

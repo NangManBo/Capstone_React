@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import Banner from '../components/basicBanner_components';
 
 function ProfilePage() {
   const location = useLocation();
@@ -63,9 +64,6 @@ function ProfilePage() {
         'https://dovote.p-e.kr/auth/mbti/' + nickname
       );
 
-      //두 요청을 동시에 처리
-      // const [participatedVotesResponse, generatedVotesResponse] =
-      //   await Promise.all([participatedVotesRequest, generatedVotesRequest]);
       if (get_mbti.status === 200) {
         setGetMbti(get_mbti.data);
       } else {
@@ -133,28 +131,14 @@ function ProfilePage() {
   };
   return (
     <div className="container">
-      <header className="header">
-        <button
-          onClick={() =>
-            navigate('/', {
-              state: {
-                isLoggedIn,
-                userId,
-                jwtToken,
-                nickname,
-              },
-            })
-          }
-        >
-          뒤로가기
-        </button>
+      <Banner />
+      <div>
         <h1>개인 프로필</h1>
         <button onClick={handleLogout}>로그아웃</button>
         <button onClick={handleProfileChange}>
           프로필 변경
         </button>
-      </header>
-
+      </div>
       <div className="profileInfos">
         {/* SafeAreaView 및 View 대신 div 사용 */}
         <div className="image" />

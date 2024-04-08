@@ -6,15 +6,16 @@
   justify-content: center;
   align-items: center;
   background-color: rgb(240, 240, 240);
-  overflow: hidden; /* 스크롤 비활성화 */
   height: 100vh; /* 뷰포트 높이에 맞춤 */
 }
 
 .Page > .login-form {
+  position: fixed;
+  top: 25%;
   max-height: 600px;
   max-width: 450px;
   width: 100%; /* 화면 너비에 맞게 조정 */
-  height: 80%;
+  height: 75%;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
@@ -22,6 +23,8 @@
   text-align: center;
 }
 .Page > .title_form {
+  position: fixed;
+  top: 12.5%;
   max-height: 150px;
   max-width: 400px;
 }

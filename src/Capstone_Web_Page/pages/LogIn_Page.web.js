@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../styles/login_style.css';
-import Banner from '../components/banner_components';
+import BasicBanner from '../components/basicBanner_components';
 
 function LogInPage() {
   const navigate = useNavigate();
@@ -50,7 +50,7 @@ function LogInPage() {
 
   return (
     <div className="Page">
-      <Banner />
+      <BasicBanner />
       <div className="title_form">
         <h2 className="first-title">
           다른사람의 생각이 궁금하다면?<br></br>
