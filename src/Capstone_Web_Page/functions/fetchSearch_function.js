@@ -1,6 +1,7 @@
 import axios from 'axios';
 import moment from 'moment';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const fetchSearch = async (
   isLoggedIn,
@@ -9,6 +10,7 @@ export const fetchSearch = async (
   jwtToken,
   searchQuery
 ) => {
+  const navigate = useNavigate();
   const [searchResults, setSearchResults] = useState([]);
   try {
     const response = await axios.get(
