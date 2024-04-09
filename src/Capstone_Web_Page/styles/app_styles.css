@@ -1,0 +1,10 @@
+.App {
+  background-color: rgb(240, 240, 240);
+  height: 200vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+}

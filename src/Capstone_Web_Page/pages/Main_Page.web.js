@@ -147,25 +147,57 @@ function MainPage() {
       <div className="main_page">
         {isLoggedIn ? (
           <div>
-            <button onClick={goToProfile}>프로필</button>
-            <button onClick={goToDMPage}>
-              DM 페이지로
-            </button>
-            <button onClick={goToVoteMake}>
-              투표 생성
-            </button>
-            <h2>쪽지 안읽은 개수 : {unreadMessageCount}</h2>
+            <div className="user_box">
+              <button onClick={goToProfile}>프로필</button>
+              <button onClick={goToDMPage}>
+                DM 페이지로
+              </button>
+              <button onClick={goToVoteMake}>
+                투표 생성
+              </button>
+              <h2>
+                쪽지 안읽은 개수 : {unreadMessageCount}
+              </h2>
+            </div>
           </div>
         ) : (
-          <div>
-            <button onClick={() => goToLogin()}>
-              로그인
-            </button>
-            <button onClick={() => goToSignup()}>
-              회원가입
-            </button>
+          <div className="main_page_header">
+            <div className="user_box">
+              <h4 className="user_box_title">
+                모든 서비스를 이용하려면 <br></br>로그인이
+                필요합니다
+              </h4>
+              <button
+                className="user_box_login"
+                onClick={() => goToLogin()}
+              >
+                로그인
+              </button>
+              <h4 className="user_box_explain">
+                처음 방문하시나요?
+              </h4>
+              <h4
+                className="user_box_signup"
+                onClick={() => goToSignup()}
+              >
+                회원가입
+              </h4>
+            </div>
+            <div className="alarm_box">
+              <h2 className="alarm_box_title">
+                <i class="fa-regular fa-bell"></i>
+                <span> 알림</span>
+              </h2>
+              <div className="alarm_box_in">
+                <h3 className="alarm_box_in_title">
+                  해당 기능은<br></br>로그인이 필요한
+                  기능입니다
+                </h3>
+              </div>
+            </div>
           </div>
         )}
+
         <div>
           <div>
             <div className="category_sub_title_box">
