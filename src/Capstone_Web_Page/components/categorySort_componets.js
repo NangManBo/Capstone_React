@@ -62,7 +62,10 @@ export const getCategoryVotes = (
             onClick={() => goToCategory(category)}
             className="category_title_box"
           >
-            <h3>{category}</h3>
+            <h3>
+              {category} 게시판{' '}
+              <i class="fa-solid fa-chevron-right"></i>
+            </h3>
           </div>
           <div className="category_sub_box_container">
             {topVotes.map((vote, index) => (

@@ -5,6 +5,8 @@ import { getCategoryVotes } from '../components/categorySort_componets';
 import { MainBanner } from '../components/mainBanner_components';
 import axios from 'axios';
 import '../styles/main_style.css';
+import { AlarmBox } from '../components/alarmBox_components';
+import { UserBox } from '../components/userBox_componet';
 
 function MainPage() {
   const navigate = useNavigate();
@@ -20,45 +22,7 @@ function MainPage() {
     useState(0);
   const [votes, setVotes] = useState([]); // 상태 추가
   const [messages, setMessages] = useState([]);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
-  // 이동 함수
-  const goToDMPage = () => {
-    navigate('/dmbox', {
-      state: {
-        isLoggedIn,
-        userId,
-        jwtToken,
-        nickname,
-      },
-    });
-  };
-  const goToProfile = () => {
-    navigate('/profile', {
-      state: {
-        isLoggedIn: true,
-        userId: userId, // 예시 값, 실제 응답에 맞게 조정 필요
-        jwtToken: jwtToken, // 예시 값, 실제 응답에 맞게 조정 필요
-        nickname: nickname, // 예시 값, 실제 응답에 맞게 조정 필요
-      },
-    });
-  };
-  const goToLogin = () => {
-    navigate('/login', {});
-  };
-  const goToSignup = () => {
-    navigate('/signup', {});
-  };
-  const goToVoteMake = () => {
-    navigate('/votemake', {
-      state: {
-        isLoggedIn,
-        userId,
-        jwtToken,
-        nickname,
-      },
-    });
-  };
+
   // 쪽지 데이터 받기
   const fetchData = async () => {
     try {
@@ -146,58 +110,31 @@ function MainPage() {
       />
       <div className="main_page">
         {isLoggedIn ? (
-          <div>
-            <div className="user_box">
-              <button onClick={goToProfile}>프로필</button>
-              <button onClick={goToDMPage}>
-                DM 페이지로
-              </button>
-              <button onClick={goToVoteMake}>
-                투표 생성
-              </button>
-              <h2>
-                쪽지 안읽은 개수 : {unreadMessageCount}
-              </h2>
-            </div>
+          <div className="main_page_header">
+            <UserBox
+              isLoggedIn={isLoggedIn}
+              userId={userId}
+              jwtToken={jwtToken}
+              nickname={nickname}
+            ></UserBox>
+            <AlarmBox isLoggedIn={isLoggedIn} />
           </div>
         ) : (
           <div className="main_page_header">
-            <div className="user_box">
-              <h4 className="user_box_title">
-                모든 서비스를 이용하려면 <br></br>로그인이
-                필요합니다
-              </h4>
-              <button
-                className="user_box_login"
-                onClick={() => goToLogin()}
-              >
-                로그인
-              </button>
-              <h4 className="user_box_explain">
-                처음 방문하시나요?
-              </h4>
-              <h4
-                className="user_box_signup"
-                onClick={() => goToSignup()}
-              >
-                회원가입
-              </h4>
-            </div>
-            <div className="alarm_box">
-              <h2 className="alarm_box_title">
-                <i class="fa-regular fa-bell"></i>
-                <span> 알림</span>
-              </h2>
-              <div className="alarm_box_in">
-                <h3 className="alarm_box_in_title">
-                  해당 기능은<br></br>로그인이 필요한
-                  기능입니다
-                </h3>
-              </div>
-            </div>
+            <UserBox
+              isLoggedIn={isLoggedIn}
+              userId={userId}
+              jwtToken={jwtToken}
+              nickname={nickname}
+            ></UserBox>
+            <AlarmBox isLoggedIn={isLoggedIn} />
           </div>
         )}
-
+        <div className="popular_banner">
+          <h2 className="popular_banner_title">
+            요즘 핫한 게시글은?
+          </h2>
+        </div>
         <div>
           <div>
             <div className="category_sub_title_box">

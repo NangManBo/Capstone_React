@@ -1,5 +1,5 @@
 .main_page {
-  margin-top: 5%;
+  margin-top: 20%;
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -10,65 +10,25 @@
 .main_page_header {
   display: flex;
   flex-direction: row; /* 기본값으로 요소들을 가로로 배열 */
-}
-.user_box {
-  margin-left: 12.5%;
-  margin-top: 12.5%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #ffffff;
-  width: 17%;
-  height: 35vh; /* 뷰포트 높이에 맞춤 */
-  border-radius: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 그림자를 추가하여 입체감을 줍니다 */
-}
-.alarm_box_in {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(218, 218, 218);
-  margin-top: 3%;
-  width: 100%;
-  height: 30vh; /* 뷰포트 높이에 맞춤 */
-}
-.alarm_box {
-  margin-left: 10%;
-  margin-top: 9%;
-  width: 17%;
-}
-.alarm_box_title {
-}
-.alarm_box_in_title {
-  text-align: center;
+  justify-content: space-evenly; /* 요소들 사이의 공간을 균등하게 배분 */
 }
 
-.user_box_title {
-  margin-top: 18%;
-  font-size: 1.2rem;
-  font-weight: bold;
+/*인기 배너*/
+.popular_banner {
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
+  width: 100%;
+  background-color: #004da9;
+  height: 25vh;
 }
-.user_box_explain {
-  margin-top: 5%;
-  font-size: 0.8rem;
-  color: gray;
-}
-.user_box_login {
-  margin-top: 5%;
-  width: 70%;
-  height: 18%;
-  border-radius: 10px;
-  background-color: gray; /* Green */
+
+.popular_banner_title {
   color: white;
-  border: none;
-  cursor: pointer;
+  font-size: 1.5rem;
+  margin-left: 10%;
+  margin-top: 5%;
 }
-.user_box_signup {
-  font-size: 0.9rem;
-  color: #0075ff;
-}
+
 /* 태블릿 화면 대응: 화면 너비가 768px 이하일 때 */
 @media (max-width: 768px) {
   .category_sub_title_box {
@@ -83,9 +43,9 @@
   .category_sub_box_container {
     width: 230%; /* 컨테이너 너비 조정 */
   }
-  .user_box {
-    margin-top: 25%;
-    width: 30%;
+
+  .main_page {
+    margin-top: 30%;
   }
 }
 
@@ -105,8 +65,8 @@
   .category_sub_box {
     margin-bottom: 20px; /* 간격 조정 */
   }
-  .user_box {
-    margin-top: 25%;
-    width: 40%;
+
+  .main_page {
+    margin-top: 40%;
   }
 }

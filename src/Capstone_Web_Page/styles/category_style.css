@@ -22,7 +22,7 @@
   font-size: 120%; /* 제목의 크기를 조정합니다 */
   color: #333; /* 제목의 색상을 조정합니다 */
   padding-left: 10px; /* 좌측 패딩을 추가합니다 */
-  border-left: 3px solid #333; /* 좌측에 두꺼운 경계선을 추가합니다 */
+  /* border-left: 3px solid #333; 좌측에 두꺼운 경계선을 추가합니다 */
 }
 .category_sub_box_container {
   flex-direction: row;
