@@ -102,7 +102,7 @@ export const getCategoryVotes = (
                     )
                   }
                 >
-                  <h4>{JSON.parse(vote.title).title}</h4>
+                  {/* <h4>{JSON.parse(vote.title).title}</h4>
                   <h5>
                     {JSON.parse(vote.createdBy).createdBy}{' '}
                     <i
@@ -117,7 +117,7 @@ export const getCategoryVotes = (
                       }{' '}
                     </span>
                     <span> {hoursAgo}시간 전</span>
-                  </h5>
+                  </h5> */}
                 </div>
               );
             })}

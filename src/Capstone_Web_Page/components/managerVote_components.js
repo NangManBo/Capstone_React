@@ -79,7 +79,7 @@ export const getManagerVotes = (
                     )
                   }
                 >
-                  <h4>{JSON.parse(vote.title).title}</h4>
+                  {/* <h4>{JSON.parse(vote.title).title}</h4>
                   <h5>
                     {name}{' '}
                     <i
@@ -88,7 +88,7 @@ export const getManagerVotes = (
                     ></i>
                     <span> {vote.likesCount}</span>
                     <span> {hoursAgo}시간 전</span>
-                  </h5>
+                  </h5> */}
                 </div>
               );
             })}
