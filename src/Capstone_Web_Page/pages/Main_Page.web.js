@@ -4,7 +4,7 @@ import { fetchVotes } from '../functions/fetchVote_function';
 import { getCategoryVotes } from '../components/categorySort_componets';
 import { MainBanner } from '../components/mainBanner_components';
 import axios from 'axios';
-import '../styles/main_style.css';
+import './styles/main_style.css';
 import { AlarmBox } from '../components/alarmBox_components';
 import { UserBox } from '../components/userBox_componet';
 
