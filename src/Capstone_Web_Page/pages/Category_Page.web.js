@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { fetchVotes } from '../functions/fetchVote_function';
 import { renderPostPress } from '../functions/renderPostPress_function';
+import { MainBanner } from '../components/mainBanner_components';
 
 function CategoryPage() {
   const navigate = useNavigate();
@@ -46,24 +46,14 @@ function CategoryPage() {
     setSortedVotes(sortVotes(matchingVotes));
   }, [standard, matchingVotes]);
   return (
-    <div>
+    <div className="Page">
+      <MainBanner
+        jwtToken={jwtToken}
+        isLoggedIn={isLoggedIn} // 또는 조건에 따라 변하는 값
+        userId={userId}
+        nickname={nickname}
+      />
       <div>
-        <div>
-          <button
-            onClick={() =>
-              navigate('/', {
-                state: {
-                  isLoggedIn,
-                  userId,
-                  jwtToken,
-                  nickname,
-                },
-              })
-            }
-          >
-            뒤로가기
-          </button>
-        </div>
         <div>
           <span>{category}</span>
         </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/banner_style.css'; // CSS 파일 임포트
+import './styles/banner_style.css'; // CSS 파일 임포트
 
 const BasicBanner = () => {
   return (

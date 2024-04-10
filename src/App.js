@@ -21,7 +21,7 @@ import CategoryPage from './Capstone_Web_Page/pages/Category_Page.web';
 import UserAuthenticationPage from './Capstone_Web_Page/pages/UserAuthentication_Page.web';
 import ProfileUpdatePage from './Capstone_Web_Page/pages/ProfileUpdate_Page.web';
 import SerachResultPage from './Capstone_Web_Page/pages/SearchResult_Page.web';
-import './Capstone_Web_Page/styles/app_styles.css';
+import './App.css';
 function App() {
   return (
     <BrowserRouter>

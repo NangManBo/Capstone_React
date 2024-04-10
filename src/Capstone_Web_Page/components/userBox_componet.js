@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/userBox_style.css';
+import './styles/userBox_style.css';
 import { useNavigate } from 'react-router-dom';
 
 export const UserBox = (

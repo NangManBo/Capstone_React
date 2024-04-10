@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/alarmBox_style.css';
+import './styles/alarmBox_style.css';
 export const AlarmBox = (isLoggedIn) => {
   return (
     <div>
