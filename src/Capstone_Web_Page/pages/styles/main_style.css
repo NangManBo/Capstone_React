@@ -23,18 +23,16 @@
 }
 
 /* 태블릿 화면 대응: 화면 너비가 768px 이하일 때 */
-@media (max-width: 768px) {
+/* 2개의 컬럼으로 변경 */
+/* @media (max-width: 768px) {
   .main_page_header {
-    grid-template-columns: repeat(
-      2,
-      1fr
-    ); /* 2개의 컬럼으로 변경 */
+    grid-template-columns: repeat(2, 1fr);
   }
-}
+}*/
 
 /* 휴대폰 화면 대응: 화면 너비가 480px 이하일 때 */
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
   .main_page_header {
-    grid-template-columns: 1fr; /* 1개의 컬럼으로 변경 */
+    grid-template-columns: 1fr;
   }
-}
+} */

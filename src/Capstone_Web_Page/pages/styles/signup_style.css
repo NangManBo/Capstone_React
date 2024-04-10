@@ -69,16 +69,16 @@ input[disabled] {
 }
 
 /* 반응형 디자인 */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .label {
-    width: 100%; /* 모바일에서는 라벨이 전체 너비를 차지합니다. */
-    margin-bottom: 5px; /* 모바일에서는 라벨과 입력 필드 사이에 여백을 추가합니다. */
+    width: 100%;
+    margin-bottom: 5px;
   }
 
   .input,
   .mbti,
   .signup-button {
-    margin-right: 0; /* 모바일에서는 요소들 사이의 간격을 제거합니다. */
-    width: 100%; /* 모바일에서는 요소들이 전체 너비를 차지합니다. */
+    margin-right: 0;
+    width: 100%;
   }
-}
+} */

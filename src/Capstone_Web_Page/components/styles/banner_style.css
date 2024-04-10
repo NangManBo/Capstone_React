@@ -33,9 +33,9 @@
   cursor: pointer;
 }
 /* 태블릿 */
-@media (max-width: 920px) {
+/* @media (max-width: 920px) {
   .banner {
-    height: 10%; /* 태블릿에서는 높이를 줄임 */
+    height: 10%;
   }
   .search-input-box {
     width: 35%;
@@ -47,12 +47,12 @@
   .search-button {
     margin-left: 36%;
   }
-}
+} */
 
 /* 모바일 */
-@media (max-width: 560px) {
+/* @media (max-width: 560px) {
   .banner {
-    height: 6%; /* 모바일에서는 더 줄임 */
+    height: 6%;
   }
   .search-input-box {
     width: 50%;
@@ -61,4 +61,4 @@
     margin-left: 60%;
     margin-top: 1.5%;
   }
-}
+} */

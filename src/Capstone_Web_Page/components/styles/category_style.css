@@ -64,25 +64,22 @@
 }
 
 /* 태블릿 화면 대응: 화면 너비가 768px 이하일 때 */
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   .category_sub_title_box {
-    grid-template-columns: repeat(
-      2,
-      1fr
-    ); /* 2개의 컬럼으로 변경 */
+    grid-template-columns: repeat(2, 1fr);
   }
   .category_title_box h3 {
-    font-size: 110%; /* 제목의 크기를 조정합니다 */
+    font-size: 110%;
   }
-}
+} */
 
 /* 휴대폰 화면 대응: 화면 너비가 480px 이하일 때 */
-@media (max-width: 480px) {
+/* @media (max-width: 480px) {
   .category_sub_title_box {
-    grid-template-columns: 1fr; /* 1개의 컬럼으로 변경 */
+    grid-template-columns: 1fr;
   }
 
   .category_sub_box_container {
-    flex-direction: column; /* 항목을 세로로 정렬 */
+    flex-direction: column;
   }
-}
+} */
