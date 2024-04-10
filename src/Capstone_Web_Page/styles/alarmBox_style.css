@@ -1,10 +1,9 @@
 /*알람*/
 .alarm_box {
-  margin-top: 80%;
-  width: 150%;
+  width: 300px;
 }
 .alarm_box_title {
-  font-size: 1.2rem;
+  font-size: 24px;
 }
 .alarm_box_in {
   display: flex;

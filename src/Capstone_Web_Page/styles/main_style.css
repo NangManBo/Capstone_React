@@ -29,6 +29,12 @@
   margin-top: 5%;
 }
 
+@media (max-width: 960) {
+  .main_page {
+    margin-top: 40%;
+  }
+}
+
 /* 태블릿 화면 대응: 화면 너비가 768px 이하일 때 */
 @media (max-width: 768px) {
   .category_sub_title_box {
