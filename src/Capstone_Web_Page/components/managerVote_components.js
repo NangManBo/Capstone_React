@@ -79,7 +79,7 @@ export const getManagerVotes = (
                     )
                   }
                 >
-                  <h4>{vote.title.title}</h4>
+                  <h4>{vote.title}</h4>
                   <h5>
                     {name}
                     <i

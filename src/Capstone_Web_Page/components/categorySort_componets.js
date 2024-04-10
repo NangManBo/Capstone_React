@@ -102,9 +102,9 @@ export const getCategoryVotes = (
                     )
                   }
                 >
-                  <h4>{vote.title.title}</h4>
+                  <h4>{vote.title}</h4>
                   <h5>
-                    {vote.createdBy.createdBy}
+                    {vote.createdBy}
                     <i
                       style={{ color: 'blue' }}
                       className="fa-regular fa-thumbs-up"
