@@ -1,5 +1,5 @@
 .main_page {
-  margin-top: 20%;
+  margin-top: 400px;
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -9,70 +9,32 @@
 }
 .main_page_header {
   margin-top: 150px;
-  display: flex;
-  flex-direction: row; /* 기본값으로 요소들을 가로로 배열 */
-}
+  margin-left: 0%;
+  display: grid; /* Grid 컨테이너로 만듭니다. */
+  grid-template-columns: repeat(
+    3,
+    1fr
+  ); /* 세 개의 동일한 너비의 컬럼을 만듭니다. */
 
-/*인기 배너*/
-.popular_banner {
-  margin-top: 2.5%;
-  margin-bottom: 2.5%;
-  width: 100%;
-  background-color: #004da9;
-  height: 25vh;
-}
+  gap: 3%; /* 항목 사이의 수평 간격을 고정된 값으로 설정합니다. */
+  width: 10%; /* 컨테이너 너비를 상대적 단위로 설정합니다. */
 
-.popular_banner_title {
-  color: white;
-  font-size: 1.5rem;
-  margin-left: 10%;
-  margin-top: 5%;
-}
-
-@media (max-width: 960) {
-  .main_page {
-    margin-top: 40%;
-  }
+  margin-bottom: 20px;
 }
 
 /* 태블릿 화면 대응: 화면 너비가 768px 이하일 때 */
 @media (max-width: 768px) {
-  .category_sub_title_box {
+  .main_page_header {
     grid-template-columns: repeat(
       2,
       1fr
     ); /* 2개의 컬럼으로 변경 */
   }
-  .category_title_box h3 {
-    font-size: 100%; /* 제목의 크기를 조정합니다 */
-  }
-  .category_sub_box_container {
-    width: 230%; /* 컨테이너 너비 조정 */
-  }
-
-  .main_page {
-    margin-top: 30%;
-  }
 }
 
 /* 휴대폰 화면 대응: 화면 너비가 480px 이하일 때 */
 @media (max-width: 480px) {
-  .category_sub_title_box {
+  .main_page_header {
     grid-template-columns: 1fr; /* 1개의 컬럼으로 변경 */
-  }
-
-  .category_sub_box_container {
-    width: 100%; /* 컨테이너 너비 조정 */
-    flex-direction: column; /* 항목을 세로로 정렬 */
-  }
-  .category_title_box h3 {
-    font-size: 100%; /* 제목의 크기를 조정합니다 */
-  }
-  .category_sub_box {
-    margin-bottom: 20px; /* 간격 조정 */
-  }
-
-  .main_page {
-    margin-top: 40%;
   }
 }

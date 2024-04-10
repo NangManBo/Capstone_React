@@ -1,6 +1,7 @@
 /*유저*/
 .user_box {
   margin-left: 200px;
+  margin-top: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -8,6 +8,7 @@ import './styles/main_style.css';
 import { AlarmBox } from '../components/alarmBox_components';
 import { UserBox } from '../components/userBox_componet';
 import { PopularVoteBanner } from '../components/popularVoteBanner_components';
+import { getManagerVotes } from '../components/managerVote_components';
 function MainPage() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -118,6 +119,14 @@ function MainPage() {
               nickname={nickname}
             ></UserBox>
             <AlarmBox isLoggedIn={isLoggedIn} />
+            {getManagerVotes(
+              votes,
+              nickname,
+              jwtToken,
+              isLoggedIn,
+              userId,
+              navigate
+            )}
           </div>
         ) : (
           <div className="main_page_header">
@@ -128,6 +137,14 @@ function MainPage() {
               nickname={nickname}
             ></UserBox>
             <AlarmBox isLoggedIn={isLoggedIn} />
+            {getManagerVotes(
+              votes,
+              nickname,
+              jwtToken,
+              isLoggedIn,
+              userId,
+              navigate
+            )}
           </div>
         )}
         <PopularVoteBanner />
