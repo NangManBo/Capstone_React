@@ -7,7 +7,7 @@ import axios from 'axios';
 import './styles/main_style.css';
 import { AlarmBox } from '../components/alarmBox_components';
 import { UserBox } from '../components/userBox_componet';
-
+import { PopularVoteBanner } from '../components/popularVoteBanner_components';
 function MainPage() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -130,7 +130,7 @@ function MainPage() {
             <AlarmBox isLoggedIn={isLoggedIn} />
           </div>
         )}
-
+        <PopularVoteBanner />
         <div>
           <div>
             <div className="category_sub_title_box">
