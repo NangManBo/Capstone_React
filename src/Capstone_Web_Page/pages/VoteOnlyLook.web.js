@@ -70,7 +70,7 @@ function VoteOnlyLookPage() {
           <img
             src={vote.mediaUrl}
             alt="Media"
-            style={{ width: '100%', height: 'auto' }}
+            style={{ width: '400px', height: '400px' }}
           />
         )}
         {pollOptions.map((option) => (

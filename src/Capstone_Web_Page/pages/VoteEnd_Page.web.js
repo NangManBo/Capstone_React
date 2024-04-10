@@ -129,12 +129,20 @@ function VoteEndPage() {
                       src={comment.mediaUrl}
                       controls
                       loop
+                      style={{
+                        width: '200px',
+                        height: '200px',
+                      }}
                     />
                   </button>
                 ) : (
                   <img
                     src={comment.mediaUrl}
                     alt="comment media"
+                    style={{
+                      width: '200px',
+                      height: '200px',
+                    }}
                   />
                 )}
               </div>
@@ -182,11 +190,19 @@ function VoteEndPage() {
                           src={childComment.mediaUrl}
                           controls
                           loop
+                          style={{
+                            width: '200px',
+                            height: '200px',
+                          }}
                         />
                       ) : (
                         <img
                           src={childComment.mediaUrl}
                           alt="child comment media"
+                          style={{
+                            width: '200px',
+                            height: '200px',
+                          }}
                         />
                       )}
                     </div>
@@ -362,7 +378,14 @@ function VoteEndPage() {
         <p>주최자: {vote.createdBy}</p>
         <p>{vote && vote.question}</p>
         {vote.mediaUrl && (
-          <img src={vote.mediaUrl} alt="Vote" />
+          <img
+            src={vote.mediaUrl}
+            alt="Vote"
+            style={{
+              width: '400px',
+              height: '400px',
+            }}
+          />
         )}
       </div>
       <div>

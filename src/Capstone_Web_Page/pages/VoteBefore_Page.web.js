@@ -152,7 +152,14 @@ function VoteBeforePage() {
         <p>주최자 : {vote.createdBy}</p>
         <p>{vote && vote.question}</p>
         {vote.mediaUrl && (
-          <img src={vote.mediaUrl} alt="Vote" />
+          <img
+            src={vote.mediaUrl}
+            alt="Vote"
+            style={{
+              width: '400px',
+              height: '400px',
+            }}
+          />
         )}
         {pollOptions.map((option) => (
           <button

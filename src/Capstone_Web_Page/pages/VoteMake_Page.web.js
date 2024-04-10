@@ -276,7 +276,7 @@ function VoteMakePage() {
         <img
           src={selectedMedia}
           alt="Selected media"
-          style={{ width: '300px', height: '300px' }}
+          style={{ width: '400px', height: '400px' }}
         />
       )}
 

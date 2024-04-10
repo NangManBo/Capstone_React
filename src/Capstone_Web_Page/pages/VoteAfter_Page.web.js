@@ -294,10 +294,18 @@ function VoteAfterPage() {
                       src={comment.mediaUrl}
                       controls
                       loop
+                      style={{
+                        width: '200px',
+                        height: '200px',
+                      }}
                     />
                   </button>
                 ) : (
                   <img
+                    style={{
+                      width: '200px',
+                      height: '200px',
+                    }}
                     src={comment.mediaUrl}
                     alt="comment media"
                   />
@@ -352,12 +360,20 @@ function VoteAfterPage() {
                         '.mp4'
                       ) ? (
                         <video
+                          style={{
+                            width: '200px',
+                            height: '200px',
+                          }}
                           src={childComment.mediaUrl}
                           controls
                           loop
                         />
                       ) : (
                         <img
+                          style={{
+                            width: '200px',
+                            height: '200px',
+                          }}
                           src={childComment.mediaUrl}
                           alt="child comment media"
                         />
@@ -574,7 +590,14 @@ function VoteAfterPage() {
         <p>주최자: {vote.createdBy}</p>
         <p>{vote && vote.question}</p>
         {vote.mediaUrl && (
-          <img src={vote.mediaUrl} alt="Vote" />
+          <img
+            src={vote.mediaUrl}
+            alt="Vote"
+            style={{
+              width: '400px',
+              height: '400px',
+            }}
+          />
         )}
         {/* Choices */}
         {vote.choice.map((choice, index) => (
@@ -607,7 +630,14 @@ function VoteAfterPage() {
         </select>
         <div>
           {selectedMedia && (
-            <img src={selectedMedia} alt="Selected media" />
+            <img
+              src={selectedMedia}
+              alt="Selected media"
+              style={{
+                width: '400px',
+                height: '400px',
+              }}
+            />
           )}
           <input
             type="text"

@@ -93,10 +93,18 @@ function VoteCreatedUserPage() {
                       src={comment.mediaUrl}
                       controls
                       loop
+                      style={{
+                        width: '200px',
+                        height: '200px',
+                      }}
                     />
                   </button>
                 ) : (
                   <img
+                    style={{
+                      width: '200px',
+                      height: '200px',
+                    }}
                     src={comment.mediaUrl}
                     alt="comment media"
                   />
@@ -143,12 +151,20 @@ function VoteCreatedUserPage() {
                         '.mp4'
                       ) ? (
                         <video
+                          style={{
+                            width: '200px',
+                            height: '200px',
+                          }}
                           src={childComment.mediaUrl}
                           controls
                           loop
                         />
                       ) : (
                         <img
+                          style={{
+                            width: '200px',
+                            height: '200px',
+                          }}
                           src={childComment.mediaUrl}
                           alt="child comment media"
                         />
@@ -311,7 +327,10 @@ function VoteCreatedUserPage() {
           <img
             src={vote.mediaUrl}
             alt="Media"
-            style={{ width: '100%', height: 'auto' }}
+            style={{
+              width: '400px',
+              height: '400px',
+            }}
           />
         )}
         {pollOptions.map((option) => (
