@@ -17,9 +17,8 @@ export const fetchVotes = async (
     );
     if (response.status === 200) {
       const votesData = response.data;
-
+      console.log('투표데이터' + response.data);
       if (Array.isArray(votesData)) {
-        console.log('투표데이터' + votesData);
         const formattedVotes = votesData.map((vote) => ({
           id: vote.id,
           mediaUrl: vote.mediaUrl,
