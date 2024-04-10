@@ -22,10 +22,12 @@ import UserAuthenticationPage from './Capstone_Web_Page/pages/UserAuthentication
 import ProfileUpdatePage from './Capstone_Web_Page/pages/ProfileUpdate_Page.web';
 import SerachResultPage from './Capstone_Web_Page/pages/SearchResult_Page.web';
 import './App.css';
+import ScrollToTop from './Capstone_Web_Page/functions/scrollToTop_fuction';
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <div className="App">
         <Routes>
           <Route path="/" element={<MainPage />} />
