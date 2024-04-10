@@ -147,10 +147,10 @@ function VoteBeforePage() {
         </button>
       </div>
       <div>
-        <h1>{JSON.parse(vote.title).title}</h1>
+        <h1>{vote && vote.title}</h1>
         <p>투표 기간 설정: {vote.createdAt}</p>
         <p>주최자 : {vote.createdBy}</p>
-        <p>{JSON.parse(vote.question).question}</p>
+        <p>{vote && vote.question}</p>
         {vote.mediaUrl && (
           <img src={vote.mediaUrl} alt="Vote" />
         )}

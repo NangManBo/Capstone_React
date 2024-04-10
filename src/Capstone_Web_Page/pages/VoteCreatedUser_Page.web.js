@@ -302,18 +302,10 @@ function VoteCreatedUserPage() {
         뒤로가기
       </button>
       <div>
-        <h1>
-          {vote &&
-            vote.title &&
-            JSON.parse(vote.title).title}
-        </h1>
+        <h1>{vote && vote.title}</h1>
         <p>투표 기간 설정: {vote && vote.createdAt}</p>
         <p>주최자 : {vote && vote.createdBy}</p>
-        <p>
-          {vote &&
-            vote.question &&
-            JSON.parse(vote.question).question}
-        </p>
+        <p>{vote && vote.question}</p>
 
         {vote && vote.mediaUrl && (
           <img
