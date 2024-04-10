@@ -21,11 +21,22 @@ export const getCategoryVotes = (
     while (votes.length < count) {
       votes.push({
         title: JSON.stringify({ title: '없음' }),
+        createdBy: JSON.stringify({ createdBy: '없음' }),
+        createdAt: JSON.stringify({ createdAt: '' }),
+        likesCount: 0,
       }); // '없음'으로 채우기
     }
     return votes;
   };
-
+  const calculateTimeDiff = (createdAt) => {
+    const voteDate = new Date(createdAt);
+    const now = new Date();
+    const diffInHours = Math.floor(
+      (now.getTime() - voteDate.getTime()) /
+        (1000 * 60 * 60)
+    );
+    return diffInHours;
+  };
   return categories.map((category) => {
     const matchingVotes = votes.filter(
       (vote) => vote.category === category
@@ -68,28 +79,48 @@ export const getCategoryVotes = (
             </h3>
           </div>
           <div className="category_sub_box_container">
-            {topVotes.map((vote, index) => (
-              <div
-                key={`${category}-${
-                  vote.title || ''
-                }-${index}`}
-                className="category_sub_box" // 스타일을 적용할 CSS 클래스
-                onClick={() =>
-                  vote.title &&
-                  renderPostPress(
-                    vote,
-                    navigate,
-                    isLoggedIn,
-                    userId,
-                    jwtToken,
-                    nickname,
-                    false
-                  )
-                }
-              >
-                <h4>{JSON.parse(vote.title).title}</h4>
-              </div>
-            ))}
+            {topVotes.map((vote, index) => {
+              const hoursAgo = calculateTimeDiff(
+                JSON.parse(vote.createdAt).createdAt
+              );
+              return (
+                <div
+                  key={`${category}-${
+                    vote.title || ''
+                  }-${index}`}
+                  className="category_sub_box"
+                  onClick={() =>
+                    vote.title &&
+                    renderPostPress(
+                      vote,
+                      navigate,
+                      isLoggedIn,
+                      userId,
+                      jwtToken,
+                      nickname,
+                      false
+                    )
+                  }
+                >
+                  <h4>{JSON.parse(vote.title).title}</h4>
+                  <h5>
+                    {JSON.parse(vote.createdBy).createdBy}{' '}
+                    <i
+                      style={{ color: 'blue' }}
+                      class="fa-regular fa-thumbs-up"
+                    ></i>
+                    <span>
+                      {' '}
+                      {
+                        JSON.parse(vote.likesCount)
+                          .likesCount
+                      }{' '}
+                    </span>
+                    <span> {hoursAgo}시간 전</span>
+                  </h5>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

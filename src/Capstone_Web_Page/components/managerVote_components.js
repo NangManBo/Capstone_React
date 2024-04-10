@@ -14,11 +14,22 @@ export const getManagerVotes = (
     while (votes.length < count) {
       votes.push({
         title: JSON.stringify({ title: '없음' }),
+        createdAt: JSON.stringify({ createdAt: '' }),
+        likesCount: 0,
       }); // '없음'으로 채우기
     }
     return votes;
   };
-
+  // 시간 차이를 계산하는 함수
+  const calculateTimeDiff = (createdAt) => {
+    const voteDate = new Date(createdAt);
+    const now = new Date();
+    const diffInHours = Math.floor(
+      (now.getTime() - voteDate.getTime()) /
+        (1000 * 60 * 60)
+    );
+    return diffInHours;
+  };
   return managers.map((name) => {
     const matchingVotes = votes.filter(
       (vote) => vote.createdBy === name
@@ -44,27 +55,42 @@ export const getManagerVotes = (
             </h3>
           </div>
           <div className="manager_category_sub_box_container">
-            {topVotes.map((vote, index) => (
-              <div
-                key={`${name}-${vote.title || ''}-${index}`}
-                className="manager_category_sub_box" // 스타일을 적용할 CSS 클래스
-                onClick={() =>
-                  vote.title &&
-                  renderPostPress(
-                    vote,
-                    navigate,
-                    isLoggedIn,
-                    userId,
-                    jwtToken,
-                    nickname,
-                    false
-                  )
-                }
-              >
-                <h4>{JSON.parse(vote.title).title}</h4>
-                <h5>{name}</h5>
-              </div>
-            ))}
+            {topVotes.map((vote, index) => {
+              const hoursAgo = calculateTimeDiff(
+                JSON.parse(vote.createdAt).createdAt
+              );
+              return (
+                <div
+                  key={`${name}-${
+                    vote.title || ''
+                  }-${index}`}
+                  className="manager_category_sub_box"
+                  onClick={() =>
+                    vote.title &&
+                    renderPostPress(
+                      vote,
+                      navigate,
+                      isLoggedIn,
+                      userId,
+                      jwtToken,
+                      nickname,
+                      false
+                    )
+                  }
+                >
+                  <h4>{JSON.parse(vote.title).title}</h4>
+                  <h5>
+                    {name}{' '}
+                    <i
+                      style={{ color: 'blue' }}
+                      class="fa-regular fa-thumbs-up"
+                    ></i>
+                    <span> {vote.likesCount}</span>
+                    <span> {hoursAgo}시간 전</span>
+                  </h5>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

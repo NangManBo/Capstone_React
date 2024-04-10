@@ -8,12 +8,12 @@
 
   gap: 3%; /* 항목 사이의 수평 간격을 고정된 값으로 설정합니다. */
   width: 80%; /* 컨테이너 너비를 상대적 단위로 설정합니다. */
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .category_title_box {
   cursor: pointer;
-  margin-bottom: 10px;
+
   width: 300%;
 }
 
@@ -25,11 +25,13 @@
 }
 .category_sub_box_container {
   flex-direction: row;
-  width: 330%;
+  width: 400px;
+  height: 280px;
 }
 
 .category_sub_box {
   flex-grow: 1;
+  height: 50px;
   justify-content: space-between; /* 항목 사이에 공간을 균등하게 배분합니다 */
   flex-basis: 0; /* 항목의 기본 크기를 0으로 설정하여 flex-grow에 의해 크기가 결정되도록 합니다 */
   background-color: #fff; /* 배경 색상을 흰색으로 설정합니다 */
@@ -69,9 +71,6 @@
   .category_title_box h3 {
     font-size: 110%; /* 제목의 크기를 조정합니다 */
   }
-  .category_sub_box_container {
-    width: 230%; /* 컨테이너 너비 조정 */
-  }
 }
 
 /* 휴대폰 화면 대응: 화면 너비가 480px 이하일 때 */
@@ -81,13 +80,6 @@
   }
 
   .category_sub_box_container {
-    width: 100%; /* 컨테이너 너비 조정 */
     flex-direction: column; /* 항목을 세로로 정렬 */
-  }
-  .category_title_box h3 {
-    font-size: 100%; /* 제목의 크기를 조정합니다 */
-  }
-  .category_sub_box {
-    margin-bottom: 20px; /* 간격 조정 */
   }
 }

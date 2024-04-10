@@ -8,7 +8,7 @@
   height: 200vh; /* 뷰포트 높이에 맞춤 */
 }
 .main_page_header {
-  margin-top: 150px;
+  margin-top: 400px;
   margin-left: 0%;
   display: grid; /* Grid 컨테이너로 만듭니다. */
   grid-template-columns: repeat(
