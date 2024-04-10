@@ -17,7 +17,7 @@ export const fetchVotes = async (
     );
     if (response.status === 200) {
       const votesData = response.data;
-      console.log('투표데이터' + response.data);
+
       if (Array.isArray(votesData)) {
         const formattedVotes = votesData.map((vote) => ({
           id: vote.id,
@@ -39,6 +39,7 @@ export const fetchVotes = async (
               }))
             : [],
         }));
+        console.log('투표 데이터 확인:', formattedVotes); // 변환된 데이터 로그로 출력
         if (setVotes) setVotes(formattedVotes); // 상태 업데이트
         if (setSearchResults)
           setSearchResults(formattedVotes);
