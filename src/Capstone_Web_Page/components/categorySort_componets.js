@@ -106,11 +106,19 @@ export const getCategoryVotes = (
                   <h5>
                     {vote.createdBy}
                     <i
-                      style={{ color: 'blue' }}
+                      style={{
+                        color: 'blue',
+                        marginLeft: '10px',
+                      }}
                       className="fa-regular fa-thumbs-up"
                     ></i>
                     <span> {vote.likesCount} </span>
-                    <span> {hoursAgo}시간 전</span>
+                    <span className="vote_time">
+                      {' '}
+                      {isNaN(hoursAgo)
+                        ? ''
+                        : `${hoursAgo}시간 전`}{' '}
+                    </span>
                   </h5>
                 </div>
               );
