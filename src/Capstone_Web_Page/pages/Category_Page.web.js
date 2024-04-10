@@ -92,10 +92,8 @@ function CategoryPage() {
             }
           >
             <div>
-              <p>{vote.title}</p>{' '}
-              {/* JSON.parse 호출 제거 */}
-              <p>{vote.question}</p>{' '}
-              {/* JSON.parse 호출 제거 */}
+              <p>{JSON.parse(vote.title).title}</p>
+              <p>{JSON.parse(vote.question).question}</p>
             </div>
             <div>
               <span>{vote.likesCount}</span>
