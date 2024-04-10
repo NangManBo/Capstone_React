@@ -13,10 +13,11 @@ export const getManagerVotes = (
   const fillEmptyVotes = (votes, count) => {
     while (votes.length < count) {
       votes.push({
-        title: JSON.stringify({ title: '없음' }),
-        createdAt: JSON.stringify({ createdAt: '' }),
+        title: { title: '없음' }, // 객체로 직접 할당
+        createdBy: { createdBy: '없음' }, // 객체로 직접 할당
+        createdAt: { createdAt: '' }, // 객체로 직접 할당
         likesCount: 0,
-      }); // '없음'으로 채우기
+      });
     }
     return votes;
   };
@@ -57,8 +58,8 @@ export const getManagerVotes = (
           <div className="manager_category_sub_box_container">
             {topVotes.map((vote, index) => {
               const hoursAgo = calculateTimeDiff(
-                JSON.parse(vote.createdAt).createdAt
-              );
+                vote.createdAt.createdAt
+              ); // 직접 접근
               return (
                 <div
                   key={`${name}-${
@@ -80,12 +81,12 @@ export const getManagerVotes = (
                 >
                   <h4>{JSON.parse(vote.title).title}</h4>
                   <h5>
-                    {name}{' '}
+                    {vote.createdBy.createdBy}
                     <i
                       style={{ color: 'blue' }}
-                      class="fa-regular fa-thumbs-up"
+                      className="fa-regular fa-thumbs-up"
                     ></i>
-                    <span> {vote.likesCount}</span>
+                    <span> {vote.likesCount} </span>
                     <span> {hoursAgo}시간 전</span>
                   </h5>
                 </div>
