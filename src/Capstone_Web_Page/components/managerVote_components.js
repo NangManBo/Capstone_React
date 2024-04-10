@@ -81,12 +81,12 @@ export const getManagerVotes = (
                 >
                   <h4>{JSON.parse(vote.title).title}</h4>
                   <h5>
-                    {vote.createdBy.createdBy}
+                    {name}{' '}
                     <i
                       style={{ color: 'blue' }}
-                      className="fa-regular fa-thumbs-up"
+                      class="fa-regular fa-thumbs-up"
                     ></i>
-                    <span> {vote.likesCount} </span>
+                    <span> {vote.likesCount}</span>
                     <span> {hoursAgo}시간 전</span>
                   </h5>
                 </div>

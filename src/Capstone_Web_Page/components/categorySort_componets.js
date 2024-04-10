@@ -104,12 +104,18 @@ export const getCategoryVotes = (
                 >
                   <h4>{JSON.parse(vote.title).title}</h4>
                   <h5>
-                    {vote.createdBy.createdBy}
+                    {JSON.parse(vote.createdBy).createdBy}{' '}
                     <i
                       style={{ color: 'blue' }}
-                      className="fa-regular fa-thumbs-up"
+                      class="fa-regular fa-thumbs-up"
                     ></i>
-                    <span> {vote.likesCount} </span>
+                    <span>
+                      {' '}
+                      {
+                        JSON.parse(vote.likesCount)
+                          .likesCount
+                      }{' '}
+                    </span>
                     <span> {hoursAgo}시간 전</span>
                   </h5>
                 </div>
