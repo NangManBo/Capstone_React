@@ -63,62 +63,6 @@
   white-space: nowrap; /* 텍스트가 한 줄로 표시되도록 합니다 */
 }
 
-@media (max-width: 2800px) {
-  .category_sub_title_box {
-    margin-left: 5%; /* 좌측 여백을 조정합니다. */
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2%; /* 항목 사이의 간격을 조정합니다. */
-    width: 90%; /* 컨테이너 너비를 넓혀 더 많은 공간을 활용합니다. */
-    margin-bottom: 20px; /* 하단 여백을 조정합니다. */
-  }
-
-  .vote_time {
-    margin-left: 5px; /* 좌측 여백을 조정합니다. */
-  }
-
-  .category_title_box {
-    cursor: pointer;
-    width: 100%; /* 너비를 조정하여 부모 요소에 맞게 합니다. */
-  }
-
-  .category_title_box h3 {
-    font-size: 150%; /* 제목 크기를 더 크게 조정합니다. */
-    color: #333;
-    padding-left: 15px; /* 좌측 패딩을 조정합니다. */
-  }
-
-  .category_sub_box_container {
-    flex-direction: row;
-    width: 100%; /* 너비를 부모 요소의 100%로 설정합니다. */
-    height: 100vh; /* 높이를 뷰포트 높이에 맞춥니다. */
-  }
-
-  .category_sub_box {
-    flex-grow: 1;
-    height: auto; /* 높이를 auto로 설정하여 내용에 따라 조절되게 합니다. */
-    justify-content: space-between;
-    flex-basis: 0;
-    background-color: #fff;
-    padding: 20px; /* 패딩을 조정합니다. */
-    margin-bottom: 15px; /* 하단 여백을 조정합니다. */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25); /* 그림자를 조금 더 진하게 조정합니다. */
-  }
-
-  .category_sub_box:last-child {
-    margin-right: 0; /* 마지막 항목의 우측 마진을 제거합니다. */
-  }
-
-  .category_sub_box h4 {
-    font-size: 1em; /* 항목 제목의 크기를 조정합니다. */
-    color: #333;
-    margin: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-}
-
 /* 태블릿 화면 대응: 화면 너비가 768px 이하일 때 */
 /* @media (max-width: 768px) {
   .category_sub_title_box {
