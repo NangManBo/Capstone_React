@@ -21,30 +21,3 @@
 .alarm_box_in_title {
   text-align: center;
 }
-
-@media (max-width: 2800px) {
-  .alarm_box {
-    margin-left: 10%; /* 좌측 여백을 상대적 비율로 조정합니다. */
-    width: 80%; /* 전체 너비를 상대적 비율로 늘려 태블릿 화면을 더 잘 활용합니다. */
-  }
-
-  .alarm_box_title {
-    font-size: 28px; /* 태블릿에서의 가독성을 고려해 글자 크기를 약간 늘립니다. */
-  }
-
-  .alarm_box_in {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(218, 218, 218);
-    margin-top: 2%; /* 상단 여백을 조정합니다. */
-    width: 100%; /* 너비는 부모 요소에 맞춰 100%로 유지합니다. */
-    height: 50vh; /* 뷰포트 높이에 맞춰 높이를 조정하여 내용을 더 많이 보여줄 수 있도록 합니다. */
-  }
-
-  .alarm_box_in_title {
-    text-align: center; /* 텍스트 정렬은 중앙으로 유지합니다. */
-    font-size: 26px; /* 태블릿에서의 가독성을 고려해 글자 크기를 조정합니다. */
-  }
-}
