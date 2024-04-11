@@ -21,6 +21,31 @@
 
   margin-bottom: 20px;
 }
+@media (max-width: 2800px) {
+  .main_page {
+    /* 태블릿 가로 모드에 맞게 스타일을 조정합니다. */
+    margin-top: 200px; /* 상단 여백을 조정합니다. */
+    display: flex; /* 이미 flex를 사용 중이므로 필요에 따라 다른 속성을 조정합니다. */
+    flex-direction: column; /* 이미 column으로 설정되어 있으므로 이를 유지하거나 필요에 따라 변경합니다. */
+    justify-content: center; /* 중앙 정렬을 유지합니다. */
+    align-items: center; /* 왼쪽에서 중앙으로 변경하여 항목들을 중앙에 배치합니다. */
+    height: 150vh; /* 뷰포트 높이를 조정하여 내용이 더 많이 보이도록 합니다. */
+  }
+
+  .main_page_header {
+    /* 가로 모드에서 더 나은 레이아웃을 위해 너비를 조정합니다. */
+    width: 80%; /* 태블릿 화면에 맞게 너비를 조정합니다. */
+    margin-top: 100px; /* 상단 여백을 조정합니다. */
+    margin-left: 10%; /* 좌측 여백을 추가하여 가운데 정렬 효과를 줍니다. */
+    display: grid; /* 이미 grid를 사용 중이므로 이를 유지합니다. */
+    grid-template-columns: repeat(
+      3,
+      1fr
+    ); /* 세 컬럼 구조를 유지합니다. */
+    gap: 2%; /* 항목 사이의 간격을 조정합니다. */
+    margin-bottom: 20px; /* 하단 여백을 유지합니다. */
+  }
+}
 
 /* 태블릿 화면 대응: 화면 너비가 768px 이하일 때 */
 /* 2개의 컬럼으로 변경 */
