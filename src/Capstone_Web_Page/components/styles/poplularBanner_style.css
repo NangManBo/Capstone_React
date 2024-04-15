@@ -1,15 +1,53 @@
-/*인기 배너*/
+/* 인기 배너 */
 .popular_banner {
-  margin-top: 2.5%;
-  margin-bottom: 2.5%;
+  margin-bottom: 10px;
   width: 100%;
+  height: 350px;
   background-color: #004da9;
-  height: 25vh;
+  display: flex; /* Flex 컨테이너 설정 */
+  align-items: center; /* 세로 중앙 정렬 */
+  justify-content: space-evenly; /* 자식 요소들 사이에 공간 균등 분배 */
+  padding-left: 50px; /* 좌측 여백 */
+  padding-right: 100px; /* 우측 여백 */
 }
 
 .popular_banner_title {
   color: white;
-  font-size: 1.5rem;
-  margin-left: 10%;
-  margin-top: 5%;
+  font-size: 25px;
+  width: 250px; /* 너비는 상황에 따라 조절해 주세요 */
+}
+
+.popular_banner_content {
+  background-color: white;
+  width: 1300px; /* 너비는 상황에 따라 조절해 주세요 */
+  height: 300px; /* 높이는 상황에 따라 조절해 주세요 */
+  display: flex; /* Flex 컨테이너 설정 */
+  justify-content: center; /* 가로 중앙 정렬 */
+}
+
+.vote_item {
+  background-color: red; /* 배경색을 빨간색으로 설정합니다. */
+  width: 300px; /* 너비를 300px로 설정합니다. */
+  height: 300px; /* 높이를 300px로 설정하여 정사각형을 만듭니다. */
+  display: flex; /* Flexbox 레이아웃을 사용합니다. */
+  flex-direction: column; /* 항목들을 세로로 쌓습니다. */
+  justify-content: center; /* 내용을 중앙 정렬합니다. */
+  align-items: center; /* 가로축 기준으로도 중앙 정렬합니다. */
+  border-radius: 0; /* 모서리를 둥글게 하는 것을 제거합니다. */
+  cursor: pointer; /* 마우스를 올렸을 때 포인터로 표시합니다. */
+  margin: 10px; /* 주변 여백을 추가합니다. */
+  box-shadow: none; /* 그림자 효과를 제거합니다. */
+}
+
+/* 나머지 vote_item 내부의 h3, p 태그 스타일도 조정이 필요할 수 있습니다. */
+.vote_item h3 {
+  margin: 0; /* 여백을 제거합니다. */
+  color: white; /* 글자 색상을 흰색으로 설정합니다. */
+  font-size: 1.2em; /* 글자 크기를 조정합니다. */
+}
+
+.vote_item p {
+  margin: 0; /* 여백을 제거합니다. */
+  color: white; /* 글자 색상을 흰색으로 설정합니다. */
+  font-size: 1em; /* 글자 크기를 조정합니다. */
 }

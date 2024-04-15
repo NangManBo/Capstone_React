@@ -147,7 +147,14 @@ function MainPage() {
             )}
           </div>
         )}
-        <PopularVoteBanner />
+        {PopularVoteBanner(
+          votes,
+          nickname,
+          jwtToken,
+          isLoggedIn,
+          userId,
+          navigate
+        )}
         <div>
           <div>
             <div className="category_sub_title_box">

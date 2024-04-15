@@ -35,7 +35,14 @@ export const getCategoryVotes = (
       (now.getTime() - voteDate.getTime()) /
         (1000 * 60 * 60)
     );
-    return diffInHours;
+    const days = Math.floor(diffInHours / 24);
+    const hours = diffInHours % 24;
+
+    if (days > 0) {
+      return `${days}일 ${hours}시간 전`;
+    } else {
+      return `${hours}시간 전`;
+    }
   };
   return categories.map((category) => {
     const matchingVotes = votes.filter(
@@ -117,7 +124,7 @@ export const getCategoryVotes = (
                       {' '}
                       {isNaN(hoursAgo)
                         ? ''
-                        : `${hoursAgo}시간 전`}{' '}
+                        : `${hoursAgo}`}{' '}
                     </span>
                   </h5>
                 </div>
