@@ -5,11 +5,11 @@ import { renderPostPress } from '../functions/renderPostPress_function';
 const fillEmptyVotes = (votes, count) => {
   while (votes.length < count) {
     votes.push({
-      title: '없음',
+      title: '제목',
       createdBy: '없음',
       createdAt: '',
       likesCount: 0,
-      category: '없음',
+      category: '카테고리',
     });
   }
   return votes;
@@ -51,7 +51,7 @@ export const PopularVoteBanner = (
             key={index}
             className="vote_item"
             onClick={() =>
-              vote.title !== '없음' &&
+              vote.title !== '제목' &&
               renderPostPress(
                 vote,
                 navigate,
@@ -69,14 +69,21 @@ export const PopularVoteBanner = (
                   {vote.title}
                 </h3>
                 <p className="vote_detail_item_category">
-                  {vote.category !== '없음'
+                  {vote.category !== '카테고리'
                     ? vote.category
-                    : ''}
+                    : '카테고리'}
                 </p>
               </div>
               <div className="vote_detail_item_like">
                 <h3 className="vote_detail_item_like_text">
-                  좋아요 {vote.likesCount}
+                  <i
+                    style={{
+                      color: 'black',
+                      marginLeft: '10px',
+                    }}
+                    className="fa-regular fa-thumbs-up"
+                  ></i>{' '}
+                  {vote.likesCount}
                 </h3>
               </div>
             </div>
