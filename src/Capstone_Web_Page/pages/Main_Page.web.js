@@ -9,6 +9,7 @@ import { AlarmBox } from '../components/alarmBox_components';
 import { UserBox } from '../components/userBox_componet';
 import { PopularVoteBanner } from '../components/popularVoteBanner_components';
 import { getManagerVotes } from '../components/managerVote_components';
+
 function MainPage() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -147,14 +148,7 @@ function MainPage() {
             )}
           </div>
         )}
-        {PopularVoteBanner(
-          votes,
-          nickname,
-          jwtToken,
-          isLoggedIn,
-          userId,
-          navigate
-        )}
+        {PopularVoteBanner()}
         <div>
           <div>
             <div className="category_sub_title_box">

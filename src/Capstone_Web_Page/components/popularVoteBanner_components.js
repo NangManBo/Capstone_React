@@ -63,13 +63,23 @@ export const PopularVoteBanner = (
               )
             }
           >
-            <h3>{vote.title}</h3>
-            <p>
-              {vote.category !== '없음'
-                ? vote.category
-                : ''}
-            </p>
-            <p>좋아요: {vote.likesCount}</p>
+            <div className="vote_detail_item">
+              <div className="vote_detial_item_2">
+                <h3 className="vote_detail_item_title">
+                  {vote.title}
+                </h3>
+                <p className="vote_detail_item_category">
+                  {vote.category !== '없음'
+                    ? vote.category
+                    : ''}
+                </p>
+              </div>
+              <div className="vote_detail_item_like">
+                <h3 className="vote_detail_item_like_text">
+                  좋아요 {vote.likesCount}
+                </h3>
+              </div>
+            </div>
           </div>
         ))}
       </div>
