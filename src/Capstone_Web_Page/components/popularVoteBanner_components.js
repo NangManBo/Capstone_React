@@ -39,10 +39,6 @@ export const PopularVoteBanner = (
     sortedVotes.slice(0, 3),
     3
   );
-  // JSON 문자열을 파싱하여 객체로 변환합니다.
-  const titleObject = JSON.parse(vote.title);
-  // 이제 'title' 속성을 사용할 수 있습니다.
-  const titleText = titleObject.title;
 
   return (
     <div className="popular_banner">
@@ -50,49 +46,55 @@ export const PopularVoteBanner = (
         요즘 핫한 게시글은?
       </div>
       <div className="popular_banner_content">
-        {topThreeVotes.map((vote, index) => (
-          <div
-            key={index}
-            className="vote_item"
-            onClick={() =>
-              vote.title !== '제목' &&
-              renderPostPress(
-                vote,
-                navigate,
-                isLoggedIn,
-                userId,
-                jwtToken,
-                nickname,
-                false
-              )
-            }
-          >
-            <div className="vote_detail_item">
-              <div className="vote_detial_item_2">
-                <h3 className="vote_detail_item_title">
-                  <h4>{titleText}</h4>
-                </h3>
-                <p className="vote_detail_item_category">
-                  {vote.category !== '카테고리'
-                    ? vote.category
-                    : '카테고리'}
-                </p>
-              </div>
-              <div className="vote_detail_item_like">
-                <h3 className="vote_detail_item_like_text">
-                  <i
-                    style={{
-                      color: 'black',
-                      marginLeft: '10px',
-                    }}
-                    className="fa-regular fa-thumbs-up"
-                  ></i>{' '}
-                  {vote.likesCount}
-                </h3>
+        {topThreeVotes.map((vote, index) => {
+          // JSON 문자열을 파싱하여 객체로 변환합니다.
+          const titleObject = JSON.parse(vote.title);
+          // 이제 'title' 속성을 사용할 수 있습니다.
+          const titleText = titleObject.title;
+          return (
+            <div
+              key={index}
+              className="vote_item"
+              onClick={() =>
+                vote.title !== '제목' &&
+                renderPostPress(
+                  vote,
+                  navigate,
+                  isLoggedIn,
+                  userId,
+                  jwtToken,
+                  nickname,
+                  false
+                )
+              }
+            >
+              <div className="vote_detail_item">
+                <div className="vote_detial_item_2">
+                  <h3 className="vote_detail_item_title">
+                    <h4>{titleText}</h4>
+                  </h3>
+                  <p className="vote_detail_item_category">
+                    {vote.category !== '카테고리'
+                      ? vote.category
+                      : '카테고리'}
+                  </p>
+                </div>
+                <div className="vote_detail_item_like">
+                  <h3 className="vote_detail_item_like_text">
+                    <i
+                      style={{
+                        color: 'black',
+                        marginLeft: '10px',
+                      }}
+                      className="fa-regular fa-thumbs-up"
+                    ></i>{' '}
+                    {vote.likesCount}
+                  </h3>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );

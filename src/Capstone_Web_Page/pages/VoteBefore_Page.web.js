@@ -135,6 +135,14 @@ function VoteBeforePage() {
     });
   };
 
+  // JSON 문자열을 파싱하여 객체로 변환합니다.
+  const titleObject = JSON.parse(vote.title);
+  const titleText = titleObject.title;
+
+  // JSON 문자열을 파싱하여 객체로 변환합니다.
+  const questionObject = JSON.parse(vote.question);
+  const questionText = questionObject.question;
+
   return (
     <div>
       <div>
@@ -147,10 +155,10 @@ function VoteBeforePage() {
         </button>
       </div>
       <div>
-        <h1>{vote && vote.title}</h1>
+        <h1>{titleText}</h1>
         <p>투표 기간 설정: {vote.createdAt}</p>
         <p>주최자 : {vote.createdBy}</p>
-        <p>{vote && vote.question}</p>
+        <p>{questionText}</p>
         {vote?.mediaUrl &&
           (vote.mediaUrl.endsWith('.mp4') ? (
             <video
