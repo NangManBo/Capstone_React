@@ -5,7 +5,7 @@ import { renderPostPress } from '../functions/renderPostPress_function';
 const fillEmptyVotes = (votes, count) => {
   while (votes.length < count) {
     votes.push({
-      title: '제목',
+      title: JSON.stringify({ title: '제목' }),
       createdBy: '없음',
       createdAt: '',
       likesCount: 0,
@@ -39,6 +39,10 @@ export const PopularVoteBanner = (
     sortedVotes.slice(0, 3),
     3
   );
+  // JSON 문자열을 파싱하여 객체로 변환합니다.
+  const titleObject = JSON.parse(vote.title);
+  // 이제 'title' 속성을 사용할 수 있습니다.
+  const titleText = titleObject.title;
 
   return (
     <div className="popular_banner">
@@ -66,7 +70,7 @@ export const PopularVoteBanner = (
             <div className="vote_detail_item">
               <div className="vote_detial_item_2">
                 <h3 className="vote_detail_item_title">
-                  <h4>{vote.title}</h4>
+                  <h4>{titleText}</h4>
                 </h3>
                 <p className="vote_detail_item_category">
                   {vote.category !== '카테고리'

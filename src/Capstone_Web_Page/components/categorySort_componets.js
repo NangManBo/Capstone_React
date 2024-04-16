@@ -20,7 +20,7 @@ export const getCategoryVotes = (
   const fillEmptyVotes = (votes, count) => {
     while (votes.length < count) {
       votes.push({
-        title: '제목',
+        title: JSON.stringify({ title: '제목' }), // JSON 문자열로 객체를 생성합니다.
         createdBy: '없음', // 객체로 직접 할당
         createdAt: '', // 객체로 직접 할당
         likesCount: 0,
@@ -87,6 +87,10 @@ export const getCategoryVotes = (
           </div>
           <div className="category_sub_box_container">
             {topVotes.map((vote, index) => {
+              // JSON 문자열을 파싱하여 객체로 변환합니다.
+              const titleObject = JSON.parse(vote.title);
+              // 이제 'title' 속성을 사용할 수 있습니다.
+              const titleText = titleObject.title;
               const hoursAgo = calculateTimeDiff(
                 vote.createdAt
               ); // 직접 접근
@@ -109,7 +113,7 @@ export const getCategoryVotes = (
                     )
                   }
                 >
-                  <h4>{vote.title}</h4>
+                  <h4>{titleText}</h4>
                   <h5>
                     {vote.createdBy}
                     <i
