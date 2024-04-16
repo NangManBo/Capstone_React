@@ -46,6 +46,16 @@ export const UserBox = (
       },
     });
   };
+  const goToMain = () => {
+    navigate('/', {
+      state: {
+        isLoggedIn: false,
+        userId: userId, // 예시 값, 실제 응답에 맞게 조정 필요
+        jwtToken: jwtToken, // 예시 값, 실제 응답에 맞게 조정 필요
+        nickname: nickname, // 예시 값, 실제 응답에 맞게 조정 필요
+      },
+    });
+  };
   return (
     <div>
       {isLoggedIn ? (
@@ -53,6 +63,7 @@ export const UserBox = (
           <button onClick={goToProfile}>프로필</button>
           <button onClick={goToDMPage}>DM 페이지로</button>
           <button onClick={goToVoteMake}>투표 생성</button>
+          <button onClick={goToMain}>로그아웃</button>
         </div>
       ) : (
         <div className="user_box">

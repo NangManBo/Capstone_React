@@ -318,21 +318,31 @@ function VoteCreatedUserPage() {
         뒤로가기
       </button>
       <div>
-        <h1>{vote && vote.title}</h1>
+        <h1>{vote && vote.title.title}</h1>
         <p>투표 기간 설정: {vote && vote.createdAt}</p>
         <p>주최자 : {vote && vote.createdBy}</p>
-        <p>{vote && vote.question}</p>
+        <p>{vote && vote.question.question}</p>
 
-        {vote && vote.mediaUrl && (
-          <img
-            src={vote.mediaUrl}
-            alt="Media"
-            style={{
-              width: '400px',
-              height: '400px',
-            }}
-          />
-        )}
+        {vote?.mediaUrl &&
+          (vote.mediaUrl.endsWith('.mp4') ? (
+            <video
+              src={vote.mediaUrl}
+              controls
+              style={{
+                width: '400px',
+                height: '400px',
+              }}
+            />
+          ) : (
+            <img
+              src={vote.mediaUrl}
+              alt="Media"
+              style={{
+                width: '400px',
+                height: '400px',
+              }}
+            />
+          ))}
         {pollOptions.map((option) => (
           <p key={option.id}>{option.text}</p>
         ))}
