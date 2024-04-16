@@ -48,7 +48,7 @@ export const UserBox = (
   };
   return (
     <div>
-      {isLoggedIn == true ? (
+      {isLoggedIn ? (
         <div className="user_box">
           <button onClick={goToProfile}>프로필</button>
           <button onClick={goToDMPage}>DM 페이지로</button>
