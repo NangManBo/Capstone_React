@@ -26,13 +26,25 @@ function VoteOnlyLookPage() {
     }
   }, [vote]);
 
-  const handleVoteOption = (optionId) => {
-    const updatedOptions = pollOptions.map((option) => ({
-      ...option,
-      isSelected: option.id === optionId,
-    }));
-    setPollOptions(updatedOptions);
+  // 함수를 이용하여 제목을 추출
+  const getTitle = (title) => {
+    // 객체인 경우 title 속성 사용, 그렇지 않으면 직접 title 반환
+    return typeof title === 'object' ? title.title : title;
   };
+
+  const getQuestion = (question) => {
+    // 객체인 경우 question 속성 사용, 그렇지 않으면 직접 question 반환
+    return typeof question === 'object'
+      ? question.question
+      : question;
+  };
+  // const handleVoteOption = (optionId) => {
+  //   const updatedOptions = pollOptions.map((option) => ({
+  //     ...option,
+  //     isSelected: option.id === optionId,
+  //   }));
+  //   setPollOptions(updatedOptions);
+  // };
 
   const goToMain = () => {
     navigate('/');
@@ -59,10 +71,10 @@ function VoteOnlyLookPage() {
         <span>뒤로가기</span>
       </button>
       <div>
-        <h1>{vote && vote.title}</h1>
+        <h1>{vote && getTitle(vote.title)}</h1>
         <p>투표 기간 설정: {vote && vote.createdAt}</p>
         <p>주최자 : {vote && vote.createdBy}</p>
-        <p>{vote && vote.question}</p>
+        <p>{vote && getQuestion(vote.question)}</p>
 
         {vote?.mediaUrl &&
           (vote.mediaUrl.endsWith('.mp4') ? (
