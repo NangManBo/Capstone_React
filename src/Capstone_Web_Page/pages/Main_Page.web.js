@@ -110,7 +110,7 @@ function MainPage() {
         nickname={nickname}
       />
       <div className="main_page">
-        {isLoggedIn ? (
+        {isLoggedIn == true ? (
           <div className="main_page_header">
             <UserBox
               isLoggedIn={isLoggedIn}
