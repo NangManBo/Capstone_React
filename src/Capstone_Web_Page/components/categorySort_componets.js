@@ -109,7 +109,7 @@ export const getCategoryVotes = (
                     )
                   }
                 >
-                  <h4> {JSON.parse(vote.title)}</h4>
+                  <h4>{vote.title}</h4>
                   <h5>
                     {vote.createdBy}
                     <i
