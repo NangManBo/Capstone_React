@@ -38,12 +38,18 @@
   align-items: center; /* 가로축 기준으로도 중앙 정렬합니다. */
   border-radius: 15px; /* 모서리를 둥글게 하는 것을 제거합니다. */
   cursor: pointer; /* 마우스를 올렸을 때 포인터로 표시합니다. */
+  transition: transform 0.3s ease; /* 마우스를 올렸을 때 애니메이션 효과를 줍니다 */
   margin-top: 5px;
   margin-bottom: 10px;
   margin-left: 30px;
   margin-right: 30px;
 }
 
+.vote_item:hover {
+  transform: translateY(
+    -5px
+  ); /* 마우스를 올렸을 때 항목을 위로 조금 움직입니다 */
+}
 .vote_detail_item {
   margin-top: 150px;
   background-color: gray;

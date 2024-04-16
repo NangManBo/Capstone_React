@@ -42,6 +42,7 @@
   margin-bottom: 10px; /* 우측 마진을 추가하여 항목 사이의 간격을 조정합니다 */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 그림자를 추가하여 입체감을 줍니다 */
   transition: transform 0.3s ease; /* 마우스를 올렸을 때 애니메이션 효과를 줍니다 */
+  cursor: pointer;
 }
 
 .category_sub_box:last-child {
