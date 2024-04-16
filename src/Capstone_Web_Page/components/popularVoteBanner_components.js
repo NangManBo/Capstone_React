@@ -66,13 +66,7 @@ export const PopularVoteBanner = (
             <div className="vote_detail_item">
               <div className="vote_detial_item_2">
                 <h3 className="vote_detail_item_title">
-                  {
-                    (vote.title = '제목' ? (
-                      <h4>{vote.title}</h4>
-                    ) : (
-                      <h4>{JSON.parse(vote.title)}</h4>
-                    ))
-                  }
+                  <h4>{vote.title}</h4>
                 </h3>
                 <p className="vote_detail_item_category">
                   {vote.category !== '카테고리'

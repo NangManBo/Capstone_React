@@ -109,13 +109,7 @@ export const getCategoryVotes = (
                     )
                   }
                 >
-                  {
-                    (vote.title = '제목' ? (
-                      <h4>{vote.title}</h4>
-                    ) : (
-                      <h4>{JSON.parse(vote.title)}</h4>
-                    ))
-                  }
+                  <h4>{vote.title}</h4>
                   <h5>
                     {vote.createdBy}
                     <i
