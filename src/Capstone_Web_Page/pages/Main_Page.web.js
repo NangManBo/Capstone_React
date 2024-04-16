@@ -26,6 +26,7 @@ function MainPage() {
 
   // 쪽지 데이터 받기
   const fetchData = async () => {
+    console.log('로그인 상태 : ' + isLoggedIn);
     try {
       const response = await axios.get(
         'https://dovote.p-e.kr/message/read/all/' +
