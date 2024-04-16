@@ -95,7 +95,7 @@ function MainPage() {
   // 투표 데이터를 받아오는 함수
   useEffect(() => {
     fetchVotes(setVotes, jwtToken);
-    console.log('로그인 상태 : ' + isLoggedIn);
+
     if (isLoggedIn) {
       fetchData();
       fetchwebsocket();
@@ -111,43 +111,18 @@ function MainPage() {
         nickname={nickname}
       />
       <div className="main_page">
-        {isLoggedIn ? (
-          <div className="main_page_header">
-            <UserBox
-              isLoggedIn={isLoggedIn}
-              userId={userId}
-              jwtToken={jwtToken}
-              nickname={nickname}
-            ></UserBox>
-            <AlarmBox isLoggedIn={isLoggedIn} />
-            {getManagerVotes(
-              votes,
-              nickname,
-              jwtToken,
-              isLoggedIn,
-              userId,
-              navigate
-            )}
-          </div>
-        ) : (
-          <div className="main_page_header">
-            <UserBox
-              isLoggedIn={isLoggedIn}
-              userId={userId}
-              jwtToken={jwtToken}
-              nickname={nickname}
-            ></UserBox>
-            <AlarmBox isLoggedIn={isLoggedIn} />
-            {getManagerVotes(
-              votes,
-              nickname,
-              jwtToken,
-              isLoggedIn,
-              userId,
-              navigate
-            )}
-          </div>
-        )}
+        <div className="main_page_header">
+          {UserBox(isLoggedIn, userId, jwtToken, nickname)}
+          {AlarmBox(isLoggedIn)}
+          {getManagerVotes(
+            votes,
+            nickname,
+            jwtToken,
+            isLoggedIn,
+            userId,
+            navigate
+          )}
+        </div>
         {PopularVoteBanner(
           votes,
           nickname,
