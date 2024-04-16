@@ -66,13 +66,26 @@ function VoteOnlyLookPage() {
         <p>
           사진 url : <span>{vote.mediaUrl}</span>
         </p>
-        {vote && vote.mediaUrl && (
-          <img
-            src={vote.mediaUrl}
-            alt="Media"
-            style={{ width: '400px', height: '400px' }}
-          />
-        )}
+        {vote?.mediaUrl &&
+          (vote.mediaUrl.endsWith('.mp4') ? (
+            <video
+              src={vote.mediaUrl}
+              controls
+              style={{
+                width: '400px',
+                height: '400px',
+              }}
+            />
+          ) : (
+            <img
+              src={vote.mediaUrl}
+              alt="Media"
+              style={{
+                width: '400px',
+                height: '400px',
+              }}
+            />
+          ))}
         {pollOptions.map((option) => (
           <div key={option.id}>
             <span>{option.text}</span>

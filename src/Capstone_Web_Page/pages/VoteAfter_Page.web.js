@@ -589,16 +589,26 @@ function VoteAfterPage() {
         <p>투표 기간 설정: {vote.createdAt}</p>
         <p>주최자: {vote.createdBy}</p>
         <p>{vote && vote.question}</p>
-        {vote.mediaUrl && (
-          <img
-            src={vote.mediaUrl}
-            alt="Vote"
-            style={{
-              width: '400px',
-              height: '400px',
-            }}
-          />
-        )}
+        {vote?.mediaUrl &&
+          (vote.mediaUrl.endsWith('.mp4') ? (
+            <video
+              src={vote.mediaUrl}
+              controls
+              style={{
+                width: '400px',
+                height: '400px',
+              }}
+            />
+          ) : (
+            <img
+              src={vote.mediaUrl}
+              alt="Media"
+              style={{
+                width: '400px',
+                height: '400px',
+              }}
+            />
+          ))}
         {/* Choices */}
         {vote.choice.map((choice, index) => (
           <div
