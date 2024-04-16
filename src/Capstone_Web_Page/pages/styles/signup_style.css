@@ -1,5 +1,5 @@
-.Page > .signup-form {
-  top: 25%;
+.signup-form {
+  top: 100px;
   position: fixed;
   display: flex;
   flex-direction: column;
