@@ -20,7 +20,7 @@ export const getCategoryVotes = (
   const fillEmptyVotes = (votes, count) => {
     while (votes.length < count) {
       votes.push({
-        title: '없음',
+        title: '제목',
         createdBy: '없음', // 객체로 직접 할당
         createdAt: '', // 객체로 직접 할당
         likesCount: 0,
@@ -109,7 +109,13 @@ export const getCategoryVotes = (
                     )
                   }
                 >
-                  <h4>{vote.title}</h4>
+                  {
+                    (vote.title = '제목' ? (
+                      <h4>{vote.title}</h4>
+                    ) : (
+                      <h4>{JSON.parse(vote.title)}</h4>
+                    ))
+                  }
                   <h5>
                     {vote.createdBy}
                     <i
