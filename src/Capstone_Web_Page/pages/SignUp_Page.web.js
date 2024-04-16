@@ -88,6 +88,11 @@ function SignUpPage() {
       setNickname('');
       setIsButtonDisabled(false); // Re-enable the button
       return;
+    } else if (nickname === 'guest') {
+      alert('오류', '닉네임에 적합하지 않은 이름입니다.');
+      setNickname('');
+      setIsButtonDisabled(false); // Re-enable the button
+      return;
     } else if (nickname.length > 7) {
       alert(
         '오류',
