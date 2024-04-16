@@ -318,10 +318,10 @@ function VoteCreatedUserPage() {
         뒤로가기
       </button>
       <div>
-        <h1>{vote && vote.title.title}</h1>
-        <p>투표 기간 설정: {vote && vote.createdAt}</p>
-        <p>주최자 : {vote && vote.createdBy}</p>
-        <p>{vote && vote.question.question}</p>
+        <h1>{vote.title}</h1>
+        <p>투표 기간 설정: {vote.createdAt}</p>
+        <p>주최자 : {vote.createdBy}</p>
+        <p>{vote.question}</p>
 
         {vote?.mediaUrl &&
           (vote.mediaUrl.endsWith('.mp4') ? (
