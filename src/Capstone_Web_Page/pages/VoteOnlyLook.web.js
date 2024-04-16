@@ -63,9 +63,7 @@ function VoteOnlyLookPage() {
         <p>투표 기간 설정: {vote && vote.createdAt}</p>
         <p>주최자 : {vote && vote.createdBy}</p>
         <p>{vote && vote.question}</p>
-        <p>
-          사진 url : <span>{vote.mediaUrl}</span>
-        </p>
+
         {vote?.mediaUrl &&
           (vote.mediaUrl.endsWith('.mp4') ? (
             <video
