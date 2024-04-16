@@ -26,7 +26,6 @@ function MainPage() {
 
   // 쪽지 데이터 받기
   const fetchData = async () => {
-    console.log('로그인 상태 : ' + isLoggedIn);
     try {
       const response = await axios.get(
         'https://dovote.p-e.kr/message/read/all/' +
@@ -96,6 +95,7 @@ function MainPage() {
   // 투표 데이터를 받아오는 함수
   useEffect(() => {
     fetchVotes(setVotes, jwtToken);
+    console.log('로그인 상태 : ' + isLoggedIn);
     if (isLoggedIn) {
       fetchData();
       fetchwebsocket();
