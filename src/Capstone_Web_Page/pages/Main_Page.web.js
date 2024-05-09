@@ -112,31 +112,31 @@ function MainPage() {
       />
       <div className="main_page">
         <div className="main_page_header">
-          <UserBox
+          {/* <UserBox
             isLoggedIn={isLoggedIn}
             userId={userId}
             jwtToken={jwtToken}
             nickname={nickname}
-          />
-          {/* {UserBox(isLoggedIn, userId, jwtToken, nickname)} */}
-          <AlarmBox isLoggedIn={isLoggedIn} />
-          {/* {AlarmBox(isLoggedIn)} */}
-          <GetManagerVotes
+          /> */}
+          {UserBox(isLoggedIn, userId, jwtToken, nickname)}
+          {/* <AlarmBox isLoggedIn={isLoggedIn} /> */}
+          {AlarmBox(isLoggedIn)}
+          {/* <GetManagerVotes
             votes={votes}
             isLoggedIn={isLoggedIn}
             userId={userId}
             jwtToken={jwtToken}
             nickname={nickname}
             navigate={navigate}
-          />
-          {/* {GetManagerVotes(
+          /> */}
+          {GetManagerVotes(
             votes,
             nickname,
             jwtToken,
             isLoggedIn,
             userId,
             navigate
-          )} */}
+          )}
         </div>
         <PopularVoteBanner
           votes={votes}
@@ -146,14 +146,14 @@ function MainPage() {
           userId={userId}
           navigate={navigate}
         />
-        {/* {PopularVoteBanner(
+        {PopularVoteBanner(
           votes,
           nickname,
           jwtToken,
           isLoggedIn,
           userId,
           navigate
-        )} */}
+        )}
         <div>
           <div>
             <div className="category_sub_title_box">

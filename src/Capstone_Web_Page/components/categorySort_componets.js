@@ -12,14 +12,6 @@ export const GetCategoryVotes = (
   // data 객체 내부의 votes 배열을 가져옴
   let votes = Array.isArray(data.votes) ? data.votes : [];
 
-  if (!Array.isArray(votes)) {
-    console.error(
-      "Expected an array for 'votes', but got:",
-      votes
-    );
-    votes = [];
-  }
-
   const categories = [
     '시사',
     '정치',
