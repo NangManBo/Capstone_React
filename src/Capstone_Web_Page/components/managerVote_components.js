@@ -10,6 +10,14 @@ export const GetManagerVotes = (
   navigate
 ) => {
   const managers = ['운영자'];
+  // votes가 배열이 아닌 경우 빈 배열로 대체
+  if (!Array.isArray(votes)) {
+    console.error(
+      "Expected an array for 'votes', but got:",
+      votes
+    );
+    votes = [];
+  }
 
   const fillEmptyVotes = (votes, count) => {
     while (votes.length < count) {

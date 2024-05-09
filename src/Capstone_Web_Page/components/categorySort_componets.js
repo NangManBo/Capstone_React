@@ -9,6 +9,15 @@ export const GetCategoryVotes = (
   userId,
   navigate
 ) => {
+  // votes가 배열이 아닌 경우 빈 배열로 대체
+  if (!Array.isArray(votes)) {
+    console.error(
+      "Expected an array for 'votes', but got:",
+      votes
+    );
+    votes = [];
+  }
+
   const categories = [
     '시사',
     '정치',
