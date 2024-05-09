@@ -2,14 +2,16 @@ import { renderPostPress } from '../functions/renderPostPress_function';
 import './styles/category_style.css';
 // 카테고리별로 투표를 필터링하고 정렬하는 함수
 export const GetCategoryVotes = (
-  votes,
+  data,
   nickname,
   jwtToken,
   isLoggedIn,
   userId,
   navigate
 ) => {
-  // votes가 배열이 아닌 경우 빈 배열로 대체
+  // data 객체 내부의 votes 배열을 가져옴
+  let votes = Array.isArray(data.votes) ? data.votes : [];
+
   if (!Array.isArray(votes)) {
     console.error(
       "Expected an array for 'votes', but got:",
@@ -26,17 +28,19 @@ export const GetCategoryVotes = (
     '음식',
     '반려동물',
   ];
+
   const fillEmptyVotes = (votes, count) => {
     while (votes.length < count) {
       votes.push({
-        title: JSON.stringify({ title: '제목' }), // JSON 문자열로 객체를 생성합니다.
-        createdBy: '없음', // 객체로 직접 할당
-        createdAt: '', // 객체로 직접 할당
+        title: JSON.stringify({ title: '제목' }),
+        createdBy: '없음',
+        createdAt: '',
         likesCount: 0,
       });
     }
     return votes;
   };
+
   const calculateTimeDiff = (createdAt) => {
     const voteDate = new Date(createdAt);
     const now = new Date();
@@ -53,6 +57,7 @@ export const GetCategoryVotes = (
       return `${hours}시간 전`;
     }
   };
+
   return categories.map((category) => {
     const matchingVotes = votes.filter(
       (vote) => vote.category === category
@@ -81,7 +86,6 @@ export const GetCategoryVotes = (
       });
     };
 
-    // 수정된 부분: 각 카테고리 컨테이너에 flex 스타일 적용
     return (
       <div className="category_sub_title_box">
         <div>
@@ -91,18 +95,17 @@ export const GetCategoryVotes = (
           >
             <h3>
               {category} 게시판{' '}
-              <i class="fa-solid fa-chevron-right"></i>
+              <i className="fa-solid fa-chevron-right"></i>
             </h3>
           </div>
           <div className="category_sub_box_container">
             {topVotes.map((vote, index) => {
-              // JSON 문자열을 파싱하여 객체로 변환합니다.
               const titleObject = JSON.parse(vote.title);
-              // 이제 'title' 속성을 사용할 수 있습니다.
               const titleText = titleObject.title;
               const hoursAgo = calculateTimeDiff(
                 vote.createdAt
-              ); // 직접 접근
+              );
+
               return (
                 <div
                   key={`${category}-${
@@ -134,10 +137,9 @@ export const GetCategoryVotes = (
                     ></i>
                     <span> {vote.likesCount} </span>
                     <span className="vote_time">
-                      {' '}
                       {isNaN(hoursAgo)
                         ? ''
-                        : `${hoursAgo}`}{' '}
+                        : `${hoursAgo}시간 전`}
                     </span>
                   </h5>
                 </div>
