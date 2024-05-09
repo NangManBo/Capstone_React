@@ -138,14 +138,14 @@ function MainPage() {
             navigate
           )}
         </div>
-        <PopularVoteBanner
+        {/* <PopularVoteBanner
           votes={votes}
           nickname={nickname}
           jwtToken={jwtToken}
           isLoggedIn={isLoggedIn}
           userId={userId}
           navigate={navigate}
-        />
+        /> */}
         {PopularVoteBanner(
           votes,
           nickname,
@@ -157,22 +157,22 @@ function MainPage() {
         <div>
           <div>
             <div className="category_sub_title_box">
-              <GetCategoryVotes
+              {/* <GetCategoryVotes
                 votes={votes}
                 nickname={nickname}
                 jwtToken={jwtToken}
                 isLoggedIn={isLoggedIn}
                 userId={userId}
                 navigate={navigate}
-              />
-              {/* {GetCategoryVotes(
+              /> */}
+              {GetCategoryVotes(
                 votes,
                 nickname,
                 jwtToken,
                 isLoggedIn,
                 userId,
                 navigate
-              )} */}
+              )}
             </div>
           </div>
         </div>
