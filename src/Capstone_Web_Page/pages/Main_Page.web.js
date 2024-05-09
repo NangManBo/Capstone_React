@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { fetchVotes } from '../functions/fetchVote_function';
-import { getCategoryVotes } from '../components/categorySort_componets';
+import { GetCategoryVotes } from '../components/categorySort_componets';
 import { MainBanner } from '../components/mainBanner_components';
 import axios from 'axios';
 import './styles/main_style.css';
 import { AlarmBox } from '../components/alarmBox_components';
 import { UserBox } from '../components/userBox_componet';
 import { PopularVoteBanner } from '../components/popularVoteBanner_components';
-import { getManagerVotes } from '../components/managerVote_components';
+import { GetManagerVotes } from '../components/managerVote_components';
 function MainPage() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -112,36 +112,67 @@ function MainPage() {
       />
       <div className="main_page">
         <div className="main_page_header">
-          {UserBox(isLoggedIn, userId, jwtToken, nickname)}
-          {AlarmBox(isLoggedIn)}
-          {getManagerVotes(
+          <UserBox
+            isLoggedIn={isLoggedIn}
+            userId={userId}
+            jwtToken={jwtToken}
+            nickname={nickname}
+          />
+          {/* {UserBox(isLoggedIn, userId, jwtToken, nickname)} */}
+          <AlarmBox isLoggedIn={isLoggedIn} />
+          {/* {AlarmBox(isLoggedIn)} */}
+          <GetManagerVotes
+            votes={votes}
+            isLoggedIn={isLoggedIn}
+            userId={userId}
+            jwtToken={jwtToken}
+            nickname={nickname}
+            navigate={navigate}
+          />
+          {/* {GetManagerVotes(
             votes,
             nickname,
             jwtToken,
             isLoggedIn,
             userId,
             navigate
-          )}
+          )} */}
         </div>
-        {PopularVoteBanner(
+        <PopularVoteBanner
+          votes={votes}
+          nickname={nickname}
+          jwtToken={jwtToken}
+          isLoggedIn={isLoggedIn}
+          userId={userId}
+          navigate={navigate}
+        />
+        {/* {PopularVoteBanner(
           votes,
           nickname,
           jwtToken,
           isLoggedIn,
           userId,
           navigate
-        )}
+        )} */}
         <div>
           <div>
             <div className="category_sub_title_box">
-              {getCategoryVotes(
+              <GetManagerVotes
+                votes={votes}
+                nickname={nickname}
+                jwtToken={jwtToken}
+                isLoggedIn={isLoggedIn}
+                userId={userId}
+                navigate={navigate}
+              />
+              {/* {GetCategoryVotes(
                 votes,
                 nickname,
                 jwtToken,
                 isLoggedIn,
                 userId,
                 navigate
-              )}
+              )} */}
             </div>
           </div>
         </div>

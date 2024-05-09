@@ -594,10 +594,10 @@ function VoteAfterPage() {
       </div>
       <div>
         {/* Content */}
-        <h1>{titleText}</h1>
+        <h1>{vote.title}</h1>
         <p>투표 기간 설정: {vote.createdAt}</p>
         <p>주최자: {vote.createdBy}</p>
-        <p>{questionText}</p>
+        <p>{vote.question}</p>
         {vote?.mediaUrl &&
           (vote.mediaUrl.endsWith('.mp4') ? (
             <video
