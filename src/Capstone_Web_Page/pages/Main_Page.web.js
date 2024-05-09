@@ -157,7 +157,7 @@ function MainPage() {
         <div>
           <div>
             <div className="category_sub_title_box">
-              <GetManagerVotes
+              <GetCategoryVotes
                 votes={votes}
                 nickname={nickname}
                 jwtToken={jwtToken}
