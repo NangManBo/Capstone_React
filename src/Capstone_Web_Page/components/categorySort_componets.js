@@ -2,13 +2,20 @@ import { renderPostPress } from '../functions/renderPostPress_function';
 import './styles/category_style.css';
 // 카테고리별로 투표를 필터링하고 정렬하는 함수
 export const GetCategoryVotes = (
-  votes,
+  votes = [],
   nickname,
   jwtToken,
   isLoggedIn,
   userId,
   navigate
 ) => {
+  if (!Array.isArray(votes)) {
+    console.error(
+      'votes는 배열이어야 합니다. 실제 값:',
+      votes
+    );
+    return [];
+  }
   const categories = [
     '시사',
     '정치',
