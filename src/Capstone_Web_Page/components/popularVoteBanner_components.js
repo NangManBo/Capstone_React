@@ -5,7 +5,7 @@ import { renderPostPress } from '../functions/renderPostPress_function';
 const fillEmptyVotes = (votes, count) => {
   while (votes.length < count) {
     votes.push({
-      title: JSON.stringify({ title: '제목' }),
+      title: '없음', //JSON.stringify({ title: '제목' }),
       createdBy: '없음',
       createdAt: '',
       likesCount: 0,
@@ -56,7 +56,7 @@ export const PopularVoteBanner = (
               key={index}
               className="vote_item"
               onClick={() =>
-                vote.title !== '제목' &&
+                vote.title !== '없음' &&
                 renderPostPress(
                   vote,
                   navigate,
