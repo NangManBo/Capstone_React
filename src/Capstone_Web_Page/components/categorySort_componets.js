@@ -24,7 +24,7 @@ export const GetCategoryVotes = (
   const fillEmptyVotes = (votes, count) => {
     while (votes.length < count) {
       votes.push({
-        title: JSON.stringify({ title: '제목' }),
+        title: '제목', //JSON.stringify({ title: '제목' }),
         createdBy: '없음',
         createdAt: '',
         likesCount: 0,
@@ -92,8 +92,8 @@ export const GetCategoryVotes = (
           </div>
           <div className="category_sub_box_container">
             {topVotes.map((vote, index) => {
-              const titleObject = JSON.parse(vote.title);
-              const titleText = titleObject.title;
+              //const titleObject = JSON.parse(vote.title);
+              //const titleText = titleObject.title;
               const hoursAgo = calculateTimeDiff(
                 vote.createdAt
               );
@@ -117,7 +117,7 @@ export const GetCategoryVotes = (
                     )
                   }
                 >
-                  <h4>{titleText}</h4>
+                  <h4>{vote.title}</h4>
                   <h5>
                     {vote.createdBy}
                     <i
