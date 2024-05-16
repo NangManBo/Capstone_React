@@ -5,7 +5,7 @@ import PhoneAuthenticationModal from '../modals/PhoneAuthentication_modal'; // ë
 import './styles/signup_style.css';
 function SignUpPage() {
   const [showPhoneAuthModal, setShowPhoneAuthModal] =
-    useState(false);
+    useState(true);
   const [favoriteCategory, setFavoriteCategory] =
     useState('');
   const [id, setId] = useState('');
