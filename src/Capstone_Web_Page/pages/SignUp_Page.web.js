@@ -5,7 +5,9 @@ import PhoneAuthenticationModal from '../modals/PhoneAuthentication_modal'; // �
 import './styles/signup_style.css';
 function SignUpPage() {
   const [showPhoneAuthModal, setShowPhoneAuthModal] =
-    useState(true);
+    useState(false);
+  const [favoriteCategory, setFavoriteCategory] =
+    useState('');
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
   const [passwordCheck, setPasswordCheck] = useState('');
@@ -44,6 +46,19 @@ function SignUpPage() {
     { label: 'ESTP', value: 'ESTP' },
     { label: 'ESTJ', value: 'ESTJ' },
   ];
+  const favoriteCategorys = [
+    { label: '정치', value: '정치' },
+    { label: '경제', value: '경제' },
+    { label: '스포츠', value: '스포츠' },
+    { label: '문화와 예술', value: '문화와 예술' },
+    { label: '애완동물', value: '애완동물' },
+    { label: '시사', value: '시사' },
+    { label: '요리', value: '요리' },
+  ];
+  const placeholder1 = {
+    label: '관심 카테고리',
+    value: null,
+  };
 
   const handleIdChange = (text) => {
     // 정규표현식을 사용하여 영어 대문자, 한글 여부 체크
@@ -266,6 +281,26 @@ function SignUpPage() {
           >
             <option value="">{placeholder.label}</option>
             {mbtis.map((option) => (
+              <option
+                key={option.value}
+                value={option.value}
+              >
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div className="form-group">
+          <label className="label">관심사</label>
+          <select
+            className="mbti"
+            value={favoriteCategory}
+            onChange={(e) =>
+              setFavoriteCategory(e.target.value)
+            }
+          >
+            <option value="">{placeholder1.label}</option>
+            {favoriteCategorys.map((option) => (
               <option
                 key={option.value}
                 value={option.value}
