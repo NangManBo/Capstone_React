@@ -95,14 +95,84 @@
 
 .voteMake_question {
   margin-top: 50px;
+  display: flex;
+  flex-direction: row;
 }
 
 .cancel-button {
   border: none;
+  font-size: 20px;
 }
 
 .cancel-button:hover {
   background-color: #9c9c9c;
   border-color: #000000;
   font-size: 20px;
+}
+
+.image-button {
+  margin-left: 90%;
+}
+.voteMake_textarea {
+  margin-top: 20px;
+  height: 200px;
+  border: 2px solid rgb(152, 152, 152);
+  outline: none;
+  background-color: rgb(240, 240, 240);
+  padding: 8px;
+  font-size: 18px;
+}
+
+.voteMake_image {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.voteMake_choice {
+  display: flex;
+  flex-direction: column;
+}
+.voteMake_choice_box {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: center;
+}
+.choice_input {
+  width: 400px;
+  height: 30px;
+}
+
+.choice_button {
+  margin-left: 20px;
+  background-color: #2294ff;
+  border: none;
+  width: 35px;
+  height: 35px;
+  color: white;
+  border-radius: 4px;
+  font-size: 20px;
+}
+.choice_label {
+  font-size: 12px;
+  color: rgb(118, 118, 118);
+}
+
+.voteMake_makebutton_box {
+  display: flex;
+  margin-top: 20px;
+  justify-content: center;
+  align-items: center;
+}
+.voteMake_makebutton {
+  background-color: #2294ff;
+  border: none;
+  width: 400px;
+  height: 55px;
+  color: white;
+  border-radius: 8px;
+  font-size: 16px;
 }

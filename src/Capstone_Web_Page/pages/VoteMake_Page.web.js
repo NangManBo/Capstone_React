@@ -252,65 +252,96 @@ function VoteMakePage() {
         </div>
 
         <div className="voteMake_question">
-          <label className="voteMake_title">본문</label>
-          <input
-            type="file"
-            accept="image/*,video/*"
-            onChange={handleImageChange}
-            id="file-input"
-            className="custom-file-input"
-          />
-          <label
-            htmlFor="file-input"
-            className="custom-file-label"
-          >
-            <FontAwesomeIcon icon={faImage} />
-          </label>
+          <div>
+            <label className="voteMake_title">본문</label>
+          </div>
+          <div className="image-button">
+            <input
+              type="file"
+              accept="image/*,video/*"
+              onChange={handleImageChange}
+              id="file-input"
+              className="custom-file-input"
+            />
+            <label
+              htmlFor="file-input"
+              className="custom-file-label"
+            >
+              <FontAwesomeIcon icon={faImage} />
+            </label>
 
-          <button
-            className="cancel-button"
-            onClick={cancelImage}
-          >
-            X
-          </button>
+            <button
+              className="cancel-button"
+              onClick={cancelImage}
+            >
+              X
+            </button>
+          </div>
         </div>
 
         <textarea
+          className="voteMake_textarea"
           placeholder="본문 내용을 입력하세요"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         ></textarea>
-
-        {selectedMedia && (
-          <img
-            src={selectedMedia}
-            alt="Selected media"
-            style={{ width: '400px', height: '400px' }}
-          />
-        )}
-
-        {options.map((option, index) => (
-          <div key={index}>
-            <input
-              type="text"
-              value={option}
-              onChange={(e) => {
-                let newOptions = [...options];
-                newOptions[index] = e.target.value;
-                setOptions(newOptions);
-              }}
-            />
-            <button onClick={() => removeOption(index)}>
-              -
-            </button>
+        <div className="voteMake_image">
+          <div>
+            {selectedMedia && (
+              <img
+                src={selectedMedia}
+                alt="Selected media"
+                style={{ width: '200px', height: '200px' }}
+              />
+            )}
           </div>
-        ))}
-
-        <button onClick={addOption}>+</button>
-
-        <button onClick={voteMake}>
-          투표 항목 생성하러 가기
-        </button>
+          <div className="voteMake_choice">
+            <div>
+              {options.map((option, index) => (
+                <div
+                  className="voteMake_choice_box"
+                  key={index}
+                >
+                  <input
+                    className="choice_input"
+                    type="text"
+                    value={option}
+                    onChange={(e) => {
+                      let newOptions = [...options];
+                      newOptions[index] = e.target.value;
+                      setOptions(newOptions);
+                    }}
+                  />
+                  <button
+                    className="choice_button"
+                    onClick={() => removeOption(index)}
+                  >
+                    -
+                  </button>
+                </div>
+              ))}
+            </div>
+            <div className="voteMake_choice_box">
+              <label className="choice_label">
+                투표 항목을 추가하려면 +를 눌러주세요
+              </label>
+              <button
+                className="choice_button"
+                onClick={addOption}
+              >
+                +
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="voteMake_makebutton_box">
+          <button
+            className="voteMake_makebutton"
+            onClick={voteMake}
+          >
+            투표 항목 생성하러 가기
+          </button>
+        </div>
       </div>
     </div>
   );
