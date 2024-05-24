@@ -5,7 +5,7 @@ import { MainBanner } from '../components/mainBanner_components';
 import './styles/voteMake_style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage } from '@fortawesome/free-regular-svg-icons';
-
+import { LeftBar } from '../components/leftBar_components';
 function VoteMakePage() {
   // React Router의 useLocation 훅을 사용하여 URL의 상태 접근
   const location = useLocation();
@@ -197,7 +197,7 @@ function VoteMakePage() {
         userId={userId}
         nickname={nickname}
       />
-      <div className="left_bar"></div>
+      <LeftBar />
       <div className="right_page">
         <h2
           onClick={() =>

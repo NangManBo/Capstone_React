@@ -1,0 +1,41 @@
+.messages_container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.message_item {
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.message_item.unread {
+  background-color: #ffe4b5; /* 오렌지 색 */
+}
+
+.message_item.read {
+  background-color: #f0f0f0; /* 회색 */
+}
+
+.message_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.message_username {
+  font-weight: bold;
+}
+
+.message_time {
+  font-size: 12px;
+  color: #888;
+}
+
+.message_body {
+  font-size: 14px;
+}

@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import moment from 'moment';
-
+import { MainBanner } from '../components/mainBanner_components';
+import { LeftBar } from '../components/leftBar_components';
+import './styles/profile_style.css';
+import './styles/dmBox_style.css';
 function DMboxPage() {
   const [messages, setMessages] = useState([]);
   const navigate = useNavigate();
@@ -69,45 +72,74 @@ function DMboxPage() {
   };
 
   return (
-    <div>
-      <div>
-        <button onClick={goToMain}>뒤로가기</button>
-        <div>
-          <span>내 쪽지함</span>
-        </div>
-        <button
+    <div className="profile_page">
+      <MainBanner
+        jwtToken={jwtToken}
+        isLoggedIn={isLoggedIn} // 또는 조건에 따라 변하는 값
+        userId={userId}
+        nickname={nickname}
+      />
+      <LeftBar />
+
+      <div className="right_page">
+        <h2
           onClick={() =>
-            navigate('/dmsend', {
+            navigate('/', {
               state: {
                 isLoggedIn,
                 userId,
-                nickname,
                 jwtToken,
+                nickname,
               },
             })
           }
         >
-          작성하기
-        </button>
-      </div>
-      <div>
-        {messages.map((item, index) => (
-          <div
-            key={index}
-            onClick={() => handleItemClick(index)}
-          >
-            <div>
-              <span>{item.username}</span>
-            </div>
-            <div>
-              <span>{item.time}</span>
-            </div>
+          이전 페이지로
+        </h2>
+        <div className="retangle_page">
+          <div>
+            <button
+              onClick={() =>
+                navigate('/dmsend', {
+                  state: {
+                    isLoggedIn,
+                    userId,
+                    nickname,
+                    jwtToken,
+                  },
+                })
+              }
+            >
+              작성
+            </button>
           </div>
-        ))}
+        </div>
+        <div className="messages_container">
+          {messages.map((item, index) => (
+            <div
+              key={index}
+              className={`message_item ${
+                item.isRead ? 'read' : 'unread'
+              }`}
+              onClick={() => handleItemClick(index)}
+            >
+              <div className="message_header">
+                <span className="message_username">
+                  {item.username}
+                </span>
+                <span className="message_time">
+                  {item.time}
+                </span>
+              </div>
+              <div className="message_body">
+                <p>{item.title}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
 }
 
 export default DMboxPage;
-//야홋~

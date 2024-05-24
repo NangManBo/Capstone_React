@@ -3,6 +3,7 @@ import './styles/banner_style.css'; // CSS 파일 임포트
 import { useNavigate } from 'react-router-dom';
 import { fetchSearch } from '../functions/fetchSearch_function'; // fetchSearch 함수 임포트
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { FaEnvelope } from 'react-icons/fa';
 
 export const MainBanner = (
   jwtToken,
@@ -21,6 +22,29 @@ export const MainBanner = (
 
     navigate('/searchresult', {
       state: { searchResults, searchQuery },
+    });
+  };
+  const goToProfile = () => {
+    navigate('/profile', {
+      state: {
+        isLoggedIn: true,
+        userId: userId, // 예시 값, 실제 응답에 맞게 조정 필요
+        jwtToken: jwtToken, // 예시 값, 실제 응답에 맞게 조정 필요
+        nickname: nickname, // 예시 값, 실제 응답에 맞게 조정 필요
+      },
+    });
+  };
+  const goToLogin = () => {
+    navigate('/login', {});
+  };
+  const goToDMPage = () => {
+    navigate('/dmbox', {
+      state: {
+        isLoggedIn,
+        userId,
+        jwtToken,
+        nickname,
+      },
     });
   };
   return (
@@ -46,6 +70,23 @@ export const MainBanner = (
             style={{ color: 'black' }}
           ></i>
         </button>
+        {isLoggedIn ? (
+          <div>
+            <label
+              className="login_label"
+              onClick={goToLogin}
+            >
+              로그인
+            </label>
+          </div>
+        ) : (
+          <div>
+            <label onClick={goToDMPage}>
+              <FaEnvelope size={40} color="white" />
+            </label>
+            <label onClick={goToProfile}>내 정보</label>
+          </div>
+        )}
       </div>
     </div>
   );

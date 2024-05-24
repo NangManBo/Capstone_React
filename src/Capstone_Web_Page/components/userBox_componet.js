@@ -57,7 +57,7 @@ export const UserBox = (
     });
   };
   return (
-    <div>
+    <div className="user_box_center">
       {isLoggedIn ? (
         <div className="user_box">
           <button onClick={goToProfile}>프로필</button>
@@ -73,8 +73,8 @@ export const UserBox = (
           </h4>
           <button
             className="user_box_login"
-            //onClick={goToVoteMake}
-            onClick={() => goToLogin()}
+            onClick={goToProfile}
+            //onClick={() => goToLogin()}
           >
             로그인
           </button>
@@ -83,7 +83,8 @@ export const UserBox = (
           </h4>
           <h4
             className="user_box_signup"
-            onClick={() => goToSignup()}
+            onClick={goToVoteMake}
+            //onClick={() => goToSignup()}
           >
             회원가입
           </h4>

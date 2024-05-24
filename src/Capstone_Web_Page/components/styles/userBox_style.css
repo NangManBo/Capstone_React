@@ -1,3 +1,9 @@
+.user_box_center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 /*유저*/
 .user_box {
   margin-left: 200px;

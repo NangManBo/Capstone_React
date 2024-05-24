@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
+import './styles/profile_style.css';
+import './styles/userAuthentication_style.css';
+import { MainBanner } from '../components/mainBanner_components';
+import { LeftBar } from '../components/leftBar_components';
 function UserAuthenticationPage() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -50,30 +54,60 @@ function UserAuthenticationPage() {
   };
 
   return (
-    <div>
-      <button onClick={() => navigate(-1)}>Back</button>
-      <h1>유저 인증</h1>
-      <div className="text-container">
-        <p>
-          회원정보 수정을 위해서 비밀번호를 한 번 입력해야
-          합니다.
-        </p>
-        <p>현재 사용중인 비밀번호를 입력해주세요.</p>
-      </div>
-      <div className="text-input-container">
-        <label htmlFor="password">비밀번호</label>
-        <input
-          id="password"
-          type="password"
-          placeholder="사용중인 비밀번호 입력"
-          value={inputPassword}
-          onChange={(e) => setInputPassword(e.target.value)}
-        />
-      </div>
-      <div className="update-button-container">
-        <button onClick={handleAuthenticationPassword}>
-          본인인증하기
-        </button>
+    <div className="profile_page">
+      <MainBanner
+        jwtToken={jwtToken}
+        isLoggedIn={isLoggedIn} // 또는 조건에 따라 변하는 값
+        userId={userId}
+        nickname={nickname}
+      />
+      <LeftBar />
+      <div className="right_page">
+        <h2
+          onClick={() =>
+            navigate('/', {
+              state: {
+                isLoggedIn,
+                userId,
+                jwtToken,
+                nickname,
+              },
+            })
+          }
+        >
+          이전 페이지로
+        </h2>
+        <div className="retangle_page">
+          <div className="text-container">
+            <p className="password">
+              회원정보 수정을 위해서 비밀번호를 한 번
+              입력해야 합니다.
+            </p>
+            <p className="password">
+              현재 사용중인 비밀번호를 입력해주세요.
+            </p>
+          </div>
+          <div className="text-input-container">
+            <label className="password">비밀번호</label>
+            <input
+              id="password"
+              type="password"
+              placeholder="사용중인 비밀번호 입력"
+              value={inputPassword}
+              onChange={(e) =>
+                setInputPassword(e.target.value)
+              }
+            />
+          </div>
+          <div className="update-button-container">
+            <button
+              className="updatebutton"
+              onClick={handleAuthenticationPassword}
+            >
+              본인인증하기
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

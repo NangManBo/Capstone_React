@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
-import Banner from '../components/basicBanner_components';
+import { MainBanner } from '../components/mainBanner_components';
+import { LeftBar } from '../components/leftBar_components';
+import './styles/profile_style.css';
 
 function ProfilePage() {
   const location = useLocation();
@@ -130,37 +132,82 @@ function ProfilePage() {
     });
   };
   return (
-    <div className="container">
-      <Banner />
-      <div>
-        <h1>개인 프로필</h1>
-        <button onClick={handleLogout}>로그아웃</button>
-        <button onClick={handleProfileChange}>
-          프로필 변경
-        </button>
-      </div>
-      <div className="profileInfos">
-        {/* SafeAreaView 및 View 대신 div 사용 */}
-        <div className="image" />
-        <div className="nameSection">
-          <span>닉네임: {nickname}</span>
-          <div>
-            <span>아이디: {userId}</span>
+    <div className="profile_page">
+      <MainBanner
+        jwtToken={jwtToken}
+        isLoggedIn={isLoggedIn} // 또는 조건에 따라 변하는 값
+        userId={userId}
+        nickname={nickname}
+      />
+      <LeftBar />
+      <div className="right_page">
+        <h2
+          onClick={() =>
+            navigate('/', {
+              state: {
+                isLoggedIn,
+                userId,
+                jwtToken,
+                nickname,
+              },
+            })
+          }
+        >
+          이전 페이지로
+        </h2>
+        <div className="retangle_page">
+          <div className="profile_header">
+            <img
+              src={require('../assets/user.png')}
+              alt="프로필 이미지"
+              style={{
+                width: '80px',
+                height: '80px',
+              }}
+            />
+            <div className="profile_name">
+              <p> {nickname}</p>
+              <p> MBTI: {getMbti}</p>
+            </div>
           </div>
-          <div>
-            <span>MBTI: {getMbti}</span>
+
+          <button
+            className="profile_button"
+            onClick={handleProfileChange}
+          >
+            프로필 업데이트/확인
+          </button>
+
+          <div className="profile_middle">
+            <p className="activity_title">내 활동 내역</p>
+            <div className="activity_container">
+              <div className="activity_item">
+                <p>참가한 투표</p>
+                <h2>{participatedVoteCount}</h2>
+              </div>
+              <div className="activity_item">
+                <p>생성한 투표</p>
+                <h2>{generatedVoteCount}</h2>
+              </div>
+              <div className="activity_item">
+                <p>댓글</p>
+                <h2>{commentCount}</h2>
+              </div>
+            </div>
+          </div>
+          <div className="profile_point">
+            <p className="point_text">
+              내가 쌓은 포인트는{' '}
+              <span className="point_box">
+                {popularPoint} 점
+              </span>
+            </p>
+            <p className="point_ex">
+              포인트는 투표 종료 시점에 다수가 투표한 항목에
+              투표했을 시 부여됩니다.
+            </p>
           </div>
         </div>
-      </div>
-      <div>
-        <h2>{participatedVoteCount}</h2>
-        <h2>{generatedVoteCount}</h2>
-        <h2>{commentCount}</h2>
-        <h2>{popularPoint}</h2>
-        <h2>
-          포인트는 투표 종료 시점에 다수가 투표한 항목에
-          투표했을 시 부여됩니다.
-        </h2>
       </div>
     </div>
   );
