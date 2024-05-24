@@ -1,3 +1,8 @@
+.fixed_button {
+  position: relative;
+  margin-left: 450px;
+  margin-bottom: 450px;
+}
 .messages_container {
   display: flex;
   flex-direction: column;

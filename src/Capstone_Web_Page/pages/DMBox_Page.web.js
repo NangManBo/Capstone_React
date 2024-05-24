@@ -97,7 +97,7 @@ function DMboxPage() {
           이전 페이지로
         </h2>
         <div className="retangle_page">
-          <div>
+          <div className="fixed_button">
             <button
               onClick={() =>
                 navigate('/dmsend', {
@@ -113,29 +113,29 @@ function DMboxPage() {
               작성
             </button>
           </div>
-        </div>
-        <div className="messages_container">
-          {messages.map((item, index) => (
-            <div
-              key={index}
-              className={`message_item ${
-                item.isRead ? 'read' : 'unread'
-              }`}
-              onClick={() => handleItemClick(index)}
-            >
-              <div className="message_header">
-                <span className="message_username">
-                  {item.username}
-                </span>
-                <span className="message_time">
-                  {item.time}
-                </span>
+          <div className="messages_container">
+            {messages.map((item, index) => (
+              <div
+                key={index}
+                className={`message_item ${
+                  item.isRead ? 'read' : 'unread'
+                }`}
+                onClick={() => handleItemClick(index)}
+              >
+                <div className="message_header">
+                  <span className="message_username">
+                    {item.username}
+                  </span>
+                  <span className="message_time">
+                    {item.time}
+                  </span>
+                </div>
+                <div className="message_body">
+                  <p>{item.title}</p>
+                </div>
               </div>
-              <div className="message_body">
-                <p>{item.title}</p>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </div>
