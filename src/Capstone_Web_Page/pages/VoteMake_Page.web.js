@@ -85,8 +85,6 @@ function VoteMakePage() {
 
   // 투표 생성
   const voteMake = async () => {
-    console.log('이미지 url', selectedMedia);
-    console.log('이미지 file', mediaFile);
     try {
       const formData = new FormData();
       const pollData = {
@@ -119,8 +117,7 @@ function VoteMakePage() {
         }
       }
       const response = await fetch(
-        'https://dovote.p-e.kr/polls/upload/' +
-          selectedCategory,
+        'https://dovote.p-e.kr/polls/upload/',
         {
           method: 'POST',
           headers: {
