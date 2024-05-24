@@ -80,11 +80,16 @@ export const MainBanner = (
             </label>
           </div>
         ) : (
-          <div>
+          <div className="banner_icon">
             <label onClick={goToDMPage}>
               <FaEnvelope size={40} color="white" />
             </label>
-            <label onClick={goToProfile}>내 정보</label>
+            <label
+              className="banner_text"
+              onClick={goToProfile}
+            >
+              내 정보
+            </label>
           </div>
         )}
       </div>
