@@ -9,6 +9,7 @@ import { AlarmBox } from '../components/alarmBox_components';
 import { UserBox } from '../components/userBox_componet';
 import { PopularVoteBanner } from '../components/popularVoteBanner_components';
 import { GetManagerVotes } from '../components/managerVote_components';
+
 function MainPage() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -19,6 +20,7 @@ function MainPage() {
       jwtToken: '',
       nickname: 'guest',
     };
+
   const [unreadMessageCount, setUnreadMessageCount] =
     useState(0);
   const [votes, setVotes] = useState([]); // 상태 추가

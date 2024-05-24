@@ -1,0 +1,108 @@
+.vote_page {
+  display: flex;
+  flex-direction: row;
+  height: 200vh;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.left_bar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+  height: 200vh;
+  background-color: #f8f9fa;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.right_page {
+  display: flex;
+  margin-left: 7.5%;
+  width: 70%;
+  margin-top: 200px;
+  flex-direction: column;
+  justify-content: top;
+  align-items: left;
+  height: 200vh; /* 뷰포트 높이에 맞춤 */
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+.voteMake_header {
+  border-bottom: 2px solid black;
+  padding-bottom: 4px;
+  padding: 0;
+}
+
+.voteMake_title {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.voteMake_titlebox {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.voteMake_categorybox {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.category_select {
+  margin-left: 20px;
+  width: 120px;
+  padding: 8px;
+  font-size: 15px;
+}
+.no-border-input {
+  margin-left: 20px;
+  width: 300px;
+  border: none;
+  border-bottom: 2px solid rgb(152, 152, 152); /* 아래쪽 테두리 추가 */
+  outline: none;
+  background-color: rgb(240, 240, 240);
+  padding: 8px;
+  font-size: 16px;
+}
+
+.custom-file-input {
+  display: none; /* 기본 파일 입력 버튼 숨기기 */
+}
+
+.custom-file-label {
+  display: inline-block;
+  cursor: pointer;
+  padding: 8px 12px;
+  color: rgb(0, 0, 0);
+  border-radius: 4px;
+  font-size: 20px;
+}
+
+.custom-file-label:hover {
+  background-color: #9c9c9c;
+  border-color: #000000;
+}
+
+.voteMake_question {
+  margin-top: 50px;
+}
+
+.cancel-button {
+  border: none;
+}
+
+.cancel-button:hover {
+  background-color: #9c9c9c;
+  border-color: #000000;
+  font-size: 20px;
+}

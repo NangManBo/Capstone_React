@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { MainBanner } from '../components/mainBanner_components';
+import './styles/voteMake_style.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faImage } from '@fortawesome/free-regular-svg-icons';
 
 function VoteMakePage() {
   // React Router의 useLocation 훅을 사용하여 URL의 상태 접근
@@ -85,7 +89,12 @@ function VoteMakePage() {
     console.log('이미지 file', mediaFile);
     try {
       const formData = new FormData();
-
+      const pollData = {
+        title: titleInput,
+        category: selectedCategory,
+        question: description,
+        user: userId,
+      };
       if (titleInput.trim() === '') {
         alert('알림', '제목을 입력하세요.');
       } else if (
@@ -101,38 +110,10 @@ function VoteMakePage() {
         alert('알림', '투표항목내용을 입력해주세요.');
       } else {
         formData.append(
-          'user',
-          JSON.stringify({ user: nickname })
-        );
-        formData.append(
-          'title',
-          JSON.stringify({ title: titleInput })
-        );
-        formData.append(
-          'question',
-          JSON.stringify({ question: description })
+          'pollData',
+          JSON.stringify(pollData)
         );
 
-        //   if (selectedMedia) {
-        //     const localUri = selectedMedia;
-        //     const filename = localUri.split('/').pop();
-        //     const match = /\.(\w+)$/.exec(filename ?? '');
-        //     const type = match
-        //       ? `image/${match[1]}`
-        //       : 'image';
-
-        //     const response = await fetch(localUri);
-        //     const blob = await response.blob();
-
-        //     formData.append('mediaData', {
-        //       uri: localUri,
-        //       name: filename,
-        //       type: type, // Use the actual Content-Type from the result
-        //       blob: blob,
-        //     });
-        //   }
-        // }
-        // 파일이 선택되었다면 FormData에 추가
         if (mediaFile) {
           formData.append('mediaData', mediaFile);
         }
@@ -212,96 +193,125 @@ function VoteMakePage() {
   };
 
   return (
-    <div>
-      <button
-        onClick={() =>
-          navigate('/', {
-            state: {
-              isLoggedIn,
-              userId,
-              jwtToken,
-              nickname,
-            },
-          })
-        }
-      >
-        뒤로가기
-      </button>
-      <h1>투표생성하기</h1>
-
-      <div>
-        <label>제목:</label>
-        <input
-          type="text"
-          placeholder="제목을 입력하세요"
-          value={titleInput}
-          onChange={(e) => setTitleInput(e.target.value)}
-        />
-      </div>
-
-      <div>
-        <label>카테고리:</label>
-        <select
-          value={selectedCategory}
-          onChange={(e) =>
-            setSelectedCategory(e.target.value)
+    <div className="vote_page">
+      <MainBanner
+        jwtToken={jwtToken}
+        isLoggedIn={isLoggedIn} // 또는 조건에 따라 변하는 값
+        userId={userId}
+        nickname={nickname}
+      />
+      <div className="left_bar"></div>
+      <div className="right_page">
+        <h2
+          onClick={() =>
+            navigate('/', {
+              state: {
+                isLoggedIn,
+                userId,
+                jwtToken,
+                nickname,
+              },
+            })
           }
         >
-          <option value="">선택</option>
-          {categories.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div>
-        {/* 생략된 입력 필드 및 버튼 */}
-        <input
-          type="file"
-          accept="image/*,video/*" // Accept both images and videos
-          onChange={handleImageChange}
-        />
-        <button onClick={cancelImage}>X</button>
-      </div>
-
-      <textarea
-        placeholder="본문 내용을 입력하세요"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      ></textarea>
-
-      {selectedMedia && (
-        <img
-          src={selectedMedia}
-          alt="Selected media"
-          style={{ width: '400px', height: '400px' }}
-        />
-      )}
-
-      {options.map((option, index) => (
-        <div key={index}>
+          이전 페이지로
+        </h2>
+        <div className="voteMake_header">
+          <h1>게시글 작성하기</h1>
+        </div>
+        <div className="voteMake_titlebox">
+          <label className="voteMake_title">제목</label>
           <input
+            className="no-border-input"
             type="text"
-            value={option}
-            onChange={(e) => {
-              let newOptions = [...options];
-              newOptions[index] = e.target.value;
-              setOptions(newOptions);
-            }}
+            placeholder=""
+            value={titleInput}
+            onChange={(e) => setTitleInput(e.target.value)}
           />
-          <button onClick={() => removeOption(index)}>
-            -
+        </div>
+
+        <div className="voteMake_categorybox">
+          <label className="voteMake_title">카테고리</label>
+          <select
+            className="category_select"
+            value={selectedCategory}
+            onChange={(e) =>
+              setSelectedCategory(e.target.value)
+            }
+          >
+            <option value=""></option>
+            {categories.map((option) => (
+              <option
+                key={option.value}
+                value={option.value}
+              >
+                {option.label}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="voteMake_question">
+          <label className="voteMake_title">본문</label>
+          <input
+            type="file"
+            accept="image/*,video/*"
+            onChange={handleImageChange}
+            id="file-input"
+            className="custom-file-input"
+          />
+          <label
+            htmlFor="file-input"
+            className="custom-file-label"
+          >
+            <FontAwesomeIcon icon={faImage} />
+          </label>
+
+          <button
+            className="cancel-button"
+            onClick={cancelImage}
+          >
+            X
           </button>
         </div>
-      ))}
 
-      <button onClick={addOption}>+</button>
+        <textarea
+          placeholder="본문 내용을 입력하세요"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        ></textarea>
 
-      <button onClick={voteMake}>
-        투표 항목 생성하러 가기
-      </button>
+        {selectedMedia && (
+          <img
+            src={selectedMedia}
+            alt="Selected media"
+            style={{ width: '400px', height: '400px' }}
+          />
+        )}
+
+        {options.map((option, index) => (
+          <div key={index}>
+            <input
+              type="text"
+              value={option}
+              onChange={(e) => {
+                let newOptions = [...options];
+                newOptions[index] = e.target.value;
+                setOptions(newOptions);
+              }}
+            />
+            <button onClick={() => removeOption(index)}>
+              -
+            </button>
+          </div>
+        ))}
+
+        <button onClick={addOption}>+</button>
+
+        <button onClick={voteMake}>
+          투표 항목 생성하러 가기
+        </button>
+      </div>
     </div>
   );
 }
