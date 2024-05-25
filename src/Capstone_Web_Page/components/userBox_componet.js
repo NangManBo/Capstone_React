@@ -30,6 +30,16 @@ export const UserBox = (
       },
     });
   };
+  const goToProfileUpdate = () => {
+    navigate('/profileupdate', {
+      state: {
+        isLoggedIn,
+        userId,
+        jwtToken,
+        nickname,
+      },
+    });
+  };
   const goToLogin = () => {
     navigate('/login', {});
   };
@@ -73,8 +83,8 @@ export const UserBox = (
           </h4>
           <button
             className="user_box_login"
-            //onClick={goToProfile}
-            onClick={() => goToLogin()}
+            onClick={goToProfileUpdate}
+            //onClick={() => goToLogin()}
           >
             로그인
           </button>
