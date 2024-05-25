@@ -71,15 +71,6 @@ export const MainBanner = (
           ></i>
         </button>
         {isLoggedIn ? (
-          <div>
-            <label
-              className="login_label"
-              onClick={goToLogin}
-            >
-              로그인
-            </label>
-          </div>
-        ) : (
           <div className="banner_icon">
             <label onClick={goToDMPage}>
               <FaEnvelope size={40} color="white" />
@@ -89,6 +80,15 @@ export const MainBanner = (
               onClick={goToProfile}
             >
               내 정보
+            </label>
+          </div>
+        ) : (
+          <div>
+            <label
+              className="login_label"
+              onClick={goToLogin}
+            >
+              로그인
             </label>
           </div>
         )}

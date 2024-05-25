@@ -187,50 +187,55 @@ function ProfileUpdatePage() {
           이전 페이지로
         </h2>
 
-        <h1>Profile Update</h1>
-        <div>
-          <label>Nickname</label>
-          <input
-            placeholder="새로운 닉네임을 넣어주세요"
-            value={newNickname}
-            onChange={(e) => setNewNickname(e.target.value)}
-          />
-          <button onClick={handleChangeNickname}>
-            닉네임 변경하기
-          </button>
-        </div>
-        <div>
-          <label>Password</label>
-          <input
-            type="password"
-            placeholder="변경할 비밀번호를 입력해주세요"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-          />
-          <button onClick={handleChangePassword}>
-            비밀번호 변경하기
-          </button>
-        </div>
-        <div>
-          <label>MBTI</label>
-          <select
-            id="mbti"
-            value={newMbti}
-            onChange={(e) => setNewMbti(e.target.value)}
-          >
-            <option value="">{placeholder.label}</option>
-            {mbtis.map((option) => (
-              <option
-                key={option.value}
-                value={option.value}
-              >
-                {option.label}
-              </option>
-            ))}
-          </select>
-          <button onClick={handleChangeMbti}>
-            MBTI 변경하기
-          </button>
+        <div className="retangle_page">
+          <div>
+            <label>Nickname</label>
+            <input
+              placeholder="새로운 닉네임을 넣어주세요"
+              value={newNickname}
+              onChange={(e) =>
+                setNewNickname(e.target.value)
+              }
+            />
+            <button onClick={handleChangeNickname}>
+              닉네임 변경하기
+            </button>
+          </div>
+          <div>
+            <label>Password</label>
+            <input
+              type="password"
+              placeholder="변경할 비밀번호를 입력해주세요"
+              value={newPassword}
+              onChange={(e) =>
+                setNewPassword(e.target.value)
+              }
+            />
+            <button onClick={handleChangePassword}>
+              비밀번호 변경하기
+            </button>
+          </div>
+          <div>
+            <label>MBTI</label>
+            <select
+              id="mbti"
+              value={newMbti}
+              onChange={(e) => setNewMbti(e.target.value)}
+            >
+              <option value="">{placeholder.label}</option>
+              {mbtis.map((option) => (
+                <option
+                  key={option.value}
+                  value={option.value}
+                >
+                  {option.label}
+                </option>
+              ))}
+            </select>
+            <button onClick={handleChangeMbti}>
+              MBTI 변경하기
+            </button>
+          </div>
         </div>
       </div>
     </div>
