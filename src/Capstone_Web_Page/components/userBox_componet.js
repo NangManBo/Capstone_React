@@ -24,9 +24,9 @@ export const UserBox = (
     navigate('/profile', {
       state: {
         isLoggedIn: true,
-        userId: userId, // 예시 값, 실제 응답에 맞게 조정 필요
-        jwtToken: jwtToken, // 예시 값, 실제 응답에 맞게 조정 필요
-        nickname: nickname, // 예시 값, 실제 응답에 맞게 조정 필요
+        userId: userId,
+        jwtToken: jwtToken,
+        nickname: nickname,
       },
     });
   };

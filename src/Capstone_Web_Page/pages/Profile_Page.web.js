@@ -145,10 +145,10 @@ function ProfilePage() {
           onClick={() =>
             navigate('/', {
               state: {
-                isLoggedIn,
-                userId,
-                jwtToken,
-                nickname,
+                isLoggedIn: true,
+                userId: userId,
+                jwtToken: jwtToken,
+                nickname: nickname,
               },
             })
           }
