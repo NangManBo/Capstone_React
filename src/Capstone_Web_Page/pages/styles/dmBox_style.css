@@ -1,35 +1,41 @@
 .fixed_button {
-  position: relative;
-  margin-left: 450px;
-  margin-bottom: 450px;
+  align-self: flex-end;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
 }
+
 .messages_container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  width: 100%;
+  height: calc(
+    100% - 60px
+  ); /* 버튼의 높이를 제외한 나머지 높이 설정 */
+  overflow-y: auto; /* 세로 스크롤 활성화 */
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
 }
 
 .message_item {
-  padding: 15px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.message_item.unread {
-  background-color: #ffe4b5; /* 오렌지 색 */
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
 }
 
 .message_item.read {
-  background-color: #f0f0f0; /* 회색 */
+  background-color: #f0f0f0;
+}
+
+.message_item.unread {
+  background-color: #fff;
 }
 
 .message_header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
 }
 
 .message_username {
@@ -38,9 +44,9 @@
 
 .message_time {
   font-size: 12px;
-  color: #888;
+  color: #999;
 }
 
-.message_body {
-  font-size: 14px;
+.message_body p {
+  margin: 0;
 }
