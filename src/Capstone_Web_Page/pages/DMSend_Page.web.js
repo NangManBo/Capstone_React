@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import './styles/dmSend_style.css';
+import { MainBanner } from '../components/mainBanner_components';
+import { LeftBar } from '../components/leftBar_components';
 
 function DMSendPage() {
   const navigate = useNavigate();
@@ -51,41 +54,54 @@ function DMSendPage() {
   };
 
   return (
-    <div>
-      <div>
-        <div>
-          <button onClick={() => navigate(-1)}>
-            뒤로가기
-          </button>
-        </div>
-        <div>
-          <span>쪽지 쓰기</span>
-        </div>
-        <div>
+    <div className="profile_page">
+      <MainBanner
+        jwtToken={jwtToken}
+        isLoggedIn={isLoggedIn} // 또는 조건에 따라 변하는 값
+        userId={userId}
+        nickname={nickname}
+      />
+      <LeftBar />
+      <div className="right_page">
+        <h2
+          onClick={() =>
+            navigate('/', {
+              state: {
+                isLoggedIn,
+                userId,
+                jwtToken,
+                nickname,
+              },
+            })
+          }
+        >
+          이전 페이지로
+        </h2>
+
+        <div className="dmSend_Page">
           <button onClick={handleSendMessage}>
             보내기
           </button>
-        </div>
-      </div>
-
-      <div>
-        <div>
-          <span>수신인:</span>
-          <input
-            value={recipientId}
-            onChange={(e) => setRecipientId(e.target.value)}
-            placeholder="수신인 닉네임을 적어주세요."
-          />
-        </div>
-        <div>
-          <span>쪽지 내용</span>
-          <textarea
-            value={messageContent}
-            onChange={(e) =>
-              setMessageContent(e.target.value)
-            }
-            placeholder="내용을 입력해주세요."
-          />
+          <div>
+            <span>수신인:</span>
+            <input
+              value={recipientId}
+              onChange={(e) =>
+                setRecipientId(e.target.value)
+              }
+              placeholder="수신인 닉네임을 적어주세요."
+            />
+          </div>
+          <div>
+            <span>쪽지 내용</span>
+            <textarea
+              value={messageContent}
+              onChange={(e) =>
+                setMessageContent(e.target.value)
+              }
+              placeholder="내용을 입력해주세요."
+            />
+          </div>
         </div>
       </div>
     </div>

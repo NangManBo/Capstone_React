@@ -6,6 +6,9 @@ import { MainBanner } from '../components/mainBanner_components';
 import { LeftBar } from '../components/leftBar_components';
 import './styles/profile_style.css';
 import './styles/dmBox_style.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+
 function DMboxPage() {
   const [messages, setMessages] = useState([]);
   const navigate = useNavigate();
@@ -98,7 +101,7 @@ function DMboxPage() {
         </h2>
         <div className="retangle_page">
           <div className="fixed_button">
-            <button
+            <FontAwesomeIcon
               onClick={() =>
                 navigate('/dmsend', {
                   state: {
@@ -109,9 +112,8 @@ function DMboxPage() {
                   },
                 })
               }
-            >
-              작성
-            </button>
+              icon={faPaperPlane}
+            />
           </div>
           <div className="messages_container">
             {messages.map((item, index) => (

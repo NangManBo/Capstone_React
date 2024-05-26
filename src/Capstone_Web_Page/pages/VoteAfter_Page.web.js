@@ -231,7 +231,6 @@ function VoteAfterPage() {
         userId,
         jwtToken,
         nickname,
-
         receiverName: childComment.nickname,
       },
     });

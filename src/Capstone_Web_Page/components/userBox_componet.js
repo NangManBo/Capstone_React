@@ -20,6 +20,19 @@ export const UserBox = (
       },
     });
   };
+  // 대댓글에서 쪽지 보내기
+  const handlemessge1 = (childComment) => {
+    console.log('쪽지 보내기~' + childComment);
+    navigate('/dmautosend', {
+      state: {
+        isLoggedIn,
+        userId,
+        jwtToken,
+        nickname,
+        receiverName: childComment.nickname,
+      },
+    });
+  };
   const goToProfile = () => {
     navigate('/profile', {
       state: {
@@ -66,6 +79,7 @@ export const UserBox = (
       },
     });
   };
+
   return (
     <div className="user_box_center">
       {isLoggedIn ? (
@@ -84,6 +98,7 @@ export const UserBox = (
           <button
             className="user_box_login"
             //onClick={goToProfileUpdate}
+            //onClick={goToDMPage}
             onClick={() => goToLogin()}
           >
             로그인
