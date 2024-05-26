@@ -83,8 +83,8 @@ export const UserBox = (
           </h4>
           <button
             className="user_box_login"
-            onClick={goToProfileUpdate}
-            //onClick={() => goToLogin()}
+            //onClick={goToProfileUpdate}
+            onClick={() => goToLogin()}
           >
             로그인
           </button>
