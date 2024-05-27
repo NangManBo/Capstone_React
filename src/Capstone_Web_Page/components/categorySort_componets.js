@@ -2,15 +2,15 @@ import { renderPostPress } from '../functions/renderPostPress_function';
 import './styles/category_style.css';
 // 카테고리별로 투표를 필터링하고 정렬하는 함수
 export const GetCategoryVotes = (
-  data,
+  votes,
   nickname,
   jwtToken,
   isLoggedIn,
   userId,
   navigate
 ) => {
-  // data 객체 내부의 votes 배열을 가져옴
-  let votes = Array.isArray(data.votes) ? data.votes : [];
+  // // data 객체 내부의 votes 배열을 가져옴
+  // let votes = Array.isArray(data.votes) ? data.votes : [];
 
   const categories = [
     '시사',
@@ -65,6 +65,16 @@ export const GetCategoryVotes = (
     );
 
     const goToCategory = (category) => {
+      console.log(
+        '카테고리 클릭',
+        category,
+        votes,
+        isLoggedIn,
+        userId,
+        jwtToken,
+        nickname,
+        matchingVotes
+      );
       navigate('/category', {
         state: {
           category,
