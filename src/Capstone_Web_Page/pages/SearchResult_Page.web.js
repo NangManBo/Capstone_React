@@ -60,13 +60,10 @@ function SerachResultPage() {
                       >
                         {/* 검색 결과 렌더링 */}
                         <span className="search-result-title">
-                          {JSON.parse(result.title).title}
+                          {result.title}
                         </span>
                         <span className="search-result-sub">
-                          {
-                            JSON.parse(result.question)
-                              .question
-                          }
+                          {result.question}
                         </span>
                         <div className="search-result-row">
                           <span className="category-post-like-text">
