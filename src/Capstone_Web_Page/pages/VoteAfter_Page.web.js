@@ -567,14 +567,6 @@ function VoteAfterPage() {
     });
   };
 
-  // JSON 문자열을 파싱하여 객체로 변환합니다.
-  const titleObject = JSON.parse(vote.title);
-  const titleText = titleObject.title;
-
-  // JSON 문자열을 파싱하여 객체로 변환합니다.
-  const questionObject = JSON.parse(vote.question);
-  const questionText = questionObject.question;
-
   return (
     <div>
       <div>
