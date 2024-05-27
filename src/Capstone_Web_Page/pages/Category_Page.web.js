@@ -9,7 +9,6 @@ function CategoryPage() {
   const {
     isLoggedIn,
     userId,
-    votes,
     jwtToken,
     nickname,
     category,
@@ -44,7 +43,8 @@ function CategoryPage() {
   };
 
   useEffect(() => {
-    setSortedVotes(sortVotes(votes));
+    setSortedVotes(sortVotes(matchingVotes));
+    console.log('카테고리 분류 데이터' + setSortedVotes);
   }, [standard, matchingVotes]);
   return (
     <div className="Page">
