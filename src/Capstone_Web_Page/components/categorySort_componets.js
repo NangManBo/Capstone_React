@@ -92,8 +92,6 @@ export const GetCategoryVotes = (
           </div>
           <div className="category_sub_box_container">
             {topVotes.map((vote, index) => {
-              //const titleObject = JSON.parse(vote.title);
-              //const titleText = titleObject.title;
               const hoursAgo = calculateTimeDiff(
                 vote.createdAt
               );

@@ -9,6 +9,7 @@ function CategoryPage() {
   const {
     isLoggedIn,
     userId,
+    votes,
     jwtToken,
     nickname,
     category,
@@ -43,7 +44,7 @@ function CategoryPage() {
   };
 
   useEffect(() => {
-    setSortedVotes(sortVotes(matchingVotes));
+    setSortedVotes(sortVotes(votes));
   }, [standard, matchingVotes]);
   return (
     <div className="Page">
@@ -87,10 +88,7 @@ function CategoryPage() {
             }
           >
             <div>
-              <p>{vote.title}</p>{' '}
-              {/* JSON.parse 호출 제거 */}
-              <p>{vote.question}</p>{' '}
-              {/* JSON.parse 호출 제거 */}
+              <p>{vote.title}</p> <p>{vote.question}</p>{' '}
             </div>
             <div>
               <span>{vote.likesCount}</span>
