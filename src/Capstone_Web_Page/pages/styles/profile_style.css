@@ -139,14 +139,14 @@
   align-items: center;
 }
 
-label {
+.form_group label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
 }
 
-input,
-select {
+.form_group input,
+.form_group select {
   width: 450px;
   padding: 8px;
   border: none;
@@ -154,7 +154,7 @@ select {
   border-bottom: 1px solid #ccc;
 }
 
-select {
+.form_group select {
   width: 465px;
 }
 
