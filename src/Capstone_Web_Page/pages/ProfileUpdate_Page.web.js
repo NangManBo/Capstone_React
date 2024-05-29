@@ -163,6 +163,7 @@ function ProfileUpdatePage() {
       <LeftBar />
       <div className="right_page">
         <h2
+          className="goBackButton"
           onClick={() =>
             navigate('/profile', {
               state: {

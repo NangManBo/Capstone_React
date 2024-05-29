@@ -4,7 +4,7 @@
 }
 
 .text-container p {
-  font-size: 14px;
+  font-size: 20px;
   margin: 5px 0;
 }
 
@@ -16,10 +16,11 @@
 }
 
 .text-input-container label {
-  font-size: 16px;
+  font-size: 20px;
   margin-right: 10px;
 }
 .password {
+  font-size: 20px;
   font-weight: bold;
 }
 .text-input-container input {
@@ -27,7 +28,7 @@
   padding: 10px;
   border: none;
   border-bottom: 1px solid #000;
-  font-size: 16px;
+  font-size: 18px;
   outline: none;
 }
 
@@ -53,7 +54,8 @@
 }
 
 .updatebutton {
-  width: 400px;
+  width: 600px;
+  height: 55px;
   font-size: 15px;
   font-weight: bold;
 }

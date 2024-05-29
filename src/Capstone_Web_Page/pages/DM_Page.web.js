@@ -1,5 +1,7 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { MainBanner } from '../components/mainBanner_components';
+import { LeftBar } from '../components/leftBar_components';
 
 function DMPage() {
   const navigate = useNavigate();
@@ -26,11 +28,30 @@ function DMPage() {
   };
 
   return (
-    <div>
-      <div>
-        <div>
-          <button onClick={hi}>뒤로가기</button>
-        </div>
+    <div className="profile_page">
+      <MainBanner
+        jwtToken={jwtToken}
+        isLoggedIn={isLoggedIn} // 또는 조건에 따라 변하는 값
+        userId={userId}
+        nickname={nickname}
+      />
+      <LeftBar />
+      <div className="right_page">
+        <h2
+          className="goBackButton"
+          onClick={() =>
+            navigate('/dmbox', {
+              state: {
+                isLoggedIn,
+                userId,
+                jwtToken,
+                nickname,
+              },
+            })
+          }
+        >
+          이전 페이지로
+        </h2>
         <div>
           <div>
             <span>{item.username}의 쪽지</span>

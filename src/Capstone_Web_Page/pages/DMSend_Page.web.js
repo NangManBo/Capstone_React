@@ -64,8 +64,9 @@ function DMSendPage() {
       <LeftBar />
       <div className="right_page">
         <h2
+          className="goBackButton"
           onClick={() =>
-            navigate('/', {
+            navigate('/dmbox', {
               state: {
                 isLoggedIn,
                 userId,

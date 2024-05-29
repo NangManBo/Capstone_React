@@ -200,6 +200,7 @@ function VoteMakePage() {
       <LeftBar />
       <div className="right_page">
         <h2
+          className="goBackButton"
           onClick={() =>
             navigate('/', {
               state: {

@@ -1,6 +1,20 @@
 import React from 'react';
 import './styles/alarmBox_style.css';
+import { useNavigate } from 'react-router-dom';
+
 export const AlarmBox = (isLoggedIn) => {
+  const navigate = useNavigate();
+  // 이동 함수
+  const goToDMPage = () => {
+    navigate('/dmbox', {
+      state: {
+        isLoggedIn,
+        userId: '',
+        jwtToken: '',
+        nickname: '',
+      },
+    });
+  };
   return (
     <div>
       {isLoggedIn ? (
@@ -18,7 +32,10 @@ export const AlarmBox = (isLoggedIn) => {
         </div>
       ) : (
         <div className="alarm_box">
-          <h2 className="alarm_box_title">
+          <h2
+            className="alarm_box_title"
+            onClick={goToDMPage}
+          >
             <i class="fa-regular fa-bell"></i>
             <span> 알림</span>
           </h2>

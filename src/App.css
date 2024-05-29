@@ -8,3 +8,7 @@
 body {
   margin: 0;
 }
+
+.goBackButton {
+  width: 200px;
+}

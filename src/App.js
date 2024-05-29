@@ -37,6 +37,7 @@ function App() {
             path="/category"
             element={<CategoryPage />}
           />
+          <Route path="/dm" element={<DMPage />} />
           <Route path="/dmsend" element={<DMSendPage />} />
           <Route path="/dmbox" element={<DMboxPage />} />
           <Route
