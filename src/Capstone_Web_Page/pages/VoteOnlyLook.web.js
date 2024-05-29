@@ -56,12 +56,7 @@ function VoteOnlyLookPage() {
 
   return (
     <div className="vote_page">
-      <MainBanner
-        jwtToken=""
-        isLoggedIn={false} // 또는 조건에 따라 변하는 값
-        userId=""
-        nickname="guest"
-      />
+      {MainBanner('', false, '', 'guest')}
       <LeftBar />
       <div className="right_page">
         <button

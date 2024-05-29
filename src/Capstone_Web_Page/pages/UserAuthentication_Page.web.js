@@ -55,12 +55,7 @@ function UserAuthenticationPage() {
 
   return (
     <div className="profile_page">
-      <MainBanner
-        jwtToken={jwtToken}
-        isLoggedIn={isLoggedIn} // 또는 조건에 따라 변하는 값
-        userId={userId}
-        nickname={nickname}
-      />
+      {MainBanner(jwtToken, isLoggedIn, userId, nickname)}
       <LeftBar />
       <div className="right_page">
         <h2

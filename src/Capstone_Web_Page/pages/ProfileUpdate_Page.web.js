@@ -154,12 +154,7 @@ function ProfileUpdatePage() {
 
   return (
     <div className="profile_page">
-      <MainBanner
-        jwtToken={jwtToken}
-        isLoggedIn={isLoggedIn}
-        userId={userId}
-        nickname={nickname}
-      />
+      {MainBanner(jwtToken, isLoggedIn, userId, nickname)}
       <LeftBar />
       <div className="right_page">
         <h2
