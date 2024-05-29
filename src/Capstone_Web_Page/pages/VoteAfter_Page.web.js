@@ -591,113 +591,114 @@ function VoteAfterPage() {
             ? 'Heart Outlined Icon'
             : 'Heart Filled Icon'}
         </button>
-      </div>
-      <div>
-        {/* Content */}
-        <h1>{vote.title}</h1>
-        <p>투표 기간 설정: {vote.createdAt}</p>
-        <p>주최자: {vote.createdBy}</p>
-        <p>{vote.question}</p>
-        {vote?.mediaUrl &&
-          (vote.mediaUrl.endsWith('.mp4') ? (
-            <video
-              src={vote.mediaUrl}
-              controls
-              style={{
-                width: '400px',
-                height: '400px',
-              }}
-            />
-          ) : (
-            <img
-              src={vote.mediaUrl}
-              alt="Media"
-              style={{
-                width: '400px',
-                height: '400px',
-              }}
-            />
-          ))}
-        {/* Choices */}
-        {vote.choice.map((choice, index) => (
-          <div
-            key={index}
-            style={{
-              backgroundColor: userVotes.some(
-                (userVote) =>
-                  userVote.choiceId === choice.id
-              )
-                ? '#4B89DC'
-                : 'transparent',
-            }}
-          >
-            {choice.text}
-          </div>
-        ))}
-        <p>댓글 {comments.length}</p>
-        <select
-          value={sortingStandard}
-          onChange={(e) =>
-            setSortingStandard(e.target.value)
-          }
-        >
-          {standards.map((standard, index) => (
-            <option key={index} value={standard.value}>
-              {standard.label}
-            </option>
-          ))}
-        </select>
+
         <div>
-          {selectedMedia && (
-            <img
-              src={selectedMedia}
-              alt="Selected media"
+          {/* Content */}
+          <h1>{vote.title}</h1>
+          <p>투표 기간 설정: {vote.createdAt}</p>
+          <p>주최자: {vote.createdBy}</p>
+          <p>{vote.question}</p>
+          {vote?.mediaUrl &&
+            (vote.mediaUrl.endsWith('.mp4') ? (
+              <video
+                src={vote.mediaUrl}
+                controls
+                style={{
+                  width: '400px',
+                  height: '400px',
+                }}
+              />
+            ) : (
+              <img
+                src={vote.mediaUrl}
+                alt="Media"
+                style={{
+                  width: '400px',
+                  height: '400px',
+                }}
+              />
+            ))}
+          {/* Choices */}
+          {vote.choice.map((choice, index) => (
+            <div
+              key={index}
               style={{
-                width: '400px',
-                height: '400px',
+                backgroundColor: userVotes.some(
+                  (userVote) =>
+                    userVote.choiceId === choice.id
+                )
+                  ? '#4B89DC'
+                  : 'transparent',
               }}
-            />
-          )}
-          <input
-            type="text"
-            placeholder={
-              isReplyMode
-                ? '답글을 입력하세요.'
-                : '댓글을 입력하세요.'
-            }
-            value={isReplyMode ? replyText : commentText}
+            >
+              {choice.text}
+            </div>
+          ))}
+          <p>댓글 {comments.length}</p>
+          <select
+            value={sortingStandard}
             onChange={(e) =>
-              isReplyMode
-                ? setReplyText(e.target.value)
-                : setCommentText(e.target.value)
-            }
-          />
-          <button
-            onClick={
-              isReplyMode
-                ? handleAddReplySubmit
-                : handleCommentSubmit
+              setSortingStandard(e.target.value)
             }
           >
-            Submit
-          </button>
-          <input
-            type="file"
-            accept="image/*,video/*" // Accept both images and videos
-            onChange={handleImageChange}
-          />
-          <button onClick={() => cancelImage()}>
-            Cancel Image
-          </button>
+            {standards.map((standard, index) => (
+              <option key={index} value={standard.value}>
+                {standard.label}
+              </option>
+            ))}
+          </select>
+          <div>
+            {selectedMedia && (
+              <img
+                src={selectedMedia}
+                alt="Selected media"
+                style={{
+                  width: '400px',
+                  height: '400px',
+                }}
+              />
+            )}
+            <input
+              type="text"
+              placeholder={
+                isReplyMode
+                  ? '답글을 입력하세요.'
+                  : '댓글을 입력하세요.'
+              }
+              value={isReplyMode ? replyText : commentText}
+              onChange={(e) =>
+                isReplyMode
+                  ? setReplyText(e.target.value)
+                  : setCommentText(e.target.value)
+              }
+            />
+            <button
+              onClick={
+                isReplyMode
+                  ? handleAddReplySubmit
+                  : handleCommentSubmit
+              }
+            >
+              Submit
+            </button>
+            <input
+              type="file"
+              accept="image/*,video/*" // Accept both images and videos
+              onChange={handleImageChange}
+            />
+            <button onClick={() => cancelImage()}>
+              Cancel Image
+            </button>
+          </div>
+          {sortedComments.map((comment, index) => (
+            <Comment
+              key={index}
+              comment={comment}
+              index={index}
+            />
+          ))}
+          {commentError !== '' && <p>{commentError}</p>}
         </div>
-        {sortedComments.map((comment, index) => (
-          <Comment
-            key={index}
-            comment={comment}
-            index={index}
-          />
-        ))}
-        {commentError !== '' && <p>{commentError}</p>}
       </div>
     </div>
   );

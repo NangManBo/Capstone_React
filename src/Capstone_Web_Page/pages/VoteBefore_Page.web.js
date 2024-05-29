@@ -154,46 +154,47 @@ function VoteBeforePage() {
         >
           뒤로가기
         </button>
-      </div>
-      <div>
-        <h1>{vote.title}</h1>
-        <p>투표 기간 설정: {vote.createdAt}</p>
-        <p>주최자 : {vote.createdBy}</p>
-        <p>{vote.question}</p>
-        {vote?.mediaUrl &&
-          (vote.mediaUrl.endsWith('.mp4') ? (
-            <video
-              src={vote.mediaUrl}
-              controls
-              style={{
-                width: '400px',
-                height: '400px',
-              }}
-            />
-          ) : (
-            <img
-              src={vote.mediaUrl}
-              alt="Media"
-              style={{
-                width: '400px',
-                height: '400px',
-              }}
-            />
+
+        <div>
+          <h1>{vote.title}</h1>
+          <p>투표 기간 설정: {vote.createdAt}</p>
+          <p>주최자 : {vote.createdBy}</p>
+          <p>{vote.question}</p>
+          {vote?.mediaUrl &&
+            (vote.mediaUrl.endsWith('.mp4') ? (
+              <video
+                src={vote.mediaUrl}
+                controls
+                style={{
+                  width: '400px',
+                  height: '400px',
+                }}
+              />
+            ) : (
+              <img
+                src={vote.mediaUrl}
+                alt="Media"
+                style={{
+                  width: '400px',
+                  height: '400px',
+                }}
+              />
+            ))}
+          {pollOptions.map((option) => (
+            <button
+              key={option.id}
+              onClick={() => handleVoteOption(option.id)}
+            >
+              {option.isSelected ? '✓ ' : ''}
+              {option.text}
+            </button>
           ))}
-        {pollOptions.map((option) => (
-          <button
-            key={option.id}
-            onClick={() => handleVoteOption(option.id)}
-          >
-            {option.isSelected ? '✓ ' : ''}
-            {option.text}
+          <p>댓글</p>
+          <p>투표 후 댓글 작성 및 보기가 가능합니다</p>
+          <button onClick={handleVote}>
+            선택한 버튼으로 투표하기
           </button>
-        ))}
-        <p>댓글</p>
-        <p>투표 후 댓글 작성 및 보기가 가능합니다</p>
-        <button onClick={handleVote}>
-          선택한 버튼으로 투표하기
-        </button>
+        </div>
       </div>
     </div>
   );

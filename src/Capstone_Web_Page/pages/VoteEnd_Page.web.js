@@ -380,87 +380,94 @@ function VoteEndPage() {
             ? 'Heart Outlined Icon'
             : 'Heart Filled Icon'}
         </button>
-      </div>
-      <div>
-        <h1>{vote.title}</h1>
-        <p>투표 기간 설정: {vote.createdAt}</p>
-        <p>주최자: {vote.createdBy}</p>
-        <p>{vote.question}</p>
-        {vote?.mediaUrl &&
-          (vote.mediaUrl.endsWith('.mp4') ? (
-            <video
-              src={vote.mediaUrl}
-              controls
-              style={{
-                width: '400px',
-                height: '400px',
-              }}
-            />
-          ) : (
-            <img
-              src={vote.mediaUrl}
-              alt="Media"
-              style={{
-                width: '400px',
-                height: '400px',
-              }}
+
+        <div>
+          <h1>{vote.title}</h1>
+          <p>투표 기간 설정: {vote.createdAt}</p>
+          <p>주최자: {vote.createdBy}</p>
+          <p>{vote.question}</p>
+          {vote?.mediaUrl &&
+            (vote.mediaUrl.endsWith('.mp4') ? (
+              <video
+                src={vote.mediaUrl}
+                controls
+                style={{
+                  width: '400px',
+                  height: '400px',
+                }}
+              />
+            ) : (
+              <img
+                src={vote.mediaUrl}
+                alt="Media"
+                style={{
+                  width: '400px',
+                  height: '400px',
+                }}
+              />
+            ))}
+        </div>
+        <div>
+          {pollOptions.map((option, index) => (
+            <div
+              key={index}
+              className={`VoteButton ${
+                option.votes ===
+                Math.max(...pollOptions.map((o) => o.votes))
+                  ? 'VoteButton--highlighted'
+                  : ''
+              }`}
+            >
+              <p
+                className={`VoteText ${
+                  option.votes ===
+                  Math.max(
+                    ...pollOptions.map((o) => o.votes)
+                  )
+                    ? 'VoteText--highlighted'
+                    : ''
+                }`}
+              >
+                {option.text}
+              </p>
+              <p
+                className={`VoteCount ${
+                  option.votes ===
+                  Math.max(
+                    ...pollOptions.map((o) => o.votes)
+                  )
+                    ? 'VoteCount--bold'
+                    : ''
+                }`}
+              >
+                투표자수 : {option.votes}
+              </p>
+            </div>
+          ))}
+        </div>
+        <p>댓글 {comments.length}</p>
+        <select
+          value={sortingStandard}
+          onChange={(e) =>
+            setSortingStandard(e.target.value)
+          }
+        >
+          {standards.map((standard, index) => (
+            <option key={index} value={standard.value}>
+              {standard.label}
+            </option>
+          ))}
+        </select>
+
+        <div>
+          {sortedComments.map((comment, index) => (
+            <Comment
+              key={index}
+              comment={comment}
+              index={index}
             />
           ))}
-      </div>
-      <div>
-        {pollOptions.map((option, index) => (
-          <div
-            key={index}
-            className={`VoteButton ${
-              option.votes ===
-              Math.max(...pollOptions.map((o) => o.votes))
-                ? 'VoteButton--highlighted'
-                : ''
-            }`}
-          >
-            <p
-              className={`VoteText ${
-                option.votes ===
-                Math.max(...pollOptions.map((o) => o.votes))
-                  ? 'VoteText--highlighted'
-                  : ''
-              }`}
-            >
-              {option.text}
-            </p>
-            <p
-              className={`VoteCount ${
-                option.votes ===
-                Math.max(...pollOptions.map((o) => o.votes))
-                  ? 'VoteCount--bold'
-                  : ''
-              }`}
-            >
-              투표자수 : {option.votes}
-            </p>
-          </div>
-        ))}
-      </div>
-      <p>댓글 {comments.length}</p>
-      <select
-        value={sortingStandard}
-        onChange={(e) => setSortingStandard(e.target.value)}
-      >
-        {standards.map((standard, index) => (
-          <option key={index} value={standard.value}>
-            {standard.label}
-          </option>
-        ))}
-      </select>
-
-      <div>
-        {sortedComments.map((comment, index) => (
-          <Comment
-            key={index}
-            comment={comment}
-            index={index}
-          />
-        ))}
+        </div>
       </div>
     </div>
   );
