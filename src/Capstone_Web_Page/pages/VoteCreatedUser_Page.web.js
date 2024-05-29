@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { fetchComments } from '../functions/fetchComment_function';
 import axios from 'axios';
+import { MainBanner } from '../components/mainBanner_components';
+import { LeftBar } from '../components/leftBar_components';
 
 function VoteCreatedUserPage() {
   const navigate = useNavigate();
@@ -310,66 +312,77 @@ function VoteCreatedUserPage() {
   };
 
   return (
-    <div>
-      <button
-        onClick={() =>
-          isCategory ? goToCategory() : goToMain()
-        }
-      >
-        뒤로가기
-      </button>
-      <div>
-        <h1>{vote.title}</h1>
-        <p>투표 기간 설정: {vote.createdAt}</p>
-        <p>주최자 : {vote.createdBy}</p>
-        <p>{vote.question}</p>
-
-        {vote?.mediaUrl &&
-          (vote.mediaUrl.endsWith('.mp4') ? (
-            <video
-              src={vote.mediaUrl}
-              controls
-              style={{
-                width: '400px',
-                height: '400px',
-              }}
-            />
-          ) : (
-            <img
-              src={vote.mediaUrl}
-              alt="Media"
-              style={{
-                width: '400px',
-                height: '400px',
-              }}
-            />
-          ))}
-        {pollOptions.map((option) => (
-          <p key={option.id}>{option.text}</p>
-        ))}
-        <p>댓글 {comments.length}</p>
-        <div>
-          <button onClick={handleEndVote}>투표 종료</button>
-        </div>
-        <select
-          value={sortingStandard}
-          onChange={(e) =>
-            setSortingStandard(e.target.value)
+    <div className="vote_page">
+      <MainBanner
+        jwtToken={jwtToken}
+        isLoggedIn={isLoggedIn} // 또는 조건에 따라 변하는 값
+        userId={userId}
+        nickname={nickname}
+      />
+      <LeftBar />
+      <div className="right_page">
+        <button
+          onClick={() =>
+            isCategory ? goToCategory() : goToMain()
           }
         >
-          {standards.map((standard, index) => (
-            <option key={index} value={standard.value}>
-              {standard.label}
-            </option>
+          뒤로가기
+        </button>
+        <div>
+          <h1>{vote.title}</h1>
+          <p>투표 기간 설정: {vote.createdAt}</p>
+          <p>주최자 : {vote.createdBy}</p>
+          <p>{vote.question}</p>
+
+          {vote?.mediaUrl &&
+            (vote.mediaUrl.endsWith('.mp4') ? (
+              <video
+                src={vote.mediaUrl}
+                controls
+                style={{
+                  width: '400px',
+                  height: '400px',
+                }}
+              />
+            ) : (
+              <img
+                src={vote.mediaUrl}
+                alt="Media"
+                style={{
+                  width: '400px',
+                  height: '400px',
+                }}
+              />
+            ))}
+          {pollOptions.map((option) => (
+            <p key={option.id}>{option.text}</p>
           ))}
-        </select>
-        {sortedComments.map((comment, index) => (
-          <Comment
-            key={index}
-            comment={comment}
-            index={index}
-          />
-        ))}
+          <p>댓글 {comments.length}</p>
+          <div>
+            <button onClick={handleEndVote}>
+              투표 종료
+            </button>
+          </div>
+          <select
+            value={sortingStandard}
+            onChange={(e) =>
+              setSortingStandard(e.target.value)
+            }
+          >
+            {standards.map((standard, index) => (
+              <option key={index} value={standard.value}>
+                {standard.label}
+              </option>
+            ))}
+          </select>
+          {sortedComments.map((comment, index) => (
+            <Comment
+              key={index}
+              comment={comment}
+              index={index}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

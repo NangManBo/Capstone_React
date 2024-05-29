@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { MainBanner } from '../components/mainBanner_components';
+import { LeftBar } from '../components/leftBar_components';
 
 function VoteBeforePage() {
   const navigate = useNavigate();
@@ -136,8 +138,15 @@ function VoteBeforePage() {
   };
 
   return (
-    <div>
-      <div>
+    <div className="profile_page">
+      <MainBanner
+        jwtToken={jwtToken}
+        isLoggedIn={isLoggedIn} // 또는 조건에 따라 변하는 값
+        userId={userId}
+        nickname={nickname}
+      />
+      <LeftBar />
+      <div className="right_page">
         <button
           onClick={() =>
             isCategory ? goToCategory() : goToMain()

@@ -5,6 +5,8 @@ import {
   sameVoteGroup,
 } from '../functions/fetchComment_function';
 import axios from 'axios';
+import { MainBanner } from '../components/mainBanner_components';
+import { LeftBar } from '../components/leftBar_components';
 
 function VoteAfterPage() {
   const navigate = useNavigate();
@@ -568,8 +570,15 @@ function VoteAfterPage() {
   };
 
   return (
-    <div>
-      <div>
+    <div className="vote_page">
+      <MainBanner
+        jwtToken={jwtToken}
+        isLoggedIn={isLoggedIn} // 또는 조건에 따라 변하는 값
+        userId={userId}
+        nickname={nickname}
+      />
+      <LeftBar />
+      <div className="right_page">
         <button
           onClick={() =>
             isCategory ? goToCategory() : goToMain()

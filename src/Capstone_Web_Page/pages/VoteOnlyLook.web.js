@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { MainBanner } from '../components/mainBanner_components';
+import { LeftBar } from '../components/leftBar_components';
 
 function VoteOnlyLookPage() {
   const navigate = useNavigate();
@@ -53,48 +55,58 @@ function VoteOnlyLookPage() {
   };
 
   return (
-    <div>
-      <button
-        onClick={isCategory ? goToCategory : goToMain}
-      >
-        <span>뒤로가기</span>
-      </button>
-      <div>
-        <h1>{vote.title}</h1>
-        <p>투표 기간 설정: {vote && vote.createdAt}</p>
-        <p>주최자 : {vote && vote.createdBy}</p>
-        <p>{vote.question}</p>
-
-        {vote?.mediaUrl &&
-          (vote.mediaUrl.endsWith('.mp4') ? (
-            <video
-              src={vote.mediaUrl}
-              controls
-              style={{
-                width: '400px',
-                height: '400px',
-              }}
-            />
-          ) : (
-            <img
-              src={vote.mediaUrl}
-              alt="Media"
-              style={{
-                width: '400px',
-                height: '400px',
-              }}
-            />
-          ))}
-        {pollOptions.map((option) => (
-          <div key={option.id}>
-            <span>{option.text}</span>
-          </div>
-        ))}
-        <p>댓글</p>
-        <p>투표 후 댓글 작성 및 보기가 가능합니다</p>
-        <button onClick={goToLogin}>
-          투표 및 댓글을 확인하고 싶으시다면 로그인 해주세요
+    <div className="vote_page">
+      <MainBanner
+        jwtToken=""
+        isLoggedIn={false} // 또는 조건에 따라 변하는 값
+        userId=""
+        nickname="guest"
+      />
+      <LeftBar />
+      <div className="right_page">
+        <button
+          onClick={isCategory ? goToCategory : goToMain}
+        >
+          <span>뒤로가기</span>
         </button>
+        <div>
+          <h1>{vote.title}</h1>
+          <p>투표 기간 설정: {vote && vote.createdAt}</p>
+          <p>주최자 : {vote && vote.createdBy}</p>
+          <p>{vote.question}</p>
+
+          {vote?.mediaUrl &&
+            (vote.mediaUrl.endsWith('.mp4') ? (
+              <video
+                src={vote.mediaUrl}
+                controls
+                style={{
+                  width: '400px',
+                  height: '400px',
+                }}
+              />
+            ) : (
+              <img
+                src={vote.mediaUrl}
+                alt="Media"
+                style={{
+                  width: '400px',
+                  height: '400px',
+                }}
+              />
+            ))}
+          {pollOptions.map((option) => (
+            <div key={option.id}>
+              <span>{option.text}</span>
+            </div>
+          ))}
+          <p>댓글</p>
+          <p>투표 후 댓글 작성 및 보기가 가능합니다</p>
+          <button onClick={goToLogin}>
+            투표 및 댓글을 확인하고 싶으시다면 로그인
+            해주세요
+          </button>
+        </div>
       </div>
     </div>
   );
