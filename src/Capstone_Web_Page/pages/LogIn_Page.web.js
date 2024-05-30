@@ -10,16 +10,17 @@ function LogInPage() {
   const [password, setPassword] = useState('');
 
   const handleLogin = async () => {
+    const data = {
+      uid: id,
+      password: password,
+    };
     try {
       const response = await axios.post(
         'https://dovote.p-e.kr/auth/signin',
+        data,
         {
           header: {
             'content-type': 'application/json',
-          },
-          body: {
-            uid: id,
-            password: password,
           },
         }
       );
