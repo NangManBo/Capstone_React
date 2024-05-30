@@ -19,7 +19,7 @@ function DMSendPage() {
     try {
       const messageData = {
         sender: nickname,
-        receiver: item.username,
+        receiver: recipientId,
         content: messageContent,
       };
       const response = await axios.post(
