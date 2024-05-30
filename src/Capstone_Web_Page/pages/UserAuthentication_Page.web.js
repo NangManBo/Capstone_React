@@ -24,7 +24,7 @@ function UserAuthenticationPage() {
         {
           headers: {
             'content-type': 'application/json',
-            Authorization: Token,
+            Authorization: jwtToken,
           },
           body: {
             uid: userId,

@@ -11,7 +11,7 @@ export const fetchComments = async (
       `https://dovote.p-e.kr/api/comments/poll/${voteId}`,
       {
         headers: {
-          'AUTH-TOKEN': jwtToken,
+          'content-type': 'multipart/form-data',
         },
       }
     );
@@ -72,7 +72,7 @@ export const sameVoteGroup = async (
         `https://dovote.p-e.kr/votes/user-nicknames/${vote.id}/${customValue}/${nickname}`,
         {
           headers: {
-            'AUTH-TOKEN': jwtToken,
+            'content-type': 'multipart/form-data',
           },
         }
       )

@@ -34,6 +34,9 @@ function VoteEndPage() {
   const [sortingStandard, setSortingStandard] =
     useState('시간'); // 초기 정렬 기준을 '시간'으로 설정
   const [pollOptions, setPollOptions] = useState([]);
+  const [pollResult, setPollResult] = useState(null);
+  const [showPollResult, setShowPollResult] =
+    useState(false);
   //게시글 좋아요
   const handleHeartClick = async () => {
     console.log('투표 값' + vote);
@@ -263,7 +266,7 @@ function VoteEndPage() {
           vote.id,
         {
           headers: {
-            'AUTH-TOKEN': jwtToken,
+            'content-type': 'multipart/form-data',
           },
         }
       );
@@ -298,6 +301,33 @@ function VoteEndPage() {
       }
     } catch (error) {
       console.error('투표 카운트 가져오기 오류:', error);
+    }
+  };
+
+  //투표 분석 결과
+  const getPollResult = async () => {
+    try {
+      const response = await axios.get(
+        'https://dovote.p-e.kr/votes/result/' + vote.id,
+        {
+          headers: {
+            'content-type': 'multipart/form-data',
+          },
+        }
+      );
+      if (response.status === 200) {
+        const selectedVotes = response.data;
+        console.log('투표 결과', selectedVotes);
+        setPollResult(selectedVotes);
+        setShowPollResult(!showPollResult);
+      } else {
+        console.error(
+          '투표 결과 가져오기 실패',
+          response.data
+        );
+      }
+    } catch (error) {
+      console.error('투표 결과 가져오기 오류:', error);
     }
   };
   useEffect(() => {
@@ -462,6 +492,21 @@ function VoteEndPage() {
               index={index}
             />
           ))}
+        </div>
+        <div>
+          <button onClick={getPollResult}>
+            투표 결과 보기
+          </button>
+          {showPollResult && (
+            <div>
+              {pollResult.map((result, index) => (
+                <div key={index}>
+                  <p>{result.text}</p>
+                  <p>투표자수 : {result.count}</p>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

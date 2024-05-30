@@ -226,7 +226,11 @@ function VoteCreatedUserPage() {
     try {
       const response = await axios.post(
         'https://dovote.p-e.kr/polls/popularpoint',
-        Data
+        {
+          headers: {
+            'content-type': 'multipart/form-data',
+          },
+        }
       );
       if (response.status === 200) {
         console.log('포인트 성공');
@@ -237,10 +241,14 @@ function VoteCreatedUserPage() {
     try {
       const response = await axios.post(
         'https://dovote.p-e.kr/polls/close',
-        Data,
         {
           headers: {
-            'AUTH-TOKEN': jwtToken,
+            'content-type': 'multipart/form-data',
+            Authorization: jwtToken,
+          },
+          body: {
+            pollId: vote.id,
+            nickname: nickname,
           },
         }
       );

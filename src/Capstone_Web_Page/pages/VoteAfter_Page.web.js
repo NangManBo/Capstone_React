@@ -198,8 +198,8 @@ function VoteAfterPage() {
         {
           method: 'POST',
           headers: {
-            //'Content-Type': 'multipart/form-data',
-            'AUTH-TOKEN': jwtToken,
+            'content-type': 'multipart/form-data',
+            Authorization: jwtToken,
           },
           body: formData,
         }
@@ -526,8 +526,8 @@ function VoteAfterPage() {
         {
           method: 'POST',
           headers: {
-            //'Content-Type': 'multipart/form-data',
-            'AUTH-TOKEN': jwtToken,
+            'content-type': 'multipart/form-data',
+            Authorization: jwtToken,
           },
           body: formData,
         }

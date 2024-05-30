@@ -31,7 +31,7 @@ function ProfilePage() {
           nickname,
         {
           headers: {
-            'AUTH-TOKEN': jwtToken,
+            'content-type': 'multipart/form-data',
           },
         }
       );
@@ -40,7 +40,7 @@ function ProfilePage() {
           nickname,
         {
           headers: {
-            'AUTH-TOKEN': jwtToken,
+            'content-type': 'multipart/form-data',
           },
         }
       );
@@ -49,7 +49,7 @@ function ProfilePage() {
         {
           headers: {
             'content-type': 'application/json',
-            Authorization: Token,
+            Authorization: jwtToken,
           },
         }
       );
@@ -59,7 +59,7 @@ function ProfilePage() {
           nickname,
         {
           headers: {
-            'AUTH-TOKEN': jwtToken,
+            'content-type': 'multipart/form-data',
           },
         }
       );
