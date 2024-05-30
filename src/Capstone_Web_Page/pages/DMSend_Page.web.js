@@ -17,17 +17,18 @@ function DMSendPage() {
 
   const handleSendMessage = async () => {
     try {
+      const messageData = {
+        sender: nickname,
+        receiver: item.username,
+        content: messageContent,
+      };
       const response = await axios.post(
         'https://dovote.p-e.kr/message/send',
+        messageData,
         {
           headers: {
             'content-type': 'multipart/form-data',
             Authorization: jwtToken,
-          },
-          body: {
-            sender: nickname,
-            receiver: recipientId,
-            content: messageContent,
           },
         }
       );

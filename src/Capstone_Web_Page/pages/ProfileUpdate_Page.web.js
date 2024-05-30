@@ -54,12 +54,12 @@ function ProfileUpdatePage() {
     try {
       const response = await axios.patch(
         'https://dovote.p-e.kr/auth/patch/' + userId,
+        password,
         {
           headers: {
             'content-type': 'application/json',
             Authorization: jwtToken1,
           },
-          body: { password },
         }
       );
 
@@ -85,12 +85,12 @@ function ProfileUpdatePage() {
     try {
       const response = await axios.patch(
         'https://dovote.p-e.kr/auth/patch/' + userId,
+        newMbti,
         {
           headers: {
             'content-type': 'application/json',
             Authorization: jwtToken1,
           },
-          body: { newMbti },
         }
       );
 
@@ -118,12 +118,12 @@ function ProfileUpdatePage() {
     try {
       const response = await axios.patch(
         'https://dovote.p-e.kr/auth/patch/name/' + uid,
+        newNickname,
         {
           headers: {
             'content-type': 'application/json',
             Authorization: jwtToken1,
           },
-          body: { newNickname },
         }
       );
 

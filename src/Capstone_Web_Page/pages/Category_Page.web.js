@@ -41,7 +41,6 @@ function CategoryPage() {
     }
     return votes;
   };
-  // ㅋㅋ ㅈㄴ 하기싫네
   useEffect(() => {
     setSortedVotes(sortVotes(matchingVotes));
     console.log('카테고리 분류 데이터' + setSortedVotes);

@@ -137,22 +137,23 @@ function SignUpPage() {
       setIsButtonDisabled(false); // Re-enable the button
       return;
     } else {
+      const userData = {
+        uid: id,
+        password: password,
+        nickname: nickname,
+        gender: selectedGender,
+        phoneNum: phoneNumber,
+        age: ageGroup,
+        mbti: mbti,
+        interests: [favoriteCategory],
+      };
       try {
         const response = await axios.post(
           'https://dovote.p-e.kr/auth/signup',
+          userData,
           {
             header: {
               'content-type': 'application/json',
-            },
-            body: {
-              uid: id,
-              password: password,
-              nickname: nickname,
-              gender: selectedGender,
-              age: ageGroup,
-              mbti: mbti,
-              phoneNum: phoneNumber,
-              interests: [favoriteCategory],
             },
           }
         );
