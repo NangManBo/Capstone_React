@@ -242,13 +242,13 @@ function VoteCreatedUserPage() {
       const response = await axios.post(
         'https://dovote.p-e.kr/polls/close',
         {
+          pollId: vote.id,
+          nickname: nickname,
+        },
+        {
           headers: {
             'content-type': 'multipart/form-data',
             Authorization: jwtToken,
-          },
-          body: {
-            pollId: vote.id,
-            nickname: nickname,
           },
         }
       );

@@ -57,15 +57,14 @@ function VoteBeforePage() {
       const response = await axios.post(
         'https://dovote.p-e.kr/votes',
         {
+          pollId: vote.id,
+          choiceId: selectedOption.id,
+          nickname: nickname,
+        },
+        {
           headers: {
             'content-type': 'multipart/form-data',
-
             Authorization: jwtToken,
-          },
-          body: {
-            pollId: vote.id,
-            choiceId: selectedOption.id,
-            nickname: nickname,
           },
         }
       );
