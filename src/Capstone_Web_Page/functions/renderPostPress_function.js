@@ -36,7 +36,7 @@ export const renderPostPress = async (
         const isVoteEnd =
           firstMatchingVote.voteStatus === 'CLOSED';
         console.log('first' + firstMatchingVote);
-        if (nickname === 'guest') {
+        if (nickname === '') {
           navigate('/voteonlylook', {
             state: {
               vote: firstMatchingVote,

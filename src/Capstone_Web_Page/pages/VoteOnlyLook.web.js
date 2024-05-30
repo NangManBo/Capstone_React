@@ -56,7 +56,7 @@ function VoteOnlyLookPage() {
 
   return (
     <div className="vote_page">
-      {MainBanner('', false, '', 'guest')}
+      {MainBanner('', false, '', '')}
       <LeftBar />
       <div className="right_page">
         <button
