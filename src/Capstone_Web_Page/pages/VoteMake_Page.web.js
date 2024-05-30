@@ -91,7 +91,7 @@ function VoteMakePage() {
         title: titleInput,
         category: selectedCategory,
         question: description,
-        user: userId,
+        userId: keyId,
       };
       if (titleInput.trim() === '') {
         alert('알림', '제목을 입력하세요.');
