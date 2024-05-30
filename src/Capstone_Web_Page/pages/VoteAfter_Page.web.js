@@ -8,6 +8,24 @@ import axios from 'axios';
 import { MainBanner } from '../components/mainBanner_components';
 import { LeftBar } from '../components/leftBar_components';
 
+const exampleVote = {
+  id: 1,
+  mediaUrl: 'https://example.com/media.jpg',
+  createdBy: 'User1',
+  voteStatus: 'open',
+  createdAt: '2023.05.01 12:30:00',
+  category: 'Category1',
+  title: 'Example Vote Title',
+  question: 'Example question for the vote?',
+  likesCount: 10,
+  likedUsers: ['UserA', 'UserB'],
+  choice: [
+    { id: 1, text: 'Choice 1' },
+    { id: 2, text: 'Choice 2' },
+    { id: 3, text: 'Choice 3' },
+  ],
+};
+
 function VoteAfterPage() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -22,6 +40,7 @@ function VoteAfterPage() {
     category,
     matchingVotes,
   } = location.state || { isCategory: false };
+
   const [send, setSend] = useState(false);
   const [comments, setComments] = useState([]); // 댓글
   const [pollOptions, setPollOptions] = useState([]);
@@ -179,8 +198,8 @@ function VoteAfterPage() {
         {
           method: 'POST',
           headers: {
-            //'Content-Type': 'multipart/form-data',
-            'AUTH-TOKEN': jwtToken,
+            'content-type': 'multipart/form-data',
+            Authorization: jwtToken,
           },
           body: formData,
         }
@@ -241,7 +260,6 @@ function VoteAfterPage() {
   const cancelImage = () => {
     setSelectedMedia(null);
   };
-  // Modify handleImageChange to handle both images and videos
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
@@ -508,8 +526,8 @@ function VoteAfterPage() {
         {
           method: 'POST',
           headers: {
-            //'Content-Type': 'multipart/form-data',
-            'AUTH-TOKEN': jwtToken,
+            'content-type': 'multipart/form-data',
+            Authorization: jwtToken,
           },
           body: formData,
         }
@@ -608,8 +626,8 @@ function VoteAfterPage() {
                 src={vote.mediaUrl}
                 alt="Media"
                 style={{
-                  width: '400px',
-                  height: '400px',
+                  width: '800px',
+                  height: '450px',
                 }}
               />
             ))}

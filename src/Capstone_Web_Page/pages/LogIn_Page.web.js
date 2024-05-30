@@ -10,15 +10,19 @@ function LogInPage() {
   const [password, setPassword] = useState('');
 
   const handleLogin = async () => {
-    const userData = {
+    const data = {
       uid: id,
       password: password,
     };
-
     try {
       const response = await axios.post(
         'https://dovote.p-e.kr/auth/signin',
-        userData
+        data,
+        {
+          header: {
+            'content-type': 'application/json',
+          },
+        }
       );
 
       if (response.status === 201) {
@@ -28,9 +32,10 @@ function LogInPage() {
         navigate('/', {
           state: {
             isLoggedIn: true,
-            userId: id, // 예시 값, 실제 응답에 맞게 조정 필요
-            jwtToken: response.data.token, // 예시 값, 실제 응답에 맞게 조정 필요
-            nickname: response.data.nickname, // 예시 값, 실제 응답에 맞게 조정 필요
+            userId: id,
+            jwtToken: response.data.token,
+            nickname: response.data.nickname,
+            key: response.data.userId,
           },
         });
       } else {

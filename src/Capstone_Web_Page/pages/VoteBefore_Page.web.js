@@ -53,18 +53,21 @@ function VoteBeforePage() {
       window.alert('알림', '투표항목을 선택해주세요');
       return;
     }
-
-    const VoteDto = {
-      pollId: vote.id,
-      choiceId: selectedOption.id,
-      nickname: nickname,
-    };
-
     try {
       const response = await axios.post(
         'https://dovote.p-e.kr/votes',
-        VoteDto,
-        { headers: { 'AUTH-TOKEN': jwtToken } }
+        {
+          headers: {
+            'content-type': 'multipart/form-data',
+
+            Authorization: jwtToken,
+          },
+          body: {
+            pollId: vote.id,
+            choiceId: selectedOption.id,
+            nickname: nickname,
+          },
+        }
       );
       if (response.status === 201) {
         console.log('투표 성공:', response.data);
@@ -85,7 +88,7 @@ function VoteBeforePage() {
         'https://dovote.p-e.kr/votes/ok/' + nickname,
         {
           headers: {
-            'AUTH-TOKEN': jwtToken,
+            'content-type': 'multipart/form-data',
           },
         }
       );

@@ -13,12 +13,13 @@ import { GetManagerVotes } from '../components/managerVote_components';
 function MainPage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { isLoggedIn, userId, jwtToken, nickname } =
+  const { isLoggedIn, userId, jwtToken, nickname, keyId } =
     location.state || {
       isLoggedIn: false,
       userId: '',
       jwtToken: '',
       nickname: 'guest',
+      keyId: '',
     };
 
   const [unreadMessageCount, setUnreadMessageCount] =
@@ -30,11 +31,11 @@ function MainPage() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        'https://dovote.p-e.kr/message/read/all/' +
-          nickname,
+        `https://dovote.p-e.kr/message/read/all/${nickname}`,
         {
-          headers: {
-            'AUTH-TOKEN': jwtToken,
+          header: {
+            'content-type': 'multipart/form-data',
+            Authorization: jwtToken,
           },
         }
       );
@@ -66,32 +67,23 @@ function MainPage() {
   };
   // 웹소켓
   const fetchwebsocket = async () => {
-    const socket = new WebSocket(
-      'wss://ec2-43-200-126-104.ap-northeast-2.compute.amazonaws.com/test?uid=' +
-        userId
-    );
-    socket.onopen = () => {
-      console.log('WebSocket 연결 성공');
-    };
-    socket.onmessage = (event) => {
-      const receivedMessage = event.data;
-      console.log(
-        '서버로부터 받은 메시지 :',
-        receivedMessage
+    try {
+      const response = await axios.get(
+        `https://dovote.p-e.kr/message/count/${nickname}`,
+        {
+          header: {
+            'content-type': 'multipart/form-data',
+            Authorization: jwtToken,
+          },
+        }
       );
 
-      // 메시지를 콜론을 기준으로 나눔
-      const parts = receivedMessage.split(':');
-      if (parts.length > 1) {
-        // 콜론 뒤의 부분에서 숫자를 추출
-        const count = parseInt(parts[1].trim(), 10);
-        if (!isNaN(count)) {
-          // 유효한 숫자인 경우 상태 업데이트
-          console.log('읽지 않은 쪽지의 개수:', count);
-          setUnreadMessageCount(count);
-        }
+      if (response.status === 200) {
+        const response_data = response.data;
+        setUnreadMessageCount(response_data);
+      } else {
       }
-    };
+    } catch (error) {}
   };
 
   // 투표 데이터를 받아오는 함수
@@ -120,7 +112,13 @@ function MainPage() {
             jwtToken={jwtToken}
             nickname={nickname}
           /> */}
-          {UserBox(isLoggedIn, userId, jwtToken, nickname)}
+          {UserBox(
+            isLoggedIn,
+            userId,
+            jwtToken,
+            nickname,
+            keyId
+          )}
           {/* <AlarmBox isLoggedIn={isLoggedIn} /> */}
           {AlarmBox(isLoggedIn)}
           {/* <GetManagerVotes
