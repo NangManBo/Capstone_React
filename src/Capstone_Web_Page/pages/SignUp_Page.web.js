@@ -167,7 +167,6 @@ function SignUpPage() {
           '오류',
           '잘못 입력하거나 비어있는 곳이 있습니다.'
         );
-        console.error('데이터', userData);
       } finally {
         setTimeout(() => {
           setIsButtonDisabled(false); // Re-enable the button after the delay

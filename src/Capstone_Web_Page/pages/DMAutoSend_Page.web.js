@@ -27,7 +27,7 @@ function DMAutoSendPage() {
 
         {
           headers: {
-            'content-type': multipart / form - data,
+            'content-type': 'multipart/form-data',
             Authorization: jwtToken,
           },
           body: {

@@ -21,7 +21,7 @@ function DMSendPage() {
         'https://dovote.p-e.kr/message/send',
         {
           headers: {
-            'content-type': multipart / form - data,
+            'content-type': 'multipart/form-data',
             Authorization: jwtToken,
           },
           body: {

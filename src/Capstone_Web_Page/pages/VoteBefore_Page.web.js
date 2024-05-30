@@ -56,7 +56,6 @@ function VoteBeforePage() {
     try {
       const response = await axios.post(
         'https://dovote.p-e.kr/votes',
-        VoteDto,
         {
           headers: {
             'content-type': 'multipart/form-data',
