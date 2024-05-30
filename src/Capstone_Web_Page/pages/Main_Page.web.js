@@ -19,7 +19,6 @@ function MainPage() {
       userId: '',
       jwtToken: '',
       nickname: 'guest',
-      keyId: '',
     };
 
   const [unreadMessageCount, setUnreadMessageCount] =

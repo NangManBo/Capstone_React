@@ -121,7 +121,8 @@ function VoteMakePage() {
         {
           method: 'POST',
           headers: {
-            'AUTH-TOKEN': jwtToken,
+            Authorization: jwtToken,
+            'content-type': 'multipart/form-data',
           },
           body: formData,
         }
@@ -154,7 +155,12 @@ function VoteMakePage() {
           const response = await axios.post(
             'https://dovote.p-e.kr/choices/create/' +
               parsedData.pollId,
-            data
+            data,
+            {
+              headers: {
+                'content-type': 'application/json',
+              },
+            }
           );
 
           if (response.status === 201) {
