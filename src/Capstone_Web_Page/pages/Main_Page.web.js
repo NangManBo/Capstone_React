@@ -88,7 +88,7 @@ function MainPage() {
 
   // 투표 데이터를 받아오는 함수
   useEffect(() => {
-    fetchVotes(setVotes, jwtToken);
+    fetchVotes(setVotes);
 
     if (isLoggedIn) {
       fetchData();

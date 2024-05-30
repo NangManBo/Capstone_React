@@ -3,7 +3,6 @@ import moment from 'moment';
 
 export const fetchVotes = async (
   setVotes = () => {}, // 기본값으로 빈 함수 설정
-  jwtToken,
   setSearchResults = () => {} // 기본값으로 빈 함수 설정
 ) => {
   try {
