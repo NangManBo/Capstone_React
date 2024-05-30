@@ -16,12 +16,10 @@ function PhoneAuthenticationModal({
   const [message, setMessage] = useState('');
 
   const sendPhoneNumber = async () => {
-    //setIsSend(true);
     console.log('Sending Phone Number:', phoneNumber);
     try {
       const response = await axios.post(
         'https://dovote.p-e.kr/sms/send',
-
         {
           header: {
             'content-type': 'application/json',
@@ -39,7 +37,7 @@ function PhoneAuthenticationModal({
       }
     } catch (error) {
       console.error(error);
-      alert('Error occurred');
+      setIsSend(true);
     }
   };
 
