@@ -22,8 +22,9 @@ function DMboxPage() {
         const response = await axios.get(
           `https://dovote.p-e.kr/message/read/all/${nickname}`,
           {
-            headers: {
-              'AUTH-TOKEN': jwtToken,
+            header: {
+              'content-type': 'multipart/form-data',
+              Authorization: jwtToken,
             },
           }
         );

@@ -48,7 +48,8 @@ function ProfilePage() {
         'https://dovote.p-e.kr/auth/profile/' + userId,
         {
           headers: {
-            'AUTH-TOKEN': jwtToken,
+            'content-type': 'application/json',
+            Authorization: Token,
           },
         }
       );
@@ -63,7 +64,13 @@ function ProfilePage() {
         }
       );
       const get_mbti = await axios.get(
-        'https://dovote.p-e.kr/auth/mbti/' + nickname
+        'https://dovote.p-e.kr/auth/mbti/' + nickname,
+        {
+          header: {
+            'content-type': 'application/json',
+            Authorization: jwtToken,
+          },
+        }
       );
 
       if (get_mbti.status === 200) {

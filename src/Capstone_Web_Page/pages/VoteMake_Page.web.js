@@ -13,7 +13,7 @@ function VoteMakePage() {
   const navigate = useNavigate();
 
   // location.state를 통해 전달된 매개변수 접근
-  const { userId, isLoggedIn, jwtToken, nickname } =
+  const { userId, isLoggedIn, jwtToken, nickname, keyId } =
     location.state || {};
 
   const [titleInput, setTitleInput] = useState('');
@@ -165,6 +165,7 @@ function VoteMakePage() {
                 userId,
                 jwtToken,
                 nickname,
+                keyId,
               },
             });
           } else {

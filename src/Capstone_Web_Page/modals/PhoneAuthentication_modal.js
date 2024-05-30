@@ -21,8 +21,14 @@ function PhoneAuthenticationModal({
     try {
       const response = await axios.post(
         'https://dovote.p-e.kr/sms/send',
+
         {
-          phoneNum: phoneNumber,
+          header: {
+            'content-type': 'application/json',
+          },
+          body: {
+            phoneNum: phoneNumber,
+          },
         }
       );
 
@@ -42,8 +48,13 @@ function PhoneAuthenticationModal({
       const response = await axios.post(
         'https://dovote.p-e.kr/sms/verify',
         {
-          phoneNum: phoneNumber,
-          certificationCode: verificationCode,
+          header: {
+            'content-type': 'application/json',
+          },
+          body: {
+            phoneNum: phoneNumber,
+            certificationCode: verificationCode,
+          },
         }
       );
 

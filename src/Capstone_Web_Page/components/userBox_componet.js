@@ -6,7 +6,8 @@ export const UserBox = (
   isLoggedIn,
   userId,
   jwtToken,
-  nickname
+  nickname,
+  keyId
 ) => {
   const navigate = useNavigate();
   // 이동 함수
@@ -66,6 +67,7 @@ export const UserBox = (
         userId,
         jwtToken,
         nickname,
+        keyId,
       },
     });
   };

@@ -16,18 +16,18 @@ function DMSendPage() {
   const [messageContent, setMessageContent] = useState('');
 
   const handleSendMessage = async () => {
-    const messageData = {
-      sender: nickname,
-      receiver: recipientId,
-      content: messageContent,
-    };
     try {
       const response = await axios.post(
         'https://dovote.p-e.kr/message/send',
-        messageData,
         {
           headers: {
-            'AUTH-TOKEN': jwtToken,
+            'content-type': multipart / form - data,
+            Authorization: jwtToken,
+          },
+          body: {
+            sender: nickname,
+            receiver: recipientId,
+            content: messageContent,
           },
         }
       );

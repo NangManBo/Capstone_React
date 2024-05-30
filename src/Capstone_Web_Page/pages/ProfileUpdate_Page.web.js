@@ -54,11 +54,12 @@ function ProfileUpdatePage() {
     try {
       const response = await axios.patch(
         'https://dovote.p-e.kr/auth/patch/' + userId,
-        password,
         {
           headers: {
-            'AUTH-TOKEN': jwtToken1,
+            'content-type': 'application/json',
+            Authorization: jwtToken1,
           },
+          body: { password },
         }
       );
 
@@ -77,10 +78,6 @@ function ProfileUpdatePage() {
   };
 
   const handleChangeMbti = async () => {
-    const mbti = {
-      uid: userId,
-      mbti: newMbti,
-    };
     if (newMbti === '') {
       alert('알림', 'MBTI를 입력해주세요');
       return;
@@ -88,11 +85,12 @@ function ProfileUpdatePage() {
     try {
       const response = await axios.patch(
         'https://dovote.p-e.kr/auth/patch/' + userId,
-        mbti,
         {
           headers: {
-            'AUTH-TOKEN': jwtToken1,
+            'content-type': 'application/json',
+            Authorization: jwtToken1,
           },
+          body: { newMbti },
         }
       );
 
@@ -111,10 +109,6 @@ function ProfileUpdatePage() {
   };
 
   const handleChangeNickname = async () => {
-    const nickname = {
-      uid: userId,
-      nickname: newNickname,
-    };
     const uid = userId;
 
     if (newNickname === '') {
@@ -124,11 +118,12 @@ function ProfileUpdatePage() {
     try {
       const response = await axios.patch(
         'https://dovote.p-e.kr/auth/patch/name/' + uid,
-        nickname,
         {
           headers: {
-            'AUTH-TOKEN': jwtToken1,
+            'content-type': 'application/json',
+            Authorization: jwtToken1,
           },
+          body: { newNickname },
         }
       );
 

@@ -22,12 +22,13 @@ function UserAuthenticationPage() {
       const response = await axios.post(
         'https://dovote.p-e.kr/auth/patch/check',
         {
-          uid: userId,
-          password: inputPassword,
-        },
-        {
           headers: {
-            'AUTH-TOKEN': jwtToken,
+            'content-type': 'application/json',
+            Authorization: Token,
+          },
+          body: {
+            uid: userId,
+            password: inputPassword,
           },
         }
       );
