@@ -64,7 +64,7 @@ function VoteBeforePage() {
         },
         {
           headers: {
-            'Content-Type': 'multipart/form-data',
+            'Content-Type': 'application/json',
             Authorization: jwtToken,
           },
         }
