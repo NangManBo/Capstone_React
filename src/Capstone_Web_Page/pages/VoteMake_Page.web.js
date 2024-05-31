@@ -140,10 +140,11 @@ function VoteMakePage() {
           contentType &&
           contentType.includes('application/json')
         ) {
-          parsedData = await response.json();
-          console.log('투표 작성 성공:', parsedData);
+          // parsedData = await response.json();
+          // console.log('투표 작성 성공:', parsedData);
+          console.log('투표 작성 성공:', response.data);
         } else {
-          console.log('투표 작성 성공');
+          console.log('투표');
         }
 
         try {
