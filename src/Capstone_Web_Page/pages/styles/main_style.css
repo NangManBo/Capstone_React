@@ -9,7 +9,7 @@
 }
 .main_page_header {
   margin-top: 400px;
-  margin-left: 0%;
+  margin-left: 9%;
   display: grid; /* Grid 컨테이너로 만듭니다. */
   grid-template-columns: repeat(
     3,
@@ -17,7 +17,7 @@
   ); /* 세 개의 동일한 너비의 컬럼을 만듭니다. */
 
   gap: 5%; /* 항목 사이의 수평 간격을 고정된 값으로 설정합니다. */
-  width: 15%; /* 컨테이너 너비를 상대적 단위로 설정합니다. */
+  width: 80%; /* 컨테이너 너비를 상대적 단위로 설정합니다. */
 
   margin-bottom: 20px;
 }
