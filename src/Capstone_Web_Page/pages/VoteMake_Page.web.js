@@ -142,7 +142,8 @@ function VoteMakePage() {
         ) {
           // parsedData = await response.json();
           // console.log('투표 작성 성공:', parsedData);
-          console.log('투표 작성 성공:', response.data);
+          parsedData = response.data;
+          console.log('투표 작성 성공:', parsedData);
         } else {
           console.log('투표');
         }
