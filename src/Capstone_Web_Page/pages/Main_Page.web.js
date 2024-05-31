@@ -18,7 +18,6 @@ function MainPage() {
       isLoggedIn: false,
       userId: '',
       jwtToken: '',
-      nickname: '',
     };
 
   const [unreadMessageCount, setUnreadMessageCount] =
