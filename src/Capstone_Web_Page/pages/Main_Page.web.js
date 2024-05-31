@@ -42,7 +42,10 @@ function MainPage() {
       if (response.status === 200) {
         // Assuming the response data is an array of messages
         const messagesData = response.data;
-        console.log(JSON.stringify(response.data, null, 2));
+        console.log(
+          '쪽지 데이터 확인',
+          JSON.stringify(response.data, null, 2)
+        );
         // Extracting and mapping relevant data from the response
         const formattedMessages = messagesData.map(
           (message) => ({
