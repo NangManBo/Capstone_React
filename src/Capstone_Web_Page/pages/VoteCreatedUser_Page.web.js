@@ -17,6 +17,7 @@ function VoteCreatedUserPage() {
     isCategory,
     category,
     matchingVotes,
+    keyId,
   } = location.state || { isCategory: false };
   const videoRef = useRef(null);
   const [comments, setComments] = useState([]); // 댓글
@@ -266,6 +267,7 @@ function VoteCreatedUserPage() {
         userId,
         jwtToken,
         nickname,
+        keyId,
       },
     });
   };

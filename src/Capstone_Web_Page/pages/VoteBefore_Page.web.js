@@ -16,6 +16,7 @@ function VoteBeforePage() {
     isCategory,
     category,
     matchingVotes,
+    keyId,
   } = location.state || { isCategory: false };
 
   const [pollOptions, setPollOptions] = useState([]);
@@ -123,6 +124,7 @@ function VoteBeforePage() {
         userId,
         jwtToken,
         nickname,
+        keyId,
       },
     });
   };

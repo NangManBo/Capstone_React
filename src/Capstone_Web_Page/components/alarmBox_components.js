@@ -2,7 +2,13 @@ import React from 'react';
 import './styles/alarmBox_style.css';
 import { useNavigate } from 'react-router-dom';
 
-export const AlarmBox = (isLoggedIn) => {
+export const AlarmBox = (
+  isLoggedIn,
+  userId,
+  jwtToken,
+  nickname,
+  keyId
+) => {
   const navigate = useNavigate();
   // 이동 함수
   const goToDMPage = () => {
@@ -12,6 +18,7 @@ export const AlarmBox = (isLoggedIn) => {
         userId: '',
         jwtToken: '',
         nickname: null,
+        keyId,
       },
     });
   };

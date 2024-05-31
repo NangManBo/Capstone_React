@@ -8,7 +8,7 @@ import './styles/profile_style.css';
 function ProfilePage() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { userId, isLoggedIn, jwtToken, nickname } =
+  const { userId, isLoggedIn, jwtToken, nickname, keyId } =
     location.state;
 
   const [participatedVoteCount, setParticipatedVoteCount] =
@@ -152,6 +152,7 @@ function ProfilePage() {
                 userId: userId,
                 jwtToken: jwtToken,
                 nickname: nickname,
+                keyId: keyId,
               },
             })
           }

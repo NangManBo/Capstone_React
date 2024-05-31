@@ -13,7 +13,7 @@ function DMboxPage() {
   const [messages, setMessages] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
-  const { userId, isLoggedIn, jwtToken, nickname } =
+  const { userId, isLoggedIn, jwtToken, nickname, keyId } =
     location.state || {};
 
   useEffect(() => {
@@ -90,6 +90,7 @@ function DMboxPage() {
                 userId,
                 jwtToken,
                 nickname,
+                keyId,
               },
             })
           }

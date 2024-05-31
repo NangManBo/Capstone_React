@@ -8,8 +8,14 @@ import { LeftBar } from '../components/leftBar_components';
 function UserAuthenticationPage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { userId, isLoggedIn, jwtToken, nickname, mbti } =
-    location.state;
+  const {
+    userId,
+    isLoggedIn,
+    jwtToken,
+    nickname,
+    mbti,
+    keyId,
+  } = location.state;
   const [inputPassword, setInputPassword] = useState('');
 
   const handleAuthenticationPassword = async () => {
@@ -68,6 +74,7 @@ function UserAuthenticationPage() {
                 userId,
                 jwtToken,
                 nickname,
+                keyId,
               },
             })
           }

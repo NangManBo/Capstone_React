@@ -16,6 +16,7 @@ function DMAutoSendPage() {
     nickname,
     commentId,
     receiverName,
+    keyId,
   } = location.state || {}; // state가 없는 경우를 대비한 기본값 설정
 
   const [messageContent, setMessageContent] = useState('');
@@ -33,7 +34,7 @@ function DMAutoSendPage() {
 
         {
           headers: {
-            'Content-Type': 'multipart/form-data',
+            //'Content-Type': 'multipart/form-data',
             Authorization: jwtToken,
           },
         }
@@ -74,6 +75,7 @@ function DMAutoSendPage() {
                 userId,
                 jwtToken,
                 nickname,
+                keyId,
               },
             })
           }

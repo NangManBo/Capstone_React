@@ -78,6 +78,7 @@ export const UserBox = (
         userId: '',
         jwtToken: '',
         nickname: null,
+        keyId,
       },
     });
   };

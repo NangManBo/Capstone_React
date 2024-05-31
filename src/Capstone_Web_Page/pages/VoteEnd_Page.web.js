@@ -18,6 +18,7 @@ function VoteEndPage() {
     isCategory,
     category,
     matchingVotes,
+    keyId,
   } = location.state || { isCategory: false };
 
   const standards = [
@@ -372,6 +373,7 @@ function VoteEndPage() {
         userId,
         jwtToken,
         nickname,
+        keyId,
       },
     });
   };

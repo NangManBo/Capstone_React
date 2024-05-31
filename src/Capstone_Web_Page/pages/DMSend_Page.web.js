@@ -27,7 +27,7 @@ function DMSendPage() {
         messageData,
         {
           headers: {
-            'Content-Type': 'multipart/form-data',
+            //'Content-Type': 'multipart/form-data',
             Authorization: jwtToken,
           },
         }

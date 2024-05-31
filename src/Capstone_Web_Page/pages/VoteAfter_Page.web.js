@@ -39,6 +39,7 @@ function VoteAfterPage() {
     isCategory,
     category,
     matchingVotes,
+    keyId,
   } = location.state || { isCategory: false };
 
   const [send, setSend] = useState(false);
@@ -571,6 +572,7 @@ function VoteAfterPage() {
         userId,
         jwtToken,
         nickname,
+        keyId,
       },
     });
   };

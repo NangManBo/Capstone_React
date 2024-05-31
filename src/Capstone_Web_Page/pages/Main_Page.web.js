@@ -127,7 +127,13 @@ function MainPage() {
             keyId
           )}
           {/* <AlarmBox isLoggedIn={isLoggedIn} /> */}
-          {AlarmBox(isLoggedIn)}
+          {AlarmBox(
+            isLoggedIn,
+            userId,
+            jwtToken,
+            nickname,
+            keyId
+          )}
           {/* <GetManagerVotes
             votes={votes}
             isLoggedIn={isLoggedIn}
