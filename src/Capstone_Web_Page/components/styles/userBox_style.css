@@ -25,13 +25,13 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 5%;
-  width: 50%;
+  width: 70%;
 }
 
 .user_box_header_label {
   font-size: 1.5rem;
   font-weight: bold;
-  margin-left: 15%;
+  margin-left: 5%;
 }
 
 .user_box_point_box {
