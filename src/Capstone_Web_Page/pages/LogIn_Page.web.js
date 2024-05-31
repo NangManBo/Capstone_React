@@ -44,11 +44,11 @@ function LogInPage() {
       }
     } catch (error) {
       if (error.response) {
-        console.error('서버 에러:', error.response.data);
+        alert('아이디 또는 비밀번호가 일치하지 않습니다.');
       } else if (error.request) {
-        console.error('응답을 받지 못함:', error.request);
+        alert('아이디 또는 비밀번호가 일치하지 않습니다.');
       } else {
-        console.error('Error:', error.message);
+        alert('아이디 또는 비밀번호가 일치하지 않습니다.');
       }
     }
   };
