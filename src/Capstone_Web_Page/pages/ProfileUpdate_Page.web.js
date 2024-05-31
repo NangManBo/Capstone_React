@@ -71,15 +71,12 @@ function ProfileUpdatePage() {
         setJwtToken1(response.data.token);
         setNewNickname('');
         setCurrentNickname(newNickname);
-        alert('닉네임 변경 완료');
+        alert('정보 수정 완료');
       } else {
-        alert('닉네임 변경에 실패했습니다');
+        alert('정보 수정에 실패했습니다');
       }
     } catch (error) {
-      alert(
-        '알림',
-        '닉네임 변경에 실패했습니다.\n네트워크 상태를 확인해주세요.'
-      );
+      alert('알림', '정보 수정에 실패했습니다.');
     }
   };
 
