@@ -152,7 +152,7 @@ function SignUpPage() {
           'https://dovote.p-e.kr/auth/signup',
           userData,
           {
-            header: {
+            headers: {
               'content-type': 'application/json',
             },
           }

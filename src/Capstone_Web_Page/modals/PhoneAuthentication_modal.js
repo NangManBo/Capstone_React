@@ -24,7 +24,7 @@ function PhoneAuthenticationModal({
           phoneNum: phoneNumber,
         },
         {
-          header: {
+          headers: {
             'content-type': 'application/json',
           },
         }

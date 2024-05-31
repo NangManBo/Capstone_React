@@ -19,7 +19,7 @@ function LogInPage() {
         'https://dovote.p-e.kr/auth/signin',
         userData,
         {
-          header: {
+          headers: {
             'content-type': 'application/json',
           },
         }

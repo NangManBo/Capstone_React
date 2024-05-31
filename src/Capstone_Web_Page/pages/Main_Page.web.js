@@ -32,7 +32,7 @@ function MainPage() {
       const response = await axios.get(
         `https://dovote.p-e.kr/message/read/all/${nickname}`,
         {
-          header: {
+          headers: {
             'content-type': 'multipart/form-data',
             Authorization: jwtToken,
           },
@@ -70,7 +70,7 @@ function MainPage() {
       const response = await axios.get(
         `https://dovote.p-e.kr/message/count/${nickname}`,
         {
-          header: {
+          headers: {
             'content-type': 'multipart/form-data',
             Authorization: jwtToken,
           },

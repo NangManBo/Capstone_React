@@ -66,7 +66,7 @@ function ProfilePage() {
       const get_mbti = await axios.get(
         'https://dovote.p-e.kr/auth/mbti/' + nickname,
         {
-          header: {
+          headers: {
             'content-type': 'application/json',
             Authorization: jwtToken,
           },
