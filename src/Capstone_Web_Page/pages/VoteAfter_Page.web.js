@@ -470,7 +470,7 @@ function VoteAfterPage() {
     } else {
       // Set the replying index and pre-fill the reply input with the username
       setReplyingIndex(index);
-      setReplyText(`@${comment.nickname} `);
+      setReplyText(`@${comment.userNickname} `);
       setIsReplyMode(true); // Turn on reply mode
     }
     setShowReplyInput(true);

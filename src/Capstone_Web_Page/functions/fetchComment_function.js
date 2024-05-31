@@ -40,7 +40,7 @@ export const fetchComments = async (
       );
 
       setComments(formattedComments);
-      // sortComments 함수 로직을 여기에 직접 구현하거나, sortStandard를 기반으로 정렬 로직을 추가합니다.
+      console.log('댓글 데이터 확인:', formattedComments);
     }
   } catch (error) {
     console.error('댓글 조회하기 오류:', error);
