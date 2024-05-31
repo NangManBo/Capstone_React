@@ -14,6 +14,12 @@ const fillEmptyVotes = (votes, count) => {
   }
   return votes;
 };
+const truncateTitle = (title, maxLength) => {
+  if (title.length > maxLength) {
+    return title.substring(0, maxLength) + '...';
+  }
+  return title;
+};
 
 export const PopularVoteBanner = (
   votes,
@@ -73,7 +79,7 @@ export const PopularVoteBanner = (
               <div className="vote_detail_item">
                 <div className="vote_detial_item_2">
                   <h3 className="vote_detail_item_title">
-                    <h4>{vote.title}</h4>
+                    <h4>{truncateTitle(vote.title, 7)}</h4>
                   </h3>
                   <p className="vote_detail_item_category">
                     {vote.category !== '카테고리'
