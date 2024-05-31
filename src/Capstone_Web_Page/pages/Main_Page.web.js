@@ -90,6 +90,14 @@ function MainPage() {
     fetchVotes(setVotes);
 
     if (isLoggedIn) {
+      console.log(
+        '로그인 상태',
+        isLoggedIn,
+        nickname,
+        userId,
+        jwtToken,
+        keyId
+      );
       fetchData();
       fetchwebsocket();
     }
