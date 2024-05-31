@@ -116,15 +116,14 @@ function VoteMakePage() {
           formData.append('mediaData', mediaFile);
         }
       }
-      const response = await fetch(
+      const response = await axios.post(
         'https://dovote.p-e.kr/polls/upload',
+        formData,
         {
-          method: 'POST',
           headers: {
             Authorization: jwtToken,
             'Content-Type': 'multipart/form-data',
           },
-          body: formData,
         }
       );
 
