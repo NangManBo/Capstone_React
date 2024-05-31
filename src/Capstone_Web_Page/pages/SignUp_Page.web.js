@@ -18,7 +18,7 @@ function SignUpPage() {
   const [isButtonDisabled, setIsButtonDisabled] =
     useState(false);
   const [phoneNumber, setPhoneNumber] =
-    useState('010-1234-5678');
+    useState('010-1234-5678'); // 이거랑 아래 주석만 풀면 됨
   let navigate = useNavigate(); // useNavigate 사용
   const isSelectedGender = (gender) =>
     selectedGender === gender;
