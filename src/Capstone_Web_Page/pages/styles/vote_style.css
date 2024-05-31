@@ -27,7 +27,7 @@
 }
 
 .vote_qustion {
-  height: 40%;
+  height: 50%;
 }
 .vote_qustion p {
   font-size: 1.5em;
@@ -54,7 +54,7 @@
 
 .vote_image {
   width: 50%;
-  height: 28%;
+  height: 45%;
 }
 
 .vote_end_button {
