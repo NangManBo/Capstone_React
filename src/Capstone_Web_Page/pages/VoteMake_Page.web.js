@@ -161,7 +161,7 @@ function VoteMakePage() {
             data,
             {
               headers: {
-                'content-type': 'multipart/form-data',
+                'content-type': 'application/json',
               },
             }
           );
