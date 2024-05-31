@@ -105,7 +105,10 @@ function VoteOnlyLookPage() {
             </div>
           ))}
           <div className="vote_button_box">
-            <button className="vote_button2">
+            <button
+              onClick={goToLogin}
+              className="vote_end_button"
+            >
               투표 및 댓글을 확인하고 싶으시다면 로그인
               해주세요
             </button>

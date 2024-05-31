@@ -38,7 +38,6 @@
   border: 1px solid #dcdcdc;
   border-radius: 4px;
   text-align: left;
-
   height: 2.5rem;
 }
 
@@ -52,7 +51,7 @@
   height: 56.25%;
 }
 
-.vote_button2 {
+.vote_end_button {
   color: white;
   background-color: #358fe8;
   border: none;
@@ -68,4 +67,19 @@
   flex-direction: row;
   justify-content: center;
   margin-top: 50px;
+}
+
+.vote_select_button {
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #f0f0f0;
+  border: 1px solid #dcdcdc;
+  border-radius: 4px;
+  text-align: left;
+  height: 2.5rem;
+  cursor: pointer;
+}
+
+.vote_select_button.selected {
+  background-color: #a8d5e2; /* Change this to your desired selected background color */
 }

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { MainBanner } from '../components/mainBanner_components';
 import { LeftBar } from '../components/leftBar_components';
-
+import './styles/vote_style.css';
 function VoteBeforePage() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -156,32 +156,39 @@ function VoteBeforePage() {
         </h2>
 
         <div>
-          <h1>{vote.title}</h1>
-          <p>투표 기간 설정: {vote.createdAt}</p>
-          <p>주최자 : {vote.createdBy}</p>
-          <p>{vote.question}</p>
+          <div className="vote_header">
+            <>
+              <h1>{vote.title}</h1>
+            </>
+            <div className="vote_userInfo">
+              <p>
+                투표 기간 설정: {vote && vote.createdAt}
+              </p>
+              <p>주최자 : {vote && vote.createdBy}</p>
+            </div>
+          </div>
+          <div className="vote_qustion">
+            <p>{vote.question}</p>
+          </div>
           {vote?.mediaUrl &&
             (vote.mediaUrl.endsWith('.mp4') ? (
               <video
                 src={vote.mediaUrl}
                 controls
-                style={{
-                  width: '400px',
-                  height: '400px',
-                }}
+                className="vote_image"
               />
             ) : (
               <img
                 src={vote.mediaUrl}
                 alt="Media"
-                style={{
-                  width: '400px',
-                  height: '400px',
-                }}
+                className="vote_image"
               />
             ))}
           {pollOptions.map((option) => (
             <button
+              className={`vote_select_button ${
+                option.isSelected ? 'selected' : ''
+              }`}
               key={option.id}
               onClick={() => handleVoteOption(option.id)}
             >
@@ -189,11 +196,14 @@ function VoteBeforePage() {
               {option.text}
             </button>
           ))}
-          <p>댓글</p>
-          <p>투표 후 댓글 작성 및 보기가 가능합니다</p>
-          <button onClick={handleVote}>
-            선택한 버튼으로 투표하기
-          </button>
+          <div className="vote_button_box">
+            <button
+              onClick={handleVote}
+              className="vote_end_button"
+            >
+              선택한 버튼으로 투표하기
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -17,7 +17,8 @@ function SignUpPage() {
   const [mbti, setMbti] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] =
     useState(false);
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [phoneNumber, setPhoneNumber] =
+    useState('010-1234-5678');
   let navigate = useNavigate(); // useNavigate 사용
   const isSelectedGender = (gender) =>
     selectedGender === gender;
@@ -186,13 +187,13 @@ function SignUpPage() {
   };
   return (
     <div className="Page">
-      {showPhoneAuthModal && (
+      {/* {showPhoneAuthModal && (
         <PhoneAuthenticationModal
           onClose={handleClose}
           onSuccess={handleSuccess}
           nextphone={setPhoneNumber}
         />
-      )}
+      )} */}
       <div className="signup-form">
         <h1 className="title">투표는 DO표</h1>
         <div className="form-group">
