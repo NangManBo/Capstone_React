@@ -87,6 +87,14 @@ function MainPage() {
 
   // 투표 데이터를 받아오는 함수
   useEffect(() => {
+    console.log(
+      'MainPage useEffect 실행됨',
+      isLoggedIn,
+      userId,
+      jwtToken,
+      nickname,
+      keyId
+    );
     fetchVotes(setVotes);
 
     if (isLoggedIn) {
