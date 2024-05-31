@@ -326,13 +326,14 @@ function VoteCreatedUserPage() {
       {MainBanner(jwtToken, isLoggedIn, userId, nickname)}
       <LeftBar />
       <div className="right_page">
-        <button
+        <h2
+          className="goBackButton"
           onClick={() =>
             isCategory ? goToCategory() : goToMain()
           }
         >
-          뒤로가기
-        </button>
+          이전 페이지로
+        </h2>
         <div>
           <h1>{vote.title}</h1>
           <p>투표 기간 설정: {vote.createdAt}</p>

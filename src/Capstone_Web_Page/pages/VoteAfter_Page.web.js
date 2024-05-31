@@ -581,18 +581,14 @@ function VoteAfterPage() {
       {MainBanner(jwtToken, isLoggedIn, userId, nickname)}
       <LeftBar />
       <div className="right_page">
-        <button
+        <h2
+          className="goBackButton"
           onClick={() =>
             isCategory ? goToCategory() : goToMain()
           }
         >
-          뒤로가기
-        </button>
-        <button onClick={() => handleHeartClick()}>
-          {heartType === 'empty'
-            ? 'Heart Outlined Icon'
-            : 'Heart Filled Icon'}
-        </button>
+          이전 페이지로
+        </h2>
 
         <div>
           {/* Content */}
