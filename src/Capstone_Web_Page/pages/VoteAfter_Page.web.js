@@ -202,7 +202,7 @@ function VoteAfterPage() {
         }
       );
 
-      if (response.ok) {
+      if (response.status === 201) {
         const contentType =
           response.headers.get('content-type');
         setSend(false);
@@ -525,7 +525,7 @@ function VoteAfterPage() {
         }
       );
 
-      if (response.ok) {
+      if (response.status === 201) {
         const contentType =
           response.headers.get('content-type');
         setSend(false);
