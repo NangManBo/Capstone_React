@@ -1,15 +1,23 @@
 import React from 'react';
 import './styles/alarmBox_style.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export const AlarmBox = (
   isLoggedIn,
   userId,
   jwtToken,
   nickname,
-  keyId
+  keyId,
+  messages
 ) => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // 가장 최근 메시지 3개 선택하기
+  const recentMessages = messages
+    .sort((a, b) => new Date(b.time) - new Date(a.time))
+    .slice(0, 3);
+
   // 이동 함수
   const goToDMPage = () => {
     navigate('/dmbox', {
@@ -22,6 +30,19 @@ export const AlarmBox = (
       },
     });
   };
+
+  // 메시지 클릭 함수
+  const handleItemClick = async (index) => {
+    const selectedMessage = recentMessages[index];
+    navigate('/dm', {
+      state: {
+        ...location.state,
+        item: selectedMessage,
+        messageId1: selectedMessage.messageId1,
+      },
+    });
+  };
+
   return (
     <div>
       {isLoggedIn ? (
@@ -30,20 +51,38 @@ export const AlarmBox = (
             className="alarm_box_title"
             onClick={goToDMPage}
           >
-            <i class="fa-regular fa-bell"></i>
+            <i className="fa-regular fa-bell"></i>
             <span> 알림</span>
           </h2>
           <div className="alarm_box_in">
-            <h3 className="alarm_box_in_title">
-              해당 기능은<br></br>아직 구현이 안된
-              기능입니다
-            </h3>
+            {recentMessages.length > 0 ? (
+              recentMessages.map((message, index) => (
+                <div
+                  key={index}
+                  className="alarm_message"
+                  onClick={() => handleItemClick(index)}
+                  style={{ cursor: 'pointer' }} // 클릭 가능한 커서 스타일 추가
+                >
+                  <p>
+                    <strong>{message.username}</strong>:{' '}
+                    {message.title}
+                  </p>
+                  <p>
+                    {new Date(
+                      message.time
+                    ).toLocaleString()}
+                  </p>
+                </div>
+              ))
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       ) : (
         <div className="alarm_box">
           <h2 className="alarm_box_title">
-            <i class="fa-regular fa-bell"></i>
+            <i className="fa-regular fa-bell"></i>
             <span> 알림</span>
           </h2>
           <div className="alarm_box_in">

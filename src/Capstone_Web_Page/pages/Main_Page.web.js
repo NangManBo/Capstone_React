@@ -141,7 +141,8 @@ function MainPage() {
             userId,
             jwtToken,
             nickname,
-            keyId
+            keyId,
+            messages
           )}
           {/* <GetManagerVotes
             votes={votes}

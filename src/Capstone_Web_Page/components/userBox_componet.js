@@ -91,10 +91,20 @@ export const UserBox = (
     <div className="user_box_center">
       {isLoggedIn ? (
         <div className="user_box">
-          <button onClick={goToProfile}>프로필</button>
+          <img
+            src={require('../assets/user.png')}
+            alt="프로필 이미지"
+            style={{
+              width: '80px',
+              height: '80px',
+            }}
+          />
+          <label>{nickname}</label>
+          <label>환영합니다!</label>
+          {/* <button onClick={goToProfile}>프로필</button>
           <button onClick={goToDMPage}>DM 페이지로</button>
           <button onClick={goToVoteMake}>투표 생성</button>
-          <button onClick={goToMain}>로그아웃</button>
+          <button onClick={goToMain}>로그아웃</button> */}
         </div>
       ) : (
         <div className="user_box">
