@@ -116,6 +116,8 @@ function VoteMakePage() {
           formData.append('mediaData', mediaFile);
         }
       }
+      console.log('투표 생성 요청 pollData:', pollData);
+      console.log('투표 생성 요청 formData:', formData);
       const response = await axios.post(
         'https://dovote.p-e.kr/polls/upload',
         formData,
