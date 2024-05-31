@@ -185,12 +185,7 @@ function VoteMakePage() {
           console.error('투표항목 생성 오류:', error);
         }
       } else {
-        const errorData = await response.text();
-        console.error(
-          '투표 오류 응답:',
-          response.status,
-          errorData
-        );
+        console.error('투표 오류 응답:', response.status);
       }
     } catch (error) {
       console.error('투표 오류 응답:', error);
