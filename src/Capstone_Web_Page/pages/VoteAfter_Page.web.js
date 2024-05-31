@@ -442,7 +442,7 @@ function VoteAfterPage() {
         {}, // Empty object as the request body
         {
           headers: {
-            'AUTH-TOKEN': jwtToken,
+            Authorization: jwtToken,
           },
         }
       );
