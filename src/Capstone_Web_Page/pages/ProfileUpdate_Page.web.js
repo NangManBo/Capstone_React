@@ -73,7 +73,10 @@ function ProfileUpdatePage() {
           '@jwtToken',
           response.data.token
         );
-        console.log('응답 데이터' + response.data);
+        console.log(
+          '응답 데이터:',
+          JSON.stringify(response.data, null, 2)
+        );
         setJwtToken1(response.data.token);
         setNewNickname('');
         setCurrentNickname(newNickname);
