@@ -57,11 +57,13 @@ export const MainBanner = (
       keyId
     );
     navigate('/', {
-      jwtToken: jwtToken,
-      isLoggedIn: isLoggedIn,
-      userId: userId,
-      nickname: nickname,
-      keyId: keyId,
+      state: {
+        jwtToken: jwtToken,
+        isLoggedIn: isLoggedIn,
+        userId: userId,
+        nickname: nickname,
+        keyId: keyId,
+      },
     });
   };
   const goToDMPage = () => {
