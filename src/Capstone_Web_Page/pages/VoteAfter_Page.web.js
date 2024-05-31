@@ -191,18 +191,14 @@ function VoteAfterPage() {
         formData.append('mediaData', mediaFile);
       }
 
-      const response = await fetch(
-        'https://dovote.p-e.kr/comments/' +
-          userId +
-          '/' +
-          vote.id,
+      const response = await axios.post(
+        `https://dovote.p-e.kr/comments/${userId}/${vote.id}`,
+        formData,
         {
-          method: 'POST',
           headers: {
             'Content-Type': 'multipart/form-data',
             Authorization: jwtToken,
           },
-          body: formData,
         }
       );
 
@@ -522,15 +518,14 @@ function VoteAfterPage() {
           blob: blob,
         });
       }
-      const response = await fetch(
+      const response = await axios.post(
         `https://dovote.p-e.kr/comments/${userId}/${vote.id}/${parentCommentId}`,
+        formData,
         {
-          method: 'POST',
           headers: {
             'Content-Type': 'multipart/form-data',
             Authorization: jwtToken,
           },
-          body: formData,
         }
       );
 

@@ -11,7 +11,7 @@ export const fetchComments = async (
       `https://dovote.p-e.kr/comments/poll/${voteId}`,
       {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          'Content-Type': 'application/json',
         },
       }
     );
