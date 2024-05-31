@@ -43,6 +43,8 @@
   text-align: left;
   width: 50%;
   height: 2.5rem;
+  display: flex;
+  align-items: center;
 }
 
 .vote_text {
@@ -64,6 +66,8 @@
   height: 55px;
   font-size: 20px;
   margin-bottom: 40px;
+  display: flex;
+  align-items: center;
 }
 
 .vote_button_box {
@@ -88,6 +92,8 @@
   font-size: 2rem;
   height: 4rem;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
 .vote_select_button.selected {
