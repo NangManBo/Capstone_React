@@ -23,7 +23,7 @@ function DMboxPage() {
           `https://dovote.p-e.kr/message/read/all/${nickname}`,
           {
             headers: {
-              'content-type': 'multipart/form-data',
+              'Content-Type': 'multipart/form-data',
               Authorization: jwtToken,
             },
           }

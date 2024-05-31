@@ -10,7 +10,7 @@ export const fetchVotes = async (
       'https://dovote.p-e.kr/polls/all',
       {
         headers: {
-          'content-type': 'multipart/form-data',
+          'Content-Type': 'multipart/form-data',
         },
       }
     );

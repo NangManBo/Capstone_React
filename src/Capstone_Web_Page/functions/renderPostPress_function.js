@@ -27,7 +27,7 @@ export const renderPostPress = async (
         'https://dovote.p-e.kr/votes/ok/' + nickname,
         {
           headers: {
-            'content-Type': 'multipart/form-data',
+            'Content-Type': 'multipart/form-data',
             Authorization: jwtToken,
           },
         }

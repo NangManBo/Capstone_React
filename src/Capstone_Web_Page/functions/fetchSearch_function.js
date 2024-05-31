@@ -10,7 +10,7 @@ export const fetchSearch = async (
       `https://dovote.p-e.kr/polls/search?title=${searchQuery}`,
       {
         headers: {
-          'content-type': 'multipart/form-data',
+          'Content-Type': 'multipart/form-data',
         },
       }
     );

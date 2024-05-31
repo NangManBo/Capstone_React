@@ -63,7 +63,7 @@ function VoteBeforePage() {
         },
         {
           headers: {
-            'content-type': 'multipart/form-data',
+            'Content-Type': 'multipart/form-data',
             Authorization: jwtToken,
           },
         }
@@ -87,7 +87,7 @@ function VoteBeforePage() {
         'https://dovote.p-e.kr/votes/ok/' + nickname,
         {
           headers: {
-            'content-type': 'multipart/form-data',
+            'Content-Type': 'multipart/form-data',
           },
         }
       );

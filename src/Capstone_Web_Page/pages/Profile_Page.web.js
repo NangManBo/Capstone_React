@@ -31,7 +31,7 @@ function ProfilePage() {
           nickname,
         {
           headers: {
-            'content-type': 'multipart/form-data',
+            'Content-Type': 'multipart/form-data',
           },
         }
       );
@@ -40,7 +40,7 @@ function ProfilePage() {
           nickname,
         {
           headers: {
-            'content-type': 'multipart/form-data',
+            'Content-Type': 'multipart/form-data',
           },
         }
       );
@@ -59,7 +59,7 @@ function ProfilePage() {
           nickname,
         {
           headers: {
-            'content-type': 'multipart/form-data',
+            'Content-Type': 'multipart/form-data',
           },
         }
       );

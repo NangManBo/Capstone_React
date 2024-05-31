@@ -228,7 +228,7 @@ function VoteCreatedUserPage() {
         'https://dovote.p-e.kr/polls/popularpoint',
         {
           headers: {
-            'content-type': 'multipart/form-data',
+            'Content-Type': 'multipart/form-data',
           },
         }
       );
@@ -247,7 +247,7 @@ function VoteCreatedUserPage() {
         },
         {
           headers: {
-            'content-type': 'multipart/form-data',
+            'Content-Type': 'multipart/form-data',
             Authorization: jwtToken,
           },
         }

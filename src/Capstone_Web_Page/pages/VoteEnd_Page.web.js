@@ -266,7 +266,7 @@ function VoteEndPage() {
           vote.id,
         {
           headers: {
-            'content-type': 'multipart/form-data',
+            'Content-Type': 'multipart/form-data',
           },
         }
       );
@@ -311,7 +311,7 @@ function VoteEndPage() {
         'https://dovote.p-e.kr/votes/result/' + vote.id,
         {
           headers: {
-            'content-type': 'multipart/form-data',
+            'Content-Type': 'multipart/form-data',
           },
         }
       );
