@@ -48,7 +48,7 @@ function ProfileUpdatePage() {
   const handleChangeInformation = async () => {
     try {
       const response = await axios.patch(
-        'https://dovote.p-e.kr/auth/patch/name/' + userId,
+        'https://dovote.p-e.kr/auth/patch/' + userId,
         {
           nickname: newNickname,
           mbti: newMbti,
