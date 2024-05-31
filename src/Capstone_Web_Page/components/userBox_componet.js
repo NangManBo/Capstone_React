@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './styles/userBox_style.css';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export const UserBox = (
   isLoggedIn,
@@ -9,6 +10,7 @@ export const UserBox = (
   nickname,
   keyId
 ) => {
+  const [popularPoint, setPopularPoint] = useState(0);
   const navigate = useNavigate();
   // 이동 함수
   const goToDMPage = () => {
@@ -22,31 +24,7 @@ export const UserBox = (
       },
     });
   };
-  // 대댓글에서 쪽지 보내기
-  const handlemessge1 = (childComment) => {
-    console.log('쪽지 보내기~' + childComment);
-    navigate('/dmautosend', {
-      state: {
-        isLoggedIn,
-        userId,
-        jwtToken,
-        nickname,
-        receiverName: childComment.nickname,
-        keyId,
-      },
-    });
-  };
-  const goToProfile = () => {
-    navigate('/profile', {
-      state: {
-        isLoggedIn: true,
-        userId: userId,
-        jwtToken: jwtToken,
-        nickname: nickname,
-        keyId: keyId,
-      },
-    });
-  };
+
   const goToProfileUpdate = () => {
     navigate('/profileupdate', {
       state: {
@@ -87,24 +65,43 @@ export const UserBox = (
     });
   };
 
+  const getPopularPoint = async () => {
+    try {
+      const popularPointResponse = await axios.get(
+        'https://dovote.p-e.kr/polls/popular-point/' +
+          nickname,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+      if (popularPointResponse.status === 200) {
+        setPopularPoint(popularPointResponse.data);
+      } else {
+        console.log('포인트를 가져오는 데 실패했습니다');
+      }
+    } catch {}
+  };
   return (
     <div className="user_box_center">
       {isLoggedIn ? (
         <div className="user_box">
-          <img
-            src={require('../assets/user.png')}
-            alt="프로필 이미지"
-            style={{
-              width: '80px',
-              height: '80px',
-            }}
-          />
-          <label>{nickname}</label>
-          <label>환영합니다!</label>
-          {/* <button onClick={goToProfile}>프로필</button>
-          <button onClick={goToDMPage}>DM 페이지로</button>
+          <div className="user_box_header">
+            <img
+              src={require('../assets/user.png')}
+              alt="프로필 이미지"
+              style={{
+                width: '80px',
+                height: '80px',
+              }}
+            />
+            <label>{nickname}</label>
+          </div>
+          <div className="point_box">
+            <label>포인트: {popularPoint}</label>
+          </div>
           <button onClick={goToVoteMake}>투표 생성</button>
-          <button onClick={goToMain}>로그아웃</button> */}
         </div>
       ) : (
         <div className="user_box">

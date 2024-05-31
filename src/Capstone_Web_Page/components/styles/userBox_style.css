@@ -19,6 +19,23 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 그림자를 추가하여 입체감을 줍니다 */
 }
 
+.user_box_header {
+  display: flex;
+  flex-direction: row;
+}
+
+.point_box {
+  width: 80%;
+  border: 2px solid #0075ff;
+  height: 20%;
+  border-radius: 20px;
+}
+.user_box label {
+  margin-left: 10px;
+  margin-top: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
 .user_box_title {
   margin-top: 18%;
   font-size: 1.2rem;
