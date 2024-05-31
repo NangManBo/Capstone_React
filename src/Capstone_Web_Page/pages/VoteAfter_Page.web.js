@@ -7,7 +7,7 @@ import {
 import axios from 'axios';
 import { MainBanner } from '../components/mainBanner_components';
 import { LeftBar } from '../components/leftBar_components';
-
+import './styles/vote_style.css';
 function VoteAfterPage() {
   const navigate = useNavigate();
   const location = useLocation();
