@@ -38,9 +38,9 @@ function LogInPage() {
             key: response.data.keyId,
           },
         });
+      } else if (response.status === 403) {
+        alert('아이디 또는 비밀번호가 일치하지 않습니다.');
       } else {
-        // 201이 아닌 다른 성공 상태 코드일 때 처리 방식을 여기에 추가할 수 있습니다.
-        console.error('로그인 실패:', response.data);
       }
     } catch (error) {
       if (error.response) {
