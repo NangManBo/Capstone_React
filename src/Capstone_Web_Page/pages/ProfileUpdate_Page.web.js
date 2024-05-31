@@ -56,7 +56,7 @@ function ProfileUpdatePage() {
         },
         {
           headers: {
-            'content-type': 'application/json',
+            'Content-type': 'application/json',
             Authorization: jwtToken1,
           },
         }
