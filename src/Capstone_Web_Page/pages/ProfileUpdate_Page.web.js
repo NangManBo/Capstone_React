@@ -71,6 +71,7 @@ function ProfileUpdatePage() {
         setJwtToken1(response.data.token);
         setNewNickname('');
         setCurrentNickname(newNickname);
+
         alert('정보 수정 완료');
       } else {
         alert('정보 수정에 실패했습니다');
@@ -80,6 +81,18 @@ function ProfileUpdatePage() {
     }
   };
 
+  const goBack = () => {
+    console.log(currentNickname, jwtToken1, keyId);
+    navigate('/profile', {
+      state: {
+        userId,
+        isLoggedIn,
+        nickname: currentNickname,
+        jwtToken: jwtToken1,
+        keyId: keyId,
+      },
+    });
+  };
   return (
     <div className="profile_page">
       {MainBanner(jwtToken, isLoggedIn, userId, nickname)}
@@ -87,17 +100,7 @@ function ProfileUpdatePage() {
       <div className="right_page">
         <h2
           className="goBackButton"
-          onClick={() =>
-            navigate('/profile', {
-              state: {
-                userId,
-                isLoggedIn,
-                nickname: currentNickname,
-                jwtToken: jwtToken1,
-                keyId: keyId,
-              },
-            })
-          }
+          onClick={() => goBack()}
         >
           이전 페이지로
         </h2>
