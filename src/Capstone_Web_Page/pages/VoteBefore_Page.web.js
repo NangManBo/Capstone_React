@@ -184,18 +184,20 @@ function VoteBeforePage() {
                 className="vote_image"
               />
             ))}
-          {pollOptions.map((option) => (
-            <button
-              className={`vote_select_button ${
-                option.isSelected ? 'selected' : ''
-              }`}
-              key={option.id}
-              onClick={() => handleVoteOption(option.id)}
-            >
-              {option.isSelected ? '✓ ' : ''}
-              {option.text}
-            </button>
-          ))}
+          <div className="vote_choice_box">
+            {pollOptions.map((option) => (
+              <button
+                className={`vote_select_button ${
+                  option.isSelected ? 'selected' : ''
+                }`}
+                key={option.id}
+                onClick={() => handleVoteOption(option.id)}
+              >
+                {option.isSelected ? '✓ ' : ''}
+                {option.text}
+              </button>
+            ))}
+          </div>
           <div className="vote_button_box">
             <button
               onClick={handleVote}
