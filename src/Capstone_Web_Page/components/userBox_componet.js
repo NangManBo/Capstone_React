@@ -77,7 +77,7 @@ export const UserBox = (
         isLoggedIn: false,
         userId: '',
         jwtToken: '',
-        nickname: '',
+        nickname: null,
       },
     });
   };

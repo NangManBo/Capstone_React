@@ -17,7 +17,7 @@ function CategoryPage() {
     isLoggedIn: false,
     userId: '',
     jwtToken: '',
-    nickname: '',
+    nickname: null,
   };
   const isCategory = true;
   const [standard, setStandard] = useState('');

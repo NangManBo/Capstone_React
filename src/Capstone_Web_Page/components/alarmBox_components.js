@@ -11,7 +11,7 @@ export const AlarmBox = (isLoggedIn) => {
         isLoggedIn,
         userId: '',
         jwtToken: '',
-        nickname: '',
+        nickname: null,
       },
     });
   };
