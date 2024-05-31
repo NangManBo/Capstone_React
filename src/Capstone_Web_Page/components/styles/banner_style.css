@@ -3,6 +3,8 @@
   height: 10%; /* 기본 높이 */
   background-color: #2a324b;
   position: fixed;
+  display: flex;
+  flex-direction: row;
   top: 0;
   left: 0;
   z-index: 100;
@@ -18,10 +20,18 @@
   font-size: 1rem;
   margin-left: 20px;
 }
+
+.icon_label {
+  color: white;
+  font-size: 1.7rem;
+  font-weight: bold;
+}
+
 .search-container {
   position: relative;
-  margin-left: 60%;
-  margin-top: 1.5%;
+  padding: 0%;
+  width: 100%;
+  margin-left: 10%;
   display: flex;
   align-items: center;
   border-radius: 20px; /* 모서리를 둥글게 */
@@ -31,14 +41,15 @@
   padding-right: 30px; /* 버튼이 텍스트를 가리지 않도록 오른쪽 패딩 추가 */
   padding-top: 10px; /* 위쪽 패딩 */
   padding-bottom: 10px; /* 아래쪽 패딩 */
-  width: 30%;
+  margin-left: 50%;
+  width: 17.5%;
   height: 5%; /* 입력 필드의 높이 설정 */
   border-radius: 10px; /* 모서리를 둥글게 */
 }
 
 .search-button {
   position: absolute;
-  margin-left: 30.5%;
+  margin-left: 70%;
   border: none;
   background-color: transparent;
   cursor: pointer;
@@ -49,33 +60,3 @@
   font-size: 1rem;
   margin-left: 30px;
 }
-/* 태블릿 */
-/* @media (max-width: 920px) {
-  .banner {
-    height: 10%;
-  }
-  .search-input-box {
-    width: 35%;
-  }
-  .search-container {
-    margin-left: 50%;
-    margin-top: 3%;
-  }
-  .search-button {
-    margin-left: 36%;
-  }
-} */
-
-/* 모바일 */
-/* @media (max-width: 560px) {
-  .banner {
-    height: 6%;
-  }
-  .search-input-box {
-    width: 50%;
-  }
-  .search-container {
-    margin-left: 60%;
-    margin-top: 1.5%;
-  }
-} */

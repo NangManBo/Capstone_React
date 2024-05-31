@@ -58,7 +58,7 @@ function VoteOnlyLookPage() {
   return (
     <div className="vote_page">
       {MainBanner('', false, '', '')}
-      <LeftBar />
+      {LeftBar('', false, '', null, null)}
       <div className="right_page">
         <h2
           className="goBackButton"

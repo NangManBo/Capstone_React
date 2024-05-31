@@ -324,7 +324,13 @@ function VoteCreatedUserPage() {
   return (
     <div className="vote_page">
       {MainBanner(jwtToken, isLoggedIn, userId, nickname)}
-      <LeftBar />
+      {LeftBar(
+        jwtToken,
+        isLoggedIn,
+        userId,
+        nickname,
+        keyId
+      )}
       <div className="right_page">
         <h2
           className="goBackButton"

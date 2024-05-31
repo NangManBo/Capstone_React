@@ -84,6 +84,7 @@ function ProfileUpdatePage() {
         );
         setJwtToken1(response.data.token);
         setNewNickname('');
+        setNewPassword('');
         setCurrentNickname(response.data.nickname);
 
         console.log(
@@ -115,7 +116,13 @@ function ProfileUpdatePage() {
   return (
     <div className="profile_page">
       {MainBanner(jwtToken, isLoggedIn, userId, nickname)}
-      <LeftBar />
+      {LeftBar(
+        jwtToken,
+        isLoggedIn,
+        userId,
+        nickname,
+        keyId
+      )}
       <div className="right_page">
         <h2
           className="goBackButton"

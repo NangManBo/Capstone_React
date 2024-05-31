@@ -47,6 +47,15 @@ export const MainBanner = (
       nickname: null,
     });
   };
+  const goToMain = () => {
+    navigate('/', {
+      jwtToken: jwtToken,
+      isLoggedIn: isLoggedIn,
+      userId: userId,
+      nickname: nickname,
+      keyId: keyId,
+    });
+  };
   const goToDMPage = () => {
     navigate('/dmbox', {
       state: {
@@ -61,6 +70,9 @@ export const MainBanner = (
   return (
     <div className="banner">
       <div className="search-container">
+        <label onClick={goToMain} className="icon_label">
+          DO표
+        </label>
         <input
           className="search-input-box"
           placeholder=""

@@ -9,7 +9,7 @@
 }
 .main_page_header {
   margin-top: 400px;
-  margin-left: 9%;
+  margin-left: 3%;
   display: grid; /* Grid 컨테이너로 만듭니다. */
   grid-template-columns: repeat(
     3,

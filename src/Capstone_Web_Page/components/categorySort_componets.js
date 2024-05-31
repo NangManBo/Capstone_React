@@ -10,9 +10,6 @@ export const GetCategoryVotes = (
   navigate,
   keyId
 ) => {
-  // // data 객체 내부의 votes 배열을 가져옴
-  // let votes = Array.isArray(data.votes) ? data.votes : [];
-
   const categories = [
     '시사',
     '정치',
@@ -66,16 +63,6 @@ export const GetCategoryVotes = (
     );
 
     const goToCategory = (category) => {
-      console.log(
-        '카테고리 클릭',
-        category,
-        votes,
-        isLoggedIn,
-        userId,
-        jwtToken,
-        nickname,
-        matchingVotes
-      );
       navigate('/category', {
         state: {
           category,

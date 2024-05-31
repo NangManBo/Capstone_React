@@ -71,7 +71,13 @@ function DMAutoSendPage() {
         nickname,
         keyId
       )}
-      <LeftBar />
+      {LeftBar(
+        jwtToken,
+        isLoggedIn,
+        userId,
+        nickname,
+        keyId
+      )}
       <div className="right_page">
         <h2
           className="goBackButton"

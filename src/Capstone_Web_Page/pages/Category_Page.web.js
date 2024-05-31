@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { renderPostPress } from '../functions/renderPostPress_function';
 import { MainBanner } from '../components/mainBanner_components';
-
+import { LeftBar } from '../components/leftBar_components';
 function CategoryPage() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -47,9 +47,17 @@ function CategoryPage() {
     console.log('카테고리 분류 데이터' + setSortedVotes);
   }, [standard, matchingVotes]);
   return (
-    <div className="Page">
+    <div className="profile_page">
       {MainBanner(jwtToken, isLoggedIn, userId, nickname)}
-      <div>
+
+      {LeftBar(
+        jwtToken,
+        isLoggedIn,
+        userId,
+        nickname,
+        keyId
+      )}
+      <div className="right_page">
         <div>
           <span>{category}</span>
         </div>

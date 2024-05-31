@@ -1,0 +1,46 @@
+.left_bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 17%;
+  height: 100%;
+  background-color: #f8f9fa;
+  border-right: 1px solid #dcdcdc;
+}
+
+.left_bar_text_box {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  margin-left: 2%;
+  width: 15%;
+  top: 15%;
+}
+
+.left_bar_category_box {
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+}
+
+.left_bar_title {
+  font-size: 1.6rem;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 15%;
+  margin: 0;
+}
+
+.left_bar_category {
+  font-size: 1.4rem;
+  color: #333;
+  font-weight: bold;
+  margin: 0;
+}
+
+.left_bar_category_info {
+  font-size: 1rem;
+  color: #808080;
+  margin: 0;
+  margin-left: 5%;
+}

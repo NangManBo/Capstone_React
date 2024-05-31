@@ -9,7 +9,7 @@ function DMSendPage() {
   const navigate = useNavigate();
   const location = useLocation();
   // location.state에서 필요한 값을 추출
-  const { userId, isLoggedIn, jwtToken, nickname } =
+  const { userId, isLoggedIn, jwtToken, nickname, keyId } =
     location.state || {}; // state가 없는 경우를 대비한 기본값 설정
 
   const [recipientId, setRecipientId] = useState('');
@@ -57,7 +57,13 @@ function DMSendPage() {
   return (
     <div className="profile_page">
       {MainBanner(jwtToken, isLoggedIn, userId, nickname)}
-      <LeftBar />
+      {LeftBar(
+        jwtToken,
+        isLoggedIn,
+        userId,
+        nickname,
+        keyId
+      )}
       <div className="right_page">
         <h2
           className="goBackButton"

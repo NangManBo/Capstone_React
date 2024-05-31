@@ -15,9 +15,9 @@ function MainPage() {
   const location = useLocation();
   const { isLoggedIn, userId, jwtToken, nickname, keyId } =
     location.state || {
+      jwtToken: '',
       isLoggedIn: false,
       userId: '',
-      jwtToken: '',
       nickname: null,
     };
 

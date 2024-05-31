@@ -51,10 +51,11 @@ function SignUpPage() {
     { label: '정치', value: '정치' },
     { label: '경제', value: '경제' },
     { label: '스포츠', value: '스포츠' },
-    { label: '문화와 예술', value: '문화와 예술' },
-    { label: '애완동물', value: '애완동물' },
+    { label: '문화와예술', value: '문화와예술' },
     { label: '시사', value: '시사' },
-    { label: '요리', value: '요리' },
+    { label: '게임', value: '게임' },
+    { label: '반려동물', value: '반려동물' },
+    { label: '음식', value: '음식' },
   ];
   const placeholder1 = {
     label: '관심 카테고리',
