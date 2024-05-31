@@ -12,6 +12,7 @@ export const fetchComments = async (
       {
         headers: {
           'Content-Type': 'application/json',
+          Authorization: jwtToken,
         },
       }
     );
