@@ -100,7 +100,7 @@ export const UserBox = (
               {nickname} 님!
             </label>
           </div>
-          <div className="point_box">
+          <div className="user_box_point_box">
             <label>포인트: {popularPoint}</label>
           </div>
           <button
