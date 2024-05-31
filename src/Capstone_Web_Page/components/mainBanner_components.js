@@ -39,6 +39,14 @@ export const MainBanner = (
   const goToLogin = () => {
     navigate('/login', {});
   };
+  const goToLogout = () => {
+    navigate('/', {
+      isLoggedIn: false,
+      userId: '',
+      jwtToken: '',
+      nickname: null,
+    });
+  };
   const goToDMPage = () => {
     navigate('/dmbox', {
       state: {
@@ -83,6 +91,12 @@ export const MainBanner = (
               onClick={goToProfile}
             >
               내 정보
+            </label>
+            <label
+              className="banner_text"
+              onClick={goToLogout}
+            >
+              로그아웃
             </label>
           </div>
         ) : (
