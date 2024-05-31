@@ -24,6 +24,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin-bottom: 5%;
 }
 
 .point_box {
@@ -35,6 +36,7 @@
   background-color: #ffffff;
   height: 15%;
   border-radius: 20px;
+  margin-bottom: 5%;
 }
 
 .votemake_button {
