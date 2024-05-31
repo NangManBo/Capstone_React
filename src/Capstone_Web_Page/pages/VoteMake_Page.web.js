@@ -122,7 +122,7 @@ function VoteMakePage() {
           method: 'POST',
           headers: {
             Authorization: jwtToken,
-            'Content-Type': 'multipart/form-data',
+            //'Content-Type': 'multipart/form-data',
           },
           body: formData,
         }
