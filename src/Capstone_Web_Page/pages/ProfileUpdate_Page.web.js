@@ -22,14 +22,14 @@ function ProfileUpdatePage() {
   const [newNickname, setNewNickname] = useState(
     nickname || ''
   );
-  const [currentNickname, setCurrentNickname] = useState(
-    nickname || ''
-  );
+  const [currentNickname, setCurrentNickname] =
+    useState(null);
   const [jwtToken1, setJwtToken1] = useState(
     jwtToken || ''
   );
 
   const mbtis = [
+    { label: 'MBTI', value: null },
     { label: 'INFP', value: 'INFP' },
     { label: 'INFJ', value: 'INFJ' },
     { label: 'INTP', value: 'INTP' },
@@ -48,83 +48,15 @@ function ProfileUpdatePage() {
     { label: 'ESTJ', value: 'ESTJ' },
   ];
 
-  const handleChangePassword = async () => {
-    const password = {
-      password: newPassword,
-      uid: userId,
-    };
-    if (newPassword === '') {
-      alert('알림', '비밀번호를 입력해주세요');
-      return;
-    }
+  const handleChangeInformation = async () => {
     try {
       const response = await axios.patch(
-        'https://dovote.p-e.kr/auth/patch/' + userId,
-        password,
+        'https://dovote.p-e.kr/auth/patch/name/' + userId,
         {
-          headers: {
-            'content-type': 'application/json',
-            Authorization: jwtToken1,
-          },
-        }
-      );
-
-      if (response.status === 200) {
-        setNewPassword('');
-        alert('알림', '비밀번호 변경 완료');
-      } else {
-        alert('알림', '비밀번호 변경에 실패했습니다');
-      }
-    } catch (error) {
-      alert(
-        '알림',
-        '비밀번호 변경에 실패했습니다.\n네트워크 상태를 확인해주세요.'
-      );
-    }
-  };
-
-  const handleChangeMbti = async () => {
-    if (newMbti === '') {
-      alert('알림', 'MBTI를 입력해주세요');
-      return;
-    }
-    try {
-      const response = await axios.patch(
-        'https://dovote.p-e.kr/auth/patch/' + userId,
-        newMbti,
-        {
-          headers: {
-            'content-type': 'application/json',
-            Authorization: jwtToken1,
-          },
-        }
-      );
-
-      if (response.status === 200) {
-        setNewMbti('');
-        alert('알림', 'MBTI 변경 완료');
-      } else {
-        alert('알림', 'MBTI 변경에 실패했습니다');
-      }
-    } catch (error) {
-      alert(
-        '알림',
-        'MBTI 변경에 실패했습니다.\n네트워크 상태를 확인해주세요.'
-      );
-    }
-  };
-
-  const handleChangeNickname = async () => {
-    const uid = userId;
-
-    if (newNickname === '') {
-      alert('알림', '닉네임을 입력해주세요');
-      return;
-    }
-    try {
-      const response = await axios.patch(
-        'https://dovote.p-e.kr/auth/patch/name/' + uid,
-        newNickname,
+          nickname: newNickname,
+          mbti: newMbti,
+          password: newPassword,
+        },
         {
           headers: {
             'content-type': 'application/json',
@@ -138,6 +70,7 @@ function ProfileUpdatePage() {
           '@jwtToken',
           response.data.token
         );
+        console.log('응답 데이터' + response.data);
         setJwtToken1(response.data.token);
         setNewNickname('');
         setCurrentNickname(newNickname);
@@ -187,12 +120,7 @@ function ProfileUpdatePage() {
               }
             />
           </div>
-          <button
-            className="profileUPdate_button"
-            onClick={handleChangePassword}
-          >
-            비밀번호 변경하기
-          </button>
+
           <div className="form_group">
             <label>MBTI</label>
             <select
@@ -211,12 +139,7 @@ function ProfileUpdatePage() {
               ))}
             </select>
           </div>
-          <button
-            className="profileUPdate_button"
-            onClick={handleChangeMbti}
-          >
-            MBTI 변경하기
-          </button>
+
           <div className="form_group">
             <label>변경할 닉네임</label>
             <input
@@ -229,9 +152,9 @@ function ProfileUpdatePage() {
           </div>
           <button
             className="profileUPdate_button"
-            onClick={handleChangeNickname}
+            onClick={handleChangeInformation}
           >
-            닉네임 변경하기
+            변경하기
           </button>
         </div>
       </div>
