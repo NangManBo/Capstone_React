@@ -67,7 +67,9 @@
   font-size: 20px;
   margin-bottom: 40px;
   display: flex;
+  text-align: center;
   align-items: center;
+  justify-content: center;
 }
 
 .vote_button_box {
