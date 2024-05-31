@@ -18,18 +18,15 @@ function ProfileUpdatePage() {
   } = location.state || {};
 
   const [newPassword, setNewPassword] = useState('');
-  const [newMbti, setNewMbti] = useState(mbti || '');
-  const [newNickname, setNewNickname] = useState(
-    nickname || ''
-  );
+  const [newMbti, setNewMbti] = useState('');
+  const [newNickname, setNewNickname] = useState('');
   const [currentNickname, setCurrentNickname] =
-    useState(null);
+    useState('');
   const [jwtToken1, setJwtToken1] = useState(
     jwtToken || ''
   );
 
   const mbtis = [
-    { label: 'MBTI', value: null },
     { label: 'INFP', value: 'INFP' },
     { label: 'INFJ', value: 'INFJ' },
     { label: 'INTP', value: 'INTP' },
