@@ -19,7 +19,10 @@ export const AlarmBox = (isLoggedIn) => {
     <div>
       {isLoggedIn ? (
         <div className="alarm_box">
-          <h2 className="alarm_box_title">
+          <h2
+            className="alarm_box_title"
+            onClick={goToDMPage}
+          >
             <i class="fa-regular fa-bell"></i>
             <span> 알림</span>
           </h2>
@@ -32,10 +35,7 @@ export const AlarmBox = (isLoggedIn) => {
         </div>
       ) : (
         <div className="alarm_box">
-          <h2
-            className="alarm_box_title"
-            onClick={goToDMPage}
-          >
+          <h2 className="alarm_box_title">
             <i class="fa-regular fa-bell"></i>
             <span> 알림</span>
           </h2>
