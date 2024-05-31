@@ -17,9 +17,9 @@ function ProfileUpdatePage() {
     keyId,
   } = location.state || {};
 
-  const [newPassword, setNewPassword] = useState('');
-  const [newMbti, setNewMbti] = useState('');
-  const [newNickname, setNewNickname] = useState('');
+  const [newPassword, setNewPassword] = useState(null);
+  const [newMbti, setNewMbti] = useState(null);
+  const [newNickname, setNewNickname] = useState(null);
   const [currentNickname, setCurrentNickname] =
     useState('');
   const [jwtToken1, setJwtToken1] = useState(
@@ -144,7 +144,7 @@ function ProfileUpdatePage() {
               value={newMbti}
               onChange={(e) => setNewMbti(e.target.value)}
             >
-              <option value="">MBTI</option>
+              <option value={null}>MBTI</option>
               {mbtis.map((option) => (
                 <option
                   key={option.value}
