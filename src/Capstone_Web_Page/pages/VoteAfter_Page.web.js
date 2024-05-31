@@ -289,18 +289,12 @@ function VoteAfterPage() {
                       src={comment.mediaUrl}
                       controls
                       loop
-                      style={{
-                        width: '200px',
-                        height: '200px',
-                      }}
+                      className="comment_image"
                     />
                   </button>
                 ) : (
                   <img
-                    style={{
-                      width: '200px',
-                      height: '200px',
-                    }}
+                    className="comment_image"
                     src={comment.mediaUrl}
                     alt="comment media"
                   />
@@ -355,20 +349,14 @@ function VoteAfterPage() {
                         '.mp4'
                       ) ? (
                         <video
-                          style={{
-                            width: '200px',
-                            height: '200px',
-                          }}
+                          className="comment_image"
                           src={childComment.mediaUrl}
                           controls
                           loop
                         />
                       ) : (
                         <img
-                          style={{
-                            width: '200px',
-                            height: '200px',
-                          }}
+                          className="comment_image"
                           src={childComment.mediaUrl}
                           alt="child comment media"
                         />
@@ -640,48 +628,50 @@ function VoteAfterPage() {
               ))}
             </select>
           </div>
-          <div>
+          <div className="comment_write-box">
             {selectedMedia && (
               <img
                 src={selectedMedia}
                 alt="Selected media"
-                style={{
-                  width: '400px',
-                  height: '400px',
-                }}
+                className="comment_image"
               />
             )}
-            <input
-              type="text"
-              placeholder={
-                isReplyMode
-                  ? '답글을 입력하세요.'
-                  : '댓글을 입력하세요.'
-              }
-              value={isReplyMode ? replyText : commentText}
-              onChange={(e) =>
-                isReplyMode
-                  ? setReplyText(e.target.value)
-                  : setCommentText(e.target.value)
-              }
-            />
-            <button
-              onClick={
-                isReplyMode
-                  ? handleAddReplySubmit
-                  : handleCommentSubmit
-              }
-            >
-              댓글 작성
-            </button>
-            <input
-              type="file"
-              accept="image/*,video/*" // Accept both images and videos
-              onChange={handleImageChange}
-            />
-            <button onClick={() => cancelImage()}>
-              사진 삭제
-            </button>
+            <div className="comment_write_input">
+              <input
+                type="text"
+                placeholder={
+                  isReplyMode
+                    ? '답글을 입력하세요.'
+                    : '댓글을 입력하세요.'
+                }
+                value={
+                  isReplyMode ? replyText : commentText
+                }
+                onChange={(e) =>
+                  isReplyMode
+                    ? setReplyText(e.target.value)
+                    : setCommentText(e.target.value)
+                }
+              />
+              <button
+                onClick={
+                  isReplyMode
+                    ? handleAddReplySubmit
+                    : handleCommentSubmit
+                }
+              >
+                댓글 작성
+              </button>
+              <input
+                type="file"
+                accept="image/*,video/*" // Accept both images and videos
+                onChange={handleImageChange}
+                placeholder=""
+              />
+              <button onClick={() => cancelImage()}>
+                사진 삭제
+              </button>
+            </div>
           </div>
           {sortedComments.map((comment, index) => (
             <Comment

@@ -109,3 +109,18 @@
   border-bottom: 4px solid #919191;
   justify-content: space-between;
 }
+
+.comment_image {
+  width: 20%;
+  height: 20%;
+}
+.comment_write {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment_write_input {
+  display: flex;
+  flex-direction: row;
+}
