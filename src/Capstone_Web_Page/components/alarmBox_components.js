@@ -14,11 +14,11 @@ export const AlarmBox = (
   const goToDMPage = () => {
     navigate('/dmbox', {
       state: {
-        isLoggedIn,
-        userId: '',
-        jwtToken: '',
-        nickname: null,
-        keyId,
+        isLoggedIn: isLoggedIn,
+        userId: userId,
+        jwtToken: jwtToken,
+        nickname: nickname,
+        keyId: keyId,
       },
     });
   };

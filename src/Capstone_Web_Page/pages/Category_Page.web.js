@@ -13,6 +13,7 @@ function CategoryPage() {
     nickname,
     category,
     matchingVotes,
+    keyId,
   } = location.state || {
     isLoggedIn: false,
     userId: '',
@@ -82,7 +83,8 @@ function CategoryPage() {
                 nickname,
                 category,
                 matchingVotes,
-                isCategory
+                isCategory,
+                keyId
               )
             }
           >

@@ -8,8 +8,14 @@ import './styles/profile_style.css';
 function ProfileUpdatePage() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { userId, isLoggedIn, nickname, jwtToken, mbti } =
-    location.state || {};
+  const {
+    userId,
+    isLoggedIn,
+    nickname,
+    jwtToken,
+    mbti,
+    keyId,
+  } = location.state || {};
 
   const [newPassword, setNewPassword] = useState('');
   const [newMbti, setNewMbti] = useState(mbti || '');
@@ -161,6 +167,7 @@ function ProfileUpdatePage() {
                 isLoggedIn,
                 nickname: currentNickname,
                 jwtToken: jwtToken1,
+                keyId: keyId,
               },
             })
           }

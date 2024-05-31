@@ -9,7 +9,8 @@ export const MainBanner = (
   jwtToken,
   isLoggedIn,
   userId,
-  nickname
+  nickname,
+  keyId
 ) => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
@@ -21,7 +22,7 @@ export const MainBanner = (
     );
 
     navigate('/searchresult', {
-      state: { searchResults, searchQuery },
+      state: { searchResults, searchQuery, keyId },
     });
   };
   const goToProfile = () => {
@@ -31,6 +32,7 @@ export const MainBanner = (
         userId: userId,
         jwtToken: jwtToken,
         nickname: nickname,
+        keyId: keyId,
       },
     });
   };
@@ -44,6 +46,7 @@ export const MainBanner = (
         userId,
         jwtToken,
         nickname,
+        keyId,
       },
     });
   };

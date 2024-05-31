@@ -57,13 +57,20 @@ function DMAutoSendPage() {
         isLoggedIn,
         jwtToken,
         nickname,
+        keyId,
       },
     });
   };
 
   return (
     <div className="profile_page">
-      {MainBanner(jwtToken, isLoggedIn, userId, nickname)}
+      {MainBanner(
+        jwtToken,
+        isLoggedIn,
+        userId,
+        nickname,
+        keyId
+      )}
       <LeftBar />
       <div className="right_page">
         <h2

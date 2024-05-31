@@ -21,7 +21,8 @@ export const PopularVoteBanner = (
   jwtToken,
   isLoggedIn,
   userId,
-  navigate
+  navigate,
+  keyId
 ) => {
   const weekAgo = new Date(
     new Date().setDate(new Date().getDate() - 7)
@@ -64,7 +65,8 @@ export const PopularVoteBanner = (
                   userId,
                   jwtToken,
                   nickname,
-                  false
+                  false,
+                  keyId
                 )
               }
             >

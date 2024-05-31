@@ -7,7 +7,8 @@ export const GetCategoryVotes = (
   jwtToken,
   isLoggedIn,
   userId,
-  navigate
+  navigate,
+  keyId
 ) => {
   // // data 객체 내부의 votes 배열을 가져옴
   // let votes = Array.isArray(data.votes) ? data.votes : [];
@@ -84,6 +85,7 @@ export const GetCategoryVotes = (
           jwtToken,
           nickname,
           matchingVotes,
+          keyId,
         },
       });
     };

@@ -109,7 +109,8 @@ function MainPage() {
         jwtToken,
         isLoggedIn, // 또는 조건에 따라 변하는 값
         userId,
-        nickname
+        nickname,
+        keyId
       )}
       <div className="main_page">
         <div className="main_page_header">

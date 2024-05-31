@@ -14,6 +14,7 @@ function DMPage() {
     jwtToken,
     item,
     unreadMessageCount,
+    keyId,
   } = location.state; // useLocation을 사용하여 state 접근
 
   const hi = () => {
@@ -23,6 +24,7 @@ function DMPage() {
         isLoggedIn,
         jwtToken,
         nickname,
+        keyId,
       },
     });
   };

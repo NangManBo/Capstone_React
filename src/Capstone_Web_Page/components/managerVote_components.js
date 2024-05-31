@@ -7,7 +7,8 @@ export const GetManagerVotes = (
   jwtToken,
   isLoggedIn,
   userId,
-  navigate
+  navigate,
+  keyId
 ) => {
   const managers = ['운영자'];
   const fillEmptyVotes = (votes, count) => {
@@ -75,7 +76,8 @@ export const GetManagerVotes = (
                       userId,
                       jwtToken,
                       nickname,
-                      false
+                      false,
+                      keyId
                     )
                   }
                 >

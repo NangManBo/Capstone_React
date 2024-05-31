@@ -18,6 +18,7 @@ export const UserBox = (
         userId,
         jwtToken,
         nickname,
+        keyId,
       },
     });
   };
@@ -31,6 +32,7 @@ export const UserBox = (
         jwtToken,
         nickname,
         receiverName: childComment.nickname,
+        keyId,
       },
     });
   };
@@ -41,6 +43,7 @@ export const UserBox = (
         userId: userId,
         jwtToken: jwtToken,
         nickname: nickname,
+        keyId: keyId,
       },
     });
   };
@@ -51,6 +54,7 @@ export const UserBox = (
         userId,
         jwtToken,
         nickname,
+        keyId,
       },
     });
   };

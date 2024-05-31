@@ -9,7 +9,8 @@ export const renderPostPress = async (
   nickname,
   category,
   matchingVotes,
-  isCategory
+  isCategory,
+  keyId
 ) => {
   if (isLoggedIn === false) {
     navigate('/voteonlylook', {
@@ -61,6 +62,7 @@ export const renderPostPress = async (
                 category,
                 matchingVotes,
                 isCategory,
+                keyId,
               },
             });
           } else if (isCreatedByUser) {
@@ -76,6 +78,7 @@ export const renderPostPress = async (
                 category,
                 matchingVotes,
                 isCategory,
+                keyId,
               },
             });
           } else {
@@ -90,6 +93,7 @@ export const renderPostPress = async (
                 category,
                 matchingVotes,
                 isCategory,
+                keyId,
               },
             });
           }
@@ -129,6 +133,7 @@ export const renderPostPress = async (
                 category,
                 matchingVotes,
                 isCategory,
+                keyId,
               },
             }
           );
