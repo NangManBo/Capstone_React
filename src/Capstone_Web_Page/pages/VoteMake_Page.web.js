@@ -117,7 +117,7 @@ function VoteMakePage() {
         }
       }
       const response = await fetch(
-        'https://dovote.p-e.kr/polls/upload/',
+        'https://dovote.p-e.kr/polls/upload',
         {
           method: 'POST',
           headers: {
