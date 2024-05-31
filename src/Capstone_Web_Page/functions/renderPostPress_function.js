@@ -26,7 +26,6 @@ export const renderPostPress = async (
     if (response.status === 200) {
       //console.log('내가 투표한 데이터', response.data);
       const userVotes = response.data;
-      console.log('userVotes:', userVotes);
 
       // Check if userVotes is null or empty
       if (!userVotes || userVotes.length === 0) {
@@ -140,6 +139,16 @@ export const renderPostPress = async (
       );
     }
   } catch (error) {
-    console.error('투표 들어가려는데 오류:', error);
+    console.log('로그인 안된 상태');
+    if (isLoggedIn === false) {
+      navigate('/voteonlylook', {
+        state: {
+          vote: firstMatchingVote,
+          category,
+          matchingVotes,
+          isCategory,
+        },
+      });
+    }
   }
 };
