@@ -96,7 +96,9 @@ export const UserBox = (
                 height: '80px',
               }}
             />
-            <label>{nickname} 님!</label>
+            <label className="user_box_header_label">
+              {nickname} 님!
+            </label>
           </div>
           <div className="point_box">
             <label>포인트: {popularPoint}</label>

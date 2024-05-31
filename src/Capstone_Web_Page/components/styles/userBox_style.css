@@ -22,13 +22,21 @@
 .user_box_header {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 5%;
+  width: 80%;
+}
+
+.user_box_header_label {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-left: 15%;
 }
 
 .point_box {
   width: 60%;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
