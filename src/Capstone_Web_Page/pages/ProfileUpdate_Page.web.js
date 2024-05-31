@@ -46,6 +46,12 @@ function ProfileUpdatePage() {
   ];
 
   const handleChangeInformation = async () => {
+    console.log(
+      '정보 변경',
+      newNickname,
+      newMbti,
+      newPassword
+    );
     try {
       const response = await axios.patch(
         'https://dovote.p-e.kr/auth/patch/' + userId,
