@@ -35,7 +35,7 @@ function LogInPage() {
             userId: id,
             jwtToken: response.data.token,
             nickname: response.data.nickname,
-            key: response.data.userId,
+            key: response.data.keyId,
           },
         });
       } else {

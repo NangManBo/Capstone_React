@@ -28,7 +28,7 @@ export const renderPostPress = async (
         {
           headers: {
             'content-Type': 'multipart/form-data',
-            //'AUTH-TOKEN': jwtToken,
+            Authorization: jwtToken,
           },
         }
       );
