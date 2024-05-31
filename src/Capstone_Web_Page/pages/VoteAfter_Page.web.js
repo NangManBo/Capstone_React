@@ -202,8 +202,6 @@ function VoteAfterPage() {
         }
       );
 
-      const responseBody = await response.text();
-
       if (response.ok) {
         const contentType =
           response.headers.get('content-type');
@@ -213,9 +211,7 @@ function VoteAfterPage() {
           contentType &&
           contentType.includes('application/json')
         ) {
-          const data = JSON.parse(responseBody);
-
-          console.log('댓글 작성 성공:', data);
+          console.log('댓글 작성 성공:', response.data);
         } else {
           console.log('댓글 작성 성공');
         }
@@ -529,8 +525,6 @@ function VoteAfterPage() {
         }
       );
 
-      const responseBody = await response.text();
-
       if (response.ok) {
         const contentType =
           response.headers.get('content-type');
@@ -540,9 +534,7 @@ function VoteAfterPage() {
           contentType &&
           contentType.includes('application/json')
         ) {
-          const data = JSON.parse(responseBody);
-
-          console.log('댓글 작성 성공:', data);
+          console.log('댓글 작성 성공:', response.data);
         } else {
           console.log('댓글 작성 성공');
         }
