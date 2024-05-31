@@ -8,24 +8,6 @@ import axios from 'axios';
 import { MainBanner } from '../components/mainBanner_components';
 import { LeftBar } from '../components/leftBar_components';
 
-const exampleVote = {
-  id: 1,
-  mediaUrl: 'https://example.com/media.jpg',
-  createdBy: 'User1',
-  voteStatus: 'open',
-  createdAt: '2023.05.01 12:30:00',
-  category: 'Category1',
-  title: 'Example Vote Title',
-  question: 'Example question for the vote?',
-  likesCount: 10,
-  likedUsers: ['UserA', 'UserB'],
-  choice: [
-    { id: 1, text: 'Choice 1' },
-    { id: 2, text: 'Choice 2' },
-    { id: 3, text: 'Choice 3' },
-  ],
-};
-
 function VoteAfterPage() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -597,34 +579,37 @@ function VoteAfterPage() {
         </h2>
 
         <div>
-          {/* Content */}
-          <h1>{vote.title}</h1>
-          <p>투표 기간 설정: {vote.createdAt}</p>
-          <p>주최자: {vote.createdBy}</p>
-          <p>{vote.question}</p>
+          <div className="vote_header">
+            {/* Content */}
+            <h1>{vote.title}</h1>
+            <div className="vote_userInfo">
+              <p>
+                투표 기간 설정: {vote && vote.createdAt}
+              </p>
+              <p>주최자 : {vote && vote.createdBy}</p>
+            </div>
+          </div>
+          <div className="vote_qustion">
+            <p>{vote.question}</p>
+          </div>
           {vote?.mediaUrl &&
             (vote.mediaUrl.endsWith('.mp4') ? (
               <video
                 src={vote.mediaUrl}
                 controls
-                style={{
-                  width: '400px',
-                  height: '400px',
-                }}
+                className="vote_image"
               />
             ) : (
               <img
                 src={vote.mediaUrl}
                 alt="Media"
-                style={{
-                  width: '800px',
-                  height: '450px',
-                }}
+                className="vote_image"
               />
             ))}
           {/* Choices */}
           {vote.choice.map((choice, index) => (
             <div
+              className="vote_button"
               key={index}
               style={{
                 backgroundColor: userVotes.some(
@@ -635,22 +620,26 @@ function VoteAfterPage() {
                   : 'transparent',
               }}
             >
-              {choice.text}
+              <span className="vote_text">
+                {choice.text}
+              </span>
             </div>
           ))}
-          <p>댓글 {comments.length}</p>
-          <select
-            value={sortingStandard}
-            onChange={(e) =>
-              setSortingStandard(e.target.value)
-            }
-          >
-            {standards.map((standard, index) => (
-              <option key={index} value={standard.value}>
-                {standard.label}
-              </option>
-            ))}
-          </select>
+          <div className="comment_header">
+            <p>댓글 {comments.length}</p>
+            <select
+              value={sortingStandard}
+              onChange={(e) =>
+                setSortingStandard(e.target.value)
+              }
+            >
+              {standards.map((standard, index) => (
+                <option key={index} value={standard.value}>
+                  {standard.label}
+                </option>
+              ))}
+            </select>
+          </div>
           <div>
             {selectedMedia && (
               <img
@@ -683,7 +672,7 @@ function VoteAfterPage() {
                   : handleCommentSubmit
               }
             >
-              Submit
+              댓글 작성
             </button>
             <input
               type="file"
@@ -691,7 +680,7 @@ function VoteAfterPage() {
               onChange={handleImageChange}
             />
             <button onClick={() => cancelImage()}>
-              Cancel Image
+              사진 삭제
             </button>
           </div>
           {sortedComments.map((comment, index) => (

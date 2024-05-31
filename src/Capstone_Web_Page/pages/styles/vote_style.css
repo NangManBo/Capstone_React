@@ -101,3 +101,9 @@
 .vote_select_button.selected {
   background-color: #a8d5e2; /* Change this to your desired selected background color */
 }
+
+.comment_header {
+  border-top: 4px solid #c6c6c6;
+  border-bottom: 4px solid #919191;
+  justify-content: space-between;
+}

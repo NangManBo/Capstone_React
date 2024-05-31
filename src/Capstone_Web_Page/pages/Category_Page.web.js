@@ -49,7 +49,6 @@ function CategoryPage() {
   return (
     <div className="profile_page">
       {MainBanner(jwtToken, isLoggedIn, userId, nickname)}
-
       {LeftBar(
         jwtToken,
         isLoggedIn,
