@@ -96,12 +96,17 @@ export const UserBox = (
                 height: '80px',
               }}
             />
-            <label>{nickname}</label>
+            <label>{nickname} 님!</label>
           </div>
           <div className="point_box">
             <label>포인트: {popularPoint}</label>
           </div>
-          <button onClick={goToVoteMake}>투표 생성</button>
+          <button
+            className="votemake_button"
+            onClick={goToVoteMake}
+          >
+            투표 생성
+          </button>
         </div>
       ) : (
         <div className="user_box">
