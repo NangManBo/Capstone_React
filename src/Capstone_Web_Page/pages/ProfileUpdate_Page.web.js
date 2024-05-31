@@ -77,10 +77,20 @@ function ProfileUpdatePage() {
           '응답 데이터:',
           JSON.stringify(response.data, null, 2)
         );
+        console.log(
+          '바뀌기 전 데이터 확인',
+          jwtToken1,
+          currentNickname
+        );
         setJwtToken1(response.data.token);
         setNewNickname('');
-        setCurrentNickname(newNickname);
+        setCurrentNickname(response.data.nickname);
 
+        console.log(
+          '바뀐 후 데이터 확인',
+          jwtToken1,
+          currentNickname
+        );
         alert('정보 수정 완료');
       } else {
         alert('정보 수정에 실패했습니다');
