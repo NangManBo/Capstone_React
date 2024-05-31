@@ -192,7 +192,7 @@ function VoteAfterPage() {
       }
 
       const response = await fetch(
-        'https://dovote.p-e.kr/api/comments/' +
+        'https://dovote.p-e.kr/comments/' +
           userId +
           '/' +
           vote.id,
@@ -446,7 +446,7 @@ function VoteAfterPage() {
     console.log('url ', comment.mediaUrl);
     try {
       const response = await axios.post(
-        `https://dovote.p-e.kr/api/comments/like/${userId}/${vote.id}/${comment.id}`,
+        `https://dovote.p-e.kr/comments/like/${userId}/${vote.id}/${comment.id}`,
         {}, // Empty object as the request body
         {
           headers: {
@@ -523,7 +523,7 @@ function VoteAfterPage() {
         });
       }
       const response = await fetch(
-        `https://dovote.p-e.kr/api/comments/${userId}/${vote.id}/${parentCommentId}`,
+        `https://dovote.p-e.kr/comments/${userId}/${vote.id}/${parentCommentId}`,
         {
           method: 'POST',
           headers: {

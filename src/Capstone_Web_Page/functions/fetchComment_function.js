@@ -8,7 +8,7 @@ export const fetchComments = async (
 ) => {
   try {
     const response = await axios.get(
-      `https://dovote.p-e.kr/api/comments/poll/${voteId}`,
+      `https://dovote.p-e.kr/comments/poll/${voteId}`,
       {
         headers: {
           'Content-Type': 'multipart/form-data',
