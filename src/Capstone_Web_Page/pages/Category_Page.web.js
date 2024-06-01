@@ -75,35 +75,35 @@ function CategoryPage() {
             ))}
           </select>
         </div>
-      </div>
-      <div style={{ overflowY: 'scroll' }}>
-        {sortedVotes.map((vote, index) => (
-          <div
-            key={index}
-            onClick={() =>
-              renderPostPress(
-                vote,
-                navigate,
-                isLoggedIn,
-                userId,
-                jwtToken,
-                nickname,
-                category,
-                matchingVotes,
-                isCategory,
-                keyId
-              )
-            }
-          >
-            <div>
-              <p>{vote.title}</p> <p>{vote.question}</p>{' '}
+        <div style={{ overflowY: 'scroll' }}>
+          {sortedVotes.map((vote, index) => (
+            <div
+              key={index}
+              onClick={() =>
+                renderPostPress(
+                  vote,
+                  navigate,
+                  isLoggedIn,
+                  userId,
+                  jwtToken,
+                  nickname,
+                  category,
+                  matchingVotes,
+                  isCategory,
+                  keyId
+                )
+              }
+            >
+              <div>
+                <p>{vote.title}</p> <p>{vote.question}</p>{' '}
+              </div>
+              <div>
+                <span>{vote.likesCount}</span>
+                <span>{vote.createdAt}</span>
+              </div>
             </div>
-            <div>
-              <span>{vote.likesCount}</span>
-              <span>{vote.createdAt}</span>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

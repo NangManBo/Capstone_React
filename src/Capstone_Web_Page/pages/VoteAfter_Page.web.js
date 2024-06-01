@@ -8,6 +8,23 @@ import axios from 'axios';
 import { MainBanner } from '../components/mainBanner_components';
 import { LeftBar } from '../components/leftBar_components';
 import './styles/vote_style.css';
+
+const calculateTotalComments = (comments) => {
+  let totalComments = 0;
+
+  comments.forEach((comment) => {
+    totalComments += 1; // 본 댓글
+    if (
+      comment.childrenComment &&
+      comment.childrenComment.length > 0
+    ) {
+      totalComments += comment.childrenComment.length; // 대댓글
+    }
+  });
+
+  return totalComments;
+};
+
 function VoteAfterPage() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -50,6 +67,8 @@ function VoteAfterPage() {
     useState('시간'); // 초기 정렬 기준을 '시간'으로 설정
   const [sortedComments, setSortedComments] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
+  const totalComments = calculateTotalComments(comments);
+
   const placeholder = {
     label: '정렬 기준',
     value: null,
@@ -615,7 +634,7 @@ function VoteAfterPage() {
           ))}
           <div className="comment_header">
             <p className="comment_header_text">
-              댓글 {comments.length}
+              댓글 {totalComments}
             </p>
             <select
               className="comment_header_select"
