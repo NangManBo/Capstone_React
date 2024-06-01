@@ -366,6 +366,11 @@ function VoteAfterPage() {
                 {comment.likes}
               </span>
             </div>
+            <div>
+              {sameOption.some((option) =>
+                option.userNames.includes(comment.nickname)
+              ) && <p>(나와 동일한 선택지를 골랐습니다)</p>}
+            </div>
             <div className="comment_reply">
               {comment.childrenComment &&
                 comment.childrenComment.length > 0 && (
@@ -396,65 +401,70 @@ function VoteAfterPage() {
           comment.childrenComment.map(
             (childComment, childIndex) => (
               <div key={childIndex}>
-                <div>
-                  <span>
-                    작성자 : {childComment.userNickname}
-                  </span>
-                  <span>작성시간: {childComment.time}</span>
-                </div>
-                <div>
-                  <p>{childComment.content}</p>
-                  {childComment.mediaUrl && (
+                <div className="comment_box">
+                  <div className="commnet_box_user">
+                    <span>
+                      작성자 : {childComment.userNickname}
+                    </span>
+                    <span>
+                      작성시간: {childComment.time}
+                    </span>
+                  </div>
+                  <div>
+                    <p>{childComment.content}</p>
+                    {childComment.mediaUrl && (
+                      <div>
+                        {childComment.mediaUrl.endsWith(
+                          '.mp4'
+                        ) ? (
+                          <video
+                            className="comment_image"
+                            src={childComment.mediaUrl}
+                            controls
+                            loop
+                          />
+                        ) : (
+                          <img
+                            className="comment_image"
+                            src={childComment.mediaUrl}
+                            alt="child comment media"
+                          />
+                        )}
+                      </div>
+                    )}
+                  </div>
+                  <div className="comment_like_reply_box">
+                    <FontAwesomeIcon
+                      onClick={() =>
+                        commentLike(
+                          childComment,
+                          index,
+                          childIndex
+                        )
+                      }
+                      icon={faThumbsUp}
+                    />
+                    <span>{childComment.likes}</span>
                     <div>
-                      {childComment.mediaUrl.endsWith(
-                        '.mp4'
-                      ) ? (
-                        <video
-                          className="comment_image"
-                          src={childComment.mediaUrl}
-                          controls
-                          loop
-                        />
-                      ) : (
-                        <img
-                          className="comment_image"
-                          src={childComment.mediaUrl}
-                          alt="child comment media"
-                        />
+                      {sameOption.some((option) =>
+                        option.userNames.includes(
+                          childComment.nickname
+                        )
+                      ) && (
+                        <p>
+                          (나와 동일한 선택지를 골랐습니다)
+                        </p>
                       )}
                     </div>
-                  )}
-                </div>
-                <div>
-                  <button
-                    onClick={() =>
-                      commentLike(
-                        childComment,
-                        index,
-                        childIndex
-                      )
-                    }
-                  >
-                    Like
-                  </button>
-                  <span>{childComment.likes}</span>
-                  {/* Additional logic for child comment actions */}
-                </div>
-                <div>
-                  {sameOption.some((option) =>
-                    option.userNames.includes(
-                      childComment.nickname
-                    )
-                  ) && (
-                    <p>(나와 동일한 선택지를 골랐습니다)</p>
-                  )}
-                  <button
-                    onClick={() =>
-                      handlemessge1(childComment)
-                    }
-                  >
-                    쪽지 보내기
-                  </button>
+                    <div className="comment_reply">
+                      <FontAwesomeIcon
+                        onClick={() =>
+                          handlemessge1(childComment)
+                        }
+                        icon={faPaperPlane}
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             )
