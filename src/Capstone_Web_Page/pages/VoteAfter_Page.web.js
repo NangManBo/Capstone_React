@@ -432,14 +432,13 @@ function VoteAfterPage() {
   };
   // 대댓글
   const handleReplyPress = (comment, index) => {
-    console.log('대댓글 버튼 눌렀음', index);
     if (replyingIndex === index) {
       // If the reply button is pressed again, reset to a regular comment
       setReplyingIndex(null);
       setReplyText('');
       setIsReplyMode(false); // Turn off reply mode
     } else {
-      setReplyingIndex(index);
+      setReplyingIndex(comment.id);
       setReplyText(`@${comment.userNickname} `);
       setIsReplyMode(true); // Turn on reply mode
     }
