@@ -434,17 +434,19 @@ function VoteAfterPage() {
                     )}
                   </div>
                   <div className="comment_like_reply_box">
-                    <FontAwesomeIcon
-                      onClick={() =>
-                        commentLike(
-                          childComment,
-                          index,
-                          childIndex
-                        )
-                      }
-                      icon={faThumbsUp}
-                    />
-                    <span>{childComment.likes}</span>
+                    <div className="comment_like_button">
+                      <FontAwesomeIcon
+                        onClick={() =>
+                          commentLike(
+                            childComment,
+                            index,
+                            childIndex
+                          )
+                        }
+                        icon={faThumbsUp}
+                      />
+                      <span>{childComment.likes}</span>
+                    </div>
                     <div>
                       {sameOption.some((option) =>
                         option.userNames.includes(
