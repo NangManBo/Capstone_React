@@ -366,27 +366,27 @@ function VoteAfterPage() {
                 {comment.likes}
               </span>
             </div>
-          </div>
-          <div>
-            {comment.childrenComment &&
-              comment.childrenComment.length > 0 && (
-                <FontAwesomeIcon
-                  onClick={() => showReplyPress()}
-                  icon={faMessage}
-                />
-              )}
+            <div className="comment_reply">
+              {comment.childrenComment &&
+                comment.childrenComment.length > 0 && (
+                  <FontAwesomeIcon
+                    onClick={() => showReplyPress()}
+                    icon={faMessage}
+                  />
+                )}
 
-            <FontAwesomeIcon
-              onClick={() =>
-                handleReplyPress(comment, index)
-              }
-              icon={faReply}
-            />
+              <FontAwesomeIcon
+                onClick={() =>
+                  handleReplyPress(comment, index)
+                }
+                icon={faReply}
+              />
 
-            <FontAwesomeIcon
-              onClick={() => handlemessge(comment)}
-              icon={faPaperPlane}
-            />
+              <FontAwesomeIcon
+                onClick={() => handlemessge(comment)}
+                icon={faPaperPlane}
+              />
+            </div>
           </div>
         </div>
 
