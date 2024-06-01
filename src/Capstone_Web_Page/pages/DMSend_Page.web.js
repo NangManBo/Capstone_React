@@ -34,24 +34,21 @@ function DMSendPage() {
       );
 
       if (response.status === 201) {
-        console.log('메시지 전송 성공:', response.data);
-        // 메시지 전송 성공 후 처리 로직
+        alert('메시지 전송에 성공했습니다.');
+        navigate('/dmbox', {
+          state: {
+            userId,
+            isLoggedIn,
+            jwtToken,
+            nickname,
+          },
+        });
       } else {
-        console.error('메시지 전송 실패:', response.data);
-        // 실패 처리 로직
+        alert('메시지 전송에 실패했습니다.');
       }
     } catch (error) {
-      console.error('메시지 전송 중 오류 발생:', error);
+      alert('메시지 전송에 실패했습니다.');
     }
-
-    navigate('/dmbox', {
-      state: {
-        userId,
-        isLoggedIn,
-        jwtToken,
-        nickname,
-      },
-    });
   };
 
   return (
