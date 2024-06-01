@@ -11,6 +11,9 @@ import './styles/vote_style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage } from '@fortawesome/free-regular-svg-icons';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { faMessage } from '@fortawesome/free-solid-svg-icons';
+import { faReply } from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 const calculateTotalComments = (comments) => {
   let totalComments = 0;
@@ -367,20 +370,23 @@ function VoteAfterPage() {
           <div>
             {comment.childrenComment &&
               comment.childrenComment.length > 0 && (
-                <button onClick={() => showReplyPress()}>
-                  답글 보기
-                </button>
+                <FontAwesomeIcon
+                  onClick={() => showReplyPress()}
+                  icon={faMessage}
+                />
               )}
-            <button
+
+            <FontAwesomeIcon
               onClick={() =>
                 handleReplyPress(comment, index)
               }
-            >
-              답글 작성
-            </button>
-            <button onClick={() => handlemessge(comment)}>
-              쪽지 보내기
-            </button>
+              icon={faReply}
+            />
+
+            <FontAwesomeIcon
+              onClick={() => handlemessge(comment)}
+              icon={faPaperPlane}
+            />
           </div>
         </div>
 
