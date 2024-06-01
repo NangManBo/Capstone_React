@@ -614,8 +614,11 @@ function VoteAfterPage() {
             </div>
           ))}
           <div className="comment_header">
-            <p>댓글 {comments.length}</p>
+            <p className="comment_header_text">
+              댓글 {comments.length}
+            </p>
             <select
+              className="comment_header_select"
               value={sortingStandard}
               onChange={(e) =>
                 setSortingStandard(e.target.value)

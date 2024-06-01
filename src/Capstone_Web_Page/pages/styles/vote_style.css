@@ -107,9 +107,21 @@
   flex-direction: row;
   border-top: 4px solid #c6c6c6;
   border-bottom: 4px solid #919191;
+  height: 10%;
   justify-content: space-between;
 }
+.comment_header_text {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
 
+.comment_header_select {
+  height: 7%;
+  margin: 0;
+  padding: 0;
+}
 .comment_image {
   width: 20%;
   height: 20%;
