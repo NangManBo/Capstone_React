@@ -192,7 +192,17 @@
   border-bottom: 1px solid #c6c6c6;
   padding: 1rem;
 }
-
+.commnet_box_user {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
 .comment_like_button {
   color: rgb(68, 136, 255);
+}
+
+.comment_like_count {
+  margin-left: 10px;
 }

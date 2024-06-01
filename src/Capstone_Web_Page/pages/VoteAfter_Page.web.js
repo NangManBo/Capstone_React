@@ -323,7 +323,7 @@ function VoteAfterPage() {
     return (
       <div className="comment_body" key={index}>
         <div className="comment_box">
-          <div>
+          <div className="commnet_box_user">
             <span>작성자 : {comment.userNickname}</span>
             <span>작성시간: {comment.time}</span>
           </div>
@@ -358,7 +358,9 @@ function VoteAfterPage() {
             onClick={() => commentLike(comment, index)}
           >
             <FontAwesomeIcon icon={faThumbsUp} />
-            <span>{comment.likes}</span>
+            <span className="comment_like_count">
+              {comment.likes}
+            </span>
           </div>
         </div>
         <div>
