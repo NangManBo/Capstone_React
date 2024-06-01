@@ -462,7 +462,7 @@ function VoteAfterPage() {
       }
       let formData = new FormData();
       const parentCommentId = comments[replyingIndex].id; // Get the parent comment ID
-
+      console.log('몇번째 댓글', replyingIndex);
       formData.append(
         'content',
         JSON.stringify({ content: replyText })
