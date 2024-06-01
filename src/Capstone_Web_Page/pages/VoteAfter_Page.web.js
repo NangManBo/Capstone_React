@@ -43,7 +43,7 @@ function VoteAfterPage() {
   const videoRef = useRef(null);
   const [showReply, setShowReply] = useState(false);
   const [replyText, setReplyText] = useState('');
-  const [replyingIndex, setReplyingIndex] = useState(null);
+  const [replyingIndex, setReplyingIndex] = useRef(null);
   const [sameOption, setSameOption] = useState([]);
   const [standard, setStandard] = useState('');
   const [sortingStandard, setSortingStandard] =
@@ -438,7 +438,6 @@ function VoteAfterPage() {
       setReplyText('');
       setIsReplyMode(false); // Turn off reply mode
     } else {
-      // Set the replying index and pre-fill the reply input with the username
       setReplyingIndex(index);
       setReplyText(`@${comment.userNickname} `);
       setIsReplyMode(true); // Turn on reply mode
@@ -461,8 +460,9 @@ function VoteAfterPage() {
         return;
       }
       let formData = new FormData();
-      const parentCommentId = comments[replyingIndex].id; // Get the parent comment ID
-      console.log('몇번째 댓글', replyingIndex);
+      const parentCommentId =
+        comments[replyingIndex.current].id; // Get the parent comment ID
+      console.log('몇번째 댓글', parentCommentId);
       formData.append(
         'content',
         JSON.stringify({ content: replyText })
