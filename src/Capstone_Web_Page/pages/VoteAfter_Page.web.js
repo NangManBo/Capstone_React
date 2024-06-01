@@ -43,7 +43,7 @@ function VoteAfterPage() {
   const videoRef = useRef(null);
   const [showReply, setShowReply] = useState(false);
   const [replyText, setReplyText] = useState('');
-  const [replyingIndex, setReplyingIndex] = useRef(null);
+  const [replyingIndex, setReplyingIndex] = useState(null);
   const [sameOption, setSameOption] = useState([]);
   const [standard, setStandard] = useState('');
   const [sortingStandard, setSortingStandard] =
@@ -460,9 +460,8 @@ function VoteAfterPage() {
         return;
       }
       let formData = new FormData();
-      const parentCommentId =
-        comments[replyingIndex.current].id; // Get the parent comment ID
-      console.log('몇번째 댓글', parentCommentId);
+      const parentCommentId = comments[replyingIndex].id; // Get the parent comment ID
+      console.log('몇번째 댓글', replyingIndex);
       formData.append(
         'content',
         JSON.stringify({ content: replyText })
