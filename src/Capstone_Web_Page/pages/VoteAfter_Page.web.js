@@ -250,6 +250,35 @@ function VoteAfterPage() {
       }
     }
   };
+  // 댓글 좋아요
+  const commentLike = async (comment, index) => {
+    setSend(true);
+    console.log('comment ', comment.id);
+    console.log('url ', comment.mediaUrl);
+    try {
+      const response = await axios.post(
+        `https://dovote.p-e.kr/comments/like/${userId}/${vote.id}/${comment.id}`,
+
+        {
+          headers: {
+            Authorization: jwtToken,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        console.log(
+          '댓글 좋아요 성공',
+          JSON.stringify(response.data, null, 2)
+        );
+        setSend(false);
+      } else {
+        console.error('댓글 좋아요 실패', response.data);
+      }
+    } catch (error) {
+      console.error('댓글 좋아요 보내기:', error);
+    }
+  };
   //댓글 출력 창
   const Comment = ({ comment, index }) => {
     const handlePlayPause = () => {
@@ -401,35 +430,6 @@ function VoteAfterPage() {
       </div>
     );
   };
-  // 댓글 좋아요
-  const commentLike = async (comment, index) => {
-    setSend(true);
-    console.log('comment ', comment.id);
-    console.log('url ', comment.mediaUrl);
-    try {
-      const response = await axios.post(
-        `https://dovote.p-e.kr/comments/like/${userId}/${vote.id}/${comment.id}`,
-
-        {
-          headers: {
-            Authorization: jwtToken,
-          },
-        }
-      );
-
-      if (response.status === 200) {
-        console.log(
-          '댓글 좋아요 성공',
-          JSON.stringify(response.data, null, 2)
-        );
-        setSend(false);
-      } else {
-        console.error('댓글 좋아요 실패', response.data);
-      }
-    } catch (error) {
-      console.error('댓글 좋아요 보내기:', error);
-    }
-  };
   // 대댓글
   const handleReplyPress = (comment, index) => {
     if (replyingIndex === index) {
@@ -461,7 +461,7 @@ function VoteAfterPage() {
       }
       let formData = new FormData();
       const parentCommentId = comments[replyingIndex].id; // Get the parent comment ID
-      console.log('몇번째 댓글', replyingIndex);
+      console.log('몇번째 댓글', parentCommentId);
       formData.append(
         'content',
         JSON.stringify({ content: replyText })
