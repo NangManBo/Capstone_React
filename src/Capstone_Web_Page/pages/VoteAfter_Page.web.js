@@ -320,7 +320,7 @@ function VoteAfterPage() {
 
     return (
       <div className="comment_body" key={index}>
-        <div className="">
+        <div>
           <div>
             <span>작성자 : {comment.nickname}</span>
             <span>작성시간: {comment.time}</span>
@@ -651,7 +651,7 @@ function VoteAfterPage() {
               ))}
             </select>
           </div>
-          <div className="comment_write-box">
+          <div className="comment_write_box">
             {selectedMedia && (
               <img
                 src={selectedMedia}

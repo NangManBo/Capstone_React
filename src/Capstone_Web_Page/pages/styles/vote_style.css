@@ -27,7 +27,7 @@
 }
 
 .vote_qustion {
-  height: 50%;
+  height: 50vh;
 }
 .vote_qustion p {
   font-size: 1.5em;
@@ -54,7 +54,7 @@
 
 .vote_image {
   width: 50%;
-  height: 45%;
+  height: 45vh;
 }
 
 .vote_end_button {
@@ -107,7 +107,7 @@
   flex-direction: row;
   border-top: 4px solid #c6c6c6;
   border-bottom: 4px solid #919191;
-  height: 5%;
+  height: 5vh;
   align-items: center;
   justify-content: space-between;
 }
@@ -119,7 +119,7 @@
 }
 
 .comment_header_select {
-  height: 50%;
+  height: 5vh;
   width: 10%;
   font-size: 1.2rem;
   margin: 0;
@@ -138,6 +138,14 @@
   display: flex;
   flex-direction: column;
 }
+.comment_write_box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 5%;
+}
 
 .comment_write_input {
   display: flex;
@@ -147,20 +155,20 @@
 }
 
 .comment_write_input input {
-  width: 700px;
-  border-radius: 5%;
+  width: 600px;
+  border-radius: 10px;
   height: 2rem;
   font-size: 1.2rem;
   margin-right: 1rem;
 }
 .comment_write_button {
-  width: 200px;
+  width: 170px;
   height: 2.1rem;
   align-items: center;
   background-color: #358fe8;
   color: white;
   border: none;
-  border-radius: 5%;
+  border-radius: 10px;
   font-size: 1.2rem;
   cursor: pointer;
 }
@@ -173,6 +181,6 @@
 }
 
 .comment_body_box {
-  height: 100%;
+  height: 80vh;
   overflow-y: auto;
 }
