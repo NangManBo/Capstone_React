@@ -206,3 +206,10 @@
 .comment_like_count {
   margin-left: 10px;
 }
+.comment_like_reply_box {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}

@@ -353,31 +353,35 @@ function VoteAfterPage() {
               </div>
             )}
           </div>
-          <div
-            className="comment_like_button"
-            onClick={() => commentLike(comment, index)}
-          >
-            <FontAwesomeIcon icon={faThumbsUp} />
-            <span className="comment_like_count">
-              {comment.likes}
-            </span>
+          <div className="comment_like_reply_box">
+            <div
+              className="comment_like_button"
+              onClick={() => commentLike(comment, index)}
+            >
+              <FontAwesomeIcon icon={faThumbsUp} />
+              <span className="comment_like_count">
+                {comment.likes}
+              </span>
+            </div>
           </div>
-        </div>
-        <div>
-          {comment.childrenComment &&
-            comment.childrenComment.length > 0 && (
-              <button onClick={() => showReplyPress()}>
-                답글 보기
-              </button>
-            )}
-          <button
-            onClick={() => handleReplyPress(comment, index)}
-          >
-            답글 작성
-          </button>
-          <button onClick={() => handlemessge(comment)}>
-            쪽지 보내기
-          </button>
+          <div>
+            {comment.childrenComment &&
+              comment.childrenComment.length > 0 && (
+                <button onClick={() => showReplyPress()}>
+                  답글 보기
+                </button>
+              )}
+            <button
+              onClick={() =>
+                handleReplyPress(comment, index)
+              }
+            >
+              답글 작성
+            </button>
+            <button onClick={() => handlemessge(comment)}>
+              쪽지 보내기
+            </button>
+          </div>
         </div>
 
         {/* Rendering child comments, if any */}
