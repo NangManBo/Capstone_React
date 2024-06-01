@@ -142,4 +142,29 @@
 .comment_write_input {
   display: flex;
   flex-direction: row;
+  width: 50%;
+}
+
+.comment_write_input input {
+  width: 50%;
+  border-radius: 5%;
+  height: 2rem;
+  font-size: 1.2rem;
+  margin-right: 1rem;
+}
+.comment_write_button {
+  width: 50%;
+  height: 2rem;
+  background-color: #358fe8;
+  color: white;
+  border: none;
+  border-radius: 5%;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.comment_body {
+  width: 50%;
+  height: 100%;
+  overflow-y: auto;
 }

@@ -318,8 +318,8 @@ function VoteAfterPage() {
     };
 
     return (
-      <div key={index}>
-        <div>
+      <div className="comment_body" key={index}>
+        <div className="">
           <div>
             <span>작성자 : {comment.nickname}</span>
             <span>작성시간: {comment.time}</span>
@@ -676,6 +676,7 @@ function VoteAfterPage() {
                 }
               />
               <button
+                className="comment_write_button"
                 onClick={
                   isReplyMode
                     ? handleAddReplySubmit
@@ -684,15 +685,28 @@ function VoteAfterPage() {
               >
                 댓글 작성
               </button>
-              <input
-                type="file"
-                accept="image/*,video/*" // Accept both images and videos
-                onChange={handleImageChange}
-                placeholder=""
-              />
-              <button onClick={() => cancelImage()}>
-                사진 삭제
-              </button>
+              <div className="image-button">
+                <input
+                  type="file"
+                  accept="image/*,video/*"
+                  onChange={handleImageChange}
+                  id="file-input"
+                  className="custom-file-input"
+                />
+                <label
+                  htmlFor="file-input"
+                  className="custom-file-label"
+                >
+                  <FontAwesomeIcon icon={faImage} />
+                </label>
+
+                <button
+                  className="cancel-button"
+                  onClick={cancelImage}
+                >
+                  X
+                </button>
+              </div>
             </div>
           </div>
           {sortedComments.map((comment, index) => (
