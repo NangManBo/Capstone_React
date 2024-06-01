@@ -686,7 +686,7 @@ function VoteAfterPage() {
               >
                 댓글 작성
               </button>
-              <div className="image-button">
+              <div className="comment_image_button">
                 <input
                   type="file"
                   accept="image/*,video/*"
@@ -710,13 +710,15 @@ function VoteAfterPage() {
               </div>
             </div>
           </div>
-          {sortedComments.map((comment, index) => (
-            <Comment
-              key={index}
-              comment={comment}
-              index={index}
-            />
-          ))}
+          <div className="comment_body_box">
+            {sortedComments.map((comment, index) => (
+              <Comment
+                key={index}
+                comment={comment}
+                index={index}
+              />
+            ))}
+          </div>
           {commentError !== '' && <p>{commentError}</p>}
         </div>
       </div>
