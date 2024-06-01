@@ -142,11 +142,12 @@
 .comment_write_input {
   display: flex;
   flex-direction: row;
-  width: 50%;
+  align-items: center;
+  width: 100%;
 }
 
 .comment_write_input input {
-  width: 400px;
+  width: 700px;
   border-radius: 5%;
   height: 2rem;
   font-size: 1.2rem;
@@ -154,7 +155,8 @@
 }
 .comment_write_button {
   width: 200px;
-  height: 2rem;
+  height: 2.1rem;
+  align-items: center;
   background-color: #358fe8;
   color: white;
   border: none;
