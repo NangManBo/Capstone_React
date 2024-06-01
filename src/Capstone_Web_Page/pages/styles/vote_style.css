@@ -107,7 +107,8 @@
   flex-direction: row;
   border-top: 4px solid #c6c6c6;
   border-bottom: 4px solid #919191;
-  height: 10%;
+  height: 5%;
+  align-items: center;
   justify-content: space-between;
 }
 .comment_header_text {
@@ -118,9 +119,15 @@
 }
 
 .comment_header_select {
-  height: 7%;
+  height: 50%;
+  width: 10%;
+  font-size: 1.2rem;
   margin: 0;
   padding: 0;
+}
+
+.comment_header_select option {
+  font-size: 1.2rem;
 }
 .comment_image {
   width: 20%;
