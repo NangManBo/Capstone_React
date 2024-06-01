@@ -10,6 +10,8 @@ import { LeftBar } from '../components/leftBar_components';
 import './styles/vote_style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faImage } from '@fortawesome/free-regular-svg-icons';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+
 const calculateTotalComments = (comments) => {
   let totalComments = 0;
 
@@ -320,9 +322,9 @@ function VoteAfterPage() {
 
     return (
       <div className="comment_body" key={index}>
-        <div>
+        <div className="comment_box">
           <div>
-            <span>작성자 : {comment.nickname}</span>
+            <span>작성자 : {comment.userNickname}</span>
             <span>작성시간: {comment.time}</span>
           </div>
 
@@ -351,14 +353,12 @@ function VoteAfterPage() {
               </div>
             )}
           </div>
-          <div>
-            <button
-              onClick={() => commentLike(comment, index)}
-            >
-              Like
-            </button>
+          <div
+            className="comment_like_button"
+            onClick={() => commentLike(comment, index)}
+          >
+            <FontAwesomeIcon icon={faThumbsUp} />
             <span>{comment.likes}</span>
-            {/* Additional UI elements and logic for replies and messaging */}
           </div>
         </div>
         <div>
@@ -386,7 +386,7 @@ function VoteAfterPage() {
               <div key={childIndex}>
                 <div>
                   <span>
-                    작성자 : {childComment.nickname}
+                    작성자 : {childComment.userNickname}
                   </span>
                   <span>작성시간: {childComment.time}</span>
                 </div>
