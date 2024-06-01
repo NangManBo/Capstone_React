@@ -432,6 +432,7 @@ function VoteAfterPage() {
   };
   // 대댓글
   const handleReplyPress = (comment, index) => {
+    console.log('대댓글 버튼 누름', comment.id);
     if (replyingIndex === index) {
       // If the reply button is pressed again, reset to a regular comment
       setReplyingIndex(null);
@@ -460,7 +461,7 @@ function VoteAfterPage() {
         return;
       }
       let formData = new FormData();
-      const parentCommentId = comments[replyingIndex].id; // Get the parent comment ID
+      const parentCommentId = replyingIndex; // Get the parent comment ID
       console.log('몇번째 댓글', parentCommentId);
       formData.append(
         'content',
