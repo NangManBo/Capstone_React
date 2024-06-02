@@ -346,7 +346,7 @@ function VoteEndPage() {
   const getPollResult = async () => {
     try {
       const response = await axios.get(
-        'https://dovote.p-e.kr/votes/result/' + vote.id,
+        'https://dovote.p-e.kr/votes/results/' + vote.id,
         {
           headers: {
             'Content-Type': 'application/json',
