@@ -77,7 +77,7 @@ export const GetManagerVotes = (
                       jwtToken,
                       nickname,
                       false,
-                      keyId
+                      (keyId = keyId)
                     )
                   }
                 >

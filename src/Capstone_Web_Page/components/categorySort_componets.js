@@ -110,7 +110,7 @@ export const GetCategoryVotes = (
                       userId,
                       jwtToken,
                       nickname,
-                      keyId,
+                      (keyId = keyId),
                       false
                     )
                   }

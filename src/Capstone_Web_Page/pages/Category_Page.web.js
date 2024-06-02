@@ -121,7 +121,7 @@ function CategoryPage() {
                   category,
                   matchingVotes,
                   isCategory,
-                  keyId
+                  (keyId = keyId)
                 )
               }
             >
