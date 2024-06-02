@@ -47,11 +47,25 @@
 }
 
 .comment_result_button {
-  width: 50%;
+  width: 40%;
   height: 2.5rem;
   padding: 10px;
   margin: 5px 0;
-  font-size: 1rem;
+  color: white;
+  font-size: 1.2rem;
+  border: none;
   border-radius: 4px;
   background-color: #358fe8;
+}
+
+.comment_header_select_end {
+  height: 3vh;
+  width: 40%;
+  font-size: 1.2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.comment_header_select_end option {
+  font-size: 1.2rem;
 }
