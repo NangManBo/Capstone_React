@@ -104,14 +104,16 @@ export const GetCategoryVotes = (
                   onClick={() =>
                     vote.title &&
                     renderPostPress(
-                      vote,
+                      (firstMatchingVote = vote),
                       navigate,
                       isLoggedIn,
                       userId,
                       jwtToken,
                       nickname,
-                      (keyId = keyId),
-                      false
+                      category,
+                      matchingVotes,
+                      (isCategory = false),
+                      keyId
                     )
                   }
                 >
