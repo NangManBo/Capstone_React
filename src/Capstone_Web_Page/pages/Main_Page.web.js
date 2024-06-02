@@ -161,7 +161,8 @@ function MainPage() {
             jwtToken,
             isLoggedIn,
             userId,
-            navigate
+            navigate,
+            keyId
           )}
         </div>
         {/* <PopularVoteBanner
@@ -178,7 +179,8 @@ function MainPage() {
           jwtToken,
           isLoggedIn,
           userId,
-          navigate
+          navigate,
+          keyId
         )}
         <div>
           <div>
@@ -197,7 +199,8 @@ function MainPage() {
                 jwtToken,
                 isLoggedIn,
                 userId,
-                navigate
+                navigate,
+                keyId
               )}
             </div>
           </div>
