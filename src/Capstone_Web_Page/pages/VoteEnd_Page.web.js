@@ -349,7 +349,7 @@ function VoteEndPage() {
         'https://dovote.p-e.kr/votes/result/' + vote.id,
         {
           headers: {
-            'Content-Type': 'multipart/form-data',
+            'Content-Type': 'application/json',
           },
         }
       );
@@ -526,7 +526,7 @@ function VoteEndPage() {
             <p className="comment_header_text">
               댓글 {totalComments}
             </p>
-            <div>
+            <div className="comment_header_result">
               <button onClick={getPollResult}>
                 투표 결과 보기
               </button>

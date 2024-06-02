@@ -99,7 +99,7 @@
 }
 
 .vote_select_button.selected {
-  background-color: #a8d5e2; /* Change this to your desired selected background color */
+  background-color: #cfe3ff; /* Change this to your desired selected background color */
 }
 
 .comment_header {
@@ -110,6 +110,14 @@
   height: 5vh;
   align-items: center;
   justify-content: space-between;
+}
+
+.comment_header_result {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 40%;
 }
 .comment_header_text {
   font-size: 1.2em;
