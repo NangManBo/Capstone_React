@@ -10,6 +10,7 @@ import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { MainBanner } from '../components/mainBanner_components';
 import { LeftBar } from '../components/leftBar_components';
+import PollResultModal from '../modals/PollResult_Modal';
 
 const calculateTotalComments = (comments) => {
   let totalComments = 0;
@@ -104,7 +105,6 @@ function VoteEndPage() {
         userId,
         jwtToken,
         nickname,
-
         receiverName: comment.nickname,
       },
     });
@@ -118,7 +118,6 @@ function VoteEndPage() {
         userId,
         jwtToken,
         nickname,
-
         receiverName: childComment.nickname,
       },
     });
@@ -560,6 +559,11 @@ function VoteEndPage() {
           </div>
         </div>
       </div>
+      <PollResultModal
+        show={showPollResult}
+        handleClose={() => setShowPollResult(false)}
+        pollResult={pollResult}
+      />
     </div>
   );
 }
