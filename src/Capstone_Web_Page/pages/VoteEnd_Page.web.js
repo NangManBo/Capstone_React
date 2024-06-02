@@ -10,7 +10,6 @@ import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { MainBanner } from '../components/mainBanner_components';
 import { LeftBar } from '../components/leftBar_components';
-import PollResultModal from '../modals/PollResult_Modal';
 
 const calculateTotalComments = (comments) => {
   let totalComments = 0;
@@ -105,6 +104,7 @@ function VoteEndPage() {
         userId,
         jwtToken,
         nickname,
+
         receiverName: comment.nickname,
       },
     });
@@ -118,6 +118,7 @@ function VoteEndPage() {
         userId,
         jwtToken,
         nickname,
+
         receiverName: childComment.nickname,
       },
     });
@@ -345,7 +346,7 @@ function VoteEndPage() {
   const getPollResult = async () => {
     try {
       const response = await axios.get(
-        'https://dovote.p-e.kr/votes/results/' + vote.id,
+        'https://dovote.p-e.kr/votes/result/' + vote.id,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -559,11 +560,6 @@ function VoteEndPage() {
           </div>
         </div>
       </div>
-      <PollResultModal
-        show={showPollResult}
-        handleClose={() => setShowPollResult(false)}
-        pollResult={pollResult}
-      />
     </div>
   );
 }
