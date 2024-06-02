@@ -10,7 +10,7 @@ import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { MainBanner } from '../components/mainBanner_components';
 import { LeftBar } from '../components/leftBar_components';
-import PollResultModal from '../modal/PollResultModal';
+import PollResultModal from '../modals/PollResult_Modal';
 
 const calculateTotalComments = (comments) => {
   let totalComments = 0;
