@@ -45,3 +45,13 @@
   font-weight: bold;
   color: #222;
 }
+
+.comment_result_button {
+  width: 50%;
+  height: 2.5rem;
+  padding: 10px;
+  margin: 5px 0;
+  font-size: 1rem;
+  border-radius: 4px;
+  background-color: #358fe8;
+}

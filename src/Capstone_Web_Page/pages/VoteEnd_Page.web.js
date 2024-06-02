@@ -10,6 +10,7 @@ import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { MainBanner } from '../components/mainBanner_components';
 import { LeftBar } from '../components/leftBar_components';
+import { PollResultModal } from '../modals/PollResult_Modal';
 
 const calculateTotalComments = (comments) => {
   let totalComments = 0;
@@ -346,7 +347,7 @@ function VoteEndPage() {
   const getPollResult = async () => {
     try {
       const response = await axios.get(
-        'https://dovote.p-e.kr/votes/result/' + vote.id,
+        'https://dovote.p-e.kr/votes/results/' + vote.id,
         {
           headers: {
             'Content-Type': 'application/json',
@@ -527,7 +528,10 @@ function VoteEndPage() {
               댓글 {totalComments}
             </p>
             <div className="comment_header_result">
-              <button onClick={getPollResult}>
+              <button
+                className="comment_result_button"
+                onClick={getPollResult}
+              >
                 투표 결과 보기
               </button>
               <select
@@ -559,6 +563,11 @@ function VoteEndPage() {
             ))}
           </div>
         </div>
+        <PollResultModal
+          show={showPollResult}
+          handleClose={() => setShowPollResult(false)}
+          pollResult={pollResult}
+        />
       </div>
     </div>
   );
