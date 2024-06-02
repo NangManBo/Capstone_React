@@ -54,10 +54,6 @@ export const PopularVoteBanner = (
       </div>
       <div className="popular_banner_content">
         {topThreeVotes.map((vote, index) => {
-          // JSON 문자열을 파싱하여 객체로 변환합니다.
-          // const titleObject = JSON.parse(vote.title);
-          // // 이제 'title' 속성을 사용할 수 있습니다.
-          // const titleText = titleObject.title;
           return (
             <div
               key={index}
@@ -71,7 +67,7 @@ export const PopularVoteBanner = (
                   userId,
                   jwtToken,
                   nickname,
-                  category,
+                  vote.category,
                   null,
                   false,
                   keyId
