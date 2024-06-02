@@ -4,11 +4,12 @@ import { fetchComments } from '../functions/fetchComment_function';
 import axios from 'axios';
 import { MainBanner } from '../components/mainBanner_components';
 import { LeftBar } from '../components/leftBar_components';
-import './styles/vote_style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import './styles/vote_style.css';
+
 function VoteCreatedUserPage() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -405,10 +406,10 @@ function VoteCreatedUserPage() {
 
           <div className="vote_button_box">
             <button
-              onClick={handleVote}
+              onClick={handleEndVote}
               className="vote_end_button"
             >
-              선택한 버튼으로 투표하기
+              투표 종료하기
             </button>
           </div>
           <select
