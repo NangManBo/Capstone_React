@@ -2,13 +2,8 @@ import axios from 'axios';
 import moment from 'moment';
 
 export const fetchSearch = async (
-  keyId,
-  searchResults,
-  searchQuery,
-  isLoggedIn,
-  userId,
   jwtToken,
-  nickname
+  searchQuery
 ) => {
   try {
     const response = await axios.get(
