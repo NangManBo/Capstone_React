@@ -20,7 +20,9 @@ function VoteBeforePage() {
   } = location.state || { isCategory: false };
 
   const [pollOptions, setPollOptions] = useState([]);
-
+  useEffect(() => {
+    console.log('키 값', keyId);
+  }, []);
   useEffect(() => {
     if (vote.choice && Array.isArray(vote.choice)) {
       setPollOptions(

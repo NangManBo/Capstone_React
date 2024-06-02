@@ -50,11 +50,14 @@ function VoteCreatedUserPage() {
         userId,
         jwtToken,
         nickname,
-
+        keyId,
         receiverName: comment.nickname,
       },
     });
   };
+  useEffect(() => {
+    console.log('키 값', keyId);
+  }, []);
   // 대댓글에서 쪽지 보내기
   const handlemessge1 = (childComment) => {
     console.log('쪽지 보내기~' + childComment);
@@ -64,7 +67,7 @@ function VoteCreatedUserPage() {
         userId,
         jwtToken,
         nickname,
-
+        keyId,
         receiverName: childComment.nickname,
       },
     });

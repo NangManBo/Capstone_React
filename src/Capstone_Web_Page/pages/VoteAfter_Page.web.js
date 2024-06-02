@@ -75,6 +75,9 @@ function VoteAfterPage() {
   const [isPlaying, setIsPlaying] = useState(false);
   const totalComments = calculateTotalComments(comments);
 
+  useEffect(() => {
+    console.log('키 값', keyId);
+  }, []);
   const placeholder = {
     label: '정렬 기준',
     value: null,
@@ -238,7 +241,7 @@ function VoteAfterPage() {
         userId,
         jwtToken,
         nickname,
-
+        keyId,
         receiverName: comment.nickname,
       },
     });
@@ -252,6 +255,7 @@ function VoteAfterPage() {
         userId,
         jwtToken,
         nickname,
+        keyId,
         receiverName: childComment.nickname,
       },
     });
