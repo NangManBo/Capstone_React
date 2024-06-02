@@ -352,6 +352,7 @@ function VoteCreatedUserPage() {
         nickname,
         category,
         matchingVotes,
+        keyId,
       },
     });
   };

@@ -586,6 +586,7 @@ function VoteAfterPage() {
         nickname,
         category,
         matchingVotes,
+        keyId,
       },
     });
   };

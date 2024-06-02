@@ -137,6 +137,7 @@ function VoteBeforePage() {
         nickname,
         category,
         matchingVotes,
+        keyId,
       },
     });
   };
