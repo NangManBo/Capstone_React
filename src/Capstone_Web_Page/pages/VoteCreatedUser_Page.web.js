@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { fetchComments } from '../functions/fetchComment_function';
+import {
+  fetchComments,
+  sameVoteGroup,
+} from '../functions/fetchComment_function';
 import axios from 'axios';
 import { MainBanner } from '../components/mainBanner_components';
 import { LeftBar } from '../components/leftBar_components';
@@ -76,7 +79,6 @@ function VoteCreatedUserPage() {
       setSameOption
     );
   }, [
-    send,
     vote,
     userVotes,
     nickname,

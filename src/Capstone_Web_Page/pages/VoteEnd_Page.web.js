@@ -61,35 +61,7 @@ function VoteEndPage() {
   const [showPollResult, setShowPollResult] =
     useState(false);
   const totalComments = calculateTotalComments(comments);
-  // 댓글 좋아요
-  const commentLike = async (comment, index) => {
-    setSend(true);
-    console.log('comment ', comment.id);
-    console.log('url ', comment.mediaUrl);
-    try {
-      const response = await axios.post(
-        `https://dovote.p-e.kr/comments/like/${userId}/${vote.id}/${comment.id}`,
 
-        {
-          headers: {
-            Authorization: jwtToken,
-          },
-        }
-      );
-
-      if (response.status === 200) {
-        console.log(
-          '댓글 좋아요 성공',
-          JSON.stringify(response.data, null, 2)
-        );
-        setSend(false);
-      } else {
-        console.error('댓글 좋아요 실패', response.data);
-      }
-    } catch (error) {
-      console.error('댓글 좋아요 보내기:', error);
-    }
-  };
   //게시글 좋아요
   const handleHeartClick = async () => {
     console.log('투표 값' + vote);
@@ -204,10 +176,7 @@ function VoteEndPage() {
             )}
           </div>
           <div className="comment_like_reply_box">
-            <div
-              className="comment_like_button"
-              onClick={() => commentLike(comment, index)}
-            >
+            <div className="comment_like_button">
               <FontAwesomeIcon icon={faThumbsUp} />
               <span className="comment_like_count">
                 {comment.likes}
@@ -275,16 +244,7 @@ function VoteEndPage() {
                   </div>
                   <div className="comment_like_reply_box">
                     <div className="comment_like_button">
-                      <FontAwesomeIcon
-                        onClick={() =>
-                          commentLike(
-                            childComment,
-                            index,
-                            childIndex
-                          )
-                        }
-                        icon={faThumbsUp}
-                      />
+                      <FontAwesomeIcon icon={faThumbsUp} />
                       <span>{childComment.likes}</span>
                     </div>
                     <div>
@@ -599,21 +559,3 @@ function VoteEndPage() {
 }
 
 export default VoteEndPage;
-
-{
-  /* <div>
-          <button onClick={getPollResult}>
-            투표 결과 보기
-          </button>
-          {showPollResult && (
-            <div>
-              {pollResult.map((result, index) => (
-                <div key={index}>
-                  <p>{result.text}</p>
-                  <p>투표자수 : {result.count}</p>
-                </div>
-              ))}
-            </div>
-          )}
-        </div> */
-}
