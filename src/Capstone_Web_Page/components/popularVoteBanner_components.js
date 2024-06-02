@@ -71,8 +71,10 @@ export const PopularVoteBanner = (
                   userId,
                   jwtToken,
                   nickname,
+                  category,
+                  null,
                   false,
-                  (keyId = keyId)
+                  keyId
                 )
               }
             >
