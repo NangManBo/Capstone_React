@@ -104,7 +104,7 @@ export const GetCategoryVotes = (
                   onClick={() =>
                     vote.title &&
                     renderPostPress(
-                      (firstMatchingVote = vote),
+                      vote,
                       navigate,
                       isLoggedIn,
                       userId,
@@ -112,7 +112,7 @@ export const GetCategoryVotes = (
                       nickname,
                       category,
                       matchingVotes,
-                      (isCategory = false),
+                      false,
                       keyId
                     )
                   }
