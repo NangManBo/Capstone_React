@@ -3,7 +3,7 @@ import { Modal, Button } from 'react-bootstrap';
 import { Pie } from 'react-chartjs-2';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const PollResultModal = ({
+export const PollResultModal = ({
   show,
   handleClose,
   pollResult,
@@ -87,5 +87,3 @@ const PollResultModal = ({
     </Modal>
   );
 };
-
-export default PollResultModal;
