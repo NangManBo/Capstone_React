@@ -105,7 +105,6 @@ function VoteEndPage() {
         userId,
         jwtToken,
         nickname,
-
         receiverName: comment.nickname,
       },
     });
