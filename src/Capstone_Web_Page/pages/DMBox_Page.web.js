@@ -77,7 +77,13 @@ function DMboxPage() {
 
   return (
     <div className="profile_page">
-      {MainBanner(jwtToken, isLoggedIn, userId, nickname)}
+      {MainBanner(
+        jwtToken,
+        isLoggedIn,
+        userId,
+        nickname,
+        keyId
+      )}
       {LeftBar(
         jwtToken,
         isLoggedIn,

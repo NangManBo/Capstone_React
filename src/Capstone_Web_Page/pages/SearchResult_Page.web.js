@@ -39,7 +39,13 @@ function SerachResultPage() {
   const groupedResults = groupByCategory(searchResults);
   return (
     <div className="Page">
-      {MainBanner(jwtToken, isLoggedIn, userId, nickname)}
+      {MainBanner(
+        jwtToken,
+        isLoggedIn,
+        userId,
+        nickname,
+        keyId
+      )}
       <div className="search-form">
         {categories.map((category) => (
           <div key={category}>
