@@ -369,38 +369,46 @@ function VoteCreatedUserPage() {
           이전 페이지로
         </h2>
         <div>
-          <h1>{vote.title}</h1>
-          <p>투표 기간 설정: {vote.createdAt}</p>
-          <p>주최자 : {vote.createdBy}</p>
-          <p>{vote.question}</p>
-
+          <div className="vote_header">
+            <>
+              <h1>{vote.title}</h1>
+            </>
+            <div className="vote_userInfo">
+              <p>
+                투표 기간 설정: {vote && vote.createdAt}
+              </p>
+              <p>주최자 : {vote && vote.createdBy}</p>
+            </div>
+          </div>
+          <div className="vote_qustion">
+            <p>{vote.question}</p>
+          </div>
           {vote?.mediaUrl &&
             (vote.mediaUrl.endsWith('.mp4') ? (
               <video
                 src={vote.mediaUrl}
                 controls
-                style={{
-                  width: '400px',
-                  height: '400px',
-                }}
+                className="vote_image"
               />
             ) : (
               <img
                 src={vote.mediaUrl}
                 alt="Media"
-                style={{
-                  width: '400px',
-                  height: '400px',
-                }}
+                className="vote_image"
               />
             ))}
           {pollOptions.map((option) => (
-            <p key={option.id}>{option.text}</p>
+            <div className="vote_button">
+              <p key={option.id}>{option.text}</p>
+            </div>
           ))}
-          <p>댓글 {comments.length}</p>
-          <div>
-            <button onClick={handleEndVote}>
-              투표 종료
+
+          <div className="vote_button_box">
+            <button
+              onClick={handleVote}
+              className="vote_end_button"
+            >
+              선택한 버튼으로 투표하기
             </button>
           </div>
           <select
