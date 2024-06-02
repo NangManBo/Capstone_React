@@ -22,7 +22,15 @@ export const MainBanner = (
     );
 
     navigate('/searchresult', {
-      state: { searchResults, searchQuery, keyId },
+      state: {
+        keyId,
+        searchResults,
+        searchQuery,
+        isLoggedIn,
+        userId,
+        jwtToken,
+        nickname,
+      },
     });
   };
   const goToProfile = () => {

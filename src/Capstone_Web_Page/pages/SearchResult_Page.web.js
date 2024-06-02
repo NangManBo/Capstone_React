@@ -6,7 +6,7 @@ import './styles/searchresult_style.css';
 
 function SerachResultPage() {
   const location = useLocation();
-  const navigate = useNavigate();
+
   const {
     keyId,
     searchResults,
