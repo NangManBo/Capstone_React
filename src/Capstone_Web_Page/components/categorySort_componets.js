@@ -103,7 +103,6 @@ export const GetCategoryVotes = (
                   className="category_sub_box"
                   onClick={() =>
                     vote.title &&
-                    console.log('투표 클릭', keyId) &&
                     renderPostPress(
                       vote,
                       navigate,
