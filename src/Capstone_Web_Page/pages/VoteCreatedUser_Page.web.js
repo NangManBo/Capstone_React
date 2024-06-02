@@ -280,13 +280,10 @@ function VoteCreatedUserPage() {
     try {
       const response = await axios.post(
         'https://dovote.p-e.kr/polls/close',
-        {
-          pollId: vote.id,
-          nickname: nickname,
-        },
+        Data,
         {
           headers: {
-            'Content-Type': 'multipart/form-data',
+            'Content-Type': 'application/json',
             Authorization: jwtToken,
           },
         }
@@ -427,25 +424,6 @@ function VoteCreatedUserPage() {
               투표 종료하기
             </button>
           </div>
-          <select
-            value={sortingStandard}
-            onChange={(e) =>
-              setSortingStandard(e.target.value)
-            }
-          >
-            {standards.map((standard, index) => (
-              <option key={index} value={standard.value}>
-                {standard.label}
-              </option>
-            ))}
-          </select>
-          {sortedComments.map((comment, index) => (
-            <Comment
-              key={index}
-              comment={comment}
-              index={index}
-            />
-          ))}
         </div>
       </div>
     </div>
