@@ -401,7 +401,7 @@ function VoteAfterPage() {
           comment.childrenComment.map(
             (childComment, childIndex) => (
               <div key={childIndex}>
-                <div className="comment_box">
+                <div className="replycomment_box">
                   <div className="commnet_box_user">
                     <span>
                       작성자 : {childComment.userNickname}

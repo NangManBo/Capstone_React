@@ -3,6 +3,11 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { fetchComments } from '../functions/fetchComment_function';
 import axios from 'axios';
 import './styles/voteEnd_style.css';
+import './styles/vote_style.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { faMessage } from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { MainBanner } from '../components/mainBanner_components';
 import { LeftBar } from '../components/leftBar_components';
 
@@ -99,6 +104,7 @@ function VoteEndPage() {
       },
     });
   };
+  //댓글 출력 창
   const Comment = ({ comment, index }) => {
     const handlePlayPause = () => {
       if (videoRef.current) {
@@ -116,11 +122,12 @@ function VoteEndPage() {
         [comment.id]: !prevShowReply[comment.id],
       }));
     };
+
     return (
-      <div key={index}>
-        <div>
-          <div>
-            <span>작성자 : {comment.nickname}</span>
+      <div className="comment_body" key={index}>
+        <div className="comment_box">
+          <div className="commnet_box_user">
+            <span>작성자 : {comment.userNickname}</span>
             <span>작성시간: {comment.time}</span>
           </div>
 
@@ -136,42 +143,49 @@ function VoteEndPage() {
                       src={comment.mediaUrl}
                       controls
                       loop
-                      style={{
-                        width: '200px',
-                        height: '200px',
-                      }}
+                      className="comment_image"
                     />
                   </button>
                 ) : (
                   <img
+                    className="comment_image"
                     src={comment.mediaUrl}
                     alt="comment media"
-                    style={{
-                      width: '200px',
-                      height: '200px',
-                    }}
                   />
                 )}
               </div>
             )}
           </div>
-          <div>
-            <p>
-              좋아요 수 : <span>{comment.likes}</span>
-            </p>
-            {/* Additional UI elements and logic for replies and messaging */}
+          <div className="comment_like_reply_box">
+            <div
+              className="comment_like_button"
+              onClick={() => commentLike(comment, index)}
+            >
+              <FontAwesomeIcon icon={faThumbsUp} />
+              <span className="comment_like_count">
+                {comment.likes}
+              </span>
+            </div>
+            <div>
+              {sameOption.some((option) =>
+                option.userNames.includes(comment.nickname)
+              ) && <p>(나와 동일한 선택지를 골랐습니다)</p>}
+            </div>
+            <div className="comment_reply">
+              {comment.childrenComment &&
+                comment.childrenComment.length > 0 && (
+                  <FontAwesomeIcon
+                    onClick={() => showReplyPress()}
+                    icon={faMessage}
+                  />
+                )}
+
+              <FontAwesomeIcon
+                onClick={() => handlemessge(comment)}
+                icon={faPaperPlane}
+              />
+            </div>
           </div>
-        </div>
-        <div>
-          {comment.childrenComment &&
-            comment.childrenComment.length > 0 && (
-              <button onClick={() => showReplyPress()}>
-                답글 보기
-              </button>
-            )}
-          <button onClick={() => handlemessge(comment)}>
-            쪽지 보내기
-          </button>
         </div>
 
         {/* Rendering child comments, if any */}
@@ -180,56 +194,72 @@ function VoteEndPage() {
           comment.childrenComment.map(
             (childComment, childIndex) => (
               <div key={childIndex}>
-                <div>
-                  <span>
-                    작성자 : {childComment.nickname}
-                  </span>
-                  <span>작성시간: {childComment.time}</span>
-                </div>
-                <div>
-                  <p>{childComment.content}</p>
-                  {childComment.mediaUrl && (
+                <div className="replycomment_box">
+                  <div className="commnet_box_user">
+                    <span>
+                      작성자 : {childComment.userNickname}
+                    </span>
+                    <span>
+                      작성시간: {childComment.time}
+                    </span>
+                  </div>
+                  <div>
+                    <p>{childComment.content}</p>
+                    {childComment.mediaUrl && (
+                      <div>
+                        {childComment.mediaUrl.endsWith(
+                          '.mp4'
+                        ) ? (
+                          <video
+                            className="comment_image"
+                            src={childComment.mediaUrl}
+                            controls
+                            loop
+                          />
+                        ) : (
+                          <img
+                            className="comment_image"
+                            src={childComment.mediaUrl}
+                            alt="child comment media"
+                          />
+                        )}
+                      </div>
+                    )}
+                  </div>
+                  <div className="comment_like_reply_box">
+                    <div className="comment_like_button">
+                      <FontAwesomeIcon
+                        onClick={() =>
+                          commentLike(
+                            childComment,
+                            index,
+                            childIndex
+                          )
+                        }
+                        icon={faThumbsUp}
+                      />
+                      <span>{childComment.likes}</span>
+                    </div>
                     <div>
-                      {childComment.mediaUrl.endsWith(
-                        '.mp4'
-                      ) ? (
-                        <video
-                          src={childComment.mediaUrl}
-                          controls
-                          loop
-                          style={{
-                            width: '200px',
-                            height: '200px',
-                          }}
-                        />
-                      ) : (
-                        <img
-                          src={childComment.mediaUrl}
-                          alt="child comment media"
-                          style={{
-                            width: '200px',
-                            height: '200px',
-                          }}
-                        />
+                      {sameOption.some((option) =>
+                        option.userNames.includes(
+                          childComment.nickname
+                        )
+                      ) && (
+                        <p>
+                          (나와 동일한 선택지를 골랐습니다)
+                        </p>
                       )}
                     </div>
-                  )}
-                </div>
-                <div>
-                  <p>
-                    좋아요 수 :
-                    <span>{childComment.likes}</span>
-                  </p>
-                  {/* Additional logic for child comment actions */}
-                </div>
-                <div>
-                  <button
-                    onClick={() =>
-                      handlemessge1(childComment)
-                    }
-                  >
-                    쪽지 보내기
-                  </button>
+                    <div className="comment_reply">
+                      <FontAwesomeIcon
+                        onClick={() =>
+                          handlemessge1(childComment)
+                        }
+                        icon={faPaperPlane}
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             )
@@ -237,6 +267,7 @@ function VoteEndPage() {
       </div>
     );
   };
+
   // 정렬
   const sortComments = (sortingStandard) => {
     if (comments && comments.length > 0) {
@@ -304,7 +335,6 @@ function VoteEndPage() {
       console.error('투표 카운트 가져오기 오류:', error);
     }
   };
-
   //투표 분석 결과
   const getPollResult = async () => {
     try {
@@ -401,107 +431,122 @@ function VoteEndPage() {
         keyId
       )}
       <div className="right_page">
-        <button
+        <h2
+          className="goBackButton"
           onClick={() =>
             isCategory ? goToCategory() : goToMain()
           }
         >
-          뒤로가기
-        </button>
-        <button onClick={() => handleHeartClick()}>
-          {heartType === 'empty'
-            ? 'Heart Outlined Icon'
-            : 'Heart Filled Icon'}
-        </button>
+          이전 페이지로
+        </h2>
 
         <div>
-          <h1>{vote.title}</h1>
-          <p>투표 기간 설정: {vote.createdAt}</p>
-          <p>주최자: {vote.createdBy}</p>
-          <p>{vote.question}</p>
+          <div className="vote_header">
+            {/* Content */}
+            <h1>{vote.title}</h1>
+            <div className="vote_userInfo">
+              <p>
+                투표 기간 설정: {vote && vote.createdAt}
+              </p>
+              <p>주최자 : {vote && vote.createdBy}</p>
+            </div>
+          </div>
+          <div className="vote_qustion">
+            <p>{vote.question}</p>
+          </div>
           {vote?.mediaUrl &&
             (vote.mediaUrl.endsWith('.mp4') ? (
               <video
                 src={vote.mediaUrl}
                 controls
-                style={{
-                  width: '400px',
-                  height: '400px',
-                }}
+                className="vote_image"
               />
             ) : (
               <img
                 src={vote.mediaUrl}
                 alt="Media"
-                style={{
-                  width: '400px',
-                  height: '400px',
-                }}
+                className="vote_image"
               />
             ))}
-        </div>
-        <div>
-          {pollOptions.map((option, index) => (
-            <div
-              key={index}
-              className={`VoteButton ${
-                option.votes ===
-                Math.max(...pollOptions.map((o) => o.votes))
-                  ? 'VoteButton--highlighted'
-                  : ''
-              }`}
-            >
-              <p
-                className={`VoteText ${
-                  option.votes ===
-                  Math.max(
-                    ...pollOptions.map((o) => o.votes)
-                  )
-                    ? 'VoteText--highlighted'
-                    : ''
-                }`}
-              >
-                {option.text}
-              </p>
-              <p
-                className={`VoteCount ${
-                  option.votes ===
-                  Math.max(
-                    ...pollOptions.map((o) => o.votes)
-                  )
-                    ? 'VoteCount--bold'
-                    : ''
-                }`}
-              >
-                투표자수 : {option.votes}
-              </p>
-            </div>
-          ))}
-        </div>
-        <p>댓글 {comments.length}</p>
-        <select
-          value={sortingStandard}
-          onChange={(e) =>
-            setSortingStandard(e.target.value)
-          }
-        >
-          {standards.map((standard, index) => (
-            <option key={index} value={standard.value}>
-              {standard.label}
-            </option>
-          ))}
-        </select>
 
-        <div>
-          {sortedComments.map((comment, index) => (
-            <Comment
-              key={index}
-              comment={comment}
-              index={index}
-            />
-          ))}
+          <div>
+            {pollOptions.map((option, index) => (
+              <div
+                key={index}
+                className={`VoteButton ${
+                  option.votes ===
+                  Math.max(
+                    ...pollOptions.map((o) => o.votes)
+                  )
+                    ? 'VoteButton--highlighted'
+                    : ''
+                }`}
+              >
+                <p
+                  className={`VoteText ${
+                    option.votes ===
+                    Math.max(
+                      ...pollOptions.map((o) => o.votes)
+                    )
+                      ? 'VoteText--highlighted'
+                      : ''
+                  }`}
+                >
+                  {option.text}
+                </p>
+                <p
+                  className={`VoteCount ${
+                    option.votes ===
+                    Math.max(
+                      ...pollOptions.map((o) => o.votes)
+                    )
+                      ? 'VoteCount--bold'
+                      : ''
+                  }`}
+                >
+                  투표자수 : {option.votes}
+                </p>
+              </div>
+            ))}
+          </div>
+          <div className="comment_header">
+            <p className="comment_header_text">
+              댓글 {totalComments}
+            </p>
+            <select
+              className="comment_header_select"
+              value={sortingStandard}
+              onChange={(e) =>
+                setSortingStandard(e.target.value)
+              }
+            >
+              {standards.map((standard, index) => (
+                <option key={index} value={standard.value}>
+                  {standard.label}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="comment_body_box">
+            {sortedComments.map((comment, index) => (
+              <Comment
+                key={index}
+                comment={comment}
+                index={index}
+              />
+            ))}
+          </div>
         </div>
-        <div>
+      </div>
+    </div>
+  );
+}
+
+export default VoteEndPage;
+
+{
+  /* <div>
           <button onClick={getPollResult}>
             투표 결과 보기
           </button>
@@ -515,10 +560,5 @@ function VoteEndPage() {
               ))}
             </div>
           )}
-        </div>
-      </div>
-    </div>
-  );
+        </div> */
 }
-
-export default VoteEndPage;

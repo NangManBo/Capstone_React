@@ -4,7 +4,11 @@ import { fetchComments } from '../functions/fetchComment_function';
 import axios from 'axios';
 import { MainBanner } from '../components/mainBanner_components';
 import { LeftBar } from '../components/leftBar_components';
-
+import './styles/vote_style.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { faMessage } from '@fortawesome/free-solid-svg-icons';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 function VoteCreatedUserPage() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -59,7 +63,7 @@ function VoteCreatedUserPage() {
       },
     });
   };
-  // 댓글 창
+  //댓글 출력 창
   const Comment = ({ comment, index }) => {
     const handlePlayPause = () => {
       if (videoRef.current) {
@@ -77,11 +81,12 @@ function VoteCreatedUserPage() {
         [comment.id]: !prevShowReply[comment.id],
       }));
     };
+
     return (
-      <div key={index}>
-        <div>
-          <div>
-            <span>작성자 : {comment.nickname}</span>
+      <div className="comment_body" key={index}>
+        <div className="comment_box">
+          <div className="commnet_box_user">
+            <span>작성자 : {comment.userNickname}</span>
             <span>작성시간: {comment.time}</span>
           </div>
 
@@ -97,18 +102,12 @@ function VoteCreatedUserPage() {
                       src={comment.mediaUrl}
                       controls
                       loop
-                      style={{
-                        width: '200px',
-                        height: '200px',
-                      }}
+                      className="comment_image"
                     />
                   </button>
                 ) : (
                   <img
-                    style={{
-                      width: '200px',
-                      height: '200px',
-                    }}
+                    className="comment_image"
                     src={comment.mediaUrl}
                     alt="comment media"
                   />
@@ -116,23 +115,36 @@ function VoteCreatedUserPage() {
               </div>
             )}
           </div>
-          <div>
-            <p>
-              좋아요 수 : <span>{comment.likes}</span>
-            </p>
-            {/* Additional UI elements and logic for replies and messaging */}
+          <div className="comment_like_reply_box">
+            <div
+              className="comment_like_button"
+              onClick={() => commentLike(comment, index)}
+            >
+              <FontAwesomeIcon icon={faThumbsUp} />
+              <span className="comment_like_count">
+                {comment.likes}
+              </span>
+            </div>
+            <div>
+              {sameOption.some((option) =>
+                option.userNames.includes(comment.nickname)
+              ) && <p>(나와 동일한 선택지를 골랐습니다)</p>}
+            </div>
+            <div className="comment_reply">
+              {comment.childrenComment &&
+                comment.childrenComment.length > 0 && (
+                  <FontAwesomeIcon
+                    onClick={() => showReplyPress()}
+                    icon={faMessage}
+                  />
+                )}
+
+              <FontAwesomeIcon
+                onClick={() => handlemessge(comment)}
+                icon={faPaperPlane}
+              />
+            </div>
           </div>
-        </div>
-        <div>
-          {comment.childrenComment &&
-            comment.childrenComment.length > 0 && (
-              <button onClick={() => showReplyPress()}>
-                답글 보기
-              </button>
-            )}
-          <button onClick={() => handlemessge(comment)}>
-            쪽지 보내기
-          </button>
         </div>
 
         {/* Rendering child comments, if any */}
@@ -141,56 +153,72 @@ function VoteCreatedUserPage() {
           comment.childrenComment.map(
             (childComment, childIndex) => (
               <div key={childIndex}>
-                <div>
-                  <span>
-                    작성자 : {childComment.nickname}
-                  </span>
-                  <span>작성시간: {childComment.time}</span>
-                </div>
-                <div>
-                  <p>{childComment.content}</p>
-                  {childComment.mediaUrl && (
+                <div className="replycomment_box">
+                  <div className="commnet_box_user">
+                    <span>
+                      작성자 : {childComment.userNickname}
+                    </span>
+                    <span>
+                      작성시간: {childComment.time}
+                    </span>
+                  </div>
+                  <div>
+                    <p>{childComment.content}</p>
+                    {childComment.mediaUrl && (
+                      <div>
+                        {childComment.mediaUrl.endsWith(
+                          '.mp4'
+                        ) ? (
+                          <video
+                            className="comment_image"
+                            src={childComment.mediaUrl}
+                            controls
+                            loop
+                          />
+                        ) : (
+                          <img
+                            className="comment_image"
+                            src={childComment.mediaUrl}
+                            alt="child comment media"
+                          />
+                        )}
+                      </div>
+                    )}
+                  </div>
+                  <div className="comment_like_reply_box">
+                    <div className="comment_like_button">
+                      <FontAwesomeIcon
+                        onClick={() =>
+                          commentLike(
+                            childComment,
+                            index,
+                            childIndex
+                          )
+                        }
+                        icon={faThumbsUp}
+                      />
+                      <span>{childComment.likes}</span>
+                    </div>
                     <div>
-                      {childComment.mediaUrl.endsWith(
-                        '.mp4'
-                      ) ? (
-                        <video
-                          style={{
-                            width: '200px',
-                            height: '200px',
-                          }}
-                          src={childComment.mediaUrl}
-                          controls
-                          loop
-                        />
-                      ) : (
-                        <img
-                          style={{
-                            width: '200px',
-                            height: '200px',
-                          }}
-                          src={childComment.mediaUrl}
-                          alt="child comment media"
-                        />
+                      {sameOption.some((option) =>
+                        option.userNames.includes(
+                          childComment.nickname
+                        )
+                      ) && (
+                        <p>
+                          (나와 동일한 선택지를 골랐습니다)
+                        </p>
                       )}
                     </div>
-                  )}
-                </div>
-                <div>
-                  <p>
-                    좋아요 수 :
-                    <span>{childComment.likes}</span>
-                  </p>
-                  {/* Additional logic for child comment actions */}
-                </div>
-                <div>
-                  <button
-                    onClick={() =>
-                      handlemessge1(childComment)
-                    }
-                  >
-                    쪽지 보내기
-                  </button>
+                    <div className="comment_reply">
+                      <FontAwesomeIcon
+                        onClick={() =>
+                          handlemessge1(childComment)
+                        }
+                        icon={faPaperPlane}
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
             )

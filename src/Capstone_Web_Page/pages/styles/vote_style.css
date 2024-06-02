@@ -187,11 +187,22 @@
 
 .comment_box {
   width: 100%;
+  background-color: white;
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid #c6c6c6;
   padding: 1rem;
 }
+
+.replycomment_box {
+  width: 100%;
+  background-color: rgb(172, 172, 172);
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #c6c6c6;
+  padding: 1rem;
+}
+
 .commnet_box_user {
   width: 100%;
   display: flex;
