@@ -22,6 +22,7 @@ function VoteCreatedUserPage() {
     isCategory,
     category,
     matchingVotes,
+    userVotes,
     keyId,
   } = location.state || { isCategory: false };
   const videoRef = useRef(null);
@@ -29,6 +30,7 @@ function VoteCreatedUserPage() {
   const [sortedComments, setSortedComments] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [showReply, setShowReply] = useState({});
+  const [sameOption, setSameOption] = useState([]);
   const [sortingStandard, setSortingStandard] =
     useState('시간'); // 초기 정렬 기준을 '시간'으로 설정
   const standards = [
@@ -64,6 +66,23 @@ function VoteCreatedUserPage() {
       },
     });
   };
+  useEffect(() => {
+    fetchComments(vote.id, jwtToken, setComments);
+    sameVoteGroup(
+      vote,
+      userVotes,
+      nickname,
+      jwtToken,
+      setSameOption
+    );
+  }, [
+    send,
+    vote,
+    userVotes,
+    nickname,
+    jwtToken,
+    sortingStandard,
+  ]);
   //댓글 출력 창
   const Comment = ({ comment, index }) => {
     const handlePlayPause = () => {
@@ -117,10 +136,7 @@ function VoteCreatedUserPage() {
             )}
           </div>
           <div className="comment_like_reply_box">
-            <div
-              className="comment_like_button"
-              onClick={() => commentLike(comment, index)}
-            >
+            <div className="comment_like_button">
               <FontAwesomeIcon icon={faThumbsUp} />
               <span className="comment_like_count">
                 {comment.likes}
@@ -188,16 +204,7 @@ function VoteCreatedUserPage() {
                   </div>
                   <div className="comment_like_reply_box">
                     <div className="comment_like_button">
-                      <FontAwesomeIcon
-                        onClick={() =>
-                          commentLike(
-                            childComment,
-                            index,
-                            childIndex
-                          )
-                        }
-                        icon={faThumbsUp}
-                      />
+                      <FontAwesomeIcon icon={faThumbsUp} />
                       <span>{childComment.likes}</span>
                     </div>
                     <div>

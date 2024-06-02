@@ -11,6 +11,22 @@ import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { MainBanner } from '../components/mainBanner_components';
 import { LeftBar } from '../components/leftBar_components';
 
+const calculateTotalComments = (comments) => {
+  let totalComments = 0;
+
+  comments.forEach((comment) => {
+    totalComments += 1; // 본 댓글
+    if (
+      comment.childrenComment &&
+      comment.childrenComment.length > 0
+    ) {
+      totalComments += comment.childrenComment.length; // 대댓글
+    }
+  });
+
+  return totalComments;
+};
+
 function VoteEndPage() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -23,6 +39,7 @@ function VoteEndPage() {
     isCategory,
     category,
     matchingVotes,
+    userVotes,
     keyId,
   } = location.state || { isCategory: false };
 
@@ -30,7 +47,7 @@ function VoteEndPage() {
     { label: '최신 순', value: '시간' },
     { label: '인기 순', value: '인기' },
   ];
-
+  const [sameOption, setSameOption] = useState([]);
   const videoRef = useRef(null);
   const [heartType, setHeartType] = useState('empty');
   const [comments, setComments] = useState([]); // 댓글
@@ -43,6 +60,36 @@ function VoteEndPage() {
   const [pollResult, setPollResult] = useState(null);
   const [showPollResult, setShowPollResult] =
     useState(false);
+  const totalComments = calculateTotalComments(comments);
+  // 댓글 좋아요
+  const commentLike = async (comment, index) => {
+    setSend(true);
+    console.log('comment ', comment.id);
+    console.log('url ', comment.mediaUrl);
+    try {
+      const response = await axios.post(
+        `https://dovote.p-e.kr/comments/like/${userId}/${vote.id}/${comment.id}`,
+
+        {
+          headers: {
+            Authorization: jwtToken,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        console.log(
+          '댓글 좋아요 성공',
+          JSON.stringify(response.data, null, 2)
+        );
+        setSend(false);
+      } else {
+        console.error('댓글 좋아요 실패', response.data);
+      }
+    } catch (error) {
+      console.error('댓글 좋아요 보내기:', error);
+    }
+  };
   //게시글 좋아요
   const handleHeartClick = async () => {
     console.log('투표 값' + vote);
