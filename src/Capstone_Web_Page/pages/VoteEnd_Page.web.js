@@ -513,19 +513,27 @@ function VoteEndPage() {
             <p className="comment_header_text">
               댓글 {totalComments}
             </p>
-            <select
-              className="comment_header_select"
-              value={sortingStandard}
-              onChange={(e) =>
-                setSortingStandard(e.target.value)
-              }
-            >
-              {standards.map((standard, index) => (
-                <option key={index} value={standard.value}>
-                  {standard.label}
-                </option>
-              ))}
-            </select>
+            <div>
+              <button onClick={getPollResult}>
+                투표 결과 보기
+              </button>
+              <select
+                className="comment_header_select"
+                value={sortingStandard}
+                onChange={(e) =>
+                  setSortingStandard(e.target.value)
+                }
+              >
+                {standards.map((standard, index) => (
+                  <option
+                    key={index}
+                    value={standard.value}
+                  >
+                    {standard.label}
+                  </option>
+                ))}
+              </select>
+            </div>
           </div>
 
           <div className="comment_body_box">
