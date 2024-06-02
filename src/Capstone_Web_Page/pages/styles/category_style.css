@@ -20,3 +20,7 @@
 .pagination button:hover {
   background-color: #ddd;
 }
+
+.category_box {
+  height: 100vh;
+}

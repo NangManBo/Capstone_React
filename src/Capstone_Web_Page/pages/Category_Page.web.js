@@ -106,7 +106,7 @@ function CategoryPage() {
             ))}
           </select>
         </div>
-        <div style={{ overflowY: 'scroll' }}>
+        <div className="category_box">
           {currentVotes.map((vote, index) => (
             <div
               key={index}
