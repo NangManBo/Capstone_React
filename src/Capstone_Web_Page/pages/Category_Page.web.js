@@ -4,6 +4,7 @@ import { renderPostPress } from '../functions/renderPostPress_function';
 import { MainBanner } from '../components/mainBanner_components';
 import { LeftBar } from '../components/leftBar_components';
 import './styles/category_style.css';
+import './styles/searchresult_style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
@@ -132,6 +133,7 @@ function CategoryPage() {
           {currentVotes.map((vote, index) => (
             <div
               key={index}
+              className="search-result-view3"
               onClick={() =>
                 renderPostPress(
                   vote,
@@ -147,12 +149,23 @@ function CategoryPage() {
                 )
               }
             >
-              <div>
-                <p>{vote.title}</p> <p>{vote.question}</p>
-              </div>
-              <div>
-                <span>{vote.likesCount}</span>
-                <span>{vote.createdAt}</span>
+              <span className="search-result-title">
+                {vote.title}
+              </span>
+              <span className="search-result-sub">
+                {vote.question}
+              </span>
+              <div className="search-result-row">
+                <FontAwesomeIcon
+                  className="category-post-like-text"
+                  icon={faThumbsUp}
+                />{' '}
+                <span className="category-post-like-text">
+                  {vote.likesCount}
+                </span>
+                <span className="category-post-like-text1">
+                  {vote.createdAt}
+                </span>
               </div>
             </div>
           ))}
