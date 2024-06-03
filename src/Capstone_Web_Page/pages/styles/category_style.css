@@ -22,6 +22,7 @@
 }
 
 .category_box {
+  width: 50%;
   height: 100vh;
 }
 .category_page_header {
@@ -32,4 +33,9 @@
 .category_page_header span {
   font-size: 2.3rem;
   font-weight: bold;
+}
+
+.category_page_header_select {
+  width: 200px;
+  height: 75px;
 }
