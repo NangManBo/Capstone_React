@@ -7,7 +7,18 @@
   font-size: 24px;
 }
 
-.alarm_box_in {
+.alarm_box_in_false {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(218, 218, 218);
+  margin-top: 3%;
+  width: 100%;
+  height: 30vh; /* 뷰포트 높이에 맞춤 */
+}
+
+.alarm_box_in_true {
   display: flex;
   flex-direction: column;
   justify-content: top;

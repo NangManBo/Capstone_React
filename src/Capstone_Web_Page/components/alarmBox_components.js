@@ -54,7 +54,7 @@ export const AlarmBox = (
             <i className="fa-regular fa-bell"></i>
             <span> 알림</span>
           </h2>
-          <div className="alarm_box_in">
+          <div className="alarm_box_in_true">
             {recentMessages.length > 0 ? (
               recentMessages.map((message, index) => (
                 <div
@@ -85,7 +85,7 @@ export const AlarmBox = (
             <i className="fa-regular fa-bell"></i>
             <span> 알림</span>
           </h2>
-          <div className="alarm_box_in">
+          <div className="alarm_box_in_false">
             <h3 className="alarm_box_in_title">
               해당 기능은<br></br>로그인이 필요한 기능입니다
             </h3>
