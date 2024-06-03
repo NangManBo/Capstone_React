@@ -5,7 +5,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* 뷰포트 높이에 맞춤 */
+  height: 100vh;
 }
 
 .Page > .login-form {
