@@ -10,7 +10,7 @@
 .alarm_box_in {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: top;
   align-items: center;
   background-color: rgb(218, 218, 218);
   margin-top: 3%;
@@ -20,4 +20,14 @@
 
 .alarm_box_in_title {
   text-align: center;
+}
+
+.alarm_message {
+  margin-top: 10px;
+  font-size: 20px;
+  width: 80%;
+  height: 25%;
+  border-radius: 10px;
+  border: 1px solid black;
+  background-color: white;
 }
