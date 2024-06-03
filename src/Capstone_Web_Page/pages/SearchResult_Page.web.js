@@ -9,60 +9,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
-const exampleData = {
-  keyId: 1,
-  searchResults: [
-    {
-      id: 1,
-      title: 'Breaking News in Politics',
-      question: 'What are the latest updates in politics?',
-      category: '정치',
-      likesCount: 10,
-      createdAt: '2024-06-01',
-    },
-    {
-      id: 2,
-      title: 'New Game Release',
-      question:
-        'What are the top features of the new game?',
-      category: '게임',
-      likesCount: 20,
-      createdAt: '2024-05-30',
-    },
-    {
-      id: 3,
-      title: 'Pet Care Tips',
-      question: 'How to take care of your new pet?',
-      category: '반려동물',
-      likesCount: 15,
-      createdAt: '2024-06-02',
-    },
-    {
-      id: 4,
-      title: 'Cultural Festival Highlights',
-      question:
-        'What were the main attractions of the cultural festival?',
-      category: '문화와예술',
-      likesCount: 8,
-      createdAt: '2024-06-01',
-    },
-    {
-      id: 5,
-      title: 'Economic Growth in 2024',
-      question:
-        'What are the key factors contributing to economic growth?',
-      category: '경제',
-      likesCount: 12,
-      createdAt: '2024-05-28',
-    },
-  ],
-  searchQuery: 'latest news',
-  isLoggedIn: true,
-  userId: 123,
-  jwtToken: 'jwtToken123',
-  nickname: 'User123',
-};
-
 function SerachResultPage() {
   const location = useLocation();
   const navigate = useNavigate();
@@ -74,7 +20,8 @@ function SerachResultPage() {
     userId,
     jwtToken,
     nickname,
-  } = exampleData;
+  } = location.state || {};
+
   const categories = [
     '모든 카테고리',
     '시사',
