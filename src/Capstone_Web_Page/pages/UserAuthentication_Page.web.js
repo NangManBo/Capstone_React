@@ -40,7 +40,7 @@ function UserAuthenticationPage() {
           },
         }
       );
-      console.log(response.data); // Logging the response
+
       if (response.status === 200) {
         alert('알림: 본인인증 완료');
         navigate('/profileupdate', {

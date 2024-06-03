@@ -63,7 +63,6 @@ function VoteMakePage() {
   // 사진 고른거 삭제
   const cancelImage = () => {
     setSelectedMedia(null);
-    console.log(jwtToken);
   };
   // Existing state declarations...
 
@@ -117,8 +116,7 @@ function VoteMakePage() {
           formData.append('mediaData', mediaFile);
         }
       }
-      console.log('투표 생성 요청 pollData:', pollData);
-      console.log('투표 생성 요청 formData:', formData);
+
       const response = await axios.post(
         'https://dovote.p-e.kr/polls/upload',
         formData,
@@ -134,19 +132,14 @@ function VoteMakePage() {
         const contentType =
           response.headers.get('content-type');
         setSelectedMedia(null);
-        console.log('투표 생성 성공');
 
         let parsedData;
         if (
           contentType &&
           contentType.includes('application/json')
         ) {
-          // parsedData = await response.json();
-          // console.log('투표 작성 성공:', parsedData);
           parsedData = response.data;
-          console.log('투표 작성 성공:', parsedData);
         } else {
-          console.log('투표');
         }
 
         try {
@@ -168,7 +161,6 @@ function VoteMakePage() {
           );
 
           if (response.status === 201) {
-            console.log('투표 항목 성공:', response.data);
             navigate('/', {
               state: {
                 isLoggedIn,
@@ -179,20 +171,11 @@ function VoteMakePage() {
               },
             });
           } else {
-            console.error(
-              '투표항목 생성 실패:',
-              response.data
-            );
           }
-        } catch (error) {
-          console.error('투표항목 생성 오류:', error);
-        }
+        } catch (error) {}
       } else {
-        console.error('투표 오류 응답:', response.status);
       }
-    } catch (error) {
-      console.error('투표 오류 응답:', error);
-    }
+    } catch (error) {}
   };
 
   return (

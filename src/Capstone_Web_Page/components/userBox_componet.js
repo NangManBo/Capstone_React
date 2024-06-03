@@ -79,7 +79,6 @@ export const UserBox = (
       if (popularPointResponse.status === 200) {
         setPopularPoint(popularPointResponse.data);
       } else {
-        console.log('포인트를 가져오는 데 실패했습니다');
       }
     } catch {}
   };

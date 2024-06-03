@@ -40,11 +40,8 @@ export const fetchComments = async (
       );
 
       setComments(formattedComments);
-      console.log('댓글 데이터 확인:', formattedComments);
     }
-  } catch (error) {
-    console.error('댓글 조회하기 오류:', error);
-  }
+  } catch (error) {}
 };
 
 // 같은 투표 그룹의 투표자들을 가져오는 함수
@@ -81,7 +78,7 @@ export const sameVoteGroup = async (
         choiceId: item.choiceId,
         userNames: response.data,
       }))
-      .catch((error) => console.error('에러 발생:', error));
+      .catch((error) => null);
   });
 
   const results = await Promise.all(promises);

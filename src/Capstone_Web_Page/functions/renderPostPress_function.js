@@ -35,7 +35,6 @@ export const renderPostPress = async (
       );
 
       if (response.status === 200) {
-        //console.log('내가 투표한 데이터', response.data);
         const userVotes = response.data;
 
         // Check if userVotes is null or empty
@@ -46,7 +45,6 @@ export const renderPostPress = async (
           // Check if the vote is closed
           const isVoteEnd =
             firstMatchingVote.voteStatus === 'CLOSED';
-          console.log('first' + firstMatchingVote);
 
           // Navigate to the appropriate screen based on voting status, createdBy, and voteStatus
           if (isVoteEnd) {
@@ -139,13 +137,7 @@ export const renderPostPress = async (
           );
         }
       } else {
-        console.error(
-          '투표 들어가려는데 실패:',
-          response.data
-        );
       }
-    } catch (error) {
-      console.error('투표 들어가려는데 실패:', error);
-    }
+    } catch (error) {}
   }
 };

@@ -26,9 +26,6 @@ function LogInPage() {
       );
 
       if (response.status === 201) {
-        console.log('로그인 성공:', response.data);
-
-        // 로그인 성공 시 필요한 정보를 state에 넣어서 navigate 함수를 사용
         navigate('/', {
           state: {
             isLoggedIn: true,

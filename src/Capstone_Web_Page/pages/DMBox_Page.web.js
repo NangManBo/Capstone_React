@@ -46,9 +46,7 @@ function DMboxPage() {
 
           setMessages(formattedMessages);
         }
-      } catch (error) {
-        console.error('Error fetching messages:', error);
-      }
+      } catch (error) {}
     };
 
     fetchData();

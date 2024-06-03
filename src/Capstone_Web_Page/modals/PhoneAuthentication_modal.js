@@ -16,7 +16,6 @@ function PhoneAuthenticationModal({
   const [message, setMessage] = useState('');
 
   const sendPhoneNumber = async () => {
-    console.log('Sending Phone Number:', phoneNumber);
     try {
       const response = await axios.post(
         'https://dovote.p-e.kr/sms/send',
@@ -36,7 +35,6 @@ function PhoneAuthenticationModal({
         alert('Failed to send verification code');
       }
     } catch (error) {
-      console.error(error);
       setIsSend(true);
     }
   };
@@ -57,15 +55,12 @@ function PhoneAuthenticationModal({
       );
 
       if (response.status === 200) {
-        // 성공 로직
-        console.log('인증 성공');
         nextphone(phoneNumber);
         onSuccess(); // useNavigate로 페이지 이동, state를 통해 데이터 전달
       } else {
         alert('번호를 잘못 입력하셨습니다');
       }
     } catch (error) {
-      console.error(error);
       alert('Error occurred');
     }
   };

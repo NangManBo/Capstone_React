@@ -76,9 +76,6 @@ function VoteAfterPage() {
   const [isPlaying, setIsPlaying] = useState(false);
   const totalComments = calculateTotalComments(comments);
 
-  useEffect(() => {
-    console.log('키 값', keyId);
-  }, []);
   const placeholder = {
     label: '정렬 기준',
     value: null,
@@ -138,13 +135,10 @@ function VoteAfterPage() {
   };
   //게시글 좋아요
   const handleHeartClick = async () => {
-    console.log('투표 값' + vote);
     const data = {
       pollId: vote.id,
       nickname: nickname,
     };
-
-    console.log(data);
 
     try {
       const response = await axios.post(
@@ -158,23 +152,17 @@ function VoteAfterPage() {
       );
 
       if (response.status === 200) {
-        console.log(response.data);
-
         setHeartType((prev) =>
           prev === 'empty' ? 'filled' : 'empty'
         );
       } else {
-        console.error('Failed to likes:', response.data);
       }
-    } catch (error) {
-      console.error('게시글 좋아요 :', error);
-    }
+    } catch (error) {}
   };
   // 댓글 작성
   const handleCommentSubmit = async () => {
     setSend(true);
-    console.log('vote', vote);
-    console.log('comments', comments);
+
     try {
       if (!commentText.trim()) {
         alert('댓글 내용을 입력하세요.');
@@ -222,17 +210,12 @@ function VoteAfterPage() {
           contentType &&
           contentType.includes('application/json')
         ) {
-          console.log('댓글 작성 성공:', response.data);
         } else {
-          console.log('댓글 작성 성공');
         }
         setCommentText('');
       } else {
-        console.error('댓글 작성 실패:', response.status);
       }
-    } catch (error) {
-      console.error('댓글 작성 오류:', error);
-    }
+    } catch (error) {}
   };
   // 댓글에서 쪽지 보내기
   const handlemessge = (comment) => {
@@ -249,7 +232,6 @@ function VoteAfterPage() {
   };
   // 대댓글에서 쪽지 보내기
   const handlemessge1 = (childComment) => {
-    console.log('쪽지 보내기~' + childComment);
     navigate('/dmautosend', {
       state: {
         isLoggedIn,
@@ -283,8 +265,7 @@ function VoteAfterPage() {
   // 댓글 좋아요
   const commentLike = async (comment, index) => {
     setSend(true);
-    console.log('comment ', comment.id);
-    console.log('url ', comment.mediaUrl);
+
     try {
       const response = await axios.post(
         `https://dovote.p-e.kr/comments/like/${userId}/${vote.id}/${comment.id}`,
@@ -297,17 +278,10 @@ function VoteAfterPage() {
       );
 
       if (response.status === 200) {
-        console.log(
-          '댓글 좋아요 성공',
-          JSON.stringify(response.data, null, 2)
-        );
         setSend(false);
       } else {
-        console.error('댓글 좋아요 실패', response.data);
       }
-    } catch (error) {
-      console.error('댓글 좋아요 보내기:', error);
-    }
+    } catch (error) {}
   };
   //댓글 출력 창
   const Comment = ({ comment, index }) => {
@@ -481,7 +455,6 @@ function VoteAfterPage() {
   };
   // 대댓글
   const handleReplyPress = (comment, index) => {
-    console.log('대댓글 버튼 누름', comment.id);
     if (replyingIndex === index) {
       // If the reply button is pressed again, reset to a regular comment
       setReplyingIndex(null);
@@ -504,14 +477,11 @@ function VoteAfterPage() {
         return;
       }
       if (!isReplyMode || replyingIndex === null) {
-        console.error(
-          'Invalid reply mode or replying index.'
-        );
         return;
       }
       let formData = new FormData();
       const parentCommentId = replyingIndex; // Get the parent comment ID
-      console.log('몇번째 댓글', parentCommentId);
+
       formData.append(
         'content',
         JSON.stringify({ content: replyText })
@@ -553,19 +523,14 @@ function VoteAfterPage() {
           contentType &&
           contentType.includes('application/json')
         ) {
-          console.log('댓글 작성 성공:', response.data);
         } else {
-          console.log('댓글 작성 성공');
         }
 
         setIsReplyMode(false);
         setCommentText('');
       } else {
-        console.error('댓글 작성 실패:', response.status);
       }
-    } catch (error) {
-      console.error('댓글 작성 오류:', error);
-    }
+    } catch (error) {}
 
     setShowReplyInput(false);
     setReplyingIndex(null);

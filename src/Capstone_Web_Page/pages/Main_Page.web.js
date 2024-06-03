@@ -42,10 +42,7 @@ function MainPage() {
       if (response.status === 200) {
         // Assuming the response data is an array of messages
         const messagesData = response.data;
-        console.log(
-          '쪽지 데이터 확인',
-          JSON.stringify(response.data, null, 2)
-        );
+
         // Extracting and mapping relevant data from the response
         const formattedMessages = messagesData.map(
           (message) => ({
@@ -58,14 +55,8 @@ function MainPage() {
         );
         setMessages(formattedMessages);
       } else {
-        console.error(
-          'Failed to fetch messages:',
-          response.data
-        );
       }
-    } catch (error) {
-      console.error('쪽지 데이터 가져오기:', error);
-    }
+    } catch (error) {}
   };
   // 웹소켓
   const fetchwebsocket = async () => {
@@ -90,25 +81,9 @@ function MainPage() {
 
   // 투표 데이터를 받아오는 함수
   useEffect(() => {
-    console.log(
-      'MainPage useEffect 실행됨',
-      isLoggedIn,
-      userId,
-      jwtToken,
-      nickname,
-      keyId
-    );
     fetchVotes(setVotes);
 
     if (isLoggedIn) {
-      console.log(
-        '로그인 상태',
-        isLoggedIn,
-        nickname,
-        userId,
-        jwtToken,
-        keyId
-      );
       fetchData();
       fetchwebsocket();
     }

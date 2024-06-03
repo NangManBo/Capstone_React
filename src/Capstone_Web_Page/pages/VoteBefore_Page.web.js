@@ -22,9 +22,7 @@ function VoteBeforePage() {
   } = location.state || { isCategory: false };
 
   const [pollOptions, setPollOptions] = useState([]);
-  useEffect(() => {
-    console.log('키 값', keyId);
-  }, []);
+
   useEffect(() => {
     if (vote.choice && Array.isArray(vote.choice)) {
       setPollOptions(
@@ -36,9 +34,6 @@ function VoteBeforePage() {
         }))
       );
     } else {
-      console.error(
-        'ERROR: vote.choices is not an array or is undefined'
-      );
     }
   }, [vote]);
 
@@ -74,15 +69,10 @@ function VoteBeforePage() {
         }
       );
       if (response.status === 201) {
-        console.log('투표 성공:', response.data);
-        // Navigate to VoteAfter page with updated state
         goToVoteAfter(vote);
       } else {
-        console.error('투표 실패:', response.data);
       }
-    } catch (error) {
-      console.error('서버랑 오류 :', error);
-    }
+    } catch (error) {}
   };
 
   const goToVoteAfter = async (vote) => {
@@ -98,7 +88,6 @@ function VoteBeforePage() {
       );
 
       if (response.status === 200) {
-        //console.log('내가 투표한 데이터', response.data);
         const userVotes = response.data;
 
         navigate('/voteafter', {
@@ -112,14 +101,8 @@ function VoteBeforePage() {
           },
         });
       } else {
-        console.error(
-          '투표 들어가려는데 실패:',
-          response.data
-        );
       }
-    } catch (error) {
-      console.error('투표 들어가려는데 오류:', error);
-    }
+    } catch (error) {}
   };
   const goToMain = () => {
     navigate('/', {

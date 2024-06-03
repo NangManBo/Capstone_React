@@ -48,12 +48,6 @@ function ProfileUpdatePage() {
   ];
 
   const handleChangeInformation = async () => {
-    console.log(
-      '정보 변경',
-      newNickname,
-      newMbti,
-      newPassword
-    );
     try {
       const response = await axios.patch(
         'https://dovote.p-e.kr/auth/patch/' + userId,
@@ -75,25 +69,12 @@ function ProfileUpdatePage() {
           '@jwtToken',
           response.data.token
         );
-        console.log(
-          '응답 데이터:',
-          JSON.stringify(response.data, null, 2)
-        );
-        console.log(
-          '바뀌기 전 데이터 확인',
-          jwtToken1,
-          currentNickname
-        );
+
         setJwtToken1(response.data.token);
         setNewNickname('');
         setNewPassword('');
         setCurrentNickname(response.data.nickname);
 
-        console.log(
-          '바뀐 후 데이터 확인',
-          jwtToken1,
-          currentNickname
-        );
         alert('정보 수정 완료');
       } else {
         alert('정보 수정에 실패했습니다');
@@ -104,7 +85,6 @@ function ProfileUpdatePage() {
   };
 
   const goBack = () => {
-    console.log(currentNickname, jwtToken1, keyId);
     navigate('/profile', {
       state: {
         userId,

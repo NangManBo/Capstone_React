@@ -25,9 +25,6 @@ function VoteOnlyLookPage() {
         }))
       );
     } else {
-      console.error(
-        'ERROR: vote.choices is not an array or is undefined'
-      );
     }
   }, [vote]);
 

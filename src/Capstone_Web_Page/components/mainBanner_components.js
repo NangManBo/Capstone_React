@@ -56,14 +56,6 @@ export const MainBanner = (
     });
   };
   const goToMain = () => {
-    console.log(
-      '로고 눌렀을 때',
-      jwtToken,
-      isLoggedIn,
-      userId,
-      nickname,
-      keyId
-    );
     navigate('/', {
       state: {
         jwtToken: jwtToken,

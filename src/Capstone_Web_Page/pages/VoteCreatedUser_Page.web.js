@@ -56,12 +56,9 @@ function VoteCreatedUserPage() {
       },
     });
   };
-  useEffect(() => {
-    console.log('키 값', keyId);
-  }, []);
+
   // 대댓글에서 쪽지 보내기
   const handlemessge1 = (childComment) => {
-    console.log('쪽지 보내기~' + childComment);
     navigate('/dmautosend', {
       state: {
         isLoggedIn,
@@ -276,9 +273,7 @@ function VoteCreatedUserPage() {
         }
       );
       if (response.status === 200) {
-        console.log('포인트 성공');
       } else {
-        console.error('포인트 실패!', response.data);
       }
     } catch (error) {}
     try {
@@ -293,13 +288,9 @@ function VoteCreatedUserPage() {
         }
       );
       if (response.status === 200) {
-        console.log('투표 종료!');
       } else {
-        console.error('투표 종료 실패!', response.data);
       }
-    } catch (error) {
-      console.error('투표 종료 오류', error);
-    }
+    } catch (error) {}
     navigate('/', {
       state: {
         isLoggedIn,
@@ -330,11 +321,6 @@ function VoteCreatedUserPage() {
         }))
       );
     } else {
-      // Handle the case where vote.choices is not an array or is undefined
-      console.error(
-        'ERROR: vote.choices is not an array or is undefined'
-      );
-      // You might want to set a default value for pollOptions or handle it accordingly
     }
   }, [vote]);
   const goToMain = () => {

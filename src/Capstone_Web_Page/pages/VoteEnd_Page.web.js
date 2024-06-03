@@ -66,13 +66,10 @@ function VoteEndPage() {
 
   //게시글 좋아요
   const handleHeartClick = async () => {
-    console.log('투표 값' + vote);
     const data = {
       pollId: vote.id,
       nickname: nickname,
     };
-
-    console.log(data);
 
     try {
       const response = await axios.post(
@@ -86,17 +83,12 @@ function VoteEndPage() {
       );
 
       if (response.status === 200) {
-        console.log(response.data);
-
         setHeartType((prev) =>
           prev === 'empty' ? 'filled' : 'empty'
         );
       } else {
-        console.error('Failed to likes:', response.data);
       }
-    } catch (error) {
-      console.error('게시글 좋아요 :', error);
-    }
+    } catch (error) {}
   };
   // 댓글에서 쪽지 보내기
   const handlemessge = (comment) => {
@@ -111,12 +103,9 @@ function VoteEndPage() {
       },
     });
   };
-  useEffect(() => {
-    console.log('키 값', keyId);
-  }, []);
+
   // 대댓글에서 쪽지 보내기
   const handlemessge1 = (childComment) => {
-    console.log('쪽지 보내기~' + childComment);
     navigate('/dmautosend', {
       state: {
         isLoggedIn,
@@ -302,8 +291,6 @@ function VoteEndPage() {
   };
   // 댓글 카운터 계산
   const countData = async () => {
-    console.log('투표 카운트 데이터', vote);
-
     try {
       const response = await axios.get(
         'https://dovote.p-e.kr/votes/selected-choices/' +
@@ -316,10 +303,7 @@ function VoteEndPage() {
       );
       if (response.status === 200) {
         const selectedVotes = response.data;
-        console.log(
-          '투표 카운트 응답 데이터',
-          selectedVotes
-        );
+
         // 투표 선택지 업데이트
         setPollOptions(
           vote.choice.map((choice) => {
@@ -338,14 +322,8 @@ function VoteEndPage() {
           })
         );
       } else {
-        console.error(
-          '투표 카운트 가져오기 실패',
-          response.data
-        );
       }
-    } catch (error) {
-      console.error('투표 카운트 가져오기 오류:', error);
-    }
+    } catch (error) {}
   };
   //투표 분석 결과
   const getPollResult = async () => {
@@ -360,18 +338,12 @@ function VoteEndPage() {
       );
       if (response.status === 200) {
         const selectedVotes = response.data;
-        console.log('투표 결과', selectedVotes);
+
         setPollResult(selectedVotes);
         setShowPollResult(!showPollResult);
       } else {
-        console.error(
-          '투표 결과 가져오기 실패',
-          response.data
-        );
       }
-    } catch (error) {
-      console.error('투표 결과 가져오기 오류:', error);
-    }
+    } catch (error) {}
   };
   useEffect(() => {
     fetchComments(vote.id, jwtToken, setComments);
@@ -399,11 +371,6 @@ function VoteEndPage() {
         }))
       );
     } else {
-      // Handle the case where vote.choices is not an array or is undefined
-      console.error(
-        'ERROR: vote.choices is not an array or is undefined'
-      );
-      // You might want to set a default value for pollOptions or handle it accordingly
     }
     countData();
   }, [vote]);

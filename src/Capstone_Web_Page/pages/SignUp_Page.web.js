@@ -159,10 +159,8 @@ function SignUpPage() {
           }
         );
         if (response.status === 201) {
-          console.log('회원가입 성공:', response.data);
           navigate('/');
         } else {
-          console.error('회원가입 실패:', response.data);
         }
       } catch (error) {
         alert(
