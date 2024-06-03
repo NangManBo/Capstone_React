@@ -10,5 +10,7 @@ body {
 }
 
 .goBackButton {
+  position: absolute;
+  top: 120px;
   width: 200px;
 }

@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { MainBanner } from '../components/mainBanner_components';
 import { LeftBar } from '../components/leftBar_components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
 import './styles/vote_style.css';
 function VoteBeforePage() {
   const navigate = useNavigate();
@@ -167,6 +169,7 @@ function VoteBeforePage() {
             isCategory ? goToCategory() : goToMain()
           }
         >
+          <FontAwesomeIcon icon={faArrowAltCircleLeft} />{' '}
           이전 페이지로
         </h2>
 

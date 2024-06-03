@@ -178,7 +178,7 @@ function SignUpPage() {
   };
   const handleClose = () => {
     setShowPhoneAuthModal(false);
-    navigate(-1); // 모달 닫기 or 인증 실패 시 이전 페이지로
+    navigate(-1); // 모달 닫기 or 인증 실패 시 <FontAwesomeIcon icon={faArrowAltCircleLeft} /> 이전 페이지로
   };
 
   const handleSuccess = () => {

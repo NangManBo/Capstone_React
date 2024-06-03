@@ -5,6 +5,7 @@ import axios from 'axios';
 import './styles/voteEnd_style.css';
 import './styles/vote_style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
@@ -454,6 +455,7 @@ function VoteEndPage() {
             isCategory ? goToCategory() : goToMain()
           }
         >
+          <FontAwesomeIcon icon={faArrowAltCircleLeft} />{' '}
           이전 페이지로
         </h2>
 

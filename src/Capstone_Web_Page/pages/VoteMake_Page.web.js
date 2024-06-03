@@ -4,6 +4,7 @@ import axios from 'axios';
 import { MainBanner } from '../components/mainBanner_components';
 import './styles/voteMake_style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
 import { faImage } from '@fortawesome/free-regular-svg-icons';
 import { LeftBar } from '../components/leftBar_components';
 function VoteMakePage() {
@@ -225,6 +226,7 @@ function VoteMakePage() {
             })
           }
         >
+          <FontAwesomeIcon icon={faArrowAltCircleLeft} />{' '}
           이전 페이지로
         </h2>
         <div className="voteMake_header">

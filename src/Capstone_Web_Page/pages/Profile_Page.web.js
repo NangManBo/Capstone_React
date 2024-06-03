@@ -169,6 +169,7 @@ function ProfilePage() {
             })
           }
         >
+          <FontAwesomeIcon icon={faArrowAltCircleLeft} />{' '}
           이전 페이지로
         </h2>
         <div className="retangle_page">

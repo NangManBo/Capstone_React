@@ -7,6 +7,7 @@ import { LeftBar } from '../components/leftBar_components';
 import './styles/profile_style.css';
 import './styles/dmBox_style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 function DMboxPage() {
@@ -107,6 +108,7 @@ function DMboxPage() {
             })
           }
         >
+          <FontAwesomeIcon icon={faArrowAltCircleLeft} />{' '}
           이전 페이지로
         </h2>
         <div className="retangle_page">
