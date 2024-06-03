@@ -5,6 +5,8 @@ import './styles/profile_style.css';
 import './styles/userAuthentication_style.css';
 import { MainBanner } from '../components/mainBanner_components';
 import { LeftBar } from '../components/leftBar_components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
 function UserAuthenticationPage() {
   const navigate = useNavigate();
   const location = useLocation();
