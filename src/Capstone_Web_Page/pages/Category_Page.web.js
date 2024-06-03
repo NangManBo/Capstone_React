@@ -75,17 +75,6 @@ function CategoryPage() {
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
   }
-  const goToMain = () => {
-    navigate('/', {
-      state: {
-        isLoggedIn,
-        userId,
-        jwtToken,
-        nickname,
-        keyId,
-      },
-    });
-  };
 
   return (
     <div className="profile_page">
