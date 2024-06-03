@@ -105,7 +105,7 @@ function CategoryPage() {
         </div>
         <div className="category_page_header_select">
           <select
-            className='"category-select"'
+            className="category_select"
             value={standard}
             onChange={(e) => setStandard(e.target.value)}
           >
