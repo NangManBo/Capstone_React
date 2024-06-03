@@ -5,7 +5,7 @@ import { renderPostPress } from '../functions/renderPostPress_function';
 const fillEmptyVotes = (votes, count) => {
   while (votes.length < count) {
     votes.push({
-      title: '없음', //JSON.stringify({ title: '제목' }),
+      title: '없음',
       createdBy: '없음',
       createdAt: '',
       likesCount: 0,
