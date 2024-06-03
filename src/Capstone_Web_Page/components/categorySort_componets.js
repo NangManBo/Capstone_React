@@ -1,5 +1,5 @@
 import { renderPostPress } from '../functions/renderPostPress_function';
-import './styles/category_style.css';
+import './styles/categorySort_style.css';
 // 카테고리별로 투표를 필터링하고 정렬하는 함수
 export const GetCategoryVotes = (
   votes,

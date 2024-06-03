@@ -103,22 +103,17 @@ function CategoryPage() {
         <div className="category_page_header">
           <span>{category} 게시판</span>
         </div>
-        <div className="category_page_header_select">
-          <select
-            className="category_select"
-            value={standard}
-            onChange={(e) => setStandard(e.target.value)}
-          >
-            {standards.map((option) => (
-              <option
-                key={option.value}
-                value={option.value}
-              >
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </div>
+        <select
+          className="category-select"
+          value={standard}
+          onChange={(e) => setStandard(e.target.value)}
+        >
+          {standards.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
         <div className="category_box">
           {currentVotes.map((vote, index) => (
             <div
