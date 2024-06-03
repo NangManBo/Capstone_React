@@ -22,7 +22,7 @@ export const GetCategoryVotes = (
   const fillEmptyVotes = (votes, count) => {
     while (votes.length < count) {
       votes.push({
-        title: '제목', //JSON.stringify({ title: '제목' }),
+        title: '없음',
         createdBy: '없음',
         createdAt: '',
         likesCount: 0,
@@ -103,6 +103,7 @@ export const GetCategoryVotes = (
                   className="category_sub_box"
                   onClick={() =>
                     vote.title &&
+                    vote.title !== '없음' &&
                     renderPostPress(
                       vote,
                       navigate,
