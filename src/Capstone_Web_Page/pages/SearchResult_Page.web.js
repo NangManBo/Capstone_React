@@ -7,6 +7,7 @@ import { LeftBar } from '../components/leftBar_components';
 import { fetchSearch } from '../functions/fetchSearch_function'; // fetchSearch 함수 임포트
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 
 const exampleData = {
   keyId: 1,
@@ -85,6 +86,13 @@ function SerachResultPage() {
     '문화와예술',
     '경제',
   ];
+  const [currentPage, setCurrentPage] = useState(1);
+  const resultsPerPage = 10;
+
+  const [selectedCategory, setSelectedCategory] =
+    useState('모든 카테고리');
+  const [searchQuery2, setSearchQuery2] = useState('');
+
   const groupByCategory = (results) => {
     return results.reduce((acc, result) => {
       const category = result.category; // 가정: 각 결과에는 'category' 필드가 있음
@@ -106,14 +114,10 @@ function SerachResultPage() {
       },
     });
   };
-  const [selectedCategory, setSelectedCategory] =
-    useState('모든 카테고리');
 
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
   };
-
-  const [searchQuery2, setSearchQuery2] = useState('');
 
   const handleSearch = async () => {
     const searchResults = await fetchSearch(
@@ -141,6 +145,21 @@ function SerachResultPage() {
           (result) => result.category === selectedCategory
         );
   const groupedResults = groupByCategory(searchResults);
+
+  // 현재 페이지에 표시할 결과 계산
+  const indexOfLastResult = currentPage * resultsPerPage;
+  const indexOfFirstResult =
+    indexOfLastResult - resultsPerPage;
+  const currentResults = filteredResults.slice(
+    indexOfFirstResult,
+    indexOfLastResult
+  );
+
+  // 총 페이지 수 계산
+  const totalPages = Math.ceil(
+    filteredResults.length / resultsPerPage
+  );
+
   return (
     <div className="search_page">
       {MainBanner(
@@ -197,11 +216,25 @@ function SerachResultPage() {
           </button>
         </div>
         <div className="search-form">
-          {filteredResults.length > 0 ? (
-            filteredResults.map((result) => (
+          {currentResults.length > 0 ? (
+            currentResults.map((result) => (
               <div
                 key={result.id}
                 className="search-result-view3"
+                onClick={() =>
+                  renderPostPress(
+                    result,
+                    navigate,
+                    isLoggedIn,
+                    userId,
+                    jwtToken,
+                    nickname,
+                    result.category,
+                    searchResults,
+                    true,
+                    keyId
+                  )
+                }
               >
                 <span className="search-result-title">
                   {result.title}
@@ -210,6 +243,10 @@ function SerachResultPage() {
                   {result.question}
                 </span>
                 <div className="search-result-row">
+                  <FontAwesomeIcon
+                    className="category-post-like-text"
+                    icon={faThumbsUp}
+                  />{' '}
                   <span className="category-post-like-text">
                     {result.likesCount}
                   </span>
@@ -226,6 +263,22 @@ function SerachResultPage() {
               </span>
             </div>
           )}
+        </div>
+        <div className="pagination">
+          {Array.from(
+            { length: totalPages },
+            (_, index) => index + 1
+          ).map((number) => (
+            <button
+              key={number}
+              onClick={() => setCurrentPage(number)}
+              className={
+                currentPage === number ? 'active' : ''
+              }
+            >
+              {number}
+            </button>
+          ))}
         </div>
       </div>
     </div>
