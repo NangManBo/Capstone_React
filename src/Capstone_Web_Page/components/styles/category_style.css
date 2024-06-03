@@ -1,13 +1,13 @@
 .category_sub_title_box {
-  margin-left: 4%;
+  margin-left: 9%;
   display: grid; /* Grid 컨테이너로 만듭니다. */
   grid-template-columns: repeat(
     3,
     1fr
   ); /* 세 개의 동일한 너비의 컬럼을 만듭니다. */
 
-  gap: 2%; /* 항목 사이의 수평 간격을 고정된 값으로 설정합니다. */
-  width: 90%; /* 컨테이너 너비를 상대적 단위로 설정합니다. */
+  gap: 3%; /* 항목 사이의 수평 간격을 고정된 값으로 설정합니다. */
+  width: 80%; /* 컨테이너 너비를 상대적 단위로 설정합니다. */
   margin-bottom: 10px;
 }
 
@@ -16,8 +16,8 @@
 }
 .category_title_box {
   cursor: pointer;
-  width: 350%;
-  height: 20vh;
+
+  width: 300%;
 }
 
 .category_title_box h3 {
@@ -28,8 +28,8 @@
 }
 .category_sub_box_container {
   flex-direction: row;
-  width: 400px;
-  height: 280px;
+  width: 500px;
+  height: 360px;
 }
 
 .category_sub_box {
