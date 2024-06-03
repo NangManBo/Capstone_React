@@ -4,6 +4,10 @@ import { renderPostPress } from '../functions/renderPostPress_function';
 import { MainBanner } from '../components/mainBanner_components';
 import { LeftBar } from '../components/leftBar_components';
 import './styles/category_style.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
+import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+
 function CategoryPage() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -70,6 +74,17 @@ function CategoryPage() {
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
   }
+  const goToMain = () => {
+    navigate('/', {
+      state: {
+        isLoggedIn,
+        userId,
+        jwtToken,
+        nickname,
+        keyId,
+      },
+    });
+  };
 
   return (
     <div className="profile_page">
@@ -88,6 +103,13 @@ function CategoryPage() {
         keyId
       )}
       <div className="right_page">
+        <h2
+          className="goBackButton"
+          onClick={() => navigate(-1)}
+        >
+          <FontAwesomeIcon icon={faArrowAltCircleLeft} />{' '}
+          이전 페이지로
+        </h2>
         <div>
           <span>{category}</span>
         </div>
