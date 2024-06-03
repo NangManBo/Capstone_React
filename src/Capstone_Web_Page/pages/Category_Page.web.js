@@ -111,10 +111,10 @@ function CategoryPage() {
           <FontAwesomeIcon icon={faArrowAltCircleLeft} />{' '}
           이전 페이지로
         </h2>
-        <div>
-          <span>{category}</span>
+        <div className="category_page_header">
+          <span>{category} 게시판</span>
         </div>
-        <div>
+        <div className="category_page_header_select">
           <select
             value={standard}
             onChange={(e) => setStandard(e.target.value)}

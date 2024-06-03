@@ -24,3 +24,12 @@
 .category_box {
   height: 100vh;
 }
+.category_page_header {
+  display: flex;
+  margin-top: 20px;
+}
+
+.category_page_header span {
+  font-size: 2.3rem;
+  font-weight: bold;
+}
