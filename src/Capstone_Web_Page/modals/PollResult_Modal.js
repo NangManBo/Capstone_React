@@ -34,6 +34,45 @@ const PollResultModal = ({
     });
   };
 
+  const renderGenderCounts = () => {
+    return Object.keys(pollResult.choiceGenderCounts).map(
+      (key) => {
+        const genderCounts =
+          pollResult.choiceGenderCounts[key];
+        return (
+          <div key={key}>
+            <strong>{pollResult.choiceName[key]}</strong>:
+            {Object.keys(genderCounts).map((gender) => (
+              <span key={gender}>
+                {' '}
+                {gender}: {genderCounts[gender]}{' '}
+              </span>
+            ))}
+          </div>
+        );
+      }
+    );
+  };
+
+  const renderAgeCounts = () => {
+    return Object.keys(pollResult.choiceAgeCounts).map(
+      (key) => {
+        const ageCounts = pollResult.choiceAgeCounts[key];
+        return (
+          <div key={key}>
+            <strong>{pollResult.choiceName[key]}</strong>:
+            {Object.keys(ageCounts).map((ageGroup) => (
+              <span key={ageGroup}>
+                {' '}
+                {ageGroup}: {ageCounts[ageGroup]}{' '}
+              </span>
+            ))}
+          </div>
+        );
+      }
+    );
+  };
+
   return (
     <Modal
       isOpen={show}
@@ -88,6 +127,7 @@ const PollResultModal = ({
             <Tooltip />
             <Legend />
           </PieChart>
+          <div>{renderGenderCounts()}</div>
 
           <h5>Age Distribution</h5>
           <PieChart width={400} height={400}>
@@ -116,6 +156,7 @@ const PollResultModal = ({
             <Tooltip />
             <Legend />
           </PieChart>
+          <div>{renderAgeCounts()}</div>
         </>
       )}
     </Modal>

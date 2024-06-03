@@ -1,5 +1,7 @@
 .modal-background {
   position: fixed;
+  width: 900px;
+  height: 900px;
   top: 0;
   left: 0;
   right: 0;
@@ -26,7 +28,6 @@
   height: 80%;
 }
 
-/* modal_style.css 추가 스타일 */
 .inputField {
   width: 70%; /* 입력 필드 너비 */
   padding: 10px;
