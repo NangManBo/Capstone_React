@@ -88,7 +88,7 @@ export const AlarmBox = (
                   onClick={() => handleItemClick(index)}
                   style={{ cursor: 'pointer' }} // 클릭 가능한 커서 스타일 추가
                 >
-                  <p>
+                  <p className="alarm_box_name">
                     <strong>{message.username}</strong> :{' '}
                     {message.title.length > 10
                       ? `${message.title.slice(0, 10)}..`
