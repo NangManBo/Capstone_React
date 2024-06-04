@@ -56,7 +56,6 @@ function DMboxPage() {
   const handleItemClick = async (index) => {
     const selectedMessage = messages[index];
 
-    // Fetch the message by messageId (Long 타입으로 전달)
     try {
       const messageResponse = await axios.get(
         'https://dovote.p-e.kr/message/read/' +

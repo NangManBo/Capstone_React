@@ -31,16 +31,33 @@ export const AlarmBox = (
     });
   };
 
-  // 메시지 클릭 함수
   const handleItemClick = async (index) => {
-    const selectedMessage = recentMessages[index];
-    navigate('/dm', {
-      state: {
-        ...location.state,
-        item: selectedMessage,
-        messageId1: selectedMessage.messageId1,
-      },
-    });
+    const selectedMessage = messages[index];
+
+    try {
+      const messageResponse = await axios.get(
+        'https://dovote.p-e.kr/message/read/' +
+          selectedMessage.messageId,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: jwtToken,
+          },
+        }
+      );
+
+      if (messageResponse.status === 200) {
+        const updatedMessage = messageResponse.data;
+        console.log('Updated message:', updatedMessage);
+        navigate('/dm', {
+          state: {
+            ...location.state,
+            item: selectedMessage,
+          },
+        });
+      } else {
+      }
+    } catch (error) {}
   };
 
   return (
