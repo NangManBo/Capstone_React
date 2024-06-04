@@ -4,8 +4,10 @@ import { MainBanner } from '../components/mainBanner_components';
 import { LeftBar } from '../components/leftBar_components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import './styles/profile_style.css';
 import './styles/dmSend_style.css';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 function DMPage() {
   const navigate = useNavigate();
@@ -18,6 +20,20 @@ function DMPage() {
     keyId,
     item,
   } = location.state; // useLocation을 사용하여 state 접근
+
+  // 쪽지 바로 보내기
+  const handlemessge = (item) => {
+    navigate('/dmautosend', {
+      state: {
+        isLoggedIn,
+        userId,
+        jwtToken,
+        nickname,
+        keyId,
+        receiverName: item.username,
+      },
+    });
+  };
 
   useEffect(() => {
     console.log('쪽지 데이터', item);
@@ -46,6 +62,12 @@ function DMPage() {
           <FontAwesomeIcon icon={faArrowAltCircleLeft} />{' '}
           이전 페이지로
         </h2>
+        <div className="fixed_button">
+          <FontAwesomeIcon
+            onClick={() => handlemessge(item)}
+            icon={faPaperPlane}
+          />
+        </div>
         <div className="dm_Page">
           <div className="dmSend_Page_user">
             <span className="dmSend_Page_user_name">
