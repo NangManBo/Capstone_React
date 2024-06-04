@@ -70,7 +70,7 @@ function DMboxPage() {
 
       if (messageResponse.status === 200) {
         const updatedMessage = messageResponse.data;
-        console.log('Updated message:', updatedMessage);
+
         navigate('/dm', {
           state: {
             ...location.state,

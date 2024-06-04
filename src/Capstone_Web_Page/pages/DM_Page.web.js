@@ -34,9 +34,6 @@ function DMPage() {
     });
   };
 
-  useEffect(() => {
-    console.log('쪽지 데이터', item);
-  }, []);
   return (
     <div className="profile_page">
       {MainBanner(
