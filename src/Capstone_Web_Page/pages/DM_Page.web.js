@@ -7,7 +7,6 @@ import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import './styles/profile_style.css';
 import './styles/dmSend_style.css';
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 function DMPage() {
   const navigate = useNavigate();
