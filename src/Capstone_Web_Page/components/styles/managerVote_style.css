@@ -18,11 +18,11 @@
 .manager_category_sub_box_container {
   flex-direction: row;
   width: 400px;
-  height: 280px;
+  height: 400px;
 }
 
 .manager_category_sub_box {
-  height: 50px;
+  height: 100px;
   flex-grow: 1;
   justify-content: space-between; /* 항목 사이에 공간을 균등하게 배분합니다 */
   flex-basis: 0; /* 항목의 기본 크기를 0으로 설정하여 flex-grow에 의해 크기가 결정되도록 합니다 */

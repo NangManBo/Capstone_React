@@ -13,8 +13,8 @@
   justify-content: center;
   align-items: center;
   background-color: #ffffff;
-  width: 350px;
-  height: 350px; /* 뷰포트 높이에 맞춤 */
+  width: 400px;
+  height: 400px; /* 뷰포트 높이에 맞춤 */
   border-radius: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 그림자를 추가하여 입체감을 줍니다 */
 }
