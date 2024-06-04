@@ -8,7 +8,7 @@
   height: 2.5rem;
   padding: 10px;
   margin: 5px 0;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   background-color: #f0f0f0;
   border: 1px solid #dcdcdc;
   border-radius: 4px;
@@ -23,20 +23,20 @@
 
 /* Styles for the text inside your vote button */
 .VoteText {
-  font-size: 16px;
+  font-size: 1.6rem;
   color: #333;
 }
 
 /* Highlighted text styles */
 .VoteText--highlighted {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   font-weight: bold;
   color: #000;
 }
 
 /* Styles for the vote count text */
 .VoteCount {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: #666;
 }
 
