@@ -8,34 +8,11 @@ export const UserBox = (
   userId,
   jwtToken,
   nickname,
-  keyId
+  keyId,
+  popularPoint
 ) => {
-  const [popularPoint, setPopularPoint] = useState(0);
   const navigate = useNavigate();
-  // 이동 함수
-  const goToDMPage = () => {
-    navigate('/dmbox', {
-      state: {
-        isLoggedIn,
-        userId,
-        jwtToken,
-        nickname,
-        keyId,
-      },
-    });
-  };
 
-  const goToProfileUpdate = () => {
-    navigate('/profileupdate', {
-      state: {
-        isLoggedIn,
-        userId,
-        jwtToken,
-        nickname,
-        keyId,
-      },
-    });
-  };
   const goToLogin = () => {
     navigate('/login', {});
   };
@@ -53,35 +30,7 @@ export const UserBox = (
       },
     });
   };
-  const goToMain = () => {
-    navigate('/', {
-      state: {
-        isLoggedIn: false,
-        userId: '',
-        jwtToken: '',
-        nickname: null,
-        keyId,
-      },
-    });
-  };
 
-  const getPopularPoint = async () => {
-    try {
-      const popularPointResponse = await axios.get(
-        'https://dovote.p-e.kr/polls/popular-point/' +
-          nickname,
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        }
-      );
-      if (popularPointResponse.status === 200) {
-        setPopularPoint(popularPointResponse.data);
-      } else {
-      }
-    } catch {}
-  };
   return (
     <div className="user_box_center">
       {isLoggedIn ? (

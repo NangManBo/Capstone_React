@@ -25,6 +25,24 @@ function MainPage() {
     useState(0);
   const [votes, setVotes] = useState([]); // 상태 추가
   const [messages, setMessages] = useState([]);
+  const [popularPoint, setPopularPoint] = useState(0);
+  const getPopularPoint = async () => {
+    try {
+      const popularPointResponse = await axios.get(
+        'https://dovote.p-e.kr/polls/popular-point/' +
+          nickname,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
+      if (popularPointResponse.status === 200) {
+        setPopularPoint(popularPointResponse.data);
+      } else {
+      }
+    } catch {}
+  };
 
   // 쪽지 데이터 받기
   const fetchData = async () => {
@@ -58,7 +76,7 @@ function MainPage() {
       }
     } catch (error) {}
   };
-  // 웹소켓
+
   const fetchwebsocket = async () => {
     try {
       const response = await axios.get(
@@ -85,6 +103,7 @@ function MainPage() {
 
     if (isLoggedIn) {
       fetchData();
+      getPopularPoint();
       fetchwebsocket();
     }
   }, []);
@@ -100,20 +119,15 @@ function MainPage() {
       )}
       <div className="main_page">
         <div className="main_page_header">
-          {/* <UserBox
-            isLoggedIn={isLoggedIn}
-            userId={userId}
-            jwtToken={jwtToken}
-            nickname={nickname}
-          /> */}
           {UserBox(
             isLoggedIn,
             userId,
             jwtToken,
             nickname,
-            keyId
+            keyId,
+            popularPoint
           )}
-          {/* <AlarmBox isLoggedIn={isLoggedIn} /> */}
+
           {AlarmBox(
             isLoggedIn,
             userId,
@@ -122,14 +136,7 @@ function MainPage() {
             keyId,
             messages
           )}
-          {/* <GetManagerVotes
-            votes={votes}
-            isLoggedIn={isLoggedIn}
-            userId={userId}
-            jwtToken={jwtToken}
-            nickname={nickname}
-            navigate={navigate}
-          /> */}
+
           {GetManagerVotes(
             votes,
             nickname,
@@ -140,14 +147,6 @@ function MainPage() {
             keyId
           )}
         </div>
-        {/* <PopularVoteBanner
-          votes={votes}
-          nickname={nickname}
-          jwtToken={jwtToken}
-          isLoggedIn={isLoggedIn}
-          userId={userId}
-          navigate={navigate}
-        /> */}
         {PopularVoteBanner(
           votes,
           nickname,
@@ -160,14 +159,6 @@ function MainPage() {
         <div>
           <div>
             <div className="category_sub_title_box">
-              {/* <GetCategoryVotes
-                votes={votes}
-                nickname={nickname}
-                jwtToken={jwtToken}
-                isLoggedIn={isLoggedIn}
-                userId={userId}
-                navigate={navigate}
-              /> */}
               {GetCategoryVotes(
                 votes,
                 nickname,
