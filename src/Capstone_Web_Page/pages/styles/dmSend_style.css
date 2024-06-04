@@ -63,11 +63,11 @@
 }
 
 .dmSend_Page_user_name {
-  font-size: 1.1rem;
-  color: #ccc;
+  font-size: 0.8rem;
+  color: #000000;
 }
 .dmSend_Page_user_date {
-  font-size: 0.8rem;
+  font-size: 0.5rem;
   color: #ccc;
 }
 .dmSend_Page_body {
