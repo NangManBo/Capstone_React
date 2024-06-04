@@ -64,6 +64,7 @@ function MainPage() {
         // Extracting and mapping relevant data from the response
         const formattedMessages = messagesData.map(
           (message) => ({
+            messageId: message.messageId,
             username: message.sender,
             time: message.sendTime,
             title: message.content,

@@ -33,6 +33,7 @@ function DMboxPage() {
         if (response.status === 200) {
           const formattedMessages = response.data.map(
             (message) => ({
+              messageId: message.messageId,
               username: message.sender,
               time: moment(message.sendTime).format(
                 'YYYY-MM-DD HH:mm'
@@ -54,24 +55,32 @@ function DMboxPage() {
 
   const handleItemClick = async (index) => {
     const selectedMessage = messages[index];
-    navigate('/dm', {
-      state: {
-        ...location.state,
-        item: selectedMessage,
-        messageId1: selectedMessage.messageId1,
-      },
-    });
-  };
 
-  const goToMain = () => {
-    navigate('/', {
-      state: {
-        isLoggedIn,
-        userId,
-        nickname,
-        jwtToken,
-      },
-    });
+    // Fetch the message by messageId (Long 타입으로 전달)
+    try {
+      const messageResponse = await axios.get(
+        'https://dovote.p-e.kr/message/read/' +
+          selectedMessage.messageId,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: jwtToken,
+          },
+        }
+      );
+
+      if (messageResponse.status === 200) {
+        const updatedMessage = messageResponse.data;
+        console.log('Updated message:', updatedMessage);
+        navigate('/dm', {
+          state: {
+            ...location.state,
+            item: selectedMessage,
+          },
+        });
+      } else {
+      }
+    } catch (error) {}
   };
 
   return (

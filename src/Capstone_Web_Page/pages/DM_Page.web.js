@@ -13,12 +13,10 @@ function DMPage() {
   const {
     isLoggedIn,
     userId,
-    isRead,
     nickname,
     jwtToken,
-    item,
-    unreadMessageCount,
     keyId,
+    item,
   } = location.state; // useLocation을 사용하여 state 접근
 
   useEffect(() => {
