@@ -62,13 +62,12 @@
   margin-bottom: 40px;
 }
 
-.dmSend_Page_user span {
-  font-size: 1.4rem;
-  font-weight: bold;
+.dmSend_Page_user_name {
+  font-size: 1.1rem;
+  color: #ccc;
 }
-
 .dmSend_Page_user_date {
-  font-size: 1.2rem;
+  font-size: 0.8rem;
   color: #ccc;
 }
 .dmSend_Page_body {
