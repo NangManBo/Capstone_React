@@ -40,7 +40,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   margin-top: 3%;
   font-size: 20px;
   padding: 10px;
@@ -68,4 +67,8 @@
 
 .alarm_box_text {
   padding: 5px;
+}
+
+.alarm_box_in_true p {
+  padding: 0;
 }
