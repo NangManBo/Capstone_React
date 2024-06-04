@@ -44,10 +44,9 @@
 }
 
 .manager_category_sub_box h4 {
-  margin-top: 10%;
+  margin-top: 10px;
   font-size: 1.3rem; /* 항목 제목의 크기를 조정합니다 */
   color: #333; /* 항목 제목의 색상을 조정합니다 */
-
   overflow: hidden; /* 내용이 넘칠 경우 숨깁니다 */
   text-overflow: ellipsis; /* 넘치는 텍스트를 말줄임표로 처리합니다 */
   white-space: nowrap; /* 텍스트가 한 줄로 표시되도록 합니다 */
