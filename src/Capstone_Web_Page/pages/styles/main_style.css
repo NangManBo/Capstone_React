@@ -22,6 +22,11 @@
   margin-bottom: 20px;
 }
 
+.all_category_span {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
 /* 태블릿 화면 대응: 화면 너비가 768px 이하일 때 */
 /* 2개의 컬럼으로 변경 */
 /* @media (max-width: 768px) {
