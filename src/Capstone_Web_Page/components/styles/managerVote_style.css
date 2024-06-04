@@ -44,7 +44,8 @@
 }
 
 .manager_category_sub_box h4 {
-  font-size: 1.2rem; /* 항목 제목의 크기를 조정합니다 */
+  margin-top: 10%;
+  font-size: 1.3rem; /* 항목 제목의 크기를 조정합니다 */
   color: #333; /* 항목 제목의 색상을 조정합니다 */
   margin: 0; /* 기본 마진을 제거합니다 */
   overflow: hidden; /* 내용이 넘칠 경우 숨깁니다 */
