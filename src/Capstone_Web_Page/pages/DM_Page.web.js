@@ -54,11 +54,21 @@ function DMPage() {
           </div>
 
           <div>
-            <span>전송일시 {item.time}</span>
+            <span>
+              전송일시{' '}
+              {new Date(item.time).toLocaleString('ko-KR', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+              })}
+            </span>
           </div>
-        </div>
-        <div>
-          <span>{item.title}</span>
+          <div>
+            <span>{item.title}</span>
+          </div>
         </div>
       </div>
     </div>

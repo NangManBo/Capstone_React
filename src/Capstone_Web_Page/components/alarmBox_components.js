@@ -59,7 +59,11 @@ export const AlarmBox = (
               recentMessages.map((message, index) => (
                 <div
                   key={index}
-                  className="alarm_message"
+                  className={
+                    message.isRead
+                      ? 'alarm_message_true'
+                      : 'alarm_message_false'
+                  }
                   onClick={() => handleItemClick(index)}
                   style={{ cursor: 'pointer' }} // 클릭 가능한 커서 스타일 추가
                 >
