@@ -19,6 +19,11 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 그림자를 추가하여 입체감을 줍니다 */
 }
 
+.user_box_log {
+  width: 360px;
+  height: 30px;
+  justify-content: right;
+}
 .user_box_header {
   display: flex;
   flex-direction: row;

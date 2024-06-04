@@ -19,6 +19,14 @@ export const UserBox = (
   const goToSignup = () => {
     navigate('/signup', {});
   };
+  const goToLogout = () => {
+    navigate('/', {
+      isLoggedIn: false,
+      userId: '',
+      jwtToken: '',
+      nickname: null,
+    });
+  };
   const goToVoteMake = () => {
     navigate('/votemake', {
       state: {
@@ -35,6 +43,9 @@ export const UserBox = (
     <div className="user_box_center">
       {isLoggedIn ? (
         <div className="user_box">
+          <div className="user_box_log">
+            <h4 onClick={goToLogout}>로그아웃</h4>
+          </div>
           <div className="user_box_header">
             <img
               src={require('../assets/user.png')}
