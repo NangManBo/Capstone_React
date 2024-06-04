@@ -51,7 +51,11 @@ export const AlarmBox = (
         console.log('Updated message:', updatedMessage);
         navigate('/dm', {
           state: {
-            ...location.state,
+            isLoggedIn,
+            userId,
+            jwtToken,
+            nickname,
+            keyId,
             item: selectedMessage,
           },
         });
