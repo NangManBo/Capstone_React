@@ -57,8 +57,11 @@ export const AlarmBox = (
           },
         });
       } else {
+        // 에러 처리
       }
-    } catch (error) {}
+    } catch (error) {
+      // 에러 처리
+    }
   };
 
   return (
@@ -87,7 +90,9 @@ export const AlarmBox = (
                 >
                   <p>
                     <strong>{message.username}</strong> :{' '}
-                    {message.title}
+                    {message.title.length > 10
+                      ? `${message.title.slice(0, 10)}..`
+                      : message.title}
                   </p>
                   <p className="alarm_box_text">
                     {new Date(
