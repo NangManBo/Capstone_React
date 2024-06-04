@@ -86,10 +86,10 @@ export const AlarmBox = (
                   style={{ cursor: 'pointer' }} // 클릭 가능한 커서 스타일 추가
                 >
                   <p>
-                    <strong>{message.username}</strong>:{' '}
+                    <strong>{message.username}</strong> :{' '}
                     {message.title}
                   </p>
-                  <p>
+                  <p className="alarm_box_text">
                     {new Date(
                       message.time
                     ).toLocaleString()}
