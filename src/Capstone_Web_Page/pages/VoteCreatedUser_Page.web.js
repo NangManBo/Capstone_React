@@ -288,6 +288,7 @@ function VoteCreatedUserPage() {
         }
       );
       if (response.status === 200) {
+        console.log('투표 종료 성공', response.data);
       } else {
       }
     } catch (error) {}
