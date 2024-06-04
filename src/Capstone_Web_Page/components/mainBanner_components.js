@@ -10,7 +10,8 @@ export const MainBanner = (
   isLoggedIn,
   userId,
   nickname,
-  keyId
+  keyId,
+  isMain = false
 ) => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
@@ -114,12 +115,14 @@ export const MainBanner = (
             >
               내 정보
             </label>
-            <label
-              className="banner_text"
-              onClick={goToLogout}
-            >
-              로그아웃
-            </label>
+            {isMain ? (
+              <label
+                className="banner_text"
+                onClick={goToLogout}
+              >
+                로그아웃
+              </label>
+            ) : null}
           </div>
         ) : (
           <div>

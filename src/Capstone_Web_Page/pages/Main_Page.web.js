@@ -20,7 +20,7 @@ function MainPage() {
       userId: '',
       nickname: null,
     };
-
+  const [isMain, setIsMain] = useState(true);
   const [unreadMessageCount, setUnreadMessageCount] =
     useState(0);
   const [votes, setVotes] = useState([]); // 상태 추가
@@ -118,7 +118,8 @@ function MainPage() {
         isLoggedIn, // 또는 조건에 따라 변하는 값
         userId,
         nickname,
-        keyId
+        keyId,
+        isMain
       )}
       <div className="main_page">
         <div className="main_page_header">
