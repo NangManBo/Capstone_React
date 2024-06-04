@@ -307,7 +307,20 @@ function VoteAfterPage() {
         <div className="comment_box">
           <div className="commnet_box_user">
             <span>작성자 : {comment.userNickname}</span>
-            <span>작성시간: {comment.time}</span>
+            <span>
+              작성시간:{' '}
+              {new Date(comment.time).toLocaleString(
+                'ko-KR',
+                {
+                  year: 'numeric',
+                  month: '2-digit',
+                  day: '2-digit',
+                  hour: '2-digit',
+                  minute: '2-digit',
+                  second: '2-digit',
+                }
+              )}
+            </span>
           </div>
 
           <div>
@@ -386,7 +399,17 @@ function VoteAfterPage() {
                       작성자 : {childComment.userNickname}
                     </span>
                     <span>
-                      작성시간: {childComment.time}
+                      작성시간:{' '}
+                      {new Date(
+                        childComment.time
+                      ).toLocaleString('ko-KR', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                      })}
                     </span>
                   </div>
                   <div>

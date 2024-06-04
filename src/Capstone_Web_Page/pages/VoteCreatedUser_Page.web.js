@@ -268,8 +268,8 @@ function VoteCreatedUserPage() {
         'https://dovote.p-e.kr/polls/popularpoint',
         {
           headers: {
-            'Content-Type': 'application/json',
             Authorization: jwtToken,
+            'Content-Type': 'application/json',
           },
         }
       );
