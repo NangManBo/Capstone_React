@@ -46,7 +46,7 @@ function DMPage() {
           <FontAwesomeIcon icon={faArrowAltCircleLeft} />{' '}
           이전 페이지로
         </h2>
-        <div className="dmSend_Page">
+        <div className="dm_Page">
           <div className="dmSend_Page_user">
             <span className="dmSend_Page_user_name">
               {item.username}의 쪽지
