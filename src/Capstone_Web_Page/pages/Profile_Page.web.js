@@ -104,11 +104,6 @@ function ProfilePage() {
     } catch (error) {}
   };
 
-  const handleLogout = () => {
-    navigate('/', {
-      isLoggedIn: false,
-    });
-  };
   const handleProfileChange = () => {
     navigate('/userauthentication', {
       state: {
