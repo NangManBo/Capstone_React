@@ -120,8 +120,6 @@ function MainPage() {
     navigate('/searchresult', {
       state: {
         keyId,
-        searchResults: null,
-        searchQuery: null,
         isLoggedIn,
         userId,
         jwtToken,
