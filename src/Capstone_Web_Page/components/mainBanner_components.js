@@ -11,7 +11,7 @@ export const MainBanner = (
   userId,
   nickname,
   keyId,
-  isMain = false
+  isMain
 ) => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
