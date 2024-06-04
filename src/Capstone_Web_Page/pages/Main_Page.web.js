@@ -26,6 +26,7 @@ function MainPage() {
   const [votes, setVotes] = useState([]); // 상태 추가
   const [messages, setMessages] = useState([]);
   const [popularPoint, setPopularPoint] = useState(0);
+
   const getPopularPoint = async () => {
     try {
       const popularPointResponse = await axios.get(
@@ -39,6 +40,7 @@ function MainPage() {
       );
       if (popularPointResponse.status === 200) {
         setPopularPoint(popularPointResponse.data);
+        console.log(popularPointResponse.data);
       } else {
       }
     } catch {}
