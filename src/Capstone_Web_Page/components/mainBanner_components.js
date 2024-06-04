@@ -115,14 +115,14 @@ export const MainBanner = (
             >
               내 정보
             </label>
-            {isMain ? (
+            {isMain ? null : (
               <label
                 className="banner_text"
                 onClick={goToLogout}
               >
                 로그아웃
               </label>
-            ) : null}
+            )}
           </div>
         ) : (
           <div>
