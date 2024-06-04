@@ -67,8 +67,10 @@
 
 .alarm_box_text {
   padding: 5px;
+  margin-top: 10px;
 }
 
 .alarm_box_in_true p {
   padding: 0;
+  border: 0;
 }
