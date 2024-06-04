@@ -22,8 +22,17 @@
 .user_box_log {
   width: 360px;
   height: 30px;
+  display: flex;
   justify-content: right;
+  align-items: right;
 }
+.user_box_log h4 {
+  margin: 0;
+  padding: 0;
+  font-size: 1.1rem;
+  color: #868686;
+}
+
 .user_box_header {
   display: flex;
   flex-direction: row;
