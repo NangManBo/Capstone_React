@@ -61,13 +61,14 @@ function DMPage() {
           <FontAwesomeIcon icon={faArrowAltCircleLeft} />{' '}
           이전 페이지로
         </h2>
-        <div className="fixed_button">
-          <FontAwesomeIcon
-            onClick={() => handlemessge(item)}
-            icon={faPaperPlane}
-          />
-        </div>
+
         <div className="dm_Page">
+          <div className="fixed_button">
+            <FontAwesomeIcon
+              onClick={() => handlemessge(item)}
+              icon={faPaperPlane}
+            />
+          </div>
           <div className="dmSend_Page_user">
             <span className="dmSend_Page_user_name">
               {item.username}의 쪽지
