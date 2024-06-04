@@ -21,6 +21,7 @@
   border-radius: 8px;
   height: inherit;
   width: 520px;
+  height: 80px;
   border: 1px solid #ccc;
   cursor: pointer;
   transition: background-color 0.3s;
