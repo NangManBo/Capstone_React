@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles/alarmBox_style.css';
 import { useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 export const AlarmBox = (
   isLoggedIn,
@@ -51,11 +52,7 @@ export const AlarmBox = (
         console.log('Updated message:', updatedMessage);
         navigate('/dm', {
           state: {
-            isLoggedIn,
-            userId,
-            jwtToken,
-            nickname,
-            keyId,
+            ...location.state,
             item: selectedMessage,
           },
         });
