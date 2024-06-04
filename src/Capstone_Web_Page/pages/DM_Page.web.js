@@ -47,12 +47,9 @@ function DMPage() {
           이전 페이지로
         </h2>
         <div className="dmSend_Page">
-          <div>
+          <div className="dmSend_Page_user">
             <span>{item.username}의 쪽지</span>
-          </div>
-
-          <div>
-            <span>
+            <span className="dmSend_Page_user_date">
               전송일시{' '}
               {new Date(item.time).toLocaleString('ko-KR', {
                 year: 'numeric',
@@ -64,7 +61,8 @@ function DMPage() {
               })}
             </span>
           </div>
-          <div>
+
+          <div className="dmSend_Page_body">
             <span>{item.title}</span>
           </div>
         </div>
