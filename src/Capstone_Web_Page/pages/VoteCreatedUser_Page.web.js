@@ -266,6 +266,7 @@ function VoteCreatedUserPage() {
     try {
       const response = await axios.post(
         'https://dovote.p-e.kr/polls/popularpoint',
+        vote.id,
         {
           headers: {
             Authorization: jwtToken,
