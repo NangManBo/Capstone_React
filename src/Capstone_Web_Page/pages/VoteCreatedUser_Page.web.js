@@ -271,7 +271,6 @@ function VoteCreatedUserPage() {
         },
         {
           headers: {
-            Authorization: jwtToken,
             'Content-Type': 'application/json',
           },
         }
