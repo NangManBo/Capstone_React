@@ -60,7 +60,7 @@ function MainPage() {
       if (response.status === 200) {
         // Assuming the response data is an array of messages
         const messagesData = response.data;
-
+        console.log(messagesData);
         // Extracting and mapping relevant data from the response
         const formattedMessages = messagesData.map(
           (message) => ({
