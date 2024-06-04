@@ -111,23 +111,6 @@ function MainPage() {
     }
   }, []);
 
-  const handleSearch = async () => {
-    const searchResults = await fetchSearch(
-      jwtToken,
-      searchQuery
-    );
-
-    navigate('/searchresult', {
-      state: {
-        keyId,
-        isLoggedIn,
-        userId,
-        jwtToken,
-        nickname,
-      },
-    });
-  };
-
   return (
     <div className="Page">
       {MainBanner(
@@ -177,13 +160,6 @@ function MainPage() {
           keyId
         )}
         <div>
-          <span
-            onClick={handleSearch}
-            className="all_category_span"
-          >
-            전체 카테고리{' '}
-            <i className="fa-solid fa-chevron-right"></i>
-          </span>
           <div>
             <div className="category_sub_title_box">
               {GetCategoryVotes(
