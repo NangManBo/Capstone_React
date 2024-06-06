@@ -61,18 +61,17 @@ function VoteOnlyLookPage() {
       {LeftBar('', false, '', null, null)}
       <div className="right_page">
         <div className="vote_button_back_like_box">
-          <h2
-            className="goBackButton"
+          <div
             onClick={() =>
               isCategory ? goToCategory() : goToMain()
             }
           >
             <FontAwesomeIcon icon={faArrowAltCircleLeft} />{' '}
             이전 페이지로
-          </h2>
-          <h2 className="likeButton">
+          </div>
+          <div>
             <FontAwesomeIcon icon={faHeart} color="black" />
-          </h2>
+          </div>
         </div>
         <div>
           <div className="vote_header">

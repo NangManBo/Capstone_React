@@ -441,7 +441,7 @@ function VoteEndPage() {
       )}
       <div className="right_page">
         <div className="vote_button_back_like_box">
-          <h2
+          <div
             className="goBackButton"
             onClick={() =>
               isCategory ? goToCategory() : goToMain()
@@ -449,8 +449,8 @@ function VoteEndPage() {
           >
             <FontAwesomeIcon icon={faArrowAltCircleLeft} />{' '}
             이전 페이지로
-          </h2>
-          <h2
+          </div>
+          <div
             className="likeButton"
             onClick={() => handleHeartClick()}
           >
@@ -462,7 +462,7 @@ function VoteEndPage() {
             ) : (
               <FontAwesomeIcon icon={faHeart} color="red" />
             )}
-          </h2>
+          </div>
         </div>
         <div>
           <div className="vote_header">
