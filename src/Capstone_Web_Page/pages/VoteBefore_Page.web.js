@@ -154,11 +154,18 @@ function VoteBeforePage() {
               isCategory ? goToCategory() : goToMain()
             }
           >
-            <FontAwesomeIcon icon={faArrowAltCircleLeft} />{' '}
+            <FontAwesomeIcon
+              icon={faArrowAltCircleLeft}
+              style={{ fontSize: '36px' }}
+            />{' '}
             이전 페이지로
           </div>
           <div className="likeButton">
-            <FontAwesomeIcon icon={faHeart} color="black" />
+            <FontAwesomeIcon
+              icon={faHeart}
+              color="black"
+              style={{ fontSize: '36px' }}
+            />
           </div>
         </div>
         <div>

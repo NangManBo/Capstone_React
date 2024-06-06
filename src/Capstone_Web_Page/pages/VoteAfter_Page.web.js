@@ -632,7 +632,10 @@ function VoteAfterPage() {
               isCategory ? goToCategory() : goToMain()
             }
           >
-            <FontAwesomeIcon icon={faArrowAltCircleLeft} />{' '}
+            <FontAwesomeIcon
+              icon={faArrowAltCircleLeft}
+              style={{ fontSize: '36px' }}
+            />{' '}
             이전 페이지로
           </div>
           <div
@@ -643,9 +646,14 @@ function VoteAfterPage() {
               <FontAwesomeIcon
                 icon={faHeart}
                 color="black"
+                style={{ fontSize: '36px' }}
               />
             ) : (
-              <FontAwesomeIcon icon={faHeart} color="red" />
+              <FontAwesomeIcon
+                icon={faHeart}
+                color="red"
+                style={{ fontSize: '36px' }}
+              />
             )}
           </div>
         </div>
