@@ -585,7 +585,29 @@ function VoteAfterPage() {
       },
     });
   };
+  const voteDelete = async () => {
+    try {
+      const response = await axios.delete(
+        `https://dovote.p-e.kr/polls/${vote.id}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: jwtToken,
+          },
+        }
+      );
 
+      navigate('/', {
+        state: {
+          isLoggedIn,
+          userId,
+          jwtToken,
+          nickname,
+          keyId,
+        },
+      });
+    } catch (error) {}
+  };
   return (
     <div className="vote_page">
       {MainBanner(
@@ -748,6 +770,14 @@ function VoteAfterPage() {
                 >
                   X
                 </button>
+                {vote.createdBy === nickname ? (
+                  <button
+                    onClick={voteDelete}
+                    className="vote_end_button_2"
+                  >
+                    투표 삭제하기
+                  </button>
+                ) : null}
               </div>
             </div>
           </div>

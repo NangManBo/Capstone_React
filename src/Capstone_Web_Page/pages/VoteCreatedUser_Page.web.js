@@ -651,18 +651,16 @@ function VoteCreatedUserPage() {
           },
         }
       );
-      if (response.status === 200) {
-        navigate('/', {
-          state: {
-            isLoggedIn,
-            userId,
-            jwtToken,
-            nickname,
-            keyId,
-          },
-        });
-      } else {
-      }
+
+      navigate('/', {
+        state: {
+          isLoggedIn,
+          userId,
+          jwtToken,
+          nickname,
+          keyId,
+        },
+      });
     } catch (error) {}
   };
   return (
@@ -821,12 +819,14 @@ function VoteCreatedUserPage() {
               >
                 투표 종료하기
               </button>
-              <button
-                onClick={handleEndVote}
-                className="vote_end_button_2"
-              >
-                투표 삭제하기
-              </button>
+              {vote.createdBy === nickname ? (
+                <button
+                  onClick={voteDelete}
+                  className="vote_end_button_2"
+                >
+                  투표 삭제하기
+                </button>
+              ) : null}
             </div>
           </div>
 

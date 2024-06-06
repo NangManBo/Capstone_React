@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
+import { faImage } from '@fortawesome/free-regular-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { MainBanner } from '../components/mainBanner_components';
 import { LeftBar } from '../components/leftBar_components';
@@ -50,6 +51,14 @@ function VoteEndPage() {
     { label: '최신 순', value: '시간' },
     { label: '인기 순', value: '인기' },
   ];
+
+  const [send, setSend] = useState(false);
+  const [showReplyInput, setShowReplyInput] =
+    useState(false);
+  const [commentError, setCommentError] = useState('');
+  const [selectedMedia, setSelectedMedia] = useState(null);
+  const [isReplyMode, setIsReplyMode] = useState(false);
+  const [commentText, setCommentText] = useState('');
   const [sameOption, setSameOption] = useState([]);
   const videoRef = useRef(null);
   const [heartType, setHeartType] = useState('empty');
@@ -57,6 +66,9 @@ function VoteEndPage() {
   const [sortedComments, setSortedComments] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
   const [showReply, setShowReply] = useState({});
+  const [mediaFile, setMediaFile] = useState(null);
+  const [replyText, setReplyText] = useState('');
+  const [replyingIndex, setReplyingIndex] = useState(null);
   const [sortingStandard, setSortingStandard] =
     useState('시간'); // 초기 정렬 기준을 '시간'으로 설정
   const [pollOptions, setPollOptions] = useState([]);
@@ -398,7 +410,25 @@ function VoteEndPage() {
     }
     countData();
   }, [vote]);
+  // 사진 고른거 삭제
+  const cancelImage = () => {
+    setSelectedMedia(null);
+  };
+  const handleImageChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      const fileType = file.type.split('/')[0]; // This will be 'image' or 'video'
 
+      if (fileType === 'image' || fileType === 'video') {
+        setSelectedMedia(URL.createObjectURL(file)); // Set preview URL
+        setMediaFile(file); // Save the file for later use
+      } else {
+        alert('Only images and videos are allowed.');
+        setSelectedMedia(null);
+        setMediaFile(null);
+      }
+    }
+  };
   const goToMain = () => {
     navigate('/', {
       state: {
@@ -422,7 +452,155 @@ function VoteEndPage() {
       },
     });
   };
+  // 댓글 작성
+  const handleCommentSubmit = async () => {
+    setSend(true);
 
+    try {
+      if (!commentText.trim()) {
+        alert('댓글 내용을 입력하세요.');
+        return;
+      }
+
+      let formData = new FormData();
+
+      // Add comment content as a string
+
+      formData.append(
+        'content',
+        JSON.stringify({ content: commentText })
+      );
+      formData.append(
+        'uid',
+        JSON.stringify({ uid: userId })
+      );
+      formData.append(
+        'pollId',
+        JSON.stringify({ pollId: vote.id })
+      );
+
+      if (mediaFile) {
+        formData.append('mediaData', mediaFile);
+      }
+
+      const response = await axios.post(
+        `https://dovote.p-e.kr/comments/${userId}/${vote.id}`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: jwtToken,
+          },
+        }
+      );
+
+      if (response.status === 201) {
+        const contentType =
+          response.headers.get('content-type');
+        setSend(false);
+        setSelectedMedia(null);
+        if (
+          contentType &&
+          contentType.includes('application/json')
+        ) {
+        } else {
+        }
+        setCommentText('');
+      } else {
+      }
+    } catch (error) {}
+  };
+  // 대댓글 작성
+  const handleAddReplySubmit = async () => {
+    setSend(true);
+    try {
+      if (replyText.trim() === '') {
+        setCommentError('답글 내용을 입력하세요.');
+        return;
+      }
+      if (!isReplyMode || replyingIndex === null) {
+        return;
+      }
+      let formData = new FormData();
+      const parentCommentId = replyingIndex; // Get the parent comment ID
+
+      formData.append(
+        'content',
+        JSON.stringify({ content: replyText })
+      );
+      if (selectedMedia) {
+        const localUri = selectedMedia;
+        const filename = localUri.split('/').pop();
+        const match = /\.(\w+)$/.exec(filename ?? '');
+        const type = match ? `image/${match[1]}` : 'image';
+
+        const response = await fetch(localUri);
+        const blob = await response.blob();
+
+        // Append the image data to FormData with the key "mediaData"
+        formData.append('mediaData', {
+          uri: localUri,
+          name: filename,
+          type: type,
+          blob: blob,
+        });
+      }
+      const response = await axios.post(
+        `https://dovote.p-e.kr/comments/${userId}/${vote.id}/${parentCommentId}`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: jwtToken,
+          },
+        }
+      );
+
+      if (response.status === 201) {
+        const contentType =
+          response.headers.get('content-type');
+        setSend(false);
+        setSelectedMedia(null);
+        if (
+          contentType &&
+          contentType.includes('application/json')
+        ) {
+        } else {
+        }
+
+        setIsReplyMode(false);
+        setCommentText('');
+      } else {
+      }
+    } catch (error) {}
+
+    setShowReplyInput(false);
+    setReplyingIndex(null);
+    setCommentError('');
+  };
+  const voteDelete = async () => {
+    try {
+      const response = await axios.delete(
+        `https://dovote.p-e.kr/polls/${vote.id}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: jwtToken,
+          },
+        }
+      );
+
+      navigate('/', {
+        state: {
+          isLoggedIn,
+          userId,
+          jwtToken,
+          nickname,
+          keyId,
+        },
+      });
+    } catch (error) {}
+  };
   return (
     <div className="vote_page">
       {MainBanner(
@@ -562,7 +740,73 @@ function VoteEndPage() {
               </select>
             </div>
           </div>
+          <div className="comment_write_box">
+            {selectedMedia && (
+              <img
+                src={selectedMedia}
+                alt="Selected media"
+                className="comment_image"
+              />
+            )}
+            <div className="comment_write_input">
+              <input
+                type="text"
+                placeholder={
+                  isReplyMode
+                    ? '답글을 입력하세요.'
+                    : '댓글을 입력하세요.'
+                }
+                value={
+                  isReplyMode ? replyText : commentText
+                }
+                onChange={(e) =>
+                  isReplyMode
+                    ? setReplyText(e.target.value)
+                    : setCommentText(e.target.value)
+                }
+              />
+              <button
+                className="comment_write_button"
+                onClick={
+                  isReplyMode
+                    ? handleAddReplySubmit
+                    : handleCommentSubmit
+                }
+              >
+                댓글 작성
+              </button>
+              <div className="comment_image_button">
+                <input
+                  type="file"
+                  accept="image/*,video/*"
+                  onChange={handleImageChange}
+                  id="file-input"
+                  className="custom-file-input"
+                />
+                <label
+                  htmlFor="file-input"
+                  className="custom-file-label"
+                >
+                  <FontAwesomeIcon icon={faImage} />
+                </label>
 
+                <button
+                  className="cancel-button"
+                  onClick={cancelImage}
+                >
+                  X
+                </button>
+                {vote.createdBy === nickname ? (
+                  <button
+                    onClick={voteDelete}
+                    className="vote_end_button_2"
+                  >
+                    투표 삭제하기
+                  </button>
+                ) : null}
+              </div>
+            </div>
+          </div>
           <div className="comment_body_box">
             {sortedComments.map((comment, index) => (
               <Comment
