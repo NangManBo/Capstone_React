@@ -10,6 +10,7 @@ body {
 }
 
 .goBackButton {
+  margin: 0;
   position: absolute;
   top: 140px;
   width: 200px;
@@ -18,8 +19,9 @@ body {
 
 .likeButton {
   position: absolute;
+  margin: 0;
   top: 140px;
-  left: 1000px;
+  left: 1600px;
   width: 200px;
   margin-bottom: 50px;
 }
