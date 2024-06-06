@@ -24,7 +24,7 @@ function PhoneAuthenticationModal({
         },
         {
           headers: {
-            'content-type': 'application/json',
+            'Content-type': 'application/json',
           },
         }
       );
@@ -49,7 +49,7 @@ function PhoneAuthenticationModal({
         },
         {
           header: {
-            'content-type': 'application/json',
+            'Content-type': 'application/json',
           },
         }
       );

@@ -20,7 +20,7 @@ function LogInPage() {
         userData,
         {
           headers: {
-            'content-type': 'application/json',
+            'Content-type': 'application/json',
           },
         }
       );

@@ -12,7 +12,25 @@ import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { faReply } from '@fortawesome/free-solid-svg-icons';
+import { faImage } from '@fortawesome/free-regular-svg-icons';
 import './styles/vote_style.css';
+
+const calculateTotalComments = (comments) => {
+  let totalComments = 0;
+
+  comments.forEach((comment) => {
+    totalComments += 1; // 본 댓글
+    if (
+      comment.childrenComment &&
+      comment.childrenComment.length > 0
+    ) {
+      totalComments += comment.childrenComment.length; // 대댓글
+    }
+  });
+
+  return totalComments;
+};
 
 function VoteCreatedUserPage() {
   const navigate = useNavigate();
@@ -30,6 +48,9 @@ function VoteCreatedUserPage() {
     keyId,
   } = location.state || { isCategory: false };
   const videoRef = useRef(null);
+  const [selectedMedia, setSelectedMedia] = useState(null);
+  const [send, setSend] = useState(false);
+  const [commentError, setCommentError] = useState('');
   const [comments, setComments] = useState([]); // 댓글
   const [sortedComments, setSortedComments] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -37,6 +58,14 @@ function VoteCreatedUserPage() {
   const [sameOption, setSameOption] = useState([]);
   const [sortingStandard, setSortingStandard] =
     useState('시간'); // 초기 정렬 기준을 '시간'으로 설정
+  const [replyText, setReplyText] = useState('');
+  const [replyingIndex, setReplyingIndex] = useState(null);
+  const [isReplyMode, setIsReplyMode] = useState(false);
+  const [showReplyInput, setShowReplyInput] =
+    useState(false);
+  const [commentText, setCommentText] = useState('');
+  const totalComments = calculateTotalComments(comments);
+  const [mediaFile, setMediaFile] = useState(null);
   const standards = [
     { label: '최신 순', value: '시간' },
     { label: '인기 순', value: '인기' },
@@ -57,6 +86,46 @@ function VoteCreatedUserPage() {
     });
   };
 
+  // 댓글 좋아요
+  const commentLike = async (comment, index) => {
+    setSend(true);
+
+    try {
+      const response = await axios.post(
+        `https://dovote.p-e.kr/comments/like/${userId}/${vote.id}/${comment.id}`,
+
+        {
+          headers: {
+            Authorization: jwtToken,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        setSend(false);
+      } else {
+      }
+    } catch (error) {}
+  };
+  // 사진 고른거 삭제
+  const cancelImage = () => {
+    setSelectedMedia(null);
+  };
+  const handleImageChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      const fileType = file.type.split('/')[0]; // This will be 'image' or 'video'
+
+      if (fileType === 'image' || fileType === 'video') {
+        setSelectedMedia(URL.createObjectURL(file)); // Set preview URL
+        setMediaFile(file); // Save the file for later use
+      } else {
+        alert('Only images and videos are allowed.');
+        setSelectedMedia(null);
+        setMediaFile(null);
+      }
+    }
+  };
   // 대댓글에서 쪽지 보내기
   const handlemessge1 = (childComment) => {
     navigate('/dmautosend', {
@@ -69,6 +138,21 @@ function VoteCreatedUserPage() {
         receiverName: childComment.nickname,
       },
     });
+  };
+  // 대댓글
+  const handleReplyPress = (comment, index) => {
+    if (replyingIndex === index) {
+      // If the reply button is pressed again, reset to a regular comment
+      setReplyingIndex(null);
+      setReplyText('');
+      setIsReplyMode(false); // Turn off reply mode
+    } else {
+      setReplyingIndex(comment.id);
+      setReplyText(`@${comment.userNickname} `);
+      setIsReplyMode(true); // Turn on reply mode
+    }
+    setShowReplyInput(true);
+    setCommentText(''); // Reset regular comment text
   };
   useEffect(() => {
     fetchComments(vote.id, jwtToken, setComments);
@@ -86,6 +170,9 @@ function VoteCreatedUserPage() {
     jwtToken,
     sortingStandard,
   ]);
+  useEffect(() => {
+    sortComments(sortingStandard);
+  }, [comments, sortingStandard]);
   //댓글 출력 창
   const Comment = ({ comment, index }) => {
     const handlePlayPause = () => {
@@ -110,7 +197,20 @@ function VoteCreatedUserPage() {
         <div className="comment_box">
           <div className="commnet_box_user">
             <span>작성자 : {comment.userNickname}</span>
-            <span>작성시간: {comment.time}</span>
+            <span>
+              작성시간:{' '}
+              {new Date(comment.time).toLocaleString(
+                'ko-KR',
+                {
+                  year: 'numeric',
+                  month: '2-digit',
+                  day: '2-digit',
+                  hour: '2-digit',
+                  minute: '2-digit',
+                  second: '2-digit',
+                }
+              )}
+            </span>
           </div>
 
           <div>
@@ -139,7 +239,10 @@ function VoteCreatedUserPage() {
             )}
           </div>
           <div className="comment_like_reply_box">
-            <div className="comment_like_button">
+            <div
+              className="comment_like_button"
+              onClick={() => commentLike(comment, index)}
+            >
               <FontAwesomeIcon icon={faThumbsUp} />
               <span className="comment_like_count">
                 {comment.likes}
@@ -158,6 +261,13 @@ function VoteCreatedUserPage() {
                     icon={faMessage}
                   />
                 )}
+
+              <FontAwesomeIcon
+                onClick={() =>
+                  handleReplyPress(comment, index)
+                }
+                icon={faReply}
+              />
 
               <FontAwesomeIcon
                 onClick={() => handlemessge(comment)}
@@ -179,7 +289,17 @@ function VoteCreatedUserPage() {
                       작성자 : {childComment.userNickname}
                     </span>
                     <span>
-                      작성시간: {childComment.time}
+                      작성시간:{' '}
+                      {new Date(
+                        childComment.time
+                      ).toLocaleString('ko-KR', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                      })}
                     </span>
                   </div>
                   <div>
@@ -207,7 +327,16 @@ function VoteCreatedUserPage() {
                   </div>
                   <div className="comment_like_reply_box">
                     <div className="comment_like_button">
-                      <FontAwesomeIcon icon={faThumbsUp} />
+                      <FontAwesomeIcon
+                        onClick={() =>
+                          commentLike(
+                            childComment,
+                            index,
+                            childIndex
+                          )
+                        }
+                        icon={faThumbsUp}
+                      />
                       <span>{childComment.likes}</span>
                     </div>
                     <div>
@@ -256,6 +385,132 @@ function VoteCreatedUserPage() {
         setSortedComments(sorted);
       }
     }
+  };
+  // 댓글 작성
+  const handleCommentSubmit = async () => {
+    setSend(true);
+
+    try {
+      if (!commentText.trim()) {
+        alert('댓글 내용을 입력하세요.');
+        return;
+      }
+
+      let formData = new FormData();
+
+      // Add comment content as a string
+
+      formData.append(
+        'content',
+        JSON.stringify({ content: commentText })
+      );
+      formData.append(
+        'uid',
+        JSON.stringify({ uid: userId })
+      );
+      formData.append(
+        'pollId',
+        JSON.stringify({ pollId: vote.id })
+      );
+
+      if (mediaFile) {
+        formData.append('mediaData', mediaFile);
+      }
+
+      const response = await axios.post(
+        `https://dovote.p-e.kr/comments/${userId}/${vote.id}`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: jwtToken,
+          },
+        }
+      );
+
+      if (response.status === 201) {
+        const contentType =
+          response.headers.get('content-type');
+        setSend(false);
+        setSelectedMedia(null);
+        if (
+          contentType &&
+          contentType.includes('application/json')
+        ) {
+        } else {
+        }
+        setCommentText('');
+      } else {
+      }
+    } catch (error) {}
+  };
+  // 대댓글 작성
+  const handleAddReplySubmit = async () => {
+    setSend(true);
+    try {
+      if (replyText.trim() === '') {
+        setCommentError('답글 내용을 입력하세요.');
+        return;
+      }
+      if (!isReplyMode || replyingIndex === null) {
+        return;
+      }
+      let formData = new FormData();
+      const parentCommentId = replyingIndex; // Get the parent comment ID
+
+      formData.append(
+        'content',
+        JSON.stringify({ content: replyText })
+      );
+      if (selectedMedia) {
+        const localUri = selectedMedia;
+        const filename = localUri.split('/').pop();
+        const match = /\.(\w+)$/.exec(filename ?? '');
+        const type = match ? `image/${match[1]}` : 'image';
+
+        const response = await fetch(localUri);
+        const blob = await response.blob();
+
+        // Append the image data to FormData with the key "mediaData"
+        formData.append('mediaData', {
+          uri: localUri,
+          name: filename,
+          type: type,
+          blob: blob,
+        });
+      }
+      const response = await axios.post(
+        `https://dovote.p-e.kr/comments/${userId}/${vote.id}/${parentCommentId}`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: jwtToken,
+          },
+        }
+      );
+
+      if (response.status === 201) {
+        const contentType =
+          response.headers.get('content-type');
+        setSend(false);
+        setSelectedMedia(null);
+        if (
+          contentType &&
+          contentType.includes('application/json')
+        ) {
+        } else {
+        }
+
+        setIsReplyMode(false);
+        setCommentText('');
+      } else {
+      }
+    } catch (error) {}
+
+    setShowReplyInput(false);
+    setReplyingIndex(null);
+    setCommentError('');
   };
   // 투표 종료
   const handleEndVote = async () => {
@@ -410,7 +665,83 @@ function VoteCreatedUserPage() {
               <p key={option.id}>{option.text}</p>
             </div>
           ))}
+          <div className="comment_header">
+            <p className="comment_header_text">
+              댓글 {totalComments}
+            </p>
+            <select
+              className="comment_header_select"
+              value={sortingStandard}
+              onChange={(e) =>
+                setSortingStandard(e.target.value)
+              }
+            >
+              {standards.map((standard, index) => (
+                <option key={index} value={standard.value}>
+                  {standard.label}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="comment_write_box">
+            {selectedMedia && (
+              <img
+                src={selectedMedia}
+                alt="Selected media"
+                className="comment_image"
+              />
+            )}
+            <div className="comment_write_input">
+              <input
+                type="text"
+                placeholder={
+                  isReplyMode
+                    ? '답글을 입력하세요.'
+                    : '댓글을 입력하세요.'
+                }
+                value={
+                  isReplyMode ? replyText : commentText
+                }
+                onChange={(e) =>
+                  isReplyMode
+                    ? setReplyText(e.target.value)
+                    : setCommentText(e.target.value)
+                }
+              />
+              <button
+                className="comment_write_button"
+                onClick={
+                  isReplyMode
+                    ? handleAddReplySubmit
+                    : handleCommentSubmit
+                }
+              >
+                댓글 작성
+              </button>
+              <div className="comment_image_button">
+                <input
+                  type="file"
+                  accept="image/*,video/*"
+                  onChange={handleImageChange}
+                  id="file-input"
+                  className="custom-file-input"
+                />
+                <label
+                  htmlFor="file-input"
+                  className="custom-file-label"
+                >
+                  <FontAwesomeIcon icon={faImage} />
+                </label>
 
+                <button
+                  className="cancel-button"
+                  onClick={cancelImage}
+                >
+                  X
+                </button>
+              </div>
+            </div>
+          </div>
           <div className="vote_button_box">
             <button
               onClick={handleEndVote}
@@ -418,6 +749,15 @@ function VoteCreatedUserPage() {
             >
               투표 종료하기
             </button>
+          </div>
+          <div className="comment_body_box">
+            {sortedComments.map((comment, index) => (
+              <Comment
+                key={index}
+                comment={comment}
+                index={index}
+              />
+            ))}
           </div>
         </div>
       </div>
