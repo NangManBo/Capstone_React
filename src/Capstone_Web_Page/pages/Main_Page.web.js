@@ -9,6 +9,7 @@ import { AlarmBox } from '../components/alarmBox_components';
 import { UserBox } from '../components/userBox_componet';
 import { PopularVoteBanner } from '../components/popularVoteBanner_components';
 import { GetManagerVotes } from '../components/managerVote_components';
+import { getMessages } from '../functions/fetchComment_function';
 
 function MainPage() {
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ function MainPage() {
   const [votes, setVotes] = useState([]); // 상태 추가
   const [messages, setMessages] = useState([]);
   const [popularPoint, setPopularPoint] = useState(0);
+  const [messagesCount, setMessageCount] = useState(0);
 
   const getPopularPoint = async () => {
     try {
@@ -107,6 +109,7 @@ function MainPage() {
       fetchData();
       getPopularPoint();
       fetchwebsocket();
+      getMessages(jwtToken, nickname, setMessageCount);
     }
   }, []);
 
@@ -137,7 +140,8 @@ function MainPage() {
             jwtToken,
             nickname,
             keyId,
-            messages
+            messages,
+            messagesCount
           )}
 
           {GetManagerVotes(

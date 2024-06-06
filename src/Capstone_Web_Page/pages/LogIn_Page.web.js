@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './styles/login_style.css';
 import BasicBanner from '../components/basicBanner_components';
+import { getMessages } from '../functions/fetchComment_function';
 
 function LogInPage() {
   const navigate = useNavigate();

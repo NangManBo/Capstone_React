@@ -84,3 +84,27 @@ export const sameVoteGroup = async (
   const results = await Promise.all(promises);
   setSameOption(results.filter((result) => result != null)); // 에러가 발생하지 않은 결과만 필터링
 };
+
+export const getMessages = async (
+  jwtToken,
+  nickname,
+  setMessageCount
+) => {
+  try {
+    const response = await axios.get(
+      'https://dovote.p-e.kr/message/' + nickname,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: jwtToken,
+        },
+      }
+    );
+
+    if (response.status === 200) {
+      setMessageCount(response.data);
+      console.log(response.data);
+    } else {
+    }
+  } catch (error) {}
+};
