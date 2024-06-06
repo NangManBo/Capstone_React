@@ -74,6 +74,21 @@
   justify-content: center;
 }
 
+.vote_end_button_1 {
+  color: white;
+  background-color: #fc4f4f;
+  border: none;
+  border-radius: 10px;
+  width: 400px;
+  height: 55px;
+  font-size: 20px;
+  margin-left: 100px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
 .vote_button_box {
   display: flex;
   flex-direction: row;

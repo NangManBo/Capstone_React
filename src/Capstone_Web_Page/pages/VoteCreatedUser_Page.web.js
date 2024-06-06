@@ -780,16 +780,15 @@ function VoteCreatedUserPage() {
                   X
                 </button>
               </div>
+              <button
+                onClick={handleEndVote}
+                className="vote_end_button_1"
+              >
+                투표 종료하기
+              </button>
             </div>
           </div>
-          <div className="vote_button_box">
-            <button
-              onClick={handleEndVote}
-              className="vote_end_button"
-            >
-              투표 종료하기
-            </button>
-          </div>
+
           <div className="comment_body_box">
             {sortedComments.map((comment, index) => (
               <Comment
