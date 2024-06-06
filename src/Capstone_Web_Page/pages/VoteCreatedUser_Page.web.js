@@ -821,6 +821,12 @@ function VoteCreatedUserPage() {
               >
                 투표 종료하기
               </button>
+              <button
+                onClick={handleEndVote}
+                className="vote_end_button_2"
+              >
+                투표 삭제하기
+              </button>
             </div>
           </div>
 
