@@ -603,25 +603,30 @@ function VoteAfterPage() {
         keyId
       )}
       <div className="right_page">
-        <h2
-          className="goBackButton"
-          onClick={() =>
-            isCategory ? goToCategory() : goToMain()
-          }
-        >
-          <FontAwesomeIcon icon={faArrowAltCircleLeft} />{' '}
-          이전 페이지로
-        </h2>
-        <h2
-          className="likeButton"
-          onClick={() => handleHeartClick()}
-        >
-          {heartType === 'empty' ? (
-            <FontAwesomeIcon icon={faHeart} color="black" />
-          ) : (
-            <FontAwesomeIcon icon={faHeart} color="red" />
-          )}
-        </h2>
+        <div className="vote_button_back_like_box">
+          <h2
+            className="goBackButton"
+            onClick={() =>
+              isCategory ? goToCategory() : goToMain()
+            }
+          >
+            <FontAwesomeIcon icon={faArrowAltCircleLeft} />{' '}
+            이전 페이지로
+          </h2>
+          <h2
+            className="likeButton"
+            onClick={() => handleHeartClick()}
+          >
+            {heartType === 'empty' ? (
+              <FontAwesomeIcon
+                icon={faHeart}
+                color="black"
+              />
+            ) : (
+              <FontAwesomeIcon icon={faHeart} color="red" />
+            )}
+          </h2>
+        </div>
         <div>
           <div className="vote_header">
             {/* Content */}

@@ -147,18 +147,20 @@ function VoteBeforePage() {
         keyId
       )}
       <div className="right_page">
-        <h2
-          className="goBackButton"
-          onClick={() =>
-            isCategory ? goToCategory() : goToMain()
-          }
-        >
-          <FontAwesomeIcon icon={faArrowAltCircleLeft} />{' '}
-          이전 페이지로
-        </h2>
-        <h2 className="likeButton">
-          <FontAwesomeIcon icon={faHeart} color="black" />
-        </h2>
+        <div className="vote_button_back_like_box">
+          <h2
+            className="goBackButton"
+            onClick={() =>
+              isCategory ? goToCategory() : goToMain()
+            }
+          >
+            <FontAwesomeIcon icon={faArrowAltCircleLeft} />{' '}
+            이전 페이지로
+          </h2>
+          <h2 className="likeButton">
+            <FontAwesomeIcon icon={faHeart} color="black" />
+          </h2>
+        </div>
         <div>
           <div className="vote_header">
             <>
