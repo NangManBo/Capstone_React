@@ -210,7 +210,6 @@ function VoteMakePage() {
           }
         >
           <FontAwesomeIcon icon={faArrowAltCircleLeft} />{' '}
-          이전 페이지로
         </h2>
         <div className="voteMake_header">
           <h1>게시글 작성하기</h1>

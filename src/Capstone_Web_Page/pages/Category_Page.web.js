@@ -98,7 +98,6 @@ function CategoryPage() {
           onClick={() => navigate(-1)}
         >
           <FontAwesomeIcon icon={faArrowAltCircleLeft} />{' '}
-          이전 페이지로
         </h2>
         <div className="category_page_header">
           <span>{category} 게시판</span>

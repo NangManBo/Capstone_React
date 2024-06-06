@@ -70,7 +70,6 @@ function VoteOnlyLookPage() {
               icon={faArrowAltCircleLeft}
               style={{ fontSize: '36px' }}
             />{' '}
-            이전 페이지로
           </div>
           <div>
             <FontAwesomeIcon
