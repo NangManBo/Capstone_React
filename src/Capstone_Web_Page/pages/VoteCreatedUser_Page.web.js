@@ -14,6 +14,7 @@ import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { faReply } from '@fortawesome/free-solid-svg-icons';
 import { faImage } from '@fortawesome/free-regular-svg-icons';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import './styles/vote_style.css';
 
 const calculateTotalComments = (comments) => {
@@ -70,6 +71,7 @@ function VoteCreatedUserPage() {
     { label: '최신 순', value: '시간' },
     { label: '인기 순', value: '인기' },
   ];
+  const [heartType, setHeartType] = useState('empty');
   const [pollOptions, setPollOptions] = useState([]);
   // 댓글에서 쪽지 보내기
   // 댓글에서 쪽지 보내기
@@ -164,6 +166,7 @@ function VoteCreatedUserPage() {
       setSameOption
     );
   }, [
+    send,
     vote,
     userVotes,
     nickname,
@@ -398,8 +401,6 @@ function VoteCreatedUserPage() {
 
       let formData = new FormData();
 
-      // Add comment content as a string
-
       formData.append(
         'content',
         JSON.stringify({ content: commentText })
@@ -559,6 +560,35 @@ function VoteCreatedUserPage() {
       },
     });
   };
+
+  //게시글 좋아요
+  const handleHeartClick = async () => {
+    const data = {
+      pollId: vote.id,
+      userId: keyId,
+    };
+
+    try {
+      const response = await axios.post(
+        'https://dovote.p-e.kr/polls/likes',
+        data,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            Authorization: jwtToken,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        setHeartType((prev) =>
+          prev === 'empty' ? 'filled' : 'empty'
+        );
+      } else if (response.status === 500) {
+        alert('이미 좋아요를 누르셨습니다.');
+      }
+    } catch (error) {}
+  };
   useEffect(() => {
     fetchComments(vote.id, jwtToken, setComments);
   }, [vote, jwtToken]);
@@ -630,6 +660,16 @@ function VoteCreatedUserPage() {
         >
           <FontAwesomeIcon icon={faArrowAltCircleLeft} />{' '}
           이전 페이지로
+        </h2>
+        <h2
+          className="goBackButton"
+          onClick={() => handleHeartClick()}
+        >
+          {heartType === 'empty' ? (
+            <FontAwesomeIcon icon={faHeart} color="black" />
+          ) : (
+            <FontAwesomeIcon icon={faHeart} color="red" />
+          )}
         </h2>
         <div>
           <div className="vote_header">
