@@ -5,6 +5,7 @@ import { LeftBar } from '../components/leftBar_components';
 import './styles/vote_style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
 
 function VoteOnlyLookPage() {
   const navigate = useNavigate();
@@ -59,15 +60,20 @@ function VoteOnlyLookPage() {
       {MainBanner('', false, '', '')}
       {LeftBar('', false, '', null, null)}
       <div className="right_page">
-        <h2
-          className="goBackButton"
-          onClick={() =>
-            isCategory ? goToCategory() : goToMain()
-          }
-        >
-          <FontAwesomeIcon icon={faArrowAltCircleLeft} />{' '}
-          이전 페이지로
-        </h2>
+        <div className="vote_button_back_like_box">
+          <h2
+            className="goBackButton"
+            onClick={() =>
+              isCategory ? goToCategory() : goToMain()
+            }
+          >
+            <FontAwesomeIcon icon={faArrowAltCircleLeft} />{' '}
+            이전 페이지로
+          </h2>
+          <h2 className="likeButton">
+            <FontAwesomeIcon icon={faHeart} color="black" />
+          </h2>
+        </div>
         <div>
           <div className="vote_header">
             <>

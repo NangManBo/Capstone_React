@@ -11,6 +11,7 @@ import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { MainBanner } from '../components/mainBanner_components';
 import { LeftBar } from '../components/leftBar_components';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import PollResultModal from '../modals/PollResult_Modal';
 
 const calculateTotalComments = (comments) => {
@@ -448,7 +449,16 @@ function VoteEndPage() {
           <FontAwesomeIcon icon={faArrowAltCircleLeft} />{' '}
           이전 페이지로
         </h2>
-
+        <h2
+          className="likeButton"
+          onClick={() => handleHeartClick()}
+        >
+          {heartType === 'empty' ? (
+            <FontAwesomeIcon icon={faHeart} color="black" />
+          ) : (
+            <FontAwesomeIcon icon={faHeart} color="red" />
+          )}
+        </h2>
         <div>
           <div className="vote_header">
             {/* Content */}

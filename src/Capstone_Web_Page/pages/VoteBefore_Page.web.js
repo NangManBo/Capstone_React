@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { MainBanner } from '../components/mainBanner_components';
 import { LeftBar } from '../components/leftBar_components';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
 import './styles/vote_style.css';
@@ -155,7 +156,9 @@ function VoteBeforePage() {
           <FontAwesomeIcon icon={faArrowAltCircleLeft} />{' '}
           이전 페이지로
         </h2>
-
+        <h2 className="likeButton">
+          <FontAwesomeIcon icon={faHeart} color="black" />
+        </h2>
         <div>
           <div className="vote_header">
             <>

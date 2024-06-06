@@ -8,12 +8,14 @@ import axios from 'axios';
 import { MainBanner } from '../components/mainBanner_components';
 import { LeftBar } from '../components/leftBar_components';
 import './styles/vote_style.css';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
 import { faImage } from '@fortawesome/free-regular-svg-icons';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import { faReply } from '@fortawesome/free-solid-svg-icons';
+import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 const calculateTotalComments = (comments) => {
@@ -610,7 +612,16 @@ function VoteAfterPage() {
           <FontAwesomeIcon icon={faArrowAltCircleLeft} />{' '}
           이전 페이지로
         </h2>
-
+        <h2
+          className="likeButton"
+          onClick={() => handleHeartClick()}
+        >
+          {heartType === 'empty' ? (
+            <FontAwesomeIcon icon={faHeart} color="black" />
+          ) : (
+            <FontAwesomeIcon icon={faHeart} color="red" />
+          )}
+        </h2>
         <div>
           <div className="vote_header">
             {/* Content */}
