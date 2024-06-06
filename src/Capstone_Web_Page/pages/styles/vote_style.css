@@ -1,6 +1,7 @@
 .vote_header {
   display: flex;
   flex-direction: row;
+  align-content: center;
   border-bottom: 4px solid #bfbfbf;
   justify-content: space-between;
 }
@@ -8,7 +9,6 @@
 .vote_header h1 {
   margin: 0;
   padding: 0;
-  margin-top: 40px;
   font-size: 2.5em;
   font-weight: bold;
 }
