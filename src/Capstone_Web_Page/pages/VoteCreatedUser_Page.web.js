@@ -571,7 +571,10 @@ function VoteCreatedUserPage() {
     try {
       const response = await axios.post(
         'https://dovote.p-e.kr/polls/likes',
-        data,
+        {
+          pollId: vote.id,
+          userId: keyId,
+        },
         {
           headers: {
             'Content-Type': 'multipart/form-data',
