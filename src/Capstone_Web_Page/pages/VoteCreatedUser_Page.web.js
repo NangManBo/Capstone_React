@@ -587,10 +587,12 @@ function VoteCreatedUserPage() {
         setHeartType((prev) =>
           prev === 'empty' ? 'filled' : 'empty'
         );
-      } else if (response.status === 500) {
+      } else {
         alert('이미 좋아요를 누르셨습니다.');
       }
-    } catch (error) {}
+    } catch (error) {
+      alert('이미 좋아요를 누르셨습니다.');
+    }
   };
   useEffect(() => {
     fetchComments(vote.id, jwtToken, setComments);
