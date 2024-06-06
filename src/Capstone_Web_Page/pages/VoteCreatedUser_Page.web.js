@@ -640,6 +640,31 @@ function VoteCreatedUserPage() {
     });
   };
 
+  const voteDelete = async () => {
+    try {
+      const response = await axios.delete(
+        `https://dovote.p-e.kr/polls/${vote.id}`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: jwtToken,
+          },
+        }
+      );
+      if (response.status === 200) {
+        navigate('/', {
+          state: {
+            isLoggedIn,
+            userId,
+            jwtToken,
+            nickname,
+            keyId,
+          },
+        });
+      } else {
+      }
+    } catch (error) {}
+  };
   return (
     <div className="vote_page">
       {MainBanner(

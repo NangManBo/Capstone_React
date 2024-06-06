@@ -92,7 +92,7 @@ export const getMessages = async (
 ) => {
   try {
     const response = await axios.get(
-      'https://dovote.p-e.kr/message/' + nickname,
+      'https://dovote.p-e.kr/message/count/' + nickname,
       {
         headers: {
           'Content-Type': 'application/json',

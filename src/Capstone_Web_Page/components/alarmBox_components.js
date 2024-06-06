@@ -75,7 +75,10 @@ export const AlarmBox = (
           >
             <i className="fa-regular fa-bell"></i>
             <span> 알림</span>
-            <span>{messagesCount}</span>
+            <span>
+              {'  '}
+              {messagesCount}
+            </span>
           </h2>
           <div className="alarm_box_in_true">
             {recentMessages.length > 0 ? (
