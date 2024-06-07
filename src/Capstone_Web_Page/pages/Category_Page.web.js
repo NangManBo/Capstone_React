@@ -54,6 +54,18 @@ function CategoryPage() {
     return votes;
   };
 
+  const goToMain = () => {
+    navigate('/', {
+      state: {
+        isLoggedIn,
+        userId,
+        jwtToken,
+        nickname,
+        keyId,
+      },
+    });
+  };
+
   useEffect(() => {
     setSortedVotes(sortVotes(matchingVotes));
     setCurrentPage(1); // 정렬 기준이 바뀌면 첫 페이지로 이동
@@ -95,7 +107,7 @@ function CategoryPage() {
       <div className="right_page">
         <h2
           className="goBackButton"
-          onClick={() => navigate(-1)}
+          onClick={() => goToMain()}
         >
           <FontAwesomeIcon icon={faArrowAltCircleLeft} />{' '}
         </h2>
