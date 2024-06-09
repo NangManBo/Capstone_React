@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/poplularBanner_style.css';
+import './styles/popularBanner_style.css';
 import { renderPostPress } from '../functions/renderPostPress_function';
 
 const fillEmptyVotes = (votes, count) => {

@@ -67,18 +67,3 @@ input[disabled] {
 .signup-button:disabled {
   background-color: #ccc;
 }
-
-/* 반응형 디자인 */
-/* @media (max-width: 768px) {
-  .label {
-    width: 100%;
-    margin-bottom: 5px;
-  }
-
-  .input,
-  .mbti,
-  .signup-button {
-    margin-right: 0;
-    width: 100%;
-  }
-} */

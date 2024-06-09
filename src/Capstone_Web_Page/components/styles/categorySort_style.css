@@ -63,24 +63,3 @@
   text-overflow: ellipsis; /* 넘치는 텍스트를 말줄임표로 처리합니다 */
   white-space: nowrap; /* 텍스트가 한 줄로 표시되도록 합니다 */
 }
-
-/* 태블릿 화면 대응: 화면 너비가 768px 이하일 때 */
-/* @media (max-width: 768px) {
-  .category_sub_title_box {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .category_title_box h3 {
-    font-size: 110%;
-  }
-} */
-
-/* 휴대폰 화면 대응: 화면 너비가 480px 이하일 때 */
-/* @media (max-width: 480px) {
-  .category_sub_title_box {
-    grid-template-columns: 1fr;
-  }
-
-  .category_sub_box_container {
-    flex-direction: column;
-  }
-} */
