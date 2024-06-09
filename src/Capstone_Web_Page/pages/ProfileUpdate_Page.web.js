@@ -80,7 +80,7 @@ function ProfileUpdatePage() {
         alert('정보 수정에 실패했습니다');
       }
     } catch (error) {
-      alert('알림', '정보 수정에 실패했습니다.');
+      alert('정보 수정에 실패했습니다.');
     }
   };
 
