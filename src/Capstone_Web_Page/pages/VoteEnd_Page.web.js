@@ -112,7 +112,7 @@ function VoteEndPage() {
         jwtToken,
         nickname,
         keyId,
-        receiverName: comment.nickname,
+        receiverName: comment.userNickname,
       },
     });
   };
@@ -126,7 +126,7 @@ function VoteEndPage() {
         jwtToken,
         nickname,
         keyId,
-        receiverName: childComment.nickname,
+        receiverName: childComment.userNickname,
       },
     });
   };
@@ -204,7 +204,9 @@ function VoteEndPage() {
             </div>
             <div>
               {sameOption.some((option) =>
-                option.userNames.includes(comment.nickname)
+                option.userNames.includes(
+                  comment.userNickname
+                )
               ) && <p>(나와 동일한 선택지를 골랐습니다)</p>}
             </div>
             <div className="comment_reply">
@@ -280,7 +282,7 @@ function VoteEndPage() {
                     <div>
                       {sameOption.some((option) =>
                         option.userNames.includes(
-                          childComment.nickname
+                          childcomment.userNickname
                         )
                       ) && (
                         <p>
