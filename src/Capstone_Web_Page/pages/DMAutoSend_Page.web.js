@@ -98,9 +98,11 @@ function DMAutoSendPage() {
           <button onClick={handleSendMessage}>
             보내기
           </button>
-          <div>
+          <div className="dmSend_header">
             <span>수신인:</span>
-            <p>{receiverName}</p>
+            <span className="dmSend_header_nick">
+              {receiverName}
+            </span>
           </div>
           <div>
             <span>쪽지 내용</span>

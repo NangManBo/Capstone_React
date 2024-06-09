@@ -26,6 +26,14 @@
     0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
+.dmSend_header {
+  display: flex;
+  flex-direction: row;
+}
+
+.dmSend_header_nick {
+  margin-left: 20px;
+}
 .dmSend_Page button {
   align-self: flex-end;
   background-color: #000;
