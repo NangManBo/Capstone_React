@@ -456,7 +456,7 @@ function VoteAfterPage() {
                     <div>
                       {sameOption.some((option) =>
                         option.userNames.includes(
-                          childcomment.userNickname
+                          childComment.userNickname
                         )
                       ) && (
                         <p>
