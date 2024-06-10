@@ -206,6 +206,8 @@ function VoteCreatedUserPage() {
       );
 
       if (response.status === 200) {
+        // 댓글 신고가 성공하면 바로 댓글을 갱신하도록 fetchComments를 호출
+        await fetchComments(vote.id, jwtToken, setComments);
         setSend(false);
         alert('댓글 신고 성공:', response.data);
       } else {
