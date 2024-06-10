@@ -107,11 +107,8 @@ function VoteEndPage() {
           prev === 'empty' ? 'filled' : 'empty'
         );
       } else {
-        toggleModal_alert('이미 좋아요를 누르셨습니다.');
       }
-    } catch (error) {
-      toggleModal_alert('이미 좋아요를 누르셨습니다.');
-    }
+    } catch (error) {}
   };
   // 댓글에서 쪽지 보내기
   const handlemessge = (comment) => {

@@ -181,11 +181,9 @@ function VoteAfterPage() {
         console.log('Heart type updated'); // 상태 업데이트 로그 출력
       } else {
         console.warn('Already liked'); // 경고 로그 출력
-        toggleModal_alert('이미 좋아요를 누르셨습니다.');
       }
     } catch (error) {
       console.error('Error liking the post:', error); // 오류 로그 출력
-      toggleModal_alert('이미 좋아요를 누르셨습니다.');
     }
   };
 
@@ -764,9 +762,6 @@ function VoteAfterPage() {
               />
             ) : (
               <FontAwesomeIcon
-                onClick={toggleModal_alert(
-                  '이미 좋아요를 누르셨습니다.'
-                )}
                 icon={faHeart}
                 color="red"
                 style={{ fontSize: '36px' }}
