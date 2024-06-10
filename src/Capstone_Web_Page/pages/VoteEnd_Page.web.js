@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { fetchComments } from '../functions/fetchComment_function';
+import {
+  fetchComments,
+  sameVoteGroup,
+} from '../functions/fetchComment_function';
 import axios from 'axios';
 import './styles/voteEnd_style.css';
 import './styles/vote_style.css';
@@ -84,7 +87,23 @@ function VoteEndPage() {
     setCommentId(id);
     setModalVisible(!isModalVisible);
   };
-
+  useEffect(() => {
+    fetchComments(vote.id, jwtToken, setComments);
+    sameVoteGroup(
+      vote,
+      userVotes,
+      nickname,
+      jwtToken,
+      setSameOption
+    );
+  }, [
+    send,
+    vote,
+    userVotes,
+    nickname,
+    jwtToken,
+    sortingStandard,
+  ]);
   //게시글 좋아요
   const handleHeartClick = async () => {
     try {
