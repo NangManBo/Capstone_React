@@ -104,6 +104,30 @@ function VoteEndPage() {
     jwtToken,
     sortingStandard,
   ]);
+  // 댓글 좋아요
+  const commentLike = async (comment, index) => {
+    setSend(true);
+
+    try {
+      const response = await axios.post(
+        `https://dovote.p-e.kr/comments/like/${userId}/${vote.id}/${comment.id}`,
+        {},
+        {
+          headers: {
+            Authorization: jwtToken,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        setSend(false);
+      } else {
+        alert('이미 좋아요를 눌렀습니다.');
+      }
+    } catch (error) {
+      alert('이미 좋아요를 눌렀습니다.');
+    }
+  };
   //게시글 좋아요
   const handleHeartClick = async () => {
     try {
@@ -240,7 +264,10 @@ function VoteEndPage() {
           </div>
           <div className="comment_like_reply_box">
             <div className="comment_like_button">
-              <FontAwesomeIcon icon={faThumbsUp} />
+              <FontAwesomeIcon
+                icon={faThumbsUp}
+                onClick={() => commentLike(comment, index)}
+              />
               <span className="comment_like_count">
                 {comment.likes}
               </span>
@@ -337,7 +364,12 @@ function VoteEndPage() {
                   </div>
                   <div className="comment_like_reply_box">
                     <div className="comment_like_button">
-                      <FontAwesomeIcon icon={faThumbsUp} />
+                      <FontAwesomeIcon
+                        icon={faThumbsUp}
+                        onClick={() =>
+                          commentLike(childComment, index)
+                        }
+                      />
                       <span>{childComment.likes}</span>
                     </div>
                     <div>
@@ -690,12 +722,12 @@ function VoteEndPage() {
 
       if (response.status === 200) {
         setSend(false);
-        console.log('댓글 신고 성공:', response.data);
+        alert('댓글 신고가 접수되었습니다.');
       } else {
-        console.error('댓글 신고 실패:', response.data);
+        alert('댓글 신고 접수에 실패했습니다.');
       }
     } catch (error) {
-      console.error('댓글 신고 오류:', error);
+      alert('댓글 신고 접수에 실패했습니다.');
     }
   };
   return (
