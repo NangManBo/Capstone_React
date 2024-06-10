@@ -669,6 +669,7 @@ function VoteCreatedUserPage() {
         userId,
         jwtToken,
         nickname,
+        keyId,
       },
     });
   };
