@@ -165,15 +165,13 @@ function VoteAfterPage() {
   };
   //게시글 좋아요
   const handleHeartClick = async () => {
-    const data = {
-      pollId: vote.id,
-      nickname: nickname,
-    };
-
     try {
       const response = await axios.post(
         'https://dovote.p-e.kr/polls/likes',
-        data,
+        {
+          pollId: vote.id,
+          userId: userId,
+        },
         {
           headers: {
             'Content-Type': 'application/json',
