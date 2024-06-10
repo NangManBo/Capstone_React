@@ -602,16 +602,12 @@ function VoteAfterPage() {
       let formData = new FormData();
       const parentCommentId = replyingIndex; // Get the parent comment ID
 
-      // @를 포함한 userNickname을 제외하고 싶은 문자열
-      const mention = `@${comment.userNickname} `;
-
-      // 원본 replyText에서 mention을 제거한 텍스트
+      // @와 userNickname 다음의 스페이스바까지 제거
       const contentWithoutMention = replyText.replace(
-        mention,
+        /^@\S+\s/,
         ''
       );
 
-      // 서버로 contentWithoutMention를 보내기
       formData.append(
         'content',
         JSON.stringify({ content: contentWithoutMention })
