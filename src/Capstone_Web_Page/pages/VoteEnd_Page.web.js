@@ -107,8 +107,11 @@ function VoteEndPage() {
           prev === 'empty' ? 'filled' : 'empty'
         );
       } else {
+        alert('이미 좋아요를 눌렀습니다.');
       }
-    } catch (error) {}
+    } catch (error) {
+      alert('이미 좋아요를 눌렀습니다.');
+    }
   };
   // 댓글에서 쪽지 보내기
   const handlemessge = (comment) => {

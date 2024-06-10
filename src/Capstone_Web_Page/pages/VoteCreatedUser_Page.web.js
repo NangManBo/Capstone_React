@@ -115,8 +115,11 @@ function VoteCreatedUserPage() {
       if (response.status === 200) {
         setSend(false);
       } else {
+        alert('이미 좋아요를 눌렀습니다.');
       }
-    } catch (error) {}
+    } catch (error) {
+      alert('이미 좋아요를 눌렀습니다.');
+    }
   };
   // 사진 고른거 삭제
   const cancelImage = () => {
@@ -202,12 +205,12 @@ function VoteCreatedUserPage() {
       );
 
       if (response.status === 200) {
-        console.log('댓글 신고 성공:', response.data);
+        alert('댓글 신고 성공:', response.data);
       } else {
-        console.error('댓글 신고 실패:', response.data);
+        alert('댓글 신고 실패:', response.data);
       }
     } catch (error) {
-      console.error('댓글 신고 오류:', error);
+      alert('댓글 신고 오류:', error);
     }
   };
   //댓글 출력 창
