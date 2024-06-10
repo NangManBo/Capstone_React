@@ -7,6 +7,7 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
 import './styles/vote_style.css';
+import AlertModal from '../modals/AlertMessage_Modal';
 function VoteBeforePage() {
   const navigate = useNavigate();
   const location = useLocation();

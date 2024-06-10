@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './styles/login_style.css';
 import BasicBanner from '../components/basicBanner_components';
 import { getMessages } from '../functions/fetchComment_function';
-
+import AlertModal from '../modals/AlertMessage_Modal';
 function LogInPage() {
   const navigate = useNavigate();
   const [id, setId] = useState('');

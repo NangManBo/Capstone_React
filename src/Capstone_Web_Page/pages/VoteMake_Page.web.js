@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
 import { faImage } from '@fortawesome/free-regular-svg-icons';
 import { LeftBar } from '../components/leftBar_components';
+import AlertModal from '../modals/AlertMessage_Modal';
 function VoteMakePage() {
   // React Router의 useLocation 훅을 사용하여 URL의 상태 접근
   const location = useLocation();
