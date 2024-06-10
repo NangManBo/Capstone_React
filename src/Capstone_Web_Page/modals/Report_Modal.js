@@ -2,39 +2,12 @@ import React, { useState } from 'react';
 import Modal from 'react-modal';
 import './styles/report_style.css';
 
-export const reportComment = async (
-  commentId,
-  reportReason
-) => {
-  try {
-    const response = await axios.post(
-      `https://dovote.p-e.kr/comments/report/${userId}/${vote.id}/${commentId}`,
-      {
-        reportReason,
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: jwtToken,
-        },
-      }
-    );
-
-    if (response.status === 200) {
-      console.log('댓글 신고 성공:', response.data);
-    } else {
-      console.error('댓글 신고 실패:', response.data);
-    }
-  } catch (error) {
-    console.error('댓글 신고 오류:', error);
-  }
-};
-
 export const ReportModal = ({
   isVisible,
   onClose,
   onConfirm,
   commentId,
+  reportComment,
 }) => {
   const [selectedValue, setSelectedValue] = useState('');
 

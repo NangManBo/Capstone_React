@@ -292,6 +292,31 @@ function VoteAfterPage() {
       }
     } catch (error) {}
   };
+  // 댓글 신고
+  const reportComment = async (commentId, reportReason) => {
+    try {
+      const response = await axios.post(
+        `https://dovote.p-e.kr/comments/report/${userId}/${vote.id}/${commentId}`,
+        {
+          reportReason,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: jwtToken,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        console.log('댓글 신고 성공:', response.data);
+      } else {
+        console.error('댓글 신고 실패:', response.data);
+      }
+    } catch (error) {
+      console.error('댓글 신고 오류:', error);
+    }
+  };
   //댓글 출력 창
   const Comment = ({ comment, index }) => {
     const handlePlayPause = () => {
@@ -632,6 +657,7 @@ function VoteAfterPage() {
         onClose={() => toggleModal(null)}
         onConfirm={() => toggleModal(null)}
         commentId={commentId}
+        reportComment={reportComment}
       />
       {MainBanner(
         jwtToken,
