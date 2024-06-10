@@ -155,11 +155,7 @@ const PollResultModal = ({
             <Legend />
           </PieChart>
           <div>{renderGenderCounts()}</div>
-          {usedColors.clear()}{' '}
-          {/* Reset used colors for the next chart */}
-          colorIndex = 0;{' '}
-          {/* Reset color index for the next chart */}
-          <h5>Age Distribution</h5>
+          {usedColors.clear()} <h5>Age Distribution</h5>
           <PieChart width={400} height={400}>
             <Pie
               data={generateChartData(
