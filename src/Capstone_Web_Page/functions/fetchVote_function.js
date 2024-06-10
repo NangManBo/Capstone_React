@@ -16,7 +16,7 @@ export const fetchVotes = async (
     );
     if (response.status === 200) {
       const votesData = response.data;
-      console.log(votesData);
+
       if (Array.isArray(votesData)) {
         const formattedVotes = votesData.map((vote) => ({
           id: vote.id,
@@ -26,6 +26,7 @@ export const fetchVotes = async (
           createdAt: moment(vote.createdAt).format(
             'YYYY-MM-DD HH:mm'
           ),
+          keyId: vote.userId,
           category: vote.category,
           title: vote.title,
           question: vote.question,

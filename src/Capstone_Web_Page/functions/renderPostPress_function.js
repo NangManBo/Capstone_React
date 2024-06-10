@@ -40,7 +40,7 @@ export const renderPostPress = async (
         // Check if userVotes is null or empty
         if (!userVotes || userVotes.length === 0) {
           const isCreatedByUser =
-            firstMatchingVote.createdBy === keyId;
+            firstMatchingVote.keyId === keyId;
 
           // Check if the vote is closed
           const isVoteEnd =
