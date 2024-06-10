@@ -176,8 +176,9 @@
   font-size: 1.2rem;
 }
 .comment_image {
-  width: 20%;
-  height: 20%;
+  width: 80%; /* 요소의 부모 요소 너비에 맞추기 */
+  max-width: 600px; /* 최대 너비 설정 */
+  height: auto; /* 비율에 맞춰 높이 자동 조정 */
 }
 .comment_write {
   width: 100%;
