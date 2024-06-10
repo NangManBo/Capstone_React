@@ -737,8 +737,8 @@ function VoteAfterPage() {
       />
       <AlertModal
         isVisible={isAlert}
-        onClose={() => toggleModal_alert(null)}
-        onConfirm={() => toggleModal_alert(null)}
+        onClose={() => setIsAlert(false)}
+        onConfirm={() => setIsAlert(false)}
         message={alertMessage}
       />
 
