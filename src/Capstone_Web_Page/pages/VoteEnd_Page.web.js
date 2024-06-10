@@ -258,24 +258,26 @@ function VoteEndPage() {
               <div key={childIndex}>
                 <div className="replycomment_box">
                   <div className="commnet_box_user">
-                    <span>
-                      작성자 : {childComment.userNickname}
-                    </span>
+                    <div className="commnet_box_user_1">
+                      <span>
+                        작성자 : {childComment.userNickname}
+                      </span>
 
-                    <span>
-                      작성시간:{' '}
-                      {new Date(
-                        childComment.time
-                      ).toLocaleString('ko-KR', {
-                        year: 'numeric',
-                        month: '2-digit',
-                        day: '2-digit',
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        second: '2-digit',
-                      })}
-                    </span>
-                    <>
+                      <span>
+                        작성시간:{' '}
+                        {new Date(
+                          childComment.time
+                        ).toLocaleString('ko-KR', {
+                          year: 'numeric',
+                          month: '2-digit',
+                          day: '2-digit',
+                          hour: '2-digit',
+                          minute: '2-digit',
+                          second: '2-digit',
+                        })}
+                      </span>
+                    </div>
+                    <div className="commnet_box_user_2">
                       <span
                         onClick={() =>
                           toggleModal(childComment.id)
@@ -289,7 +291,7 @@ function VoteEndPage() {
                           icon={faCircleExclamation}
                         />
                       </span>
-                    </>
+                    </div>
                   </div>
                   <div>
                     <p>{childComment.content}</p>
