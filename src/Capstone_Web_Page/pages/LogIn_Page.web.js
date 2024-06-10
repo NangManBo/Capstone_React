@@ -37,16 +37,16 @@ function LogInPage() {
           },
         });
       } else if (response.status === 403) {
-        alert('아이디 또는 비밀번호가 일치하지 않습니다.');
+        alert('아이디, 비밀번호가 일치하지 않습니다.');
       } else {
       }
     } catch (error) {
       if (error.response) {
-        alert('아이디 또는 비밀번호가 일치하지 않습니다.');
+        alert('아이디, 비밀번호가 일치하지 않습니다.');
       } else if (error.request) {
-        alert('아이디 또는 비밀번호가 일치하지 않습니다.');
+        alert('아이디, 비밀번호가 일치하지 않습니다.');
       } else {
-        alert('아이디 또는 비밀번호가 일치하지 않습니다.');
+        alert('아이디, 비밀번호가 일치하지 않습니다.');
       }
     }
   };
