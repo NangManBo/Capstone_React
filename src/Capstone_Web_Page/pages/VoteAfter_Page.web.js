@@ -339,7 +339,7 @@ function VoteAfterPage() {
   const handleDeletePress = async (comment) => {
     if (userId === comment.user.uid) {
       setFixedId(comment.id);
-      setDeleteModalVisible(true);
+      setIsAlert(true);
     }
   };
 
@@ -353,8 +353,7 @@ function VoteAfterPage() {
         const data = response.data;
         console.log('댓글 삭제 성공:', data);
 
-        setUpdateDM5(updateDM5 + 1);
-        setDeleteModalVisible(false);
+        setIsAlert(false);
       } else {
         console.error('댓글 삭제 실패:', response.status);
       }
@@ -876,7 +875,9 @@ function VoteAfterPage() {
                 }
                 onKeyPress={(e) => {
                   if (e.key === 'Enter') {
-                    handleSearch();
+                    isReplyMode
+                      ? setReplyText(e.target.value)
+                      : setCommentText(e.target.value);
                   }
                 }}
                 onChange={(e) =>
