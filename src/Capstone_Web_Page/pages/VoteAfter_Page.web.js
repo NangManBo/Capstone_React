@@ -91,8 +91,8 @@ function VoteAfterPage() {
   const [isAlert, setIsAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
   const toggleModal_alert = (message) => {
-    setIsAlert(!isAlert);
     setAlertMessage(message);
+    setIsAlert(!isAlert);
   };
 
   const [isDelete, setIsDelete] = useState(false);
@@ -392,7 +392,6 @@ function VoteAfterPage() {
         <div className="comment_box">
           <div className="commnet_box_user">
             <span>작성자 : {comment.userNickname}</span>
-
             <span>
               작성시간:{' '}
               {new Date(comment.time).toLocaleString(
@@ -728,11 +727,6 @@ function VoteAfterPage() {
   };
   return (
     <div className="vote_page">
-      <DeleteModal
-        isVisible={isDelete}
-        onCancel={() => setIsDelete(false)}
-        onDelete={handleDelete}
-      />
       <ReportModal
         isVisible={isModalVisible}
         onClose={() => toggleModal(null)}
