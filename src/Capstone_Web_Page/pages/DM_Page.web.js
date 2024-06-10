@@ -40,7 +40,7 @@ function DMPage() {
   // 쪽지 삭제
   const deleteMessage = async (item) => {
     try {
-      const messageResponse = await axios.get(
+      const messageResponse = await axios.delete(
         'https://dovote.p-e.kr/message/delete/' +
           item.messageId,
         {
