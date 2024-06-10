@@ -131,6 +131,7 @@ function VoteAfterPage() {
   }, [vote, nickname]);
   useEffect(() => {
     sortComments(sortingStandard);
+    console.log(comments);
   }, [comments, sortingStandard]);
 
   useEffect(() => {
