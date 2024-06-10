@@ -185,6 +185,7 @@ function VoteAfterPage() {
           prev === 'empty' ? 'filled' : 'empty'
         );
       } else {
+        toggleModal_alert('이미 좋아요를 누르셨습니다.');
       }
     } catch (error) {}
   };
@@ -389,21 +390,22 @@ function VoteAfterPage() {
         <div className="comment_box">
           <div className="commnet_box_user">
             <span>작성자 : {comment.userNickname}</span>
+
+            <span>
+              작성시간:{' '}
+              {new Date(comment.time).toLocaleString(
+                'ko-KR',
+                {
+                  year: 'numeric',
+                  month: '2-digit',
+                  day: '2-digit',
+                  hour: '2-digit',
+                  minute: '2-digit',
+                  second: '2-digit',
+                }
+              )}
+            </span>
             <>
-              <span>
-                작성시간:{' '}
-                {new Date(comment.time).toLocaleString(
-                  'ko-KR',
-                  {
-                    year: 'numeric',
-                    month: '2-digit',
-                    day: '2-digit',
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    second: '2-digit',
-                  }
-                )}
-              </span>
               <span>
                 <FontAwesomeIcon
                   icon={faTrashCan}
@@ -499,20 +501,21 @@ function VoteAfterPage() {
                     <span>
                       작성자 : {childComment.userNickname}
                     </span>
+
+                    <span>
+                      작성시간:{' '}
+                      {new Date(
+                        childComment.time
+                      ).toLocaleString('ko-KR', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        second: '2-digit',
+                      })}
+                    </span>
                     <>
-                      <span>
-                        작성시간:{' '}
-                        {new Date(
-                          childComment.time
-                        ).toLocaleString('ko-KR', {
-                          year: 'numeric',
-                          month: '2-digit',
-                          day: '2-digit',
-                          hour: '2-digit',
-                          minute: '2-digit',
-                          second: '2-digit',
-                        })}
-                      </span>
                       <span
                         onClick={() =>
                           toggleModal(childComment.id)
