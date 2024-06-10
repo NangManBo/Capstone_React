@@ -343,6 +343,7 @@ function VoteAfterPage() {
     if (userId === comment.userId) {
       setFixedId(comment.id);
       setIsDelete(true);
+      setAlertMessage('정말 삭제하시겠습니까?');
     }
   };
 
