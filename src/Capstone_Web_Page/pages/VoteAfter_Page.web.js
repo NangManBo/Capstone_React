@@ -18,6 +18,7 @@ import { faReply } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
+import AlertModal from '../modals/Alert_Modal';
 
 const calculateTotalComments = (comments) => {
   let totalComments = 0;
@@ -84,7 +85,12 @@ function VoteAfterPage() {
     setCommentId(id);
     setModalVisible(!isModalVisible);
   };
-
+  const [isAlert, setIsAlert] = useState(false);
+  const [message, setMessage] = useState('');
+  const toggleModal_alert = (message) => {
+    setIsAlert(!isAlert);
+    setMessage(message);
+  };
   const placeholder = {
     label: '정렬 기준',
     value: null,
@@ -677,6 +683,13 @@ function VoteAfterPage() {
         commentId={commentId}
         reportComment={reportComment}
       />
+      <AlertModal
+        isVisible={isModalVisible}
+        onClose={() => toggleModal(null)}
+        onConfirm={() => toggleModal(null)}
+        message={message}
+      />
+
       {MainBanner(
         jwtToken,
         isLoggedIn,
@@ -717,6 +730,9 @@ function VoteAfterPage() {
               />
             ) : (
               <FontAwesomeIcon
+                onClick={toggleModal_alert(
+                  '이미 좋아요를 누르셨습니다.'
+                )}
                 icon={faHeart}
                 color="red"
                 style={{ fontSize: '36px' }}
