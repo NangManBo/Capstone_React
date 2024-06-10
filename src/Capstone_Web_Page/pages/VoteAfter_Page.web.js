@@ -338,7 +338,7 @@ function VoteAfterPage() {
   };
   // 댓글 삭제
   const handleDeletePress = async (comment) => {
-    if (userId === comment.user.uid) {
+    if (userId === comment.userId) {
       setFixedId(comment.id);
       setIsAlert(true);
     }
