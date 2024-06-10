@@ -465,7 +465,7 @@ function VoteEndPage() {
         setSelectedMedia(URL.createObjectURL(file)); // Set preview URL
         setMediaFile(file); // Save the file for later use
       } else {
-        alert('Only images and videos are allowed.');
+        setAlertMessage('사진과 동영상만 가능합니다');
         setSelectedMedia(null);
         setMediaFile(null);
       }
@@ -500,7 +500,7 @@ function VoteEndPage() {
 
     try {
       if (!commentText.trim()) {
-        alert('댓글 내용을 입력하세요.');
+        setAlertMessage('댓글 내용을 입력하세요.');
         return;
       }
 

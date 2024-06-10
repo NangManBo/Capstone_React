@@ -36,8 +36,7 @@ function VoteMakePage() {
     if (options.length < 4) {
       setOptions([...options, '']);
     } else {
-      alert(
-        '알림',
+      setAlertMessage(
         '투표항목은 최대 4개까지 등록 가능합니다.'
       );
     }
@@ -50,8 +49,7 @@ function VoteMakePage() {
       );
       setOptions(newOptions);
     } else {
-      alert(
-        '알림',
+      setAlertMessage(
         '투표항목은 최소 2개 이상이어야 합니다.'
       );
     }
@@ -83,7 +81,7 @@ function VoteMakePage() {
         setSelectedMedia(URL.createObjectURL(file)); // Set preview URL
         setMediaFile(file); // Save the file for later use
       } else {
-        alert('Only images and videos are allowed.');
+        setAlertMessage('사진과 동영상만 가능합니다');
         setSelectedMedia(null);
         setMediaFile(null);
       }
@@ -101,18 +99,18 @@ function VoteMakePage() {
         userId: keyId,
       };
       if (titleInput.trim() === '') {
-        alert('알림', '제목을 입력하세요.');
+        setAlertMessage('제목을 입력하세요.');
       } else if (
         selectedCategory.trim() === '' ||
         selectedCategory === '선택'
       ) {
-        alert('알림', '카테고리를 선택해주세요.');
+        setAlertMessage('카테고리를 선택해주세요.');
       } else if (description.trim() === '') {
-        alert('알림', '본문 내용을 입력해주세요.');
+        setAlertMessage('본문 내용을 입력해주세요.');
       } else if (
         options.some((option) => option.trim() === '')
       ) {
-        alert('알림', '투표항목내용을 입력해주세요.');
+        setAlertMessage('투표항목내용을 입력해주세요.');
       } else {
         formData.append(
           'pollData',

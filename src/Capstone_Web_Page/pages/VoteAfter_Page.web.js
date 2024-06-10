@@ -170,7 +170,7 @@ function VoteAfterPage() {
         'https://dovote.p-e.kr/polls/likes',
         {
           pollId: vote.id,
-          userId: userId,
+          userId: keyId,
         },
         {
           headers: {
@@ -194,13 +194,11 @@ function VoteAfterPage() {
 
     try {
       if (!commentText.trim()) {
-        alert('댓글 내용을 입력하세요.');
+        setAlertMessage('댓글 내용을 입력하세요.');
         return;
       }
 
       let formData = new FormData();
-
-      // Add comment content as a string
 
       formData.append(
         'content',
@@ -285,7 +283,7 @@ function VoteAfterPage() {
         setSelectedMedia(URL.createObjectURL(file)); // Set preview URL
         setMediaFile(file); // Save the file for later use
       } else {
-        alert('Only images and videos are allowed.');
+        setAlertMessage('사진과 동영상만 가능합니다.');
         setSelectedMedia(null);
         setMediaFile(null);
       }

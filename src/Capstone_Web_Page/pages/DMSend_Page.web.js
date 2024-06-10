@@ -41,7 +41,7 @@ function DMSendPage() {
       );
 
       if (response.status === 201) {
-        alert('메시지 전송에 성공했습니다.');
+        setAlertMessage('메시지 전송에 성공했습니다.');
         navigate('/dmbox', {
           state: {
             userId,
@@ -51,10 +51,10 @@ function DMSendPage() {
           },
         });
       } else {
-        alert('메시지 전송에 실패했습니다.');
+        setAlertMessage('메시지 전송에 실패했습니다.');
       }
     } catch (error) {
-      alert('메시지 전송에 실패했습니다.');
+      setAlertMessage('메시지 전송에 실패했습니다.');
     }
   };
 

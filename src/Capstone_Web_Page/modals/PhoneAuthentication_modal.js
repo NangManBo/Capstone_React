@@ -38,7 +38,7 @@ function PhoneAuthenticationModal({
       if (response.status === 200) {
         setIsSend(true);
       } else {
-        alert('Failed to send verification code');
+        setAlertMessage('잘못된 번호입니다');
       }
     } catch (error) {
       setIsSend(true);
@@ -64,10 +64,10 @@ function PhoneAuthenticationModal({
         nextphone(phoneNumber);
         onSuccess(); // useNavigate로 페이지 이동, state를 통해 데이터 전달
       } else {
-        alert('번호를 잘못 입력하셨습니다');
+        setAlertMessage('번호를 잘못 입력하셨습니다');
       }
     } catch (error) {
-      alert('Error occurred');
+      setAlertMessage('번호를 잘못 입력하셨습니다');
     }
   };
 

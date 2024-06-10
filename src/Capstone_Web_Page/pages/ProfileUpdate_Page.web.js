@@ -81,12 +81,12 @@ function ProfileUpdatePage() {
         setNewPassword('');
         setCurrentNickname(response.data.nickname);
 
-        alert('정보 수정 완료');
+        setAlertMessage('정보 수정 완료');
       } else {
-        alert('정보 수정에 실패했습니다');
+        setAlertMessage('정보 수정에 실패했습니다');
       }
     } catch (error) {
-      alert('정보 수정에 실패했습니다.');
+      setAlertMessage('정보 수정에 실패했습니다.');
     }
   };
 

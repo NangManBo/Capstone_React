@@ -74,8 +74,7 @@ function SignUpPage() {
 
     if (pattern.test(text)) {
       // 영어 대문자나 한글이 포함되어 있으면 알람을 띄움
-      alert(
-        '알림',
+      setAlertMessage(
         '영어 대문자나 한글은 사용할 수 없습니다.'
       );
     } else {
@@ -92,11 +91,10 @@ function SignUpPage() {
     setPhoneNumber(phoneNumber);
     if (id === nickname) {
       if (id === '') {
-        alert('오류', '입력해주세요!');
+        setAlertMessage('입력해주세요!');
         setIsButtonDisabled(false);
       } else {
-        alert(
-          '오류',
+        setAlertMessage(
           'ID와 닉네임이 중복됩니다. 다시 입력해주세요'
         );
         setNickname('');
@@ -104,41 +102,37 @@ function SignUpPage() {
       }
       return;
     } else if (nickname.length < 2) {
-      alert(
-        '오류',
+      setAlertMessage(
         '닉네임은 최소 2글자 이상이어야 합니다.'
       );
       setNickname('');
       setIsButtonDisabled(false); // Re-enable the button
       return;
     } else if (nickname === '') {
-      alert('오류', '닉네임에 적합하지 않은 이름입니다.');
+      setAlertMessage('닉네임에 적합하지 않은 이름입니다.');
       setNickname('');
       setIsButtonDisabled(false); // Re-enable the button
       return;
     } else if (nickname.length > 7) {
-      alert(
-        '오류',
+      setAlertMessage(
         '닉네임은 최대 8글자 이하이어야 합니다.'
       );
       setNickname('');
       setIsButtonDisabled(false); // Re-enable the button
     } else if (password !== passwordCheck) {
-      alert('오류', '비밀번호가 다릅니다');
+      setAlertMessage('비밀번호가 다릅니다');
       setPasswordCheck('');
       setIsButtonDisabled(false); // Re-enable the button
       return;
     } else if (password.length < 8) {
-      alert(
-        '오류',
+      setAlertMessage(
         '비밀번호는 최소 8글자 이상이어야 합니다.'
       );
       setPasswordCheck('');
       setIsButtonDisabled(false); // Re-enable the button
       return;
     } else if (password.length > 12) {
-      alert(
-        '오류',
+      setAlertMessage(
         '비밀번호는 최대 12글자 이하이어야 합니다.'
       );
       setPasswordCheck('');
@@ -170,8 +164,7 @@ function SignUpPage() {
         } else {
         }
       } catch (error) {
-        alert(
-          '오류',
+        setAlertMessage(
           '잘못 입력하거나 비어있는 곳이 있습니다.'
         );
       } finally {

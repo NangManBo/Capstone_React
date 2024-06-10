@@ -28,7 +28,7 @@ function UserAuthenticationPage() {
   };
   const handleAuthenticationPassword = async () => {
     if (!inputPassword.trim()) {
-      alert('알림: 비밀번호를 입력해주세요.'); // Using standard alert for web
+      setAlertMessage('비밀번호를 입력해주세요.');
       return;
     }
 
@@ -48,7 +48,7 @@ function UserAuthenticationPage() {
       );
 
       if (response.status === 200) {
-        alert('알림: 본인인증 완료');
+        setAlertMessage('본인인증 완료');
         navigate('/profileupdate', {
           state: {
             isLoggedIn,
@@ -59,11 +59,11 @@ function UserAuthenticationPage() {
           },
         });
       } else {
-        alert('알림: 본인인증에 실패했습니다');
+        setAlertMessage('본인인증에 실패했습니다');
       }
     } catch (error) {
-      alert(
-        '알림: 본인인증에 실패했습니다.\n네트워크 상태를 확인해주세요.'
+      setAlertMessage(
+        '본인인증에 실패했습니다.네트워크 상태를 확인해주세요.'
       );
     }
   };

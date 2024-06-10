@@ -57,7 +57,7 @@ function VoteBeforePage() {
       (option) => option.isSelected
     );
     if (!selectedOption) {
-      window.alert('알림', '투표항목을 선택해주세요');
+      setAlertMessage('투표항목을 선택해주세요');
       return;
     }
     try {

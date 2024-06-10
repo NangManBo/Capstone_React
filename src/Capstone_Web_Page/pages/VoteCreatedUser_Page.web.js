@@ -136,7 +136,7 @@ function VoteCreatedUserPage() {
         setSelectedMedia(URL.createObjectURL(file)); // Set preview URL
         setMediaFile(file); // Save the file for later use
       } else {
-        alert('Only images and videos are allowed.');
+        setAlertMessage('사진과 동영상만 가능합니다');
         setSelectedMedia(null);
         setMediaFile(null);
       }
@@ -463,7 +463,7 @@ function VoteCreatedUserPage() {
 
     try {
       if (!commentText.trim()) {
-        alert('댓글 내용을 입력하세요.');
+        setAlertMessage('댓글 내용을 입력하세요.');
         return;
       }
 
@@ -651,10 +651,10 @@ function VoteCreatedUserPage() {
           prev === 'empty' ? 'filled' : 'empty'
         );
       } else {
-        alert('이미 좋아요를 누르셨습니다.');
+        setAlertMessage('이미 좋아요를 누르셨습니다.');
       }
     } catch (error) {
-      alert('이미 좋아요를 누르셨습니다.');
+      setAlertMessage('이미 좋아요를 누르셨습니다.');
     }
   };
   useEffect(() => {
