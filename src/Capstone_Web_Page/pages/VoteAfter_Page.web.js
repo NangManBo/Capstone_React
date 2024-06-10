@@ -95,6 +95,7 @@ function VoteAfterPage() {
     setMessage(message);
   };
 
+  const [isDelete, setIsDelete] = useState(false);
   const placeholder = {
     label: '정렬 기준',
     value: null,
@@ -340,7 +341,7 @@ function VoteAfterPage() {
   const handleDeletePress = async (comment) => {
     if (userId === comment.userId) {
       setFixedId(comment.id);
-      setIsAlert(true);
+      setIsDelete(true);
     }
   };
 
@@ -354,7 +355,7 @@ function VoteAfterPage() {
         const data = response.data;
         console.log('댓글 삭제 성공:', data);
 
-        setIsAlert(false);
+        setIsDelete(false);
       } else {
         console.error('댓글 삭제 실패:', response.status);
       }
@@ -725,8 +726,8 @@ function VoteAfterPage() {
   return (
     <div className="vote_page">
       <DeleteModal
-        isVisible={isAlert}
-        onCancel={() => setIsAlert(false)}
+        isVisible={isDelete}
+        onCancel={() => setIsDelete(false)}
         onDelete={handleDelete}
       />
       <ReportModal
