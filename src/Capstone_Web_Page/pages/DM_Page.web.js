@@ -66,6 +66,7 @@ function DMPage() {
               icon={faTrashCan}
             />
             <FontAwesomeIcon
+              className="fixed_button_icon"
               onClick={() => handlemessge(item)}
               icon={faPaperPlane}
             />
