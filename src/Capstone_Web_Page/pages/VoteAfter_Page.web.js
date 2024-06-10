@@ -8,7 +8,7 @@ import axios from 'axios';
 import { MainBanner } from '../components/mainBanner_components';
 import { LeftBar } from '../components/leftBar_components';
 import './styles/vote_style.css';
-
+import { ReportModal } from '../modals/Report_Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
 import { faImage } from '@fortawesome/free-regular-svg-icons';
@@ -17,6 +17,7 @@ import { faMessage } from '@fortawesome/free-solid-svg-icons';
 import { faReply } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 
 const calculateTotalComments = (comments) => {
   let totalComments = 0;
@@ -76,7 +77,13 @@ function VoteAfterPage() {
     useState('시간'); // 초기 정렬 기준을 '시간'으로 설정
   const [sortedComments, setSortedComments] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isModalVisible, setModalVisible] = useState(false);
   const totalComments = calculateTotalComments(comments);
+  const [commentId, setCommentId] = useState(null);
+  const toggleModal = (id) => {
+    setCommentId(id);
+    setModalVisible(!isModalVisible);
+  };
 
   const placeholder = {
     label: '정렬 기준',
@@ -309,20 +316,28 @@ function VoteAfterPage() {
         <div className="comment_box">
           <div className="commnet_box_user">
             <span>작성자 : {comment.userNickname}</span>
-            <span>
-              작성시간:{' '}
-              {new Date(comment.time).toLocaleString(
-                'ko-KR',
-                {
-                  year: 'numeric',
-                  month: '2-digit',
-                  day: '2-digit',
-                  hour: '2-digit',
-                  minute: '2-digit',
-                  second: '2-digit',
-                }
-              )}
-            </span>
+            <>
+              <span>
+                작성시간:{' '}
+                {new Date(comment.time).toLocaleString(
+                  'ko-KR',
+                  {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                  }
+                )}
+              </span>
+              <span onClick={() => toggleModal(comment.id)}>
+                <FontAwesomeIcon
+                  style={{ marginLeft: '15px' }}
+                  icon={faCircleExclamation}
+                />
+              </span>
+            </>
           </div>
 
           <div>
@@ -612,6 +627,12 @@ function VoteAfterPage() {
   };
   return (
     <div className="vote_page">
+      <ReportModal
+        isVisible={isModalVisible}
+        onClose={() => toggleModal(null)}
+        onConfirm={() => toggleModal(null)}
+        commentId={commentId}
+      />
       {MainBanner(
         jwtToken,
         isLoggedIn,
