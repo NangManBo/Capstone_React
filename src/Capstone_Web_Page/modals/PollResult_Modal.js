@@ -15,6 +15,22 @@ const COLORS = [
   '#FF8042',
   '#FF6384',
   '#36A2EB',
+  '#FFCD56',
+  '#4BC0C0',
+  '#9966FF',
+  '#C9CBCF',
+  '#4B4E6D',
+  '#F07B3F',
+  '#E94F37',
+  '#5F4B8B',
+  '#FF6F61',
+  '#6B5B95',
+  '#88B04B',
+  '#F7CAC9',
+  '#92A8D1',
+  '#955251',
+  '#B565A7',
+  '#009B77',
 ];
 
 Modal.setAppElement('#root'); // Your app element
@@ -24,6 +40,17 @@ const PollResultModal = ({
   handleClose,
   pollResult,
 }) => {
+  const usedColors = new Set();
+
+  const getColor = (index) => {
+    while (usedColors.has(COLORS[index % COLORS.length])) {
+      index++;
+    }
+    const color = COLORS[index % COLORS.length];
+    usedColors.add(color);
+    return color;
+  };
+
   const generateChartData = (counts, names) => {
     return Object.keys(names).map((key) => {
       const count = Object.values(counts[key]).reduce(
@@ -120,7 +147,7 @@ const PollResultModal = ({
               ).map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
-                  fill={COLORS[index % COLORS.length]}
+                  fill={getColor(index)}
                 />
               ))}
             </Pie>
@@ -128,7 +155,8 @@ const PollResultModal = ({
             <Legend />
           </PieChart>
           <div>{renderGenderCounts()}</div>
-
+          {usedColors.clear()}{' '}
+          {/* Reset used colors for the next chart */}
           <h5>Age Distribution</h5>
           <PieChart width={400} height={400}>
             <Pie
@@ -149,7 +177,7 @@ const PollResultModal = ({
               ).map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
-                  fill={COLORS[index % COLORS.length]}
+                  fill={getColor(index)}
                 />
               ))}
             </Pie>
