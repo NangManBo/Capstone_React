@@ -28,6 +28,12 @@ function SignUpPage() {
     label: 'MBTI',
     value: null,
   };
+  const [isAlert, setIsAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const toggleModal_alert = (message) => {
+    setIsAlert(!isAlert);
+    setAlertMessage(message);
+  };
   const mbtis = [
     { label: 'INFP', value: 'INFP' },
     { label: 'INFJ', value: 'INFJ' },
@@ -185,6 +191,12 @@ function SignUpPage() {
   };
   return (
     <div className="Page">
+      <AlertModal
+        isVisible={isAlert}
+        onClose={() => toggleModal_alert(null)}
+        onConfirm={() => toggleModal_alert(null)}
+        message={alertMessage}
+      />
       {showPhoneAuthModal && (
         <PhoneAuthenticationModal
           onClose={handleClose}

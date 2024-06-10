@@ -22,7 +22,12 @@ function DMAutoSendPage() {
   } = location.state || {}; // state가 없는 경우를 대비한 기본값 설정
 
   const [messageContent, setMessageContent] = useState('');
-
+  const [isAlert, setIsAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const toggleModal_alert = (message) => {
+    setIsAlert(!isAlert);
+    setAlertMessage(message);
+  };
   const handleSendMessage = async () => {
     const messageData = {
       sender: nickname,
@@ -62,6 +67,12 @@ function DMAutoSendPage() {
 
   return (
     <div className="profile_page">
+      <AlertModal
+        isVisible={isAlert}
+        onClose={() => toggleModal_alert(null)}
+        onConfirm={() => toggleModal_alert(null)}
+        message={alertMessage}
+      />
       {MainBanner(
         jwtToken,
         isLoggedIn,

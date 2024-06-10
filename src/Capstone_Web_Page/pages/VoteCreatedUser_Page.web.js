@@ -79,6 +79,12 @@ function VoteCreatedUserPage() {
     { label: '최신 순', value: '시간' },
     { label: '인기 순', value: '인기' },
   ];
+  const [isAlert, setIsAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const toggleModal_alert = (message) => {
+    setIsAlert(!isAlert);
+    setAlertMessage(message);
+  };
   const [heartType, setHeartType] = useState('empty');
   const [pollOptions, setPollOptions] = useState([]);
   // 댓글에서 쪽지 보내기
@@ -722,6 +728,12 @@ function VoteCreatedUserPage() {
   };
   return (
     <div className="vote_page">
+      <AlertModal
+        isVisible={isAlert}
+        onClose={() => toggleModal_alert(null)}
+        onConfirm={() => toggleModal_alert(null)}
+        message={alertMessage}
+      />
       <ReportModal
         isVisible={isModalVisible}
         onClose={() => toggleModal(null)}

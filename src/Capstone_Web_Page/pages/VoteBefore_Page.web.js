@@ -23,7 +23,12 @@ function VoteBeforePage() {
   } = location.state || { isCategory: false };
 
   const [pollOptions, setPollOptions] = useState([]);
-
+  const [isAlert, setIsAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const toggleModal_alert = (message) => {
+    setIsAlert(!isAlert);
+    setAlertMessage(message);
+  };
   useEffect(() => {
     if (vote.choice && Array.isArray(vote.choice)) {
       setPollOptions(
@@ -132,6 +137,12 @@ function VoteBeforePage() {
 
   return (
     <div className="profile_page">
+      <AlertModal
+        isVisible={isAlert}
+        onClose={() => toggleModal_alert(null)}
+        onConfirm={() => toggleModal_alert(null)}
+        message={alertMessage}
+      />
       {MainBanner(
         jwtToken,
         isLoggedIn,

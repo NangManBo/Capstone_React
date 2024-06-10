@@ -16,7 +16,12 @@ function DMSendPage() {
 
   const [recipientId, setRecipientId] = useState('');
   const [messageContent, setMessageContent] = useState('');
-
+  const [isAlert, setIsAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const toggleModal_alert = (message) => {
+    setIsAlert(!isAlert);
+    setAlertMessage(message);
+  };
   const handleSendMessage = async () => {
     try {
       const messageData = {
@@ -55,6 +60,12 @@ function DMSendPage() {
 
   return (
     <div className="profile_page">
+      <AlertModal
+        isVisible={isAlert}
+        onClose={() => toggleModal_alert(null)}
+        onConfirm={() => toggleModal_alert(null)}
+        message={alertMessage}
+      />
       {MainBanner(
         jwtToken,
         isLoggedIn,

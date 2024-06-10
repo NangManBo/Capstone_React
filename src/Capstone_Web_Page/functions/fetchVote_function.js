@@ -16,7 +16,7 @@ export const fetchVotes = async (
     );
     if (response.status === 200) {
       const votesData = response.data;
-
+      console.log(votesData);
       if (Array.isArray(votesData)) {
         const formattedVotes = votesData.map((vote) => ({
           id: vote.id,

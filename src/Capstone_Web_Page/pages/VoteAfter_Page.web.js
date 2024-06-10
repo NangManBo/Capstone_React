@@ -19,7 +19,7 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
-import AlertModal from '../modals/Alert_Modal';
+import AlertModal from '../modals/AlertMessage_Modal';
 import DeleteModal from '../modals/Delete_Modal';
 
 const calculateTotalComments = (comments) => {
@@ -89,10 +89,10 @@ function VoteAfterPage() {
     setModalVisible(!isModalVisible);
   };
   const [isAlert, setIsAlert] = useState(false);
-  const [message, setMessage] = useState('');
+  const [alertMessage, setAlertMessage] = useState('');
   const toggleModal_alert = (message) => {
     setIsAlert(!isAlert);
-    setMessage(message);
+    setAlertMessage(message);
   };
 
   const [isDelete, setIsDelete] = useState(false);
@@ -176,7 +176,8 @@ function VoteAfterPage() {
         data,
         {
           headers: {
-            'AUTH-TOKEN': jwtToken,
+            'Content-Type': 'application/json',
+            Authorization: jwtToken,
           },
         }
       );
@@ -741,7 +742,7 @@ function VoteAfterPage() {
         isVisible={isAlert}
         onClose={() => toggleModal_alert(null)}
         onConfirm={() => toggleModal_alert(null)}
-        message={message}
+        message={alertMessage}
       />
 
       {MainBanner(

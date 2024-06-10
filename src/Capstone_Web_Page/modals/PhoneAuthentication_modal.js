@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './styles/modal_style.css';
+import AlertModal from '../modals/AlertMessage_Modal';
 
 function PhoneAuthenticationModal({
   onClose,
@@ -14,7 +15,12 @@ function PhoneAuthenticationModal({
   // 초 단위로 초기 시간 설정 (3분 = 180초)
   const [seconds, setSeconds] = useState(1);
   const [message, setMessage] = useState('');
-
+  const [isAlert, setIsAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const toggleModal_alert = (message) => {
+    setIsAlert(!isAlert);
+    setAlertMessage(message);
+  };
   const sendPhoneNumber = async () => {
     try {
       const response = await axios.post(
@@ -83,6 +89,12 @@ function PhoneAuthenticationModal({
   }, [seconds]);
   return (
     <div className="modal-background">
+      <AlertModal
+        isVisible={isAlert}
+        onClose={() => toggleModal_alert(null)}
+        onConfirm={() => toggleModal_alert(null)}
+        message={alertMessage}
+      />
       <div className="modal-content">
         <button onClick={onClose}>x</button>
         <div className="section">

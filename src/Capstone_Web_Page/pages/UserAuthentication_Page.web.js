@@ -19,7 +19,12 @@ function UserAuthenticationPage() {
     keyId,
   } = location.state;
   const [inputPassword, setInputPassword] = useState('');
-
+  const [isAlert, setIsAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const toggleModal_alert = (message) => {
+    setIsAlert(!isAlert);
+    setAlertMessage(message);
+  };
   const handleAuthenticationPassword = async () => {
     if (!inputPassword.trim()) {
       alert('알림: 비밀번호를 입력해주세요.'); // Using standard alert for web
@@ -64,6 +69,12 @@ function UserAuthenticationPage() {
 
   return (
     <div className="profile_page">
+      <AlertModal
+        isVisible={isAlert}
+        onClose={() => toggleModal_alert(null)}
+        onConfirm={() => toggleModal_alert(null)}
+        message={alertMessage}
+      />
       {MainBanner(
         jwtToken,
         isLoggedIn,

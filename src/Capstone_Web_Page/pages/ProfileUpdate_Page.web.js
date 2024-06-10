@@ -24,6 +24,12 @@ function ProfileUpdatePage() {
   const [newNickname, setNewNickname] = useState(null);
   const [currentNickname, setCurrentNickname] =
     useState('');
+  const [isAlert, setIsAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const toggleModal_alert = (message) => {
+    setIsAlert(!isAlert);
+    setAlertMessage(message);
+  };
   const [jwtToken1, setJwtToken1] = useState(
     jwtToken || ''
   );
@@ -97,6 +103,12 @@ function ProfileUpdatePage() {
   };
   return (
     <div className="profile_page">
+      <AlertModal
+        isVisible={isAlert}
+        onClose={() => toggleModal_alert(null)}
+        onConfirm={() => toggleModal_alert(null)}
+        message={alertMessage}
+      />
       {MainBanner(
         jwtToken,
         isLoggedIn,

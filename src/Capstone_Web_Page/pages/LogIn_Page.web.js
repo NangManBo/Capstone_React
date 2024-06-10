@@ -9,7 +9,12 @@ function LogInPage() {
   const navigate = useNavigate();
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
-
+  const [isAlert, setIsAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const toggleModal_alert = (message) => {
+    setIsAlert(!isAlert);
+    setAlertMessage(message);
+  };
   const handleLogin = async () => {
     const userData = {
       uid: id,
@@ -53,6 +58,12 @@ function LogInPage() {
 
   return (
     <div className="Page">
+      <AlertModal
+        isVisible={isAlert}
+        onClose={() => toggleModal_alert(null)}
+        onConfirm={() => toggleModal_alert(null)}
+        message={alertMessage}
+      />
       <BasicBanner />
       <div className="title_form">
         <h2 className="first-title">

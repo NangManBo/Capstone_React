@@ -24,6 +24,12 @@ function VoteMakePage() {
   const [options, setOptions] = useState(['', '']);
   const [selectedMedia, setSelectedMedia] = useState(null);
   const [mediaFile, setMediaFile] = useState(null); // 파일 자체를 저장하기 위한 상태
+  const [isAlert, setIsAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const toggleModal_alert = (message) => {
+    setIsAlert(!isAlert);
+    setAlertMessage(message);
+  };
   // 선택 사항 추가
   const addOption = () => {
     if (options.length < 4) {
@@ -180,6 +186,12 @@ function VoteMakePage() {
 
   return (
     <div className="vote_page">
+      <AlertModal
+        isVisible={isAlert}
+        onClose={() => toggleModal_alert(null)}
+        onConfirm={() => toggleModal_alert(null)}
+        message={alertMessage}
+      />
       {MainBanner(
         jwtToken,
         isLoggedIn,

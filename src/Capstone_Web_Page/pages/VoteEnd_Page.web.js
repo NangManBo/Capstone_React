@@ -84,7 +84,12 @@ function VoteEndPage() {
     setCommentId(id);
     setModalVisible(!isModalVisible);
   };
-
+  const [isAlert, setIsAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const toggleModal_alert = (message) => {
+    setIsAlert(!isAlert);
+    setAlertMessage(message);
+  };
   //게시글 좋아요
   const handleHeartClick = async () => {
     const data = {
@@ -664,6 +669,12 @@ function VoteEndPage() {
   };
   return (
     <div className="vote_page">
+      <AlertModal
+        isVisible={isAlert}
+        onClose={() => toggleModal_alert(null)}
+        onConfirm={() => toggleModal_alert(null)}
+        message={alertMessage}
+      />
       <ReportModal
         isVisible={isModalVisible}
         onClose={() => toggleModal(null)}
