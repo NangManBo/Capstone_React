@@ -9,6 +9,8 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import './styles/profile_style.css';
 import './styles/dmSend_style.css';
 import './styles/dmBox_style.css';
+import axios from 'axios';
+
 function DMPage() {
   const navigate = useNavigate();
   const location = useLocation();

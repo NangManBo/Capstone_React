@@ -640,7 +640,6 @@ function VoteAfterPage() {
         ) {
         } else {
         }
-
         setIsReplyMode(false);
         setCommentText('');
       } else {
