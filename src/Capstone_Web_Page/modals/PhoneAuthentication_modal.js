@@ -29,16 +29,15 @@ function PhoneAuthenticationModal({
         }
       );
       if (response.status === 500) {
-        alert('이미 가입된 번호입니다');
+        alert('이미 가입된 번호거나 잘못입력하셨습니다');
       }
       if (response.status === 200) {
         setIsSend(true);
       } else {
-        alert('이미 가입된 번호입니다');
+        alert('이미 가입된 번호거나 잘못입력하셨습니다');
       }
     } catch (error) {
-      setIsSend(true);
-      alert('이미 가입된 번호입니다');
+      alert('이미 가입된 번호거나 잘못입력하셨습니다');
     }
   };
 
