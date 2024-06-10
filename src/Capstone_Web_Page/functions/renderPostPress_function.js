@@ -25,7 +25,7 @@ export const renderPostPress = async (
     try {
       // Fetch user votes from the backend
       const response = await axios.get(
-        'https://dovote.p-e.kr/votes/ok/' + nickname,
+        'https://dovote.p-e.kr/votes/ok/' + keyId,
         {
           headers: {
             'Content-Type': 'multipart/form-data',
