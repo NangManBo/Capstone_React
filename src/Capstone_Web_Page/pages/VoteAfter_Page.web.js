@@ -710,6 +710,7 @@ function VoteAfterPage() {
           >
             {heartType === 'empty' ? (
               <FontAwesomeIcon
+                onClick={handleHeartClick}
                 icon={faHeart}
                 color="black"
                 style={{ fontSize: '36px' }}

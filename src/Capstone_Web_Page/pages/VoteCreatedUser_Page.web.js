@@ -625,11 +625,6 @@ function VoteCreatedUserPage() {
 
   //게시글 좋아요
   const handleHeartClick = async () => {
-    const data = {
-      pollId: vote.id,
-      userId: keyId,
-    };
-
     try {
       const response = await axios.post(
         'https://dovote.p-e.kr/polls/likes',
