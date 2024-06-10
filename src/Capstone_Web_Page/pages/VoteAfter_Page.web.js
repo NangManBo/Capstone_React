@@ -300,6 +300,8 @@ function VoteAfterPage() {
   };
   // 댓글 신고
   const reportComment = async (commentId, reportReason) => {
+    setSend(true);
+
     try {
       const response = await axios.post(
         `https://dovote.p-e.kr/comments/report/${userId}/${vote.id}/${commentId}`,
@@ -315,6 +317,7 @@ function VoteAfterPage() {
       );
 
       if (response.status === 200) {
+        setSend(false);
         console.log('댓글 신고 성공:', response.data);
       } else {
         console.error('댓글 신고 실패:', response.data);
