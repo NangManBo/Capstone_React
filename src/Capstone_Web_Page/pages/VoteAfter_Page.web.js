@@ -717,10 +717,7 @@ function VoteAfterPage() {
               style={{ fontSize: '36px' }}
             />{' '}
           </div>
-          <div
-            className="likeButton"
-            onClick={() => handleHeartClick()}
-          >
+          <div className="likeButton">
             {heartType === 'empty' ? (
               <FontAwesomeIcon
                 onClick={handleHeartClick}
