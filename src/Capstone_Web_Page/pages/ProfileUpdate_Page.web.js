@@ -77,6 +77,15 @@ function ProfileUpdatePage() {
         setCurrentNickname(response.data.nickname);
 
         alert('정보 수정 완료');
+        navigate('/', {
+          state: {
+            isLoggedIn: true,
+            userId: userId,
+            jwtToken: jwtToken,
+            nickname: nickname,
+            keyId: keyId,
+          },
+        });
       } else {
         alert('정보 수정에 실패했습니다');
       }
