@@ -18,7 +18,7 @@ import { faImage } from '@fortawesome/free-regular-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 import './styles/vote_style.css';
-import { AlertModal } from '../modals/AlertMessage_Modal';
+
 const calculateTotalComments = (comments) => {
   let totalComments = 0;
 
@@ -79,12 +79,7 @@ function VoteCreatedUserPage() {
     { label: '최신 순', value: '시간' },
     { label: '인기 순', value: '인기' },
   ];
-  const [isAlert, setIsAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState('');
-  const toggleModal_alert = (message) => {
-    setIsAlert(!isAlert);
-    setAlertMessage(message);
-  };
+
   const [heartType, setHeartType] = useState('empty');
   const [pollOptions, setPollOptions] = useState([]);
   // 댓글에서 쪽지 보내기
@@ -136,7 +131,7 @@ function VoteCreatedUserPage() {
         setSelectedMedia(URL.createObjectURL(file)); // Set preview URL
         setMediaFile(file); // Save the file for later use
       } else {
-        setAlertMessage('사진과 동영상만 가능합니다');
+        alert('사진과 동영상만 가능합니다');
         setSelectedMedia(null);
         setMediaFile(null);
       }
@@ -463,7 +458,7 @@ function VoteCreatedUserPage() {
 
     try {
       if (!commentText.trim()) {
-        setAlertMessage('댓글 내용을 입력하세요.');
+        alert('댓글 내용을 입력하세요.');
         return;
       }
 
@@ -700,12 +695,6 @@ function VoteCreatedUserPage() {
   };
   return (
     <div className="vote_page">
-      <AlertModal
-        isVisible={isAlert}
-        onClose={() => toggleModal_alert(null)}
-        onConfirm={() => toggleModal_alert(null)}
-        message={alertMessage}
-      />
       <ReportModal
         isVisible={isModalVisible}
         onClose={() => toggleModal(null)}

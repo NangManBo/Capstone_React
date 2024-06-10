@@ -19,7 +19,7 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
-import { AlertModal } from '../modals/AlertMessage_Modal';
+
 import DeleteModal from '../modals/Delete_Modal';
 
 const calculateTotalComments = (comments) => {
@@ -88,14 +88,7 @@ function VoteAfterPage() {
     setCommentId(id);
     setModalVisible(!isModalVisible);
   };
-  const [isAlert, setIsAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState('');
-  const toggleModal_alert = (message) => {
-    setAlertMessage(message);
-    setIsAlert(!isAlert);
-  };
 
-  const [isDelete, setIsDelete] = useState(false);
   const placeholder = {
     label: '정렬 기준',
     value: null,
@@ -202,7 +195,7 @@ function VoteAfterPage() {
 
     try {
       if (!commentText.trim()) {
-        setAlertMessage('댓글 내용을 입력하세요.');
+        alert('댓글 내용을 입력하세요.');
         return;
       }
 
@@ -291,7 +284,7 @@ function VoteAfterPage() {
         setSelectedMedia(URL.createObjectURL(file)); // Set preview URL
         setMediaFile(file); // Save the file for later use
       } else {
-        setAlertMessage('사진과 동영상만 가능합니다.');
+        alert('사진과 동영상만 가능합니다.');
         setSelectedMedia(null);
         setMediaFile(null);
       }
@@ -354,8 +347,6 @@ function VoteAfterPage() {
       if (response.status === 204) {
         const data = response.data;
         console.log('댓글 삭제 성공:', data);
-
-        setIsDelete(false);
       } else {
         console.error('댓글 삭제 실패:', response.status);
       }
@@ -734,12 +725,6 @@ function VoteAfterPage() {
         onConfirm={() => toggleModal(null)}
         commentId={commentId}
         reportComment={reportComment}
-      />
-      <AlertModal
-        isVisible={isAlert}
-        onClose={() => setIsAlert(false)}
-        onConfirm={() => setIsAlert(false)}
-        message={alertMessage}
       />
 
       {MainBanner(

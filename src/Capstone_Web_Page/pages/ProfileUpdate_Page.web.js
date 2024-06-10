@@ -6,7 +6,7 @@ import { LeftBar } from '../components/leftBar_components';
 import './styles/profile_style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
-import { AlertModal } from '../modals/AlertMessage_Modal';
+
 function ProfileUpdatePage() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -24,12 +24,7 @@ function ProfileUpdatePage() {
   const [newNickname, setNewNickname] = useState(null);
   const [currentNickname, setCurrentNickname] =
     useState('');
-  const [isAlert, setIsAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState('');
-  const toggleModal_alert = (message) => {
-    setIsAlert(!isAlert);
-    setAlertMessage(message);
-  };
+
   const [jwtToken1, setJwtToken1] = useState(
     jwtToken || ''
   );
@@ -77,16 +72,16 @@ function ProfileUpdatePage() {
         );
 
         setJwtToken1(response.data.token);
-        setNewNickname('');
-        setNewPassword('');
+        setNewNickname(null);
+        setNewPassword(null);
         setCurrentNickname(response.data.nickname);
 
-        setAlertMessage('정보 수정 완료');
+        alert('정보 수정 완료');
       } else {
-        setAlertMessage('정보 수정에 실패했습니다');
+        alert('정보 수정에 실패했습니다');
       }
     } catch (error) {
-      setAlertMessage('정보 수정에 실패했습니다.');
+      alert('정보 수정에 실패했습니다.');
     }
   };
 
@@ -103,12 +98,6 @@ function ProfileUpdatePage() {
   };
   return (
     <div className="profile_page">
-      <AlertModal
-        isVisible={isAlert}
-        onClose={() => toggleModal_alert(null)}
-        onConfirm={() => toggleModal_alert(null)}
-        message={alertMessage}
-      />
       {MainBanner(
         jwtToken,
         isLoggedIn,

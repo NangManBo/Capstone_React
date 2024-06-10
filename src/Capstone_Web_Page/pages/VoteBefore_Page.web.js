@@ -7,7 +7,7 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
 import './styles/vote_style.css';
-import { AlertModal } from '../modals/AlertMessage_Modal';
+
 function VoteBeforePage() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -24,12 +24,7 @@ function VoteBeforePage() {
   } = location.state || { isCategory: false };
 
   const [pollOptions, setPollOptions] = useState([]);
-  const [isAlert, setIsAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState('');
-  const toggleModal_alert = (message) => {
-    setIsAlert(!isAlert);
-    setAlertMessage(message);
-  };
+
   useEffect(() => {
     if (vote.choice && Array.isArray(vote.choice)) {
       setPollOptions(
@@ -57,7 +52,7 @@ function VoteBeforePage() {
       (option) => option.isSelected
     );
     if (!selectedOption) {
-      setAlertMessage('투표항목을 선택해주세요');
+      alert('투표항목을 선택해주세요');
       return;
     }
     try {
@@ -138,12 +133,6 @@ function VoteBeforePage() {
 
   return (
     <div className="profile_page">
-      <AlertModal
-        isVisible={isAlert}
-        onClose={() => toggleModal_alert(null)}
-        onConfirm={() => toggleModal_alert(null)}
-        message={alertMessage}
-      />
       {MainBanner(
         jwtToken,
         isLoggedIn,

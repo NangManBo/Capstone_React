@@ -7,7 +7,7 @@ import { MainBanner } from '../components/mainBanner_components';
 import { LeftBar } from '../components/leftBar_components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
-import { AlertModal } from '../modals/AlertMessage_Modal';
+
 function UserAuthenticationPage() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -20,15 +20,10 @@ function UserAuthenticationPage() {
     keyId,
   } = location.state;
   const [inputPassword, setInputPassword] = useState('');
-  const [isAlert, setIsAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState('');
-  const toggleModal_alert = (message) => {
-    setIsAlert(!isAlert);
-    setAlertMessage(message);
-  };
+
   const handleAuthenticationPassword = async () => {
     if (!inputPassword.trim()) {
-      setAlertMessage('비밀번호를 입력해주세요.');
+      alert('비밀번호를 입력해주세요.');
       return;
     }
 
@@ -48,7 +43,7 @@ function UserAuthenticationPage() {
       );
 
       if (response.status === 200) {
-        setAlertMessage('본인인증 완료');
+        alert('본인인증 완료');
         navigate('/profileupdate', {
           state: {
             isLoggedIn,
@@ -59,10 +54,10 @@ function UserAuthenticationPage() {
           },
         });
       } else {
-        setAlertMessage('본인인증에 실패했습니다');
+        alert('본인인증에 실패했습니다');
       }
     } catch (error) {
-      setAlertMessage(
+      alert(
         '본인인증에 실패했습니다.네트워크 상태를 확인해주세요.'
       );
     }
@@ -70,12 +65,6 @@ function UserAuthenticationPage() {
 
   return (
     <div className="profile_page">
-      <AlertModal
-        isVisible={isAlert}
-        onClose={() => toggleModal_alert(null)}
-        onConfirm={() => toggleModal_alert(null)}
-        message={alertMessage}
-      />
       {MainBanner(
         jwtToken,
         isLoggedIn,

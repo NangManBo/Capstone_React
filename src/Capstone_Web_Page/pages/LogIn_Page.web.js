@@ -4,17 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import './styles/login_style.css';
 import BasicBanner from '../components/basicBanner_components';
 import { getMessages } from '../functions/fetchComment_function';
-import { AlertModal } from '../modals/AlertMessage_Modal';
+
 function LogInPage() {
   const navigate = useNavigate();
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
-  const [isAlert, setIsAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState('');
-  const toggleModal_alert = (message) => {
-    setIsAlert(!isAlert);
-    setAlertMessage(message);
-  };
+
   const handleLogin = async () => {
     const userData = {
       uid: id,
@@ -42,36 +37,22 @@ function LogInPage() {
           },
         });
       } else if (response.status === 403) {
-        setAlertMessage(
-          '아이디 또는 비밀번호가 일치하지 않습니다.'
-        );
+        alert('아이디 또는 비밀번호가 일치하지 않습니다.');
       } else {
       }
     } catch (error) {
       if (error.response) {
-        setAlertMessage(
-          '아이디 또는 비밀번호가 일치하지 않습니다.'
-        );
+        alert('아이디 또는 비밀번호가 일치하지 않습니다.');
       } else if (error.request) {
-        setAlertMessage(
-          '아이디 또는 비밀번호가 일치하지 않습니다.'
-        );
+        alert('아이디 또는 비밀번호가 일치하지 않습니다.');
       } else {
-        setAlertMessage(
-          '아이디 또는 비밀번호가 일치하지 않습니다.'
-        );
+        alert('아이디 또는 비밀번호가 일치하지 않습니다.');
       }
     }
   };
 
   return (
     <div className="Page">
-      <AlertModal
-        isVisible={isAlert}
-        onClose={() => toggleModal_alert(null)}
-        onConfirm={() => toggleModal_alert(null)}
-        message={alertMessage}
-      />
       <BasicBanner />
       <div className="title_form">
         <h2 className="first-title">

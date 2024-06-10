@@ -16,7 +16,7 @@ import { LeftBar } from '../components/leftBar_components';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 import PollResultModal from '../modals/PollResult_Modal';
-import { AlertModal } from '../modals/AlertMessage_Modal';
+
 const calculateTotalComments = (comments) => {
   let totalComments = 0;
 
@@ -84,12 +84,7 @@ function VoteEndPage() {
     setCommentId(id);
     setModalVisible(!isModalVisible);
   };
-  const [isAlert, setIsAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState('');
-  const toggleModal_alert = (message) => {
-    setIsAlert(!isAlert);
-    setAlertMessage(message);
-  };
+
   //게시글 좋아요
   const handleHeartClick = async () => {
     try {
@@ -468,7 +463,7 @@ function VoteEndPage() {
         setSelectedMedia(URL.createObjectURL(file)); // Set preview URL
         setMediaFile(file); // Save the file for later use
       } else {
-        setAlertMessage('사진과 동영상만 가능합니다');
+        alert('사진과 동영상만 가능합니다');
         setSelectedMedia(null);
         setMediaFile(null);
       }
@@ -503,7 +498,7 @@ function VoteEndPage() {
 
     try {
       if (!commentText.trim()) {
-        setAlertMessage('댓글 내용을 입력하세요.');
+        alert('댓글 내용을 입력하세요.');
         return;
       }
 
@@ -673,12 +668,6 @@ function VoteEndPage() {
   };
   return (
     <div className="vote_page">
-      <AlertModal
-        isVisible={isAlert}
-        onClose={() => toggleModal_alert(null)}
-        onConfirm={() => toggleModal_alert(null)}
-        message={alertMessage}
-      />
       <ReportModal
         isVisible={isModalVisible}
         onClose={() => toggleModal(null)}

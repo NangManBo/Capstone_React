@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'; // useNavigate 불러오기
 import axios from 'axios';
 import PhoneAuthenticationModal from '../modals/PhoneAuthentication_modal'; // 모달 불러오기
 import './styles/signup_style.css';
-import { AlertModal } from '../modals/AlertMessage_Modal';
+
 function SignUpPage() {
   const [showPhoneAuthModal, setShowPhoneAuthModal] =
     useState(true);
@@ -29,12 +29,7 @@ function SignUpPage() {
     label: 'MBTI',
     value: null,
   };
-  const [isAlert, setIsAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState('');
-  const toggleModal_alert = (message) => {
-    setIsAlert(!isAlert);
-    setAlertMessage(message);
-  };
+
   const mbtis = [
     { label: 'INFP', value: 'INFP' },
     { label: 'INFJ', value: 'INFJ' },
@@ -74,9 +69,7 @@ function SignUpPage() {
 
     if (pattern.test(text)) {
       // 영어 대문자나 한글이 포함되어 있으면 알람을 띄움
-      setAlertMessage(
-        '영어 대문자나 한글은 사용할 수 없습니다.'
-      );
+      alert('영어 대문자나 한글은 사용할 수 없습니다.');
     } else {
       // 영어 대문자와 한글이 없으면 상태 업데이트
       setId(text);
@@ -91,10 +84,10 @@ function SignUpPage() {
     setPhoneNumber(phoneNumber);
     if (id === nickname) {
       if (id === '') {
-        setAlertMessage('입력해주세요!');
+        alert('입력해주세요!');
         setIsButtonDisabled(false);
       } else {
-        setAlertMessage(
+        alert(
           'ID와 닉네임이 중복됩니다. 다시 입력해주세요'
         );
         setNickname('');
@@ -102,39 +95,31 @@ function SignUpPage() {
       }
       return;
     } else if (nickname.length < 2) {
-      setAlertMessage(
-        '닉네임은 최소 2글자 이상이어야 합니다.'
-      );
+      alert('닉네임은 최소 2글자 이상이어야 합니다.');
       setNickname('');
       setIsButtonDisabled(false); // Re-enable the button
       return;
     } else if (nickname === '') {
-      setAlertMessage('닉네임에 적합하지 않은 이름입니다.');
+      alert('닉네임에 적합하지 않은 이름입니다.');
       setNickname('');
       setIsButtonDisabled(false); // Re-enable the button
       return;
     } else if (nickname.length > 7) {
-      setAlertMessage(
-        '닉네임은 최대 8글자 이하이어야 합니다.'
-      );
+      alert('닉네임은 최대 8글자 이하이어야 합니다.');
       setNickname('');
       setIsButtonDisabled(false); // Re-enable the button
     } else if (password !== passwordCheck) {
-      setAlertMessage('비밀번호가 다릅니다');
+      alert('비밀번호가 다릅니다');
       setPasswordCheck('');
       setIsButtonDisabled(false); // Re-enable the button
       return;
     } else if (password.length < 8) {
-      setAlertMessage(
-        '비밀번호는 최소 8글자 이상이어야 합니다.'
-      );
+      alert('비밀번호는 최소 8글자 이상이어야 합니다.');
       setPasswordCheck('');
       setIsButtonDisabled(false); // Re-enable the button
       return;
     } else if (password.length > 12) {
-      setAlertMessage(
-        '비밀번호는 최대 12글자 이하이어야 합니다.'
-      );
+      alert('비밀번호는 최대 12글자 이하이어야 합니다.');
       setPasswordCheck('');
       setIsButtonDisabled(false); // Re-enable the button
       return;
@@ -164,9 +149,7 @@ function SignUpPage() {
         } else {
         }
       } catch (error) {
-        setAlertMessage(
-          '잘못 입력하거나 비어있는 곳이 있습니다.'
-        );
+        alert('잘못 입력하거나 비어있는 곳이 있습니다.');
       } finally {
         setTimeout(() => {
           setIsButtonDisabled(false); // Re-enable the button after the delay
@@ -185,12 +168,6 @@ function SignUpPage() {
   };
   return (
     <div className="Page">
-      <AlertModal
-        isVisible={isAlert}
-        onClose={() => toggleModal_alert(null)}
-        onConfirm={() => toggleModal_alert(null)}
-        message={alertMessage}
-      />
       {showPhoneAuthModal && (
         <PhoneAuthenticationModal
           onClose={handleClose}

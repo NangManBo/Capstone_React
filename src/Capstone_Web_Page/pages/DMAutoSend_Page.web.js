@@ -6,7 +6,7 @@ import { LeftBar } from '../components/leftBar_components';
 import './styles/dmSend_style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
-import { AlertModal } from '../modals/AlertMessage_Modal';
+
 function DMAutoSendPage() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -22,12 +22,7 @@ function DMAutoSendPage() {
   } = location.state || {}; // state가 없는 경우를 대비한 기본값 설정
 
   const [messageContent, setMessageContent] = useState('');
-  const [isAlert, setIsAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState('');
-  const toggleModal_alert = (message) => {
-    setIsAlert(!isAlert);
-    setAlertMessage(message);
-  };
+
   const handleSendMessage = async () => {
     const messageData = {
       sender: nickname,
@@ -48,7 +43,7 @@ function DMAutoSendPage() {
       );
 
       if (response.status === 201) {
-        setAlertMessage('메시지 전송에 성공했습니다.');
+        alert('메시지 전송에 성공했습니다.');
         navigate('/dmbox', {
           state: {
             userId,
@@ -58,21 +53,15 @@ function DMAutoSendPage() {
           },
         });
       } else {
-        setAlertMessage('메시지 전송에 실패했습니다.');
+        alert('메시지 전송에 실패했습니다.');
       }
     } catch (error) {
-      setAlertMessage('메시지 전송에 실패했습니다.');
+      alert('메시지 전송에 실패했습니다.');
     }
   };
 
   return (
     <div className="profile_page">
-      <AlertModal
-        isVisible={isAlert}
-        onClose={() => toggleModal_alert(null)}
-        onConfirm={() => toggleModal_alert(null)}
-        message={alertMessage}
-      />
       {MainBanner(
         jwtToken,
         isLoggedIn,

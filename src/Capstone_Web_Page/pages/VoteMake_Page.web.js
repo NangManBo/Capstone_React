@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
 import { faImage } from '@fortawesome/free-regular-svg-icons';
 import { LeftBar } from '../components/leftBar_components';
-import { AlertModal } from '../modals/AlertMessage_Modal';
+
 function VoteMakePage() {
   // React Router의 useLocation 훅을 사용하여 URL의 상태 접근
   const location = useLocation();
@@ -25,20 +25,13 @@ function VoteMakePage() {
   const [options, setOptions] = useState(['', '']);
   const [selectedMedia, setSelectedMedia] = useState(null);
   const [mediaFile, setMediaFile] = useState(null); // 파일 자체를 저장하기 위한 상태
-  const [isAlert, setIsAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState('');
-  const toggleModal_alert = (message) => {
-    setIsAlert(!isAlert);
-    setAlertMessage(message);
-  };
+
   // 선택 사항 추가
   const addOption = () => {
     if (options.length < 4) {
       setOptions([...options, '']);
     } else {
-      setAlertMessage(
-        '투표항목은 최대 4개까지 등록 가능합니다.'
-      );
+      alert('투표항목은 최대 4개까지 등록 가능합니다.');
     }
   };
   // 선택 사항 삭제
@@ -49,9 +42,7 @@ function VoteMakePage() {
       );
       setOptions(newOptions);
     } else {
-      setAlertMessage(
-        '투표항목은 최소 2개 이상이어야 합니다.'
-      );
+      alert('투표항목은 최소 2개 이상이어야 합니다.');
     }
   };
   const categories = [
@@ -81,7 +72,7 @@ function VoteMakePage() {
         setSelectedMedia(URL.createObjectURL(file)); // Set preview URL
         setMediaFile(file); // Save the file for later use
       } else {
-        setAlertMessage('사진과 동영상만 가능합니다');
+        alert('사진과 동영상만 가능합니다');
         setSelectedMedia(null);
         setMediaFile(null);
       }
@@ -99,18 +90,18 @@ function VoteMakePage() {
         userId: keyId,
       };
       if (titleInput.trim() === '') {
-        setAlertMessage('제목을 입력하세요.');
+        alert('제목을 입력하세요.');
       } else if (
         selectedCategory.trim() === '' ||
         selectedCategory === '선택'
       ) {
-        setAlertMessage('카테고리를 선택해주세요.');
+        alert('카테고리를 선택해주세요.');
       } else if (description.trim() === '') {
-        setAlertMessage('본문 내용을 입력해주세요.');
+        alert('본문 내용을 입력해주세요.');
       } else if (
         options.some((option) => option.trim() === '')
       ) {
-        setAlertMessage('투표항목내용을 입력해주세요.');
+        alert('투표항목내용을 입력해주세요.');
       } else {
         formData.append(
           'pollData',
@@ -185,12 +176,6 @@ function VoteMakePage() {
 
   return (
     <div className="vote_page">
-      <AlertModal
-        isVisible={isAlert}
-        onClose={() => toggleModal_alert(null)}
-        onConfirm={() => toggleModal_alert(null)}
-        message={alertMessage}
-      />
       {MainBanner(
         jwtToken,
         isLoggedIn,

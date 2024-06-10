@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './styles/modal_style.css';
-import { AlertModal } from '../modals/AlertMessage_Modal';
 
 function PhoneAuthenticationModal({
   onClose,
@@ -15,12 +14,7 @@ function PhoneAuthenticationModal({
   // 초 단위로 초기 시간 설정 (3분 = 180초)
   const [seconds, setSeconds] = useState(1);
   const [message, setMessage] = useState('');
-  const [isAlert, setIsAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState('');
-  const toggleModal_alert = (message) => {
-    setIsAlert(!isAlert);
-    setAlertMessage(message);
-  };
+
   const sendPhoneNumber = async () => {
     try {
       const response = await axios.post(
@@ -38,7 +32,7 @@ function PhoneAuthenticationModal({
       if (response.status === 200) {
         setIsSend(true);
       } else {
-        setAlertMessage('잘못된 번호입니다');
+        alert('잘못된 번호입니다');
       }
     } catch (error) {
       setIsSend(true);
@@ -64,10 +58,10 @@ function PhoneAuthenticationModal({
         nextphone(phoneNumber);
         onSuccess(); // useNavigate로 페이지 이동, state를 통해 데이터 전달
       } else {
-        setAlertMessage('번호를 잘못 입력하셨습니다');
+        alert('번호를 잘못 입력하셨습니다');
       }
     } catch (error) {
-      setAlertMessage('번호를 잘못 입력하셨습니다');
+      alert('번호를 잘못 입력하셨습니다');
     }
   };
 
@@ -89,12 +83,6 @@ function PhoneAuthenticationModal({
   }, [seconds]);
   return (
     <div className="modal-background">
-      <AlertModal
-        isVisible={isAlert}
-        onClose={() => toggleModal_alert(null)}
-        onConfirm={() => toggleModal_alert(null)}
-        message={alertMessage}
-      />
       <div className="modal-content">
         <button onClick={onClose}>x</button>
         <div className="section">
