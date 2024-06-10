@@ -7,6 +7,7 @@ import {
 import axios from 'axios';
 import { MainBanner } from '../components/mainBanner_components';
 import { LeftBar } from '../components/leftBar_components';
+import { ReportModal } from '../modals/Report_Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
@@ -15,6 +16,7 @@ import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { faReply } from '@fortawesome/free-solid-svg-icons';
 import { faImage } from '@fortawesome/free-regular-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 import './styles/vote_style.css';
 
 const calculateTotalComments = (comments) => {
@@ -67,6 +69,12 @@ function VoteCreatedUserPage() {
   const [commentText, setCommentText] = useState('');
   const totalComments = calculateTotalComments(comments);
   const [mediaFile, setMediaFile] = useState(null);
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [commentId, setCommentId] = useState(null);
+  const toggleModal = (id) => {
+    setCommentId(id);
+    setModalVisible(!isModalVisible);
+  };
   const standards = [
     { label: '최신 순', value: '시간' },
     { label: '인기 순', value: '인기' },
@@ -176,6 +184,31 @@ function VoteCreatedUserPage() {
   useEffect(() => {
     sortComments(sortingStandard);
   }, [comments, sortingStandard]);
+  // 댓글 신고
+  const reportComment = async (commentId, reportReason) => {
+    try {
+      const response = await axios.post(
+        `https://dovote.p-e.kr/comments/report/${userId}/${vote.id}/${commentId}`,
+        {
+          reportReason,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: jwtToken,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        console.log('댓글 신고 성공:', response.data);
+      } else {
+        console.error('댓글 신고 실패:', response.data);
+      }
+    } catch (error) {
+      console.error('댓글 신고 오류:', error);
+    }
+  };
   //댓글 출력 창
   const Comment = ({ comment, index }) => {
     const handlePlayPause = () => {
@@ -200,20 +233,32 @@ function VoteCreatedUserPage() {
         <div className="comment_box">
           <div className="commnet_box_user">
             <span>작성자 : {comment.userNickname}</span>
-            <span>
-              작성시간:{' '}
-              {new Date(comment.time).toLocaleString(
-                'ko-KR',
-                {
-                  year: 'numeric',
-                  month: '2-digit',
-                  day: '2-digit',
-                  hour: '2-digit',
-                  minute: '2-digit',
-                  second: '2-digit',
-                }
-              )}
-            </span>
+            <>
+              {' '}
+              <span>
+                작성시간:{' '}
+                {new Date(comment.time).toLocaleString(
+                  'ko-KR',
+                  {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                  }
+                )}
+              </span>
+              <span onClick={() => toggleModal(comment.id)}>
+                <FontAwesomeIcon
+                  style={{
+                    marginLeft: '15px',
+                    color: 'red',
+                  }}
+                  icon={faCircleExclamation}
+                />
+              </span>
+            </>
           </div>
 
           <div>
@@ -293,19 +338,34 @@ function VoteCreatedUserPage() {
                     <span>
                       작성자 : {childComment.userNickname}
                     </span>
-                    <span>
-                      작성시간:{' '}
-                      {new Date(
-                        childComment.time
-                      ).toLocaleString('ko-KR', {
-                        year: 'numeric',
-                        month: '2-digit',
-                        day: '2-digit',
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        second: '2-digit',
-                      })}
-                    </span>
+                    <>
+                      <span>
+                        작성시간:{' '}
+                        {new Date(
+                          childComment.time
+                        ).toLocaleString('ko-KR', {
+                          year: 'numeric',
+                          month: '2-digit',
+                          day: '2-digit',
+                          hour: '2-digit',
+                          minute: '2-digit',
+                          second: '2-digit',
+                        })}
+                      </span>
+                      <span
+                        onClick={() =>
+                          toggleModal(childComment.id)
+                        }
+                      >
+                        <FontAwesomeIcon
+                          style={{
+                            marginLeft: '15px',
+                            color: 'red',
+                          }}
+                          icon={faCircleExclamation}
+                        />
+                      </span>
+                    </>
                   </div>
                   <div>
                     <p>{childComment.content}</p>
@@ -667,6 +727,13 @@ function VoteCreatedUserPage() {
   };
   return (
     <div className="vote_page">
+      <ReportModal
+        isVisible={isModalVisible}
+        onClose={() => toggleModal(null)}
+        onConfirm={() => toggleModal(null)}
+        commentId={commentId}
+        reportComment={reportComment}
+      />
       {MainBanner(
         jwtToken,
         isLoggedIn,

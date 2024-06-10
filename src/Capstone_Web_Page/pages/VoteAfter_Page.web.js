@@ -77,8 +77,8 @@ function VoteAfterPage() {
     useState('시간'); // 초기 정렬 기준을 '시간'으로 설정
   const [sortedComments, setSortedComments] = useState([]);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isModalVisible, setModalVisible] = useState(false);
   const totalComments = calculateTotalComments(comments);
+  const [isModalVisible, setModalVisible] = useState(false);
   const [commentId, setCommentId] = useState(null);
   const toggleModal = (id) => {
     setCommentId(id);
@@ -358,7 +358,10 @@ function VoteAfterPage() {
               </span>
               <span onClick={() => toggleModal(comment.id)}>
                 <FontAwesomeIcon
-                  style={{ marginLeft: '15px' }}
+                  style={{
+                    marginLeft: '15px',
+                    color: 'red',
+                  }}
                   icon={faCircleExclamation}
                 />
               </span>
@@ -442,19 +445,34 @@ function VoteAfterPage() {
                     <span>
                       작성자 : {childComment.userNickname}
                     </span>
-                    <span>
-                      작성시간:{' '}
-                      {new Date(
-                        childComment.time
-                      ).toLocaleString('ko-KR', {
-                        year: 'numeric',
-                        month: '2-digit',
-                        day: '2-digit',
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        second: '2-digit',
-                      })}
-                    </span>
+                    <>
+                      <span>
+                        작성시간:{' '}
+                        {new Date(
+                          childComment.time
+                        ).toLocaleString('ko-KR', {
+                          year: 'numeric',
+                          month: '2-digit',
+                          day: '2-digit',
+                          hour: '2-digit',
+                          minute: '2-digit',
+                          second: '2-digit',
+                        })}
+                      </span>
+                      <span
+                        onClick={() =>
+                          toggleModal(childComment.id)
+                        }
+                      >
+                        <FontAwesomeIcon
+                          style={{
+                            marginLeft: '15px',
+                            color: 'red',
+                          }}
+                          icon={faCircleExclamation}
+                        />
+                      </span>
+                    </>
                   </div>
                   <div>
                     <p>{childComment.content}</p>

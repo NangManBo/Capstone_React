@@ -4,6 +4,7 @@ import { fetchComments } from '../functions/fetchComment_function';
 import axios from 'axios';
 import './styles/voteEnd_style.css';
 import './styles/vote_style.css';
+import { ReportModal } from '../modals/Report_Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
@@ -13,6 +14,7 @@ import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { MainBanner } from '../components/mainBanner_components';
 import { LeftBar } from '../components/leftBar_components';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 import PollResultModal from '../modals/PollResult_Modal';
 
 const calculateTotalComments = (comments) => {
@@ -76,6 +78,12 @@ function VoteEndPage() {
   const [showPollResult, setShowPollResult] =
     useState(false);
   const totalComments = calculateTotalComments(comments);
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [commentId, setCommentId] = useState(null);
+  const toggleModal = (id) => {
+    setCommentId(id);
+    setModalVisible(!isModalVisible);
+  };
 
   //게시글 좋아요
   const handleHeartClick = async () => {
@@ -154,20 +162,31 @@ function VoteEndPage() {
         <div className="comment_box">
           <div className="commnet_box_user">
             <span>작성자 : {comment.userNickname}</span>
-            <span>
-              작성시간:{' '}
-              {new Date(comment.time).toLocaleString(
-                'ko-KR',
-                {
-                  year: 'numeric',
-                  month: '2-digit',
-                  day: '2-digit',
-                  hour: '2-digit',
-                  minute: '2-digit',
-                  second: '2-digit',
-                }
-              )}
-            </span>
+            <>
+              <span>
+                작성시간:{' '}
+                {new Date(comment.time).toLocaleString(
+                  'ko-KR',
+                  {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                  }
+                )}
+              </span>
+              <span onClick={() => toggleModal(comment.id)}>
+                <FontAwesomeIcon
+                  style={{
+                    marginLeft: '15px',
+                    color: 'red',
+                  }}
+                  icon={faCircleExclamation}
+                />
+              </span>
+            </>
           </div>
 
           <div>
@@ -237,19 +256,34 @@ function VoteEndPage() {
                     <span>
                       작성자 : {childComment.userNickname}
                     </span>
-                    <span>
-                      작성시간:
-                      {new Date(
-                        childComment.time
-                      ).toLocaleString('ko-KR', {
-                        year: 'numeric',
-                        month: '2-digit',
-                        day: '2-digit',
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        second: '2-digit',
-                      })}
-                    </span>
+                    <>
+                      <span>
+                        작성시간:{' '}
+                        {new Date(
+                          childComment.time
+                        ).toLocaleString('ko-KR', {
+                          year: 'numeric',
+                          month: '2-digit',
+                          day: '2-digit',
+                          hour: '2-digit',
+                          minute: '2-digit',
+                          second: '2-digit',
+                        })}
+                      </span>
+                      <span
+                        onClick={() =>
+                          toggleModal(childComment.id)
+                        }
+                      >
+                        <FontAwesomeIcon
+                          style={{
+                            marginLeft: '15px',
+                            color: 'red',
+                          }}
+                          icon={faCircleExclamation}
+                        />
+                      </span>
+                    </>
                   </div>
                   <div>
                     <p>{childComment.content}</p>
@@ -605,6 +639,13 @@ function VoteEndPage() {
   };
   return (
     <div className="vote_page">
+      <ReportModal
+        isVisible={isModalVisible}
+        onClose={() => toggleModal(null)}
+        onConfirm={() => toggleModal(null)}
+        commentId={commentId}
+        reportComment={reportComment}
+      />
       {MainBanner(
         jwtToken,
         isLoggedIn,
