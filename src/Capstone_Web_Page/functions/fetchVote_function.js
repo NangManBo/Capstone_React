@@ -23,9 +23,9 @@ export const fetchVotes = async (
           mediaUrl: vote.mediaUrl,
           createdBy: vote.createdBy,
           voteStatus: vote.voteStatus,
-          createdAt: moment
-            .utc(vote.createdAt, 'YYYY.MM.DD HH:mm:ss')
-            .format('YYYY-MM-DD HH:mm'),
+          createdAt: moment(vote.createdAt).format(
+            'YYYY-MM-DD HH:mm'
+          ),
           category: vote.category,
           title: vote.title,
           question: vote.question,
