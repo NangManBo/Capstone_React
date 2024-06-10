@@ -5,6 +5,7 @@ import { LeftBar } from '../components/leftBar_components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import './styles/profile_style.css';
 import './styles/dmSend_style.css';
 
@@ -59,6 +60,12 @@ function DMPage() {
         </h2>
 
         <div className="dm_Page">
+          <div className="fixed_button_2">
+            <FontAwesomeIcon
+              onClick={() => handlemessge(item)}
+              icon={faTrashCan}
+            />
+          </div>
           <div className="fixed_button">
             <FontAwesomeIcon
               onClick={() => handlemessge(item)}
