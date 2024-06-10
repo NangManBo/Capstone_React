@@ -51,7 +51,7 @@ function MainPage() {
   const fetchData = async () => {
     try {
       const response = await axios.get(
-        `https://dovote.p-e.kr/message/read/all/${nickname}`,
+        `https://dovote.p-e.kr/message/read/all/${keyId}`,
         {
           headers: {
             'Content-Type': 'multipart/form-data',
@@ -84,7 +84,7 @@ function MainPage() {
   const fetchwebsocket = async () => {
     try {
       const response = await axios.get(
-        `https://dovote.p-e.kr/message/count/${nickname}`,
+        `https://dovote.p-e.kr/message/count/${keyId}`,
         {
           headers: {
             'Content-Type': 'multipart/form-data',
@@ -109,7 +109,7 @@ function MainPage() {
       fetchData();
       getPopularPoint();
       fetchwebsocket();
-      getMessages(jwtToken, nickname, setMessageCount);
+      getMessages(jwtToken, keyId, setMessageCount);
     }
   }, []);
 

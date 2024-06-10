@@ -21,7 +21,7 @@ function DMboxPage() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://dovote.p-e.kr/message/read/all/${nickname}`,
+          `https://dovote.p-e.kr/message/read/all/${keyId}`,
           {
             headers: {
               'Content-Type': 'multipart/form-data',

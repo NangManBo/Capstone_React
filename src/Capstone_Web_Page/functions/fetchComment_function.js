@@ -87,12 +87,12 @@ export const sameVoteGroup = async (
 
 export const getMessages = async (
   jwtToken,
-  nickname,
+  keyId,
   setMessageCount
 ) => {
   try {
     const response = await axios.get(
-      'https://dovote.p-e.kr/message/count/' + nickname,
+      'https://dovote.p-e.kr/message/count/' + keyId,
       {
         headers: {
           'Content-Type': 'application/json',
