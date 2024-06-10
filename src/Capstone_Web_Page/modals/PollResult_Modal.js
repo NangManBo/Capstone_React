@@ -41,23 +41,23 @@ const PollResultModal = ({
   pollResult,
 }) => {
   const usedColors = new Set();
+  let colorIndex = 0;
 
-  const getColor = (index) => {
-    while (usedColors.has(COLORS[index % COLORS.length])) {
-      index++;
-    }
-    const color = COLORS[index % COLORS.length];
-    usedColors.add(color);
+  const getColor = () => {
+    const color = COLORS[colorIndex % COLORS.length];
+    colorIndex++;
     return color;
   };
 
   const generateChartData = (counts, names) => {
-    return Object.keys(names).map((key) => {
-      const count = Object.values(counts[key]).reduce(
-        (acc, value) => acc + value,
-        0
-      );
-      return { name: names[key], value: count };
+    return Object.keys(names).flatMap((key) => {
+      return Object.keys(counts[key]).map((subKey) => {
+        const count = counts[key][subKey];
+        return {
+          name: `${names[key]}: ${subKey}`,
+          value: count,
+        };
+      });
     });
   };
 
@@ -147,7 +147,7 @@ const PollResultModal = ({
               ).map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
-                  fill={getColor(index)}
+                  fill={getColor()}
                 />
               ))}
             </Pie>
@@ -157,6 +157,8 @@ const PollResultModal = ({
           <div>{renderGenderCounts()}</div>
           {usedColors.clear()}{' '}
           {/* Reset used colors for the next chart */}
+          colorIndex = 0;{' '}
+          {/* Reset color index for the next chart */}
           <h5>Age Distribution</h5>
           <PieChart width={400} height={400}>
             <Pie
@@ -177,7 +179,7 @@ const PollResultModal = ({
               ).map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
-                  fill={getColor(index)}
+                  fill={getColor()}
                 />
               ))}
             </Pie>
