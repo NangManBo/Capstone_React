@@ -738,9 +738,9 @@ function VoteAfterPage() {
         reportComment={reportComment}
       />
       <AlertModal
-        isVisible={isModalVisible}
-        onClose={() => toggleModal(null)}
-        onConfirm={() => toggleModal(null)}
+        isVisible={isAlert}
+        onClose={() => toggleModal_alert(null)}
+        onConfirm={() => toggleModal_alert(null)}
         message={message}
       />
 
