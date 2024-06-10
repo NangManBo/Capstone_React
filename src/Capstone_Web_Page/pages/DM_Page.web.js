@@ -60,13 +60,11 @@ function DMPage() {
         </h2>
 
         <div className="dm_Page">
-          <div className="fixed_button_2">
+          <div className="fixed_button">
             <FontAwesomeIcon
               onClick={() => handlemessge(item)}
               icon={faTrashCan}
             />
-          </div>
-          <div className="fixed_button">
             <FontAwesomeIcon
               onClick={() => handlemessge(item)}
               icon={faPaperPlane}
