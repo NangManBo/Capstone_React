@@ -92,15 +92,13 @@ function VoteEndPage() {
   };
   //게시글 좋아요
   const handleHeartClick = async () => {
-    const data = {
-      pollId: vote.id,
-      nickname: nickname,
-    };
-
     try {
       const response = await axios.post(
         'https://dovote.p-e.kr/polls/likes',
-        data,
+        {
+          pollId: vote.id,
+          userId: keyId,
+        },
         {
           headers: {
             'Content-Type': 'application/json',
@@ -114,8 +112,11 @@ function VoteEndPage() {
           prev === 'empty' ? 'filled' : 'empty'
         );
       } else {
+        toggleModal_alert('이미 좋아요를 누르셨습니다.');
       }
-    } catch (error) {}
+    } catch (error) {
+      toggleModal_alert('이미 좋아요를 누르셨습니다.');
+    }
   };
   // 댓글에서 쪽지 보내기
   const handlemessge = (comment) => {

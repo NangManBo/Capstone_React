@@ -629,34 +629,6 @@ function VoteCreatedUserPage() {
     });
   };
 
-  //게시글 좋아요
-  const handleHeartClick = async () => {
-    try {
-      const response = await axios.post(
-        'https://dovote.p-e.kr/polls/likes',
-        {
-          pollId: vote.id,
-          userId: keyId,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: jwtToken,
-          },
-        }
-      );
-
-      if (response.status === 200) {
-        setHeartType((prev) =>
-          prev === 'empty' ? 'filled' : 'empty'
-        );
-      } else {
-        setAlertMessage('이미 좋아요를 누르셨습니다.');
-      }
-    } catch (error) {
-      setAlertMessage('이미 좋아요를 누르셨습니다.');
-    }
-  };
   useEffect(() => {
     fetchComments(vote.id, jwtToken, setComments);
   }, [vote, jwtToken]);

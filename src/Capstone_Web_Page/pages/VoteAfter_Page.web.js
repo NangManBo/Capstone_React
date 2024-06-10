@@ -187,7 +187,9 @@ function VoteAfterPage() {
       } else {
         toggleModal_alert('이미 좋아요를 누르셨습니다.');
       }
-    } catch (error) {}
+    } catch (error) {
+      toggleModal_alert('이미 좋아요를 누르셨습니다.');
+    }
   };
   // 댓글 작성
   const handleCommentSubmit = async () => {
