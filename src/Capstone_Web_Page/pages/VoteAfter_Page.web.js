@@ -19,6 +19,7 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 import AlertModal from '../modals/Alert_Modal';
+import DeleteModal from '../modals/Delete_Modal';
 
 const calculateTotalComments = (comments) => {
   let totalComments = 0;
@@ -81,6 +82,7 @@ function VoteAfterPage() {
   const totalComments = calculateTotalComments(comments);
   const [isModalVisible, setModalVisible] = useState(false);
   const [commentId, setCommentId] = useState(null);
+  const [fixedId, setFixedId] = useState('');
   const toggleModal = (id) => {
     setCommentId(id);
     setModalVisible(!isModalVisible);
@@ -91,6 +93,7 @@ function VoteAfterPage() {
     setIsAlert(!isAlert);
     setMessage(message);
   };
+
   const placeholder = {
     label: '정렬 기준',
     value: null,
@@ -116,10 +119,19 @@ function VoteAfterPage() {
     jwtToken,
     sortingStandard,
   ]);
+
+  useEffect(() => {
+    if (
+      vote.likedUsers &&
+      vote.likedUsers.includes(nickname)
+    ) {
+      setHeartType('filled');
+    }
+  }, [vote, nickname]);
   useEffect(() => {
     sortComments(sortingStandard);
   }, [comments, sortingStandard]);
-  // Check if the current user's nickname is in the likedUsers array
+
   useEffect(() => {
     if (
       vote.likedUsers &&
@@ -284,7 +296,6 @@ function VoteAfterPage() {
     try {
       const response = await axios.post(
         `https://dovote.p-e.kr/comments/like/${userId}/${vote.id}/${comment.id}`,
-
         {
           headers: {
             Authorization: jwtToken,
@@ -321,6 +332,37 @@ function VoteAfterPage() {
       }
     } catch (error) {
       console.error('댓글 신고 오류:', error);
+    }
+  };
+  // 댓글 삭제
+  const handleDeletePress = async (comment) => {
+    if (userId === comment.user.uid) {
+      setFixedId(comment.id);
+      setDeleteModalVisible(true);
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      const response = await axios.delete(
+        'https://dovote.p-e.kr/comments/' + fixedId
+      );
+
+      if (response.status === 204) {
+        const data = response.data;
+        console.log('댓글 삭제 성공:', data);
+
+        setUpdateDM5(updateDM5 + 1);
+        setDeleteModalVisible(false);
+      } else {
+        console.error('댓글 삭제 실패:', response.status);
+      }
+    } catch (error) {
+      console.error('댓글 삭제 오류:', error);
+      console.error(
+        '오류 메시지:',
+        error.response?.data || error.message
+      );
     }
   };
   //댓글 출력 창
@@ -361,6 +403,12 @@ function VoteAfterPage() {
                     second: '2-digit',
                   }
                 )}
+              </span>
+              <span>
+                <FontAwesomeIcon
+                  icon={faTrashCan}
+                  onClick={handleDeletePress(comment)}
+                />
               </span>
               <span onClick={() => toggleModal(comment.id)}>
                 <FontAwesomeIcon
@@ -676,6 +724,11 @@ function VoteAfterPage() {
   };
   return (
     <div className="vote_page">
+      <DeleteModal
+        isVisible={isAlert}
+        onCancel={() => setIsAlert(false)}
+        onDelete={handleDelete}
+      />
       <ReportModal
         isVisible={isModalVisible}
         onClose={() => toggleModal(null)}
@@ -821,6 +874,11 @@ function VoteAfterPage() {
                 value={
                   isReplyMode ? replyText : commentText
                 }
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter') {
+                    handleSearch();
+                  }
+                }}
                 onChange={(e) =>
                   isReplyMode
                     ? setReplyText(e.target.value)
