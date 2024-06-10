@@ -35,6 +35,35 @@ function DMPage() {
     });
   };
 
+  // 쪽지 삭제
+  const deleteMessage = async (item) => {
+    try {
+      const messageResponse = await axios.get(
+        'https://dovote.p-e.kr/message/delete/' +
+          item.messageId,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: jwtToken,
+          },
+        }
+      );
+
+      if (messageResponse.status === 200) {
+        navigate('/dmbox', {
+          state: {
+            isLoggedIn: isLoggedIn,
+            userId: userId,
+            jwtToken: jwtToken,
+            nickname: nickname,
+            keyId: keyId,
+          },
+        });
+      } else {
+      }
+    } catch (error) {}
+  };
+
   return (
     <div className="profile_page">
       {MainBanner(
@@ -62,7 +91,7 @@ function DMPage() {
         <div className="dm_Page">
           <div className="fixed_button">
             <FontAwesomeIcon
-              onClick={() => handlemessge(item)}
+              onClick={() => deleteMessage(item)}
               icon={faTrashCan}
             />
             <FontAwesomeIcon
