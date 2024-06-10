@@ -582,7 +582,7 @@ function VoteAfterPage() {
       setIsReplyMode(false); // Turn off reply mode
     } else {
       setReplyingIndex(comment.id);
-      setReplyText(`@${comment.userNickname} `);
+      setReplyText(`@답글 `);
       setIsReplyMode(true); // Turn on reply mode
     }
     setShowReplyInput(true);
@@ -602,11 +602,13 @@ function VoteAfterPage() {
       let formData = new FormData();
       const parentCommentId = replyingIndex; // Get the parent comment ID
 
-      // @와 userNickname 다음의 스페이스바까지 제거
-      const contentWithoutMention = replyText.replace(
-        /^@\S+\s/,
-        ''
-      );
+      // '@답글 ' 부분을 제거
+      const mention = '@답글 ';
+      const contentWithoutMention = replyText.startsWith(
+        mention
+      )
+        ? replyText.slice(mention.length)
+        : replyText;
 
       formData.append(
         'content',
