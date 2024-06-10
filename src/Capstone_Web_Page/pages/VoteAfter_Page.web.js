@@ -406,7 +406,7 @@ function VoteAfterPage() {
               <span>
                 <FontAwesomeIcon
                   icon={faTrashCan}
-                  onClick={handleDelete(comment)}
+                  onClick={() => handleDelete(comment)}
                 />
               </span>
               <span onClick={() => toggleModal(comment.id)}>
