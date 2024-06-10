@@ -449,11 +449,11 @@ function VoteAfterPage() {
             )}
           </div>
           <div className="comment_like_reply_box">
-            <div
-              className="comment_like_button"
-              onClick={() => commentLike(comment, index)}
-            >
-              <FontAwesomeIcon icon={faThumbsUp} />
+            <div className="comment_like_button">
+              <FontAwesomeIcon
+                icon={faThumbsUp}
+                onClick={() => commentLike(comment, index)}
+              />
               <span className="comment_like_count">
                 {comment.likes}
               </span>
@@ -558,7 +558,6 @@ function VoteAfterPage() {
                         onClick={() =>
                           commentLike(
                             childComment,
-                            index,
                             childIndex
                           )
                         }
