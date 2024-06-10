@@ -1,6 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
-import './DeleteConfirmationModal.css';
+import './styles/delete_style.css';
 
 const DeleteModal = ({ isVisible, onCancel, onDelete }) => {
   return (
