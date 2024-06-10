@@ -18,7 +18,7 @@ import { faImage } from '@fortawesome/free-regular-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 import './styles/vote_style.css';
-import AlertModal from '../modals/AlertMessage_Modal';
+import { AlertModal } from '../modals/AlertMessage_Modal';
 const calculateTotalComments = (comments) => {
   let totalComments = 0;
 

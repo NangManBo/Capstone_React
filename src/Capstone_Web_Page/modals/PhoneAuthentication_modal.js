@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './styles/modal_style.css';
-import AlertModal from '../modals/AlertMessage_Modal';
+import { AlertModal } from '../modals/AlertMessage_Modal';
 
 function PhoneAuthenticationModal({
   onClose,

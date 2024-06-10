@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'; // useNavigate 불러오기
 import axios from 'axios';
 import PhoneAuthenticationModal from '../modals/PhoneAuthentication_modal'; // 모달 불러오기
 import './styles/signup_style.css';
-import AlertModal from '../modals/AlertMessage_Modal';
+import { AlertModal } from '../modals/AlertMessage_Modal';
 function SignUpPage() {
   const [showPhoneAuthModal, setShowPhoneAuthModal] =
     useState(true);

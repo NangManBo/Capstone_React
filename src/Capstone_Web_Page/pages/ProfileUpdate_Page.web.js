@@ -6,7 +6,7 @@ import { LeftBar } from '../components/leftBar_components';
 import './styles/profile_style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
-import AlertModal from '../modals/AlertMessage_Modal';
+import { AlertModal } from '../modals/AlertMessage_Modal';
 function ProfileUpdatePage() {
   const navigate = useNavigate();
   const location = useLocation();

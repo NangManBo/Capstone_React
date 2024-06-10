@@ -7,7 +7,7 @@ import { MainBanner } from '../components/mainBanner_components';
 import { LeftBar } from '../components/leftBar_components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
-import AlertModal from '../modals/AlertMessage_Modal';
+import { AlertModal } from '../modals/AlertMessage_Modal';
 function UserAuthenticationPage() {
   const navigate = useNavigate();
   const location = useLocation();

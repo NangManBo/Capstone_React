@@ -16,7 +16,7 @@ import { LeftBar } from '../components/leftBar_components';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 import PollResultModal from '../modals/PollResult_Modal';
-import AlertModal from '../modals/AlertMessage_Modal';
+import { AlertModal } from '../modals/AlertMessage_Modal';
 const calculateTotalComments = (comments) => {
   let totalComments = 0;
 

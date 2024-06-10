@@ -6,7 +6,7 @@ import { LeftBar } from '../components/leftBar_components';
 import './styles/dmSend_style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowAltCircleLeft } from '@fortawesome/free-regular-svg-icons';
-import AlertModal from '../modals/AlertMessage_Modal';
+import { AlertModal } from '../modals/AlertMessage_Modal';
 function DMAutoSendPage() {
   const navigate = useNavigate();
   const location = useLocation();
