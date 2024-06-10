@@ -407,7 +407,10 @@ function VoteAfterPage() {
             {comment.mediaUrl && (
               <div>
                 {comment.mediaUrl.endsWith('.mp4') ? (
-                  <button onClick={() => handlePlayPause()}>
+                  <button
+                    className="comment_image_1"
+                    onClick={() => handlePlayPause()}
+                  >
                     <video
                       ref={videoRef}
                       src={comment.mediaUrl}

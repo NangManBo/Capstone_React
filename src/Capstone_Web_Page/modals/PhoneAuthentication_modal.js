@@ -28,15 +28,17 @@ function PhoneAuthenticationModal({
           },
         }
       );
-
+      if (response.status === 500) {
+        alert('이미 가입된 번호입니다');
+      }
       if (response.status === 200) {
         setIsSend(true);
       } else {
-        alert('잘못된 번호입니다');
+        alert('이미 가입된 번호입니다');
       }
     } catch (error) {
       setIsSend(true);
-      alert('잘못된 번호입니다');
+      alert('이미 가입된 번호입니다');
     }
   };
 
@@ -54,9 +56,7 @@ function PhoneAuthenticationModal({
           },
         }
       );
-      if (response.status === 500) {
-        alert('이미 가입된 번호입니다');
-      }
+
       if (response.status === 200) {
         nextphone(phoneNumber);
         onSuccess(); // useNavigate로 페이지 이동, state를 통해 데이터 전달

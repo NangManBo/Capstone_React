@@ -175,12 +175,14 @@
 .comment_header_select option {
   font-size: 1.2rem;
 }
+.comment_image_1 {
+  border: none;
+  background-color: none;
+}
 .comment_image {
   width: 80%; /* 요소의 부모 요소 너비에 맞추기 */
   max-width: 600px; /* 최대 너비 설정 */
   height: auto; /* 비율에 맞춰 높이 자동 조정 */
-  border: none;
-  background-color: none;
 }
 .comment_write {
   width: 100%;
