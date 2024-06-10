@@ -162,7 +162,7 @@ function VoteCreatedUserPage() {
       setIsReplyMode(false); // Turn off reply mode
     } else {
       setReplyingIndex(comment.id);
-      setReplyText(`@${comment.userNickname} `);
+      setReplyText(`@답글 `);
       setIsReplyMode(true); // Turn on reply mode
     }
     setShowReplyInput(true);
@@ -531,9 +531,17 @@ function VoteCreatedUserPage() {
       let formData = new FormData();
       const parentCommentId = replyingIndex; // Get the parent comment ID
 
+      // '@답글 ' 부분을 제거
+      const mention = '@답글 ';
+      const contentWithoutMention = replyText.startsWith(
+        mention
+      )
+        ? replyText.slice(mention.length)
+        : replyText;
+
       formData.append(
         'content',
-        JSON.stringify({ content: replyText })
+        JSON.stringify({ content: contentWithoutMention })
       );
       if (selectedMedia) {
         const localUri = selectedMedia;
@@ -574,7 +582,6 @@ function VoteCreatedUserPage() {
         ) {
         } else {
         }
-
         setIsReplyMode(false);
         setCommentText('');
       } else {
