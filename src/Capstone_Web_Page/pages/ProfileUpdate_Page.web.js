@@ -70,20 +70,18 @@ function ProfileUpdatePage() {
           '@jwtToken',
           response.data.token
         );
-
+        alert('정보 수정 완료');
         setJwtToken1(response.data.token);
         setNewNickname(null);
         setNewPassword(null);
         setCurrentNickname(response.data.nickname);
 
-        alert('정보 수정 완료');
         navigate('/', {
           state: {
-            isLoggedIn: true,
-            userId: userId,
-            jwtToken: jwtToken,
-            nickname: nickname,
-            keyId: keyId,
+            isLoggedIn: false,
+            userId: '',
+            jwtToken: '',
+            nickname: null,
           },
         });
       } else {
