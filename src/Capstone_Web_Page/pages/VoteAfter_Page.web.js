@@ -338,15 +338,8 @@ function VoteAfterPage() {
     }
   };
   // 댓글 삭제
-  const handleDeletePress = async (comment) => {
-    if (userId === comment.userId) {
-      setFixedId(comment.id);
-      setIsDelete(true);
-      setAlertMessage('정말 삭제하시겠습니까?');
-    }
-  };
-
-  const handleDelete = async () => {
+  const handleDelete = async (comment) => {
+    setFixedId(comment.id);
     try {
       const response = await axios.delete(
         'https://dovote.p-e.kr/comments/' + fixedId
@@ -391,26 +384,28 @@ function VoteAfterPage() {
       <div className="comment_body" key={index}>
         <div className="comment_box">
           <div className="commnet_box_user">
-            <span>작성자 : {comment.userNickname}</span>
-            <span>
-              작성시간:{' '}
-              {new Date(comment.time).toLocaleString(
-                'ko-KR',
-                {
-                  year: 'numeric',
-                  month: '2-digit',
-                  day: '2-digit',
-                  hour: '2-digit',
-                  minute: '2-digit',
-                  second: '2-digit',
-                }
-              )}
-            </span>
-            <>
+            <div className="commnet_box_user_1">
+              <span>작성자 : {comment.userNickname}</span>
+              <span>
+                작성시간:{' '}
+                {new Date(comment.time).toLocaleString(
+                  'ko-KR',
+                  {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                  }
+                )}
+              </span>
+            </div>
+            <div className="commnet_box_user_2">
               <span>
                 <FontAwesomeIcon
                   icon={faTrashCan}
-                  onClick={handleDeletePress(comment)}
+                  onClick={handleDelete(comment)}
                 />
               </span>
               <span onClick={() => toggleModal(comment.id)}>
@@ -422,7 +417,7 @@ function VoteAfterPage() {
                   icon={faCircleExclamation}
                 />
               </span>
-            </>
+            </div>
           </div>
 
           <div>
