@@ -30,7 +30,7 @@ export const reportComment = async (
   }
 };
 
-const ReportModal = ({
+export const ReportModal = ({
   isVisible,
   onClose,
   onConfirm,
@@ -133,5 +133,3 @@ const ReportModal = ({
     </Modal>
   );
 };
-
-export default ReportModal;
