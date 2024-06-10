@@ -2,6 +2,8 @@ import React from 'react';
 import Modal from 'react-modal';
 import './styles/report_style.css';
 
+Modal.setAppElement('#root'); // Your app element
+
 const AlertModal = ({
   isVisible,
   onClose,

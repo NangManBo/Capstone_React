@@ -2,6 +2,8 @@ import React from 'react';
 import Modal from 'react-modal';
 import './styles/delete_style.css';
 
+Modal.setAppElement('#root'); // Your app element
+
 const DeleteModal = ({ isVisible, onCancel, onDelete }) => {
   return (
     <Modal
