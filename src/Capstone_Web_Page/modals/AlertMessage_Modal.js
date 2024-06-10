@@ -2,9 +2,7 @@ import React from 'react';
 import Modal from 'react-modal';
 import './styles/report_style.css';
 
-Modal.setAppElement('#root'); // Your app element
-
-const AlertModal = ({
+export const AlertModal = ({
   isVisible,
   onClose,
   onConfirm,
@@ -32,5 +30,3 @@ const AlertModal = ({
     </Modal>
   );
 };
-
-export default AlertModal;
