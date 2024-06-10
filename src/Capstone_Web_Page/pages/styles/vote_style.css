@@ -269,7 +269,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 30%;
+  width: 15%;
 }
 .comment_like_button {
   color: rgb(68, 136, 255);

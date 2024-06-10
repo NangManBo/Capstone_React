@@ -299,6 +299,7 @@ function VoteAfterPage() {
     try {
       const response = await axios.post(
         `https://dovote.p-e.kr/comments/like/${userId}/${vote.id}/${comment.id}`,
+        {},
         {
           headers: {
             Authorization: jwtToken,
