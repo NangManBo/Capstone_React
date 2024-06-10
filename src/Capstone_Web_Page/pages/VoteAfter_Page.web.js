@@ -163,7 +163,6 @@ function VoteAfterPage() {
       }
     }
   };
-  //게시글 좋아요
   const handleHeartClick = async () => {
     try {
       const response = await axios.post(
@@ -180,17 +179,23 @@ function VoteAfterPage() {
         }
       );
 
+      console.log('Response:', response); // 응답 로그 출력
+
       if (response.status === 200) {
         setHeartType((prev) =>
           prev === 'empty' ? 'filled' : 'empty'
         );
+        console.log('Heart type updated'); // 상태 업데이트 로그 출력
       } else {
+        console.warn('Already liked'); // 경고 로그 출력
         toggleModal_alert('이미 좋아요를 누르셨습니다.');
       }
     } catch (error) {
+      console.error('Error liking the post:', error); // 오류 로그 출력
       toggleModal_alert('이미 좋아요를 누르셨습니다.');
     }
   };
+
   // 댓글 작성
   const handleCommentSubmit = async () => {
     setSend(true);
