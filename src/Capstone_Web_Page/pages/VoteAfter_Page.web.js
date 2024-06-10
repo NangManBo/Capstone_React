@@ -386,12 +386,6 @@ function VoteAfterPage() {
               </span>
             </div>
             <div className="commnet_box_user_2">
-              <span>
-                <FontAwesomeIcon
-                  icon={faTrashCan}
-                  onClick={() => handleDelete(comment)}
-                />
-              </span>
               <span onClick={() => toggleModal(comment.id)}>
                 <FontAwesomeIcon
                   style={{

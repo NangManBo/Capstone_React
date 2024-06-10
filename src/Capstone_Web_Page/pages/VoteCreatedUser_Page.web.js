@@ -236,22 +236,24 @@ function VoteCreatedUserPage() {
       <div className="comment_body" key={index}>
         <div className="comment_box">
           <div className="commnet_box_user">
-            <span>작성자 : {comment.userNickname}</span>{' '}
-            <span>
-              작성시간:{' '}
-              {new Date(comment.time).toLocaleString(
-                'ko-KR',
-                {
-                  year: 'numeric',
-                  month: '2-digit',
-                  day: '2-digit',
-                  hour: '2-digit',
-                  minute: '2-digit',
-                  second: '2-digit',
-                }
-              )}
-            </span>
-            <>
+            <div className="commnet_box_user_1">
+              <span>작성자 : {comment.userNickname}</span>{' '}
+              <span>
+                작성시간:{' '}
+                {new Date(comment.time).toLocaleString(
+                  'ko-KR',
+                  {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                  }
+                )}
+              </span>
+            </div>
+            <div className="commnet_box_user_2">
               <span onClick={() => toggleModal(comment.id)}>
                 <FontAwesomeIcon
                   style={{
@@ -261,7 +263,7 @@ function VoteCreatedUserPage() {
                   icon={faCircleExclamation}
                 />
               </span>
-            </>
+            </div>
           </div>
 
           <div>
