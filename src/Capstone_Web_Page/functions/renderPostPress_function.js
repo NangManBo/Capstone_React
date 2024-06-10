@@ -83,14 +83,14 @@ export const renderPostPress = async (
             // If userVotes is null or empty, navigate to 'VoteBefore'
             navigate('/votebefore', {
               state: {
-                vote: firstMatchingVote,
                 isLoggedIn,
                 userId,
+                vote: firstMatchingVote,
                 jwtToken,
                 nickname,
                 category,
-                matchingVotes,
                 isCategory,
+                matchingVotes,
                 keyId,
               },
             });
