@@ -102,7 +102,7 @@ function VoteAfterPage() {
     sameVoteGroup(
       vote,
       userVotes,
-      nickname,
+      keyId,
       jwtToken,
       setSameOption
     );

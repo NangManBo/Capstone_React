@@ -48,7 +48,7 @@ export const fetchComments = async (
 export const sameVoteGroup = async (
   vote,
   userVotes,
-  nickname,
+  keyId,
   jwtToken,
   setSameOption
 ) => {
@@ -67,7 +67,7 @@ export const sameVoteGroup = async (
       : 0;
     return axios
       .get(
-        `https://dovote.p-e.kr/votes/user-nicknames/${vote.id}/${customValue}/${nickname}`,
+        `https://dovote.p-e.kr/votes/user-nicknames/${vote.id}/${customValue}/${keyId}`,
         {
           headers: {
             'Content-Type': 'multipart/form-data',
