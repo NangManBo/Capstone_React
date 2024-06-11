@@ -117,8 +117,7 @@ function VoteAfterPage() {
 
   useEffect(() => {
     sortComments(sortingStandard);
-    console.log(comments);
-  }, [comments, sortingStandard]);
+  }, [comments, sortingStandard, send]);
 
   useEffect(() => {
     if (
@@ -329,28 +328,7 @@ function VoteAfterPage() {
       console.error('댓글 신고 오류:', error);
     }
   };
-  // 댓글 삭제
-  const handleDelete = async (comment) => {
-    setFixedId(comment.id);
-    try {
-      const response = await axios.delete(
-        'https://dovote.p-e.kr/comments/' + fixedId
-      );
 
-      if (response.status === 204) {
-        const data = response.data;
-        console.log('댓글 삭제 성공:', data);
-      } else {
-        console.error('댓글 삭제 실패:', response.status);
-      }
-    } catch (error) {
-      console.error('댓글 삭제 오류:', error);
-      console.error(
-        '오류 메시지:',
-        error.response?.data || error.message
-      );
-    }
-  };
   //댓글 출력 창
   const Comment = ({ comment, index }) => {
     const handlePlayPause = () => {

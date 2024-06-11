@@ -185,9 +185,10 @@ function VoteCreatedUserPage() {
     jwtToken,
     sortingStandard,
   ]);
+
   useEffect(() => {
     sortComments(sortingStandard);
-  }, [comments, sortingStandard]);
+  }, [comments, sortingStandard, send]);
   // 댓글 신고
   const reportComment = async (commentId, reportReason) => {
     setSend(true);

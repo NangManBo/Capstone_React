@@ -487,7 +487,7 @@ function VoteEndPage() {
   }, [vote, nickname]);
   useEffect(() => {
     sortComments(sortingStandard);
-  }, [comments, sortingStandard]);
+  }, [comments, sortingStandard, send]);
   useEffect(() => {
     // Assuming vote.choices is an array of choice objects received from the server
     if (vote.choice && Array.isArray(vote.choice)) {
