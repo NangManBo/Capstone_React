@@ -76,7 +76,7 @@ export const sameVoteGroup = async (
       )
       .then((response) => ({
         choiceId: item.choiceId,
-        userNames: response.data,
+        userIds: response.data,
       }))
       .catch((error) => null);
   });

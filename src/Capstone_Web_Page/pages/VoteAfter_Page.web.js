@@ -423,9 +423,7 @@ function VoteAfterPage() {
             </div>
             <div>
               {sameOption.some((option) =>
-                option.userNames.includes(
-                  comment.userNickname
-                )
+                option.userIds.includes(comment.userId)
               ) && <p>(나와 동일한 선택지를 골랐습니다)</p>}
             </div>
             <div className="comment_reply">
@@ -533,8 +531,8 @@ function VoteAfterPage() {
                     </div>
                     <div>
                       {sameOption.some((option) =>
-                        option.userNames.includes(
-                          childComment.userNickname
+                        option.userIds.includes(
+                          childComment.userId
                         )
                       ) && (
                         <p>
