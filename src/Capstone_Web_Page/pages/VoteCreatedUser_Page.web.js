@@ -170,6 +170,7 @@ function VoteCreatedUserPage() {
   };
   useEffect(() => {
     fetchComments(vote.id, jwtToken, setComments);
+    console.log('댓글', comments);
     sameVoteGroup(
       vote,
       userVotes,

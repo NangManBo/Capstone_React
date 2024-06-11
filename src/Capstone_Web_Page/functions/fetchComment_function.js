@@ -82,7 +82,7 @@ export const sameVoteGroup = async (
   });
 
   const results = await Promise.all(promises);
-  setSameOption(results.filter((result) => result != null)); // 에러가 발생하지 않은 결과만 필터링
+  setSameOption(results.filter((result) => result != null));
 };
 
 export const getMessages = async (
