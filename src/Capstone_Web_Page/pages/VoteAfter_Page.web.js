@@ -42,6 +42,7 @@ function VoteAfterPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const {
+    keyId,
     isLoggedIn,
     userId,
     vote,
@@ -51,7 +52,6 @@ function VoteAfterPage() {
     isCategory,
     category,
     matchingVotes,
-    keyId,
   } = location.state || { isCategory: false };
 
   const [send, setSend] = useState(false);

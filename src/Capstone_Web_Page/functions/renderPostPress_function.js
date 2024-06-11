@@ -51,6 +51,7 @@ export const renderPostPress = async (
             // If the vote is closed, navigate to 'VoteEnd'
             navigate('/voteend', {
               state: {
+                keyId,
                 vote: firstMatchingVote,
                 isLoggedIn,
                 userId,
@@ -60,13 +61,13 @@ export const renderPostPress = async (
                 category,
                 matchingVotes,
                 isCategory,
-                keyId,
               },
             });
           } else if (isCreatedByUser) {
             // If the user created the vote, navigate to 'VoteCreatedUser'
             navigate('/votecreateduser', {
               state: {
+                keyId,
                 vote: firstMatchingVote,
                 isLoggedIn,
                 userId,
@@ -76,13 +77,13 @@ export const renderPostPress = async (
                 category,
                 matchingVotes,
                 isCategory,
-                keyId,
               },
             });
           } else {
             // If userVotes is null or empty, navigate to 'VoteBefore'
             navigate('/votebefore', {
               state: {
+                keyId,
                 isLoggedIn,
                 userId,
                 vote: firstMatchingVote,
@@ -91,7 +92,6 @@ export const renderPostPress = async (
                 category,
                 isCategory,
                 matchingVotes,
-                keyId,
               },
             });
           }

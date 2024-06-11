@@ -39,6 +39,7 @@ function VoteCreatedUserPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const {
+    keyId,
     isLoggedIn,
     userId,
     vote,
@@ -48,7 +49,6 @@ function VoteCreatedUserPage() {
     category,
     matchingVotes,
     userVotes,
-    keyId,
   } = location.state || { isCategory: false };
   const videoRef = useRef(null);
   const [selectedMedia, setSelectedMedia] = useState(null);

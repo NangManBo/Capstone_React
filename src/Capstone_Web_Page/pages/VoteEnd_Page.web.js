@@ -40,6 +40,7 @@ function VoteEndPage() {
   const navigate = useNavigate();
   const location = useLocation();
   const {
+    keyId,
     isLoggedIn,
     userId,
     vote,
@@ -49,7 +50,6 @@ function VoteEndPage() {
     category,
     matchingVotes,
     userVotes,
-    keyId,
   } = location.state || { isCategory: false };
 
   const standards = [

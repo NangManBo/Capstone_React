@@ -12,6 +12,7 @@ function VoteBeforePage() {
   const navigate = useNavigate();
   const location = useLocation();
   const {
+    keyId,
     isLoggedIn,
     userId,
     vote,
@@ -20,7 +21,6 @@ function VoteBeforePage() {
     isCategory,
     category,
     matchingVotes,
-    keyId,
   } = location.state || { isCategory: false };
 
   const [pollOptions, setPollOptions] = useState([]);
@@ -94,6 +94,7 @@ function VoteBeforePage() {
 
         navigate('/voteafter', {
           state: {
+            keyId: keyId,
             vote: vote,
             isLoggedIn,
             userId,
