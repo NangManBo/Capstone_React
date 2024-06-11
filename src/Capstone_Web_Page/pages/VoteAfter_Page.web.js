@@ -166,6 +166,7 @@ function VoteAfterPage() {
       );
 
       if (response.status === 200) {
+        alert('이 글 좋아합니다');
       } else {
         alert('이미 좋아요를 했습니다');
       }
