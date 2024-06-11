@@ -888,13 +888,15 @@ function VoteAfterPage() {
             </div>
           </div>
           <div className="comment_body_box">
-            {sortedComments.map((comment, index) => (
-              <Comment
-                key={index}
-                comment={comment}
-                index={index}
-              />
-            ))}
+            {totalComments != 0
+              ? sortedComments.map((comment, index) => (
+                  <Comment
+                    key={index}
+                    comment={comment}
+                    index={index}
+                  />
+                ))
+              : null}
           </div>
           {commentError !== '' && <p>{commentError}</p>}
         </div>

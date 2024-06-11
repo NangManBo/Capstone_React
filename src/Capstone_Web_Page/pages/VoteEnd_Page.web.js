@@ -488,8 +488,8 @@ function VoteEndPage() {
   useEffect(() => {
     sortComments(sortingStandard);
   }, [comments, sortingStandard, send]);
+
   useEffect(() => {
-    // Assuming vote.choices is an array of choice objects received from the server
     if (vote.choice && Array.isArray(vote.choice)) {
       setPollOptions(
         vote.choice.map((choice) => ({
@@ -952,13 +952,15 @@ function VoteEndPage() {
             </div>
           </div>
           <div className="comment_body_box">
-            {sortedComments.map((comment, index) => (
-              <Comment
-                key={index}
-                comment={comment}
-                index={index}
-              />
-            ))}
+            {totalComments != 0
+              ? sortedComments.map((comment, index) => (
+                  <Comment
+                    key={index}
+                    comment={comment}
+                    index={index}
+                  />
+                ))
+              : null}
           </div>
         </div>
       </div>
